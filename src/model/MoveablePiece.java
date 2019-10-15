@@ -1,19 +1,13 @@
 package model;
 
-import java.awt.Point;
-
 public abstract class MoveablePiece implements Piece {
-	private Point location;
+	private String name;
 	
-	public MoveablePiece(int column, int row) {
-		
+	public MoveablePiece(String name) {
+		this.name = name;
 	}
 	
-	public Point getLocation() {
-		return null;
-	}
-	
-	public void setLocation(int column, int row) {
-		
+	public String getName() {
+		return this.name;
 	}
 }

@@ -3,16 +3,17 @@ package model;
 public class Fox extends MoveablePiece {
 	private Direction direction;
 	
-	public Fox(int column, int row, Direction direction) {
-		super(column, row);
+	public Fox(Direction direction, String name) {
+		super(name);
+		this.direction = direction;
 	}
 	
-	public void slideFox(Direction direction) {
-		
+	public Direction getDirection() {
+		return this.direction;
 	}
 	
 	@Override
 	public String toString() {
-		return "FIX ME!!";
+		return this.getName();
 	}
 }
