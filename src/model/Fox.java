@@ -11,9 +11,4 @@ public class Fox extends MoveablePiece {
 	public Direction getDirection() {
 		return this.direction;
 	}
-	
-	@Override
-	public String toString() {
-		return this.getName();
-	}
 }
