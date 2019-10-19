@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * The Hole class is responsible for the various holes that will make up the game board
+ * @author Aubin
+ *
+ */
 public class Hole {
 	private Boolean isOccupied;
 	private Piece piece;
@@ -63,10 +68,10 @@ public class Hole {
 	public String toString() {
 		
 		if(this instanceof RaisedHole & this.isOccupied == true) {
-			return "RH";
+			return this.toString();
 		}
 		else if(this instanceof BrownHole & this.isOccupied == true) {
-			return "BR";
+			return this.toString();
 		}
 		else return "EH";
 	}
