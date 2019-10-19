@@ -173,7 +173,34 @@ public class GameBoard {
 	}
 	
 	public void moveRabbitPiece(String name, Direction direction) {
-		
+		Rabbit rabbitPiece = null;
+		Point location;
+		Point newLocation;
+		for(Rabbit rabbit : rabbits.keySet()) {
+			if(rabbit.toString().equals(name)) {
+				rabbitPiece = rabbit;
+			}
+		}
+		if(rabbitPiece == null) {
+			throw new IllegalArgumentException("Name is not valid, Choose another rabbit");
+		}
+		else {
+			location = rabbits.get(rabbitPiece);
+			newLocation = rabbits.get(rabbitPiece);
+		}
+		// If heading directly into an empty space, invalid
+		if(!grid[location.x + direction.getX()][location.y + direction.getY()].getIsOccupied()) {
+			throw new IllegalArgumentException("Direction invalid, choose another");
+		}
+		else {
+			// Until next empty hole is found
+			while(grid[newLocation.x + direction.getX()][newLocation.y + direction.getY()].getIsOccupied()) {
+				newLocation.x += direction.getX();
+				newLocation.y += direction.getY();
+			}
+			addRabbitPiece(rabbitPiece, newLocation.x + direction.getX(), newLocation.y + direction.getY());
+			grid[location.x][location.y].removePiece(rabbitPiece);
+		}
 	}
 
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
