@@ -23,7 +23,11 @@ public class GameBoard {
 	}
 	
 	public void addPiece(Piece piece, int column, int row) {
-		
+		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
+            		throw new IllegalArgumentException("Space is not valid, Choose another square");
+        	}else{
+            		grid[column][row].addPiece(piece);
+        	}
 	}
 	
 	public Boolean isFinished() {
@@ -35,10 +39,22 @@ public class GameBoard {
 	}
 	
 	private void addMoveablePiece(MoveablePiece piece, int column, int row) {
-		
+		if((grid[column][row].getIsOccupied() && grid[column+1][row].getIsOccupied()) || 
+        	(grid[column+1][row].getIsOccupied() && grid[column][row + 1].getIsOccupied())){
+            		throw new IllegalArgumentException("Space is not valid, Choose another square");
+        	}
+        	else{
+            		//if(Direction == North){//head is facing north
+            		grid[column][row].addPiece(piece);
+            		grid[column + 1][row].addPiece(piece);
+		}
 	}
 	
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
-		
+		if(!(grid[column][row].getIsOccupied())){ // checks to see if hole is empty
+            		throw new IllegalArgumentException("Space is not valid, Choose another square");
+        	}else{
+             		grid[column][row].addPiece(piece);
+        	}
 	}
 }
