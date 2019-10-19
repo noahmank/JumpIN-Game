@@ -7,6 +7,6 @@ public class BrownHole extends RaisedHole {
 	
 	@Override
 	public String toString() {
-		return "FIX ME!!";
+		return "BH";
 	}
 }
