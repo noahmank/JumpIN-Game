@@ -10,8 +10,39 @@ public class GameBoard {
 	private Hole[][] grid;
 	private HashMap<MoveablePiece, Point> moveablePieces;
 	
+	/**
+	* Creates a new GameBoard with the specified number of
+	* columns and number of rows.
+	* @param numColumns, numRows is the number of columns 
+	* and number of rows.
+	*/
 	public GameBoard(int numColumns, int numRows) {
-		
+		//If the user enters a negative number, throw illegal argument exception
+		if(numColumns < 0 || numRows < 0) {
+			throw new IllegalArgumentException("Grid must be a positive size.");
+		}
+		this.grid = new Hole[numRows][numColumns];
+		this.moveablePieces = new HashMap<>();
+	
+		//Initializing every spot in the grid to be a hole
+		for(int r = 0; r < numRows; r++) {
+			for(int c = 0; c < numColumns; c++) {
+				this.grid[r][c] = new Hole();
+			}
+		}
+	
+		//Initializing the BrownHoles that bunnies will hop into
+		grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
+		grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
+		grid[2][2] = new BrownHole(); //brown hole at row 3, column 3
+		grid[4][0] = new BrownHole(); //brown hole at row 5, column 1
+		grid[4][4] = new BrownHole(); //brown hole at row 5, column 5
+	
+		//Initializing the RaisedHoles in the grid
+		grid[0][2] = new RaisedHole(); //raised hole at row 1, column 3
+		grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
+		grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
+		grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
 	}
 	
 	public GameBoard() {
