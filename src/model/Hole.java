@@ -52,6 +52,10 @@ public class Hole {
 		this.piece = piece;
 	}
 	
+	public Piece getPiece() {
+		return this.piece;
+	}
+	
 	/**
 	 * removePiece removes the piece (Rabbit, Fox) from a Hole. (Only Rabbits and Foxes can me removed in a game)
 	 * @param piece is the desired piece
@@ -66,12 +70,8 @@ public class Hole {
 	 * A text representation of the Hole object
 	 */
 	public String toString() {
-		
-		if(this instanceof RaisedHole & this.isOccupied == true) {
-			return this.toString();
-		}
-		else if(this instanceof BrownHole & this.isOccupied == true) {
-			return this.toString();
+		if(this.getIsOccupied()) {
+			return this.getPiece().toString();
 		}
 		else return "EH";
 	}

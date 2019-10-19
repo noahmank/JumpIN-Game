@@ -19,6 +19,9 @@ public class BrownHole extends RaisedHole {
 	*/
 	@Override
 	public String toString() {
-		return "BH";
+		if(this.getIsOccupied()) {
+			return this.getPiece().toString();
+		}
+		else return "BH";
 	}
 }
