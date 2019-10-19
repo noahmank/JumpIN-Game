@@ -1,15 +1,27 @@
 package model;
 
-
-public class Rabbit implements Piece{
-	String color;
+public class Rabbit extends MoveablePiece{
 	
-	public Rabbit(String color) {
-		this.color = color;
+	/**
+	 * The Rabbit constructor constructs a new Rabbit constructor
+	 * @param color identifies the color of the Rabbit
+	 * @param row the X coordinate of the Rabbit
+	 * @param column the Y coordinate of the Rabbit
+	 */
+	public Rabbit(String color, int row, int column) {
+		super(color, row, column);
 	}
 	
-	@Override
+	/**
+	 * A text representation of the Rabbit
+	 */
 	public String toString() {
-		return Character.toString(color.charAt(0)).toUpperCase() + "R";
+		if(this.getName().toUpperCase() == "BROW") {
+			return "RR";
+		}
+		else if(this.getName().toUpperCase() == "BLACK") {
+			return "BR";
+		}
+		else return "WR";
 	}
 }
