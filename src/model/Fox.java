@@ -5,7 +5,7 @@ package model;
  * @author Liya Abebe
  * @version 1.0
 */
-public class Fox extends MoveablePiece {
+public class Fox implements Piece {
 	private Direction direction;
 	private int number;
 		

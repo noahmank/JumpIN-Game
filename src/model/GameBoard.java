@@ -8,7 +8,8 @@ public class GameBoard {
 	private static final int DEFAULT_ROWS = 5;
 	
 	private Hole[][] grid;
-	private HashMap<MoveablePiece, Point> moveablePieces;
+	private HashMap<Rabbit, Point> rabbits;
+	private HashMap<Fox, Point> foxes;
 	
 	/**
 	* Creates a new GameBoard with the specified number of
@@ -17,12 +18,14 @@ public class GameBoard {
 	* and number of rows.
 	*/
 	public GameBoard(int numColumns, int numRows) {
-		//If the user enters a negative number, throw illegal argument exception
-		if(numColumns < 0 || numRows < 0) {
+		//If the user enters a negative number or zero, throw illegal argument exception
+		if(numColumns <= 0 || numRows <= 0) {
 			throw new IllegalArgumentException("Grid must be a positive size.");
 		}
 		this.grid = new Hole[numRows][numColumns];
-		this.moveablePieces = new HashMap<>();
+		this.foxes = new HashMap<>();
+		this.rabbits = new HashMap<>();
+		//this.moveablePieces = new HashMap<>();
 	
 		//Initializing every spot in the grid to be a hole
 		for(int r = 0; r < numRows; r++) {
@@ -30,7 +33,10 @@ public class GameBoard {
 				this.grid[r][c] = new Hole();
 			}
 		}
+	}
 	
+	public GameBoard() {
+		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
 		//Initializing the BrownHoles that bunnies will hop into
 		grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
 		grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
@@ -45,24 +51,35 @@ public class GameBoard {
 		grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
 	}
 	
-	public GameBoard() {
-		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
-	}
-	
 	public void resetGame() {
 		
 	}
 	
 	public void addPiece(Piece piece, int column, int row) {
-		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
-            		throw new IllegalArgumentException("Space is not valid, Choose another square");
-        	}else{
-            		grid[column][row].addPiece(piece);
-        	}
+		try {
+			checkValidSpace(column, row);
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println(e);
+		}
+		if(piece instanceof Mushroom) {
+			this.addMushroomPiece((Mushroom) piece, column, row);
+		}
+		else if(piece instanceof Fox) {
+			this.addFoxPiece((Fox) piece, column, row);
+		}
+		else {
+			this.addRabbitPiece((Rabbit) piece, column, row);
+		}
 	}
 	
 	public Boolean isFinished() {
-		return false;
+		for(Point point : rabbits.values()) {
+			if(!(grid[point.x][point.y] instanceof BrownHole)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -81,23 +98,80 @@ public class GameBoard {
 		return s;
 	}
 	
-	private void addMoveablePiece(MoveablePiece piece, int column, int row) {
-		if((grid[column][row].getIsOccupied() && grid[column+1][row].getIsOccupied()) || 
-        	(grid[column+1][row].getIsOccupied() && grid[column][row + 1].getIsOccupied())){
-            		throw new IllegalArgumentException("Space is not valid, Choose another square");
-        	}
-        	else{
-            		//if(Direction == North){//head is facing north
-            		grid[column][row].addPiece(piece);
-            		grid[column + 1][row].addPiece(piece);
+	public void moveFoxPiece(String name, Direction direction) {
+		// Check to see if input name exists in foxes
+		Fox foxPiece = null;
+		Point location;
+		for(Fox fox : foxes.keySet()) {
+			if(fox.toString().equals(name)) {
+				foxPiece = fox;
+			}
+		}
+		// Input name is invalid
+		if(foxPiece == null) {
+			throw new IllegalArgumentException("Name is not valid, Choose another fox");
+		}
+		else {
+			location = foxes.get(foxPiece);
+		}
+		// Check to see if direction is valid
+		switch(direction) {
+			case NORTH: case SOUTH:
+				if((foxPiece.getDirection() != Direction.NORTH) || (foxPiece.getDirection() != Direction.SOUTH)) {
+					throw new IllegalArgumentException("Direction is not valid, Choose either EAST or WEST");
+				}
+				break;
+			case EAST: case WEST:
+				if((foxPiece.getDirection() != Direction.EAST) || (foxPiece.getDirection() != Direction.WEST)) {
+					throw new IllegalArgumentException("Direction is not valid, Choose either NORTH or SOUTH");
+				}
+				break;
+		}
+		// This does not yet account for hills -> need to think about that in addFoxPiece
+		// Start move process by removing from initial locations (object and location are still stored locally)
+		grid[location.x][location.y].removePiece(foxPiece);
+		grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].removePiece(foxPiece);
+		try {
+			this.addFoxPiece(foxPiece, location.x + direction.getX(), location.y + direction.getY());
+		}
+		catch(IllegalArgumentException e) {
+			grid[location.x][location.y].addPiece(foxPiece);
+			grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].addPiece(foxPiece);
+			System.out.println(e);
 		}
 	}
 	
+	public void moveRabbitPiece(String name, Direction direction) {
+		
+	}
+
+	private void addRabbitPiece(Rabbit piece, int column, int row) {
+		grid[column][row].addPiece(piece);
+		this.rabbits.put(piece, new Point(column, row));
+	}
+	
+	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
+		Direction direction = piece.getDirection();
+		// Need to add try - catch, or maybe throw, or maybe up-stream handle, or all of the above
+		try {
+			checkValidSpace(column + direction.getX(), row + direction.getY());
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println(e);
+		}
+		grid[column + direction.getX()][row + direction.getY()].addPiece(piece);
+		grid[column][row].addPiece(piece);
+		this.foxes.put(piece, new Point(column, row));
+	}
+	
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
-		if(!(grid[column][row].getIsOccupied())){ // checks to see if hole is empty
-            		throw new IllegalArgumentException("Space is not valid, Choose another square");
-        	}else{
-             		grid[column][row].addPiece(piece);
-        	}
+		grid[column][row].addPiece(piece);
+	}
+	
+	// Needs to throw exception, check if off grid
+	private void checkValidSpace(int column, int row) throws IllegalArgumentException {
+		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
+            throw new IllegalArgumentException("Space is not valid, Choose another square");
+        }
 	}
 }
