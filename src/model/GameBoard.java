@@ -38,6 +38,12 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	* Constructing the GameBoard for the Default Rows as
+	* well as Default Columns using constructor chaining.
+	* Also initializes the Brown and Raised holes for the default board size
+	* @author Adela Tullio
+	*/
 	public GameBoard() {
 		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
 		//Initializing the BrownHoles that bunnies will hop into
