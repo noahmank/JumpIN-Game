@@ -6,7 +6,8 @@ import java.util.HashMap;
 public class GameBoard {
 	private static final int DEFAULT_COLUMNS = 5;
 	private static final int DEFAULT_ROWS = 5;
-	
+	private int numColumns;
+	private int numRows;
 	private Hole[][] grid;
 	private HashMap<Rabbit, Point> rabbits;
 	private HashMap<Fox, Point> foxes;
@@ -14,22 +15,24 @@ public class GameBoard {
 	/**
 	* Creates a new GameBoard with the specified number of
 	* columns and number of rows.
-	* @param numColumns, numRows is the number of columns 
-	* and number of rows.
+	* @param numColumns the number of columns to initialize the board to.
+	* @param numRows the number of rows to initialize the board to.
+	* @author Adela Tullio
 	*/
 	public GameBoard(int numColumns, int numRows) {
 		//If the user enters a negative number or zero, throw illegal argument exception
 		if(numColumns <= 0 || numRows <= 0) {
 			throw new IllegalArgumentException("Grid must be a positive size.");
 		}
+		this.numColumns = numColumns;
+		this.numRows = numRows;
 		this.grid = new Hole[numRows][numColumns];
 		this.foxes = new HashMap<>();
 		this.rabbits = new HashMap<>();
-		//this.moveablePieces = new HashMap<>();
-	
+		
 		//Initializing every spot in the grid to be a hole
-		for(int r = 0; r < numRows; r++) {
-			for(int c = 0; c < numColumns; c++) {
+		for(int r = 0; r < this.numRows; r++) {
+			for(int c = 0; c < this.numColumns; c++) {
 				this.grid[r][c] = new Hole();
 			}
 		}
@@ -38,17 +41,18 @@ public class GameBoard {
 	public GameBoard() {
 		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
 		//Initializing the BrownHoles that bunnies will hop into
-		grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
-		grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
-		grid[2][2] = new BrownHole(); //brown hole at row 3, column 3
-		grid[4][0] = new BrownHole(); //brown hole at row 5, column 1
-		grid[4][4] = new BrownHole(); //brown hole at row 5, column 5
+		this.grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
+		this.grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
+		this.grid[2][2] = new BrownHole(); //brown hole at row 3, column 3
+		this.grid[4][0] = new BrownHole(); //brown hole at row 5, column 1
+		this.grid[4][4] = new BrownHole(); //brown hole at row 5, column 5
 	
 		//Initializing the RaisedHoles in the grid
-		grid[0][2] = new RaisedHole(); //raised hole at row 1, column 3
-		grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
-		grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
-		grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
+		this.grid[0][2] = new RaisedHole(); //raised hole at row 1, column 3
+		this.grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
+		this.grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
+		this.grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
+	
 	}
 	
 	public void resetGame() {
@@ -86,11 +90,12 @@ public class GameBoard {
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
+	* @author Adela Tullio
 	*/
 	public String toString() {
 		String s = "";
-		for(int r = 0; r < DEFAULT_ROWS; r++) {
-			for(int c = 0; c < DEFAULT_COLUMNS; c++) {
+		for(int r = 0; r < this.numRows; r++) {
+			for(int c = 0; c < this.numColumns; c++) {
 				s += grid[r][c] + " | ";
 			}
 			s += "\n";
@@ -135,8 +140,8 @@ public class GameBoard {
 			this.addFoxPiece(foxPiece, location.x + direction.getX(), location.y + direction.getY());
 		}
 		catch(IllegalArgumentException e) {
-			grid[location.x][location.y].addPiece(foxPiece);
-			grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].addPiece(foxPiece);
+			grid[location.x][location.y].setPiece(foxPiece);
+			grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].setPiece(foxPiece);
 			System.out.println(e);
 		}
 	}
@@ -146,7 +151,7 @@ public class GameBoard {
 	}
 
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
-		grid[column][row].addPiece(piece);
+		grid[column][row].setPiece(piece);
 		this.rabbits.put(piece, new Point(column, row));
 	}
 	
@@ -159,13 +164,13 @@ public class GameBoard {
 		catch(IllegalArgumentException e) {
 			System.out.println(e);
 		}
-		grid[column + direction.getX()][row + direction.getY()].addPiece(piece);
-		grid[column][row].addPiece(piece);
+		grid[column + direction.getX()][row + direction.getY()].setPiece(piece);
+		grid[column][row].setPiece(piece);
 		this.foxes.put(piece, new Point(column, row));
 	}
 	
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
-		grid[column][row].addPiece(piece);
+		grid[column][row].setPiece(piece);
 	}
 	
 	// Needs to throw exception, check if off grid
