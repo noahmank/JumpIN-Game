@@ -65,8 +65,20 @@ public class GameBoard {
 		return false;
 	}
 	
+	/**
+	* Changes the grid gameboard to a visual representation the user 
+	* is able to see
+	* @return the grid gameboard as a string
+	*/
 	public String toString() {
-		return "FIX ME!!";
+		String s = "";
+		for(int r = 0; r < DEFAULT_ROWS; r++) {
+			for(int c = 0; c < DEFAULT_COLUMNS; c++) {
+				s += grid[r][c] + " | ";
+			}
+			s += "\n";
+		}
+		return s;
 	}
 	
 	private void addMoveablePiece(MoveablePiece piece, int column, int row) {
