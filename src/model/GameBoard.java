@@ -119,10 +119,15 @@ public class GameBoard {
 	* @author Adela Tullio
 	*/	
 	public String toString() {
-		String s = "";
+		String s = "  |  ";
+		for(int i = 0; i < this.numColumns; i++) {
+			s += i + " |  ";
+		}
+		s += "\n";
 		for(int r = 0; r < this.numRows; r++) {
+			s += r + " | ";
 			for(int c = 0; c < this.numColumns; c++) {
-				s += grid[r][c] + " | ";
+				s += grid[r][c].toString() + " | ";
 			}
 			s += "\n";
 		}

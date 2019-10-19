@@ -6,8 +6,7 @@ public class JumpInGame {
 	
 	public JumpInGame() {
 		gameBoard = new GameBoard();
-		System.out.println(gameBoard.toString());
-		System.out.println(gameBoard.getLegend());
+		displayBoard();
 		gameStatus = GameStatus.READY_TO_PLAY;
 	}
 	
@@ -30,8 +29,18 @@ public class JumpInGame {
 		gameBoard.moveRabbitPiece(name, direction);
 	}
 	
+	public void displayBoard() {
+		System.out.println(gameBoard.toString());
+		System.out.println(gameBoard.getLegend());
+	}
+	public void addPieceToBoard(Piece piece, int column, int row) {
+		gameBoard.addPiece(piece, column, row);
+		displayBoard();
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Test");
 		JumpInGame game = new JumpInGame();
+		game.addPieceToBoard(new Rabbit("Brown"), 3, 3);
 	}
 }

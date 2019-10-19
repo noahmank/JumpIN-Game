@@ -24,8 +24,10 @@ public class Hole {
 	 * the toggleIsOccupied method switches between a Hole being occupied or not occupied,
 	 * upon a piece landing on a Hole or leaving a Hole.
 	 */
-	public void toggleIsOccupied() {
+	private void setIsOccupied(Boolean occupied) {
 		
+		this.isOccupied = occupied;
+		/**
 		if(this.piece != null & this.isOccupied == false) { //if a piece has landed on a hole, update the hole
 			this.isOccupied = true;
 		}
@@ -33,6 +35,7 @@ public class Hole {
 		else if(this.piece == null & this.isOccupied == true) {// if a piece has left a hole, update the hole 
 			this.isOccupied = false;
 		}
+		**/
 		
 	}
 	
@@ -50,6 +53,7 @@ public class Hole {
 	 */
 	public void setPiece(Piece piece) {
 		this.piece = piece;
+		this.setIsOccupied(true);
 	}
 	
 	public Piece getPiece() {
