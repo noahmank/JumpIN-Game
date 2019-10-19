@@ -6,6 +6,8 @@ public class JumpInGame {
 	
 	public JumpInGame() {
 		gameBoard = new GameBoard();
+		System.out.println(gameBoard.toString());
+		System.out.println(gameBoard.getLegend());
 		gameStatus = GameStatus.READY_TO_PLAY;
 	}
 	
@@ -26,5 +28,10 @@ public class JumpInGame {
 	
 	public void jumpRabbit(String name, Direction direction) {
 		gameBoard.moveRabbitPiece(name, direction);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Test");
+		JumpInGame game = new JumpInGame();
 	}
 }

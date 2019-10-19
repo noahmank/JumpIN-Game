@@ -101,12 +101,23 @@ public class GameBoard {
 		return true;
 	}
 	
+	public String getLegend() {
+		String s = "\n";
+		s += "BH = Brown Hole\n";
+		s += "EH = Empty Hole\n";
+		s += "RH = Raised Hole\n";
+		s += "RR = Brown Rabbit\n";
+		s += "BR = Black Rabbit\n";
+		s += "WR = White Rabbit\n";
+		return s;
+	}
+	
 	/**
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
 	* @author Adela Tullio
-	*/
+	*/	
 	public String toString() {
 		String s = "";
 		for(int r = 0; r < this.numRows; r++) {
