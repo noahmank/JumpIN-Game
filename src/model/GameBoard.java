@@ -74,11 +74,12 @@ public class GameBoard {
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
+	* @author Adela Tullio
 	*/
 	public String toString() {
 		String s = "";
-		for(int r = 0; r < DEFAULT_ROWS; r++) {
-			for(int c = 0; c < DEFAULT_COLUMNS; c++) {
+		for(int r = 0; r < this.numRows; r++) {
+			for(int c = 0; c < this.numColumns; c++) {
 				s += grid[r][c] + " | ";
 			}
 			s += "\n";
