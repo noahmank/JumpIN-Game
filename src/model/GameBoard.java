@@ -26,7 +26,23 @@ public class GameBoard {
 		}
 		this.numColumns = numColumns;
 		this.numRows = numRows;
-		this.grid = new Hole[numRows][numColumns];
+		this.grid = new Hole[numRows][numColumns];		
+		this.resetGame();
+		
+	}
+	
+	/**
+	 *  Default constructor of the GameBoard
+	 */
+	public GameBoard() {
+		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
+	}
+	
+	/**
+	 *  Resets the GameBoard
+	 */
+	public void resetGame() {
+		
 		this.foxes = new HashMap<>();
 		this.rabbits = new HashMap<>();
 		
@@ -36,16 +52,7 @@ public class GameBoard {
 				this.grid[r][c] = new Hole();
 			}
 		}
-	}
-	
-	/**
-	* Constructing the GameBoard for the Default Rows as
-	* well as Default Columns using constructor chaining.
-	* Also initializes the Brown and Raised holes for the default board size
-	* @author Adela Tullio
-	*/
-	public GameBoard() {
-		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
+				
 		//Initializing the BrownHoles that bunnies will hop into
 		this.grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
 		this.grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
@@ -58,10 +65,6 @@ public class GameBoard {
 		this.grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
 		this.grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
 		this.grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
-	
-	}
-	
-	public void resetGame() {
 		
 	}
 	
