@@ -52,7 +52,13 @@ public class GameBoard {
 				this.grid[r][c] = new Hole();
 			}
 		}
-				
+		this.initializeSpecialHoles();
+	}
+	/**
+	* Initializes all the BrownHoles and
+	* the RaisedHoles.
+	*/
+	private void initializeSpecialHoles() {
 		//Initializing the BrownHoles that bunnies will hop into
 		this.grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
 		this.grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
@@ -65,7 +71,7 @@ public class GameBoard {
 		this.grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
 		this.grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
 		this.grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
-		
+	
 	}
 	
 	public void addPiece(Piece piece, int column, int row) {
