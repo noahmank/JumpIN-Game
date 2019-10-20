@@ -13,12 +13,17 @@ public class Rabbit implements Piece{
 	}
 	
 	/**
-	 * A text representation of the Rabbit
+	 * Returns the color of the rabbit
+	 * @return String representing the color
 	 */
 	private String getColor() {
 		return this.color;
 	}
 	
+	/**
+	 * A text representation of the Rabbit
+	 * @return String representing the rabbit
+	 */
 	public String toString() {
 		if(this.getColor().toUpperCase().equals("GREY")) {
 			return "GR";
