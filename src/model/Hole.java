@@ -26,17 +26,7 @@ public class Hole {
 	 */
 	private void setIsOccupied(Boolean occupied) {
 		
-		this.isOccupied = occupied;
-		/**
-		if(this.piece != null & this.isOccupied == false) { //if a piece has landed on a hole, update the hole
-			this.isOccupied = true;
-		}
-		
-		else if(this.piece == null & this.isOccupied == true) {// if a piece has left a hole, update the hole 
-			this.isOccupied = false;
-		}
-		**/
-		
+		this.isOccupied = occupied;			
 	}
 	
 	/**
