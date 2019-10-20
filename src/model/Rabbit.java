@@ -23,7 +23,7 @@ public class Rabbit implements Piece{
 		if(this.getColor().toUpperCase().equals("GREY")) {
 			return "GR";
 		}
-		else if(this.getColor().toUpperCase().equals("BLACK")) {
+		else if(this.getColor().toUpperCase().equals("BROWN")) {
 			return "BR";
 		}
 		else return "WR";

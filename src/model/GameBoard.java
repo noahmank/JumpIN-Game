@@ -117,7 +117,7 @@ public class GameBoard {
 		s += "EH = Empty Hole\n";
 		s += "RH = Raised Hole\n";
 		s += "GR = Grey Rabbit\n";
-		s += "BR = Black Rabbit\n";
+		s += "BR = Brown Rabbit\n";
 		s += "WR = White Rabbit\n";
 		s += "MS = Mushroom\n";
 		return s;
@@ -145,7 +145,7 @@ public class GameBoard {
 		return s;
 	}
 	
-	public void moveFoxPiece(String name, Direction direction) {
+	public void moveFoxPiece(String name, Direction direction) throws IllegalArgumentException {
 		// Check to see if input name exists in foxes
 		Fox foxPiece = null;
 		Point location;
