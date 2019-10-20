@@ -1,7 +1,7 @@
 package model;
 
 public class Rabbit implements Piece{
-	String color;
+	private String color;
 	/**
 	 * The Rabbit constructor constructs a new Rabbit constructor
 	 * @param color identifies the color of the Rabbit
@@ -20,10 +20,10 @@ public class Rabbit implements Piece{
 	}
 	
 	public String toString() {
-		if(this.getColor().toUpperCase() == "BROWN") {
+		if(this.getColor().toUpperCase().equals("RED")) {
 			return "RR";
 		}
-		else if(this.getColor().toUpperCase() == "BLACK") {
+		else if(this.getColor().toUpperCase().equals("BLACK")) {
 			return "BR";
 		}
 		else return "WR";
