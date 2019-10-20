@@ -116,7 +116,7 @@ public class GameBoard {
 		s += "BH = Brown Hole\n";
 		s += "EH = Empty Hole\n";
 		s += "RH = Raised Hole\n";
-		s += "RR = Red Rabbit\n";
+		s += "GR = Grey Rabbit\n";
 		s += "BR = Black Rabbit\n";
 		s += "WR = White Rabbit\n";
 		s += "MS = Mushroom\n";
@@ -226,12 +226,16 @@ public class GameBoard {
 	
 	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
 		Direction direction = piece.getDirection();
-		// Need to add try - catch, or maybe throw, or maybe up-stream handle, or all of the above
+		// checkValidSpace has already occurred for tail part, check head
 		try {
 			checkValidSpace(column + direction.getX(), row + direction.getY());
 		}
 		catch(IllegalArgumentException e) {
 			System.out.println(e);
+		}
+		// Check if tail or head holes are hills -> they shouldn't be
+		if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
+			throw new IllegalArgumentException("Foxes cannot be placed on raised holes, choose a new location");
 		}
 		grid[column + direction.getX()][row + direction.getY()].setPiece(piece);
 		grid[column][row].setPiece(piece);
@@ -244,6 +248,9 @@ public class GameBoard {
 	
 	// Needs to throw exception, check if off grid
 	private void checkValidSpace(int column, int row) throws IllegalArgumentException {
+		if(column >= numColumns || row >= numRows) {
+			throw new IllegalArgumentException("Space is not valid, Choose another square");
+		}
 		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
             throw new IllegalArgumentException("Space is not valid, Choose another square");
         }

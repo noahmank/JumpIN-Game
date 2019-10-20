@@ -20,8 +20,8 @@ public class Rabbit implements Piece{
 	}
 	
 	public String toString() {
-		if(this.getColor().toUpperCase().equals("RED")) {
-			return "RR";
+		if(this.getColor().toUpperCase().equals("GREY")) {
+			return "GR";
 		}
 		else if(this.getColor().toUpperCase().equals("BLACK")) {
 			return "BR";
