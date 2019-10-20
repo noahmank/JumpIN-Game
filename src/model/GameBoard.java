@@ -222,6 +222,10 @@ public class GameBoard {
 	}
 
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
+		BrownHole b = new BrownHole();
+		if(grid[column][row].getClass().equals(b.getClass())) {
+			throw new IllegalArgumentException("Cannot place a Rabbit inside a BrownHole to start");
+		}
 		grid[column][row].setPiece(piece);
 		this.rabbits.put(piece, new Point(column, row));
 	}
