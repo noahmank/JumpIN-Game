@@ -39,6 +39,56 @@ public class JumpInGame {
 			System.out.println("Your game is not ready to play");
 		}
 		
+		System.out.println("			Welcome to The JumpIn Game.");
+		System.out.println("GAME RULES\n 1) Select a challenge (Numbers between 1 and TBD).\n "
+				+ "2) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.\n"
+				+ " 3) You have found a solution when all of the rabbits are inside brown holes!\n");
+		
+		System.out.println("Enter which level you would like to play (Starting at 1): ");
+		
+		scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		
+		System.out.println("");
+		System.out.println("");
+		
+		this.challenge(input);
+		
+		do {
+			
+			System.out.println("Select a moveable piece from the list above that you would like to move (Use Legend title e.g F1 or WR): ");
+			
+			String piece = scanner.next();
+			
+			if(piece.equals("WR") | piece.equals("GR") | piece.equals("BR")) {
+			
+				System.out.println("");
+				System.out.println("You can move the Rabbit EAST, WEST, NORTH or SOUTH.\n Enter the direction in which you would like to move the rabbit: ");
+				
+				String directionInput = scanner.next();
+				
+				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
+				
+				this.jumpRabbit(piece, Rdirection);
+
+			}
+			
+			if(piece.equals("F1") | piece.equals("F2")) {
+				
+				System.out.println("");
+				System.out.println("You can slide the fox parallel to its current position.\n"
+						+ "Enter the direction in which you would like to slide the fox: ");
+				
+				String directionInput = scanner.next();
+				
+				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
+				
+				this.slideFox(piece, Rdirection);
+			}
+			
+		}while(this.getGameStatus() == GameStatus.IN_PROGRESS);
+		
+		gameStatus = (this.gameBoard.isFinished())? GameStatus.FINISHED: GameStatus.IN_PROGRESS;
 	}
 	
 	/**
@@ -102,53 +152,6 @@ public class JumpInGame {
 	public static void main(String[] args) {
 		
 		JumpInGame game = new JumpInGame();
-		
-		System.out.println("			Welcome to The JumpIn Game.");
-		System.out.println("GAME RULES\n 1) Select a challenge (Numbers between 1 and TBD).\n "
-				+ "2) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.\n"
-				+ " 3) You have found a solution when all of the rabbits are inside brown holes!\n");
-		
-		System.out.println("Enter which level you would like to play (Starting at 1): ");
-		
-		Scanner scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
-		
-		System.out.println("");
-		System.out.println("");
-		
-		game.challenge(input);
-		
-		do {
-			
-			System.out.println("Select a moveable piece from the list above that you would like to move (Use Legend title e.g F1 or WR): ");
-			
-			String piece = scanner.next();
-			
-			if(piece.equals("WR") | piece.equals("GR") | piece.equals("BR")) {
-			
-				System.out.println("");
-				System.out.println("You can move the Rabbit EAST, WEST, NORTH or SOUTH.\n Enter the direction in which you would like to move the rabbit: ");
-				
-				String directionInput = scanner.next();
-				
-				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
-				
-				game.jumpRabbit(piece, Rdirection);
-
-			}
-			else if(piece.equals("F1") | piece.equals("F2")) {
-				
-				System.out.println("");
-				System.out.println("You can slide the fox parallel to its current position.\nEnter the direction in which you would like to slide the fox: ");
-				
-				String directionInput = scanner.next();
-				
-				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
-				
-				game.slideFox(piece, Rdirection);
-			}
-			
-		}while(game.getGameStatus() == GameStatus.IN_PROGRESS);
-		
+		game.start();
 	}
 }
