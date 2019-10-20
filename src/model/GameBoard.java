@@ -137,7 +137,7 @@ public class GameBoard {
 		for(int r = 0; r < this.numRows; r++) {
 			s += r + " | ";
 			for(int c = 0; c < this.numColumns; c++) {
-				s += grid[r][c].toString() + " | ";
+				s += grid[c][r].toString() + " | ";
 			}
 			s += "\n";
 		}
