@@ -227,6 +227,17 @@ public class GameBoard {
 	}
 	
 	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
+		RaisedHole r = new RaisedHole();
+		BrownHole b = new BrownHole();
+		
+		if(grid[column][row].getClass().equals(r.getClass())) {
+			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");
+		}
+		
+		if(grid[column][row].getClass().equals(b.getClass())) {
+			throw new IllegalArgumentException("Cannot place a Fox on a BrownHole");
+		}
+		
 		Direction direction = piece.getDirection();
 		// checkValidSpace has already occurred for tail part, check head
 		try {
