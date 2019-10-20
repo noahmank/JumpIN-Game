@@ -52,26 +52,36 @@ public class GameBoard {
 				this.grid[r][c] = new Hole();
 			}
 		}
-		this.initializeSpecialHoles();
+		this.initializeBrownHoles(0, 0);
+		this.initializeBrownHoles(4, 0);
+		this.initializeBrownHoles(2, 2);
+		this.initializeBrownHoles(0, 4);
+		this.initializeBrownHoles(4, 4);
+		
+		this.initializeRaisedHoles(2, 0);
+		this.initializeRaisedHoles(0, 2);
+		this.initializeRaisedHoles(4, 2);
+		this.initializeRaisedHoles(2, 4);
 	}
+	
 	/**
-	* Initializes all the BrownHoles and
-	* the RaisedHoles.
+	* Method to initialize Brown Holes that bunnies will hop into
+	* @param numColumn the column you wish to enter the BrownHole
+	* @param numRow the row you wish to enter the BrownHole
+	* @author Adela Tullio
 	*/
-	private void initializeSpecialHoles() {
-		//Initializing the BrownHoles that bunnies will hop into
-		this.grid[0][0] = new BrownHole(); //brown hole at row 1, column 1
-		this.grid[0][4] = new BrownHole(); //brown hole at row 1, column 5
-		this.grid[2][2] = new BrownHole(); //brown hole at row 3, column 3
-		this.grid[4][0] = new BrownHole(); //brown hole at row 5, column 1
-		this.grid[4][4] = new BrownHole(); //brown hole at row 5, column 5
+	public void initializeBrownHoles(int numColumn, int numRow) {
+		this.grid[numColumn][numRow] = new BrownHole();	
+	}
 	
-		//Initializing the RaisedHoles in the grid
-		this.grid[0][2] = new RaisedHole(); //raised hole at row 1, column 3
-		this.grid[2][0] = new RaisedHole(); //raised hole at row 3, column 1
-		this.grid[2][4] = new RaisedHole(); //raised hole at row 3, column 5
-		this.grid[4][2] = new RaisedHole(); //raised hole at row 5, column 3
-	
+	/**
+	 * Method to initialize RaisedHoles within the board
+	 * @param numColumn the column you wish to enter RaisedHole
+	 * @param numRow the row you wish to enter RaisedHole
+	 * @author Adela Tullio
+	 */
+	public void initializeRaisedHoles(int numColumn, int numRow) {
+		this.grid[numColumn][numRow] = new RaisedHole();
 	}
 	
 	public void addPiece(Piece piece, int column, int row) {
