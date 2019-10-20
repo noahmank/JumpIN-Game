@@ -7,6 +7,6 @@ public class Mushroom implements Piece{
 	
 	@Override
 	public String toString() {
-		return "Mushroom";
+		return "MS";
 	}
 }
