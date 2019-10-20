@@ -116,9 +116,10 @@ public class GameBoard {
 		s += "BH = Brown Hole\n";
 		s += "EH = Empty Hole\n";
 		s += "RH = Raised Hole\n";
-		s += "RR = Brown Rabbit\n";
+		s += "RR = Red Rabbit\n";
 		s += "BR = Black Rabbit\n";
 		s += "WR = White Rabbit\n";
+		s += "MS = Mushroom\n";
 		return s;
 	}
 	
