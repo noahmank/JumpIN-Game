@@ -69,7 +69,13 @@ public class JumpInGame {
 				
 				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
 				
-				this.jumpRabbit(piece, Rdirection);
+				try{
+					this.jumpRabbit(piece, Rdirection);
+				}
+				catch(Exception e) {
+					System.out.println("Direction invalid, choose another.\n");
+					System.out.println("\n");
+				}
 
 			}
 			
@@ -83,7 +89,13 @@ public class JumpInGame {
 				
 				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
 				
-				this.slideFox(piece, Rdirection);
+				try{
+					this.slideFox(piece, Fdirection);
+				}
+				catch(Exception e) {
+					System.out.println("Direction invalid, choose another.\n");
+					System.out.println("\n");
+				}
 			}
 			
 		}while(this.getGameStatus() == GameStatus.IN_PROGRESS);
