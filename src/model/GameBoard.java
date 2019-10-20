@@ -190,8 +190,8 @@ public class GameBoard {
 	
 	public void moveRabbitPiece(String name, Direction direction) {
 		Rabbit rabbitPiece = null;
-		Point location;
-		Point newLocation;
+		Point location = new Point();
+		Point newLocation = new Point();
 		for(Rabbit rabbit : rabbits.keySet()) {
 			if(rabbit.toString().equals(name)) {
 				rabbitPiece = rabbit;
@@ -201,20 +201,22 @@ public class GameBoard {
 			throw new IllegalArgumentException("Name is not valid, Choose another rabbit");
 		}
 		else {
-			location = rabbits.get(rabbitPiece);
-			newLocation = rabbits.get(rabbitPiece);
+			location.x = rabbits.get(rabbitPiece).x;
+			location.y = rabbits.get(rabbitPiece).y;
+			newLocation.x = rabbits.get(rabbitPiece).x;
+			newLocation.y = rabbits.get(rabbitPiece).y;
 		}
 		// If heading directly into an empty space, invalid
-		if(!grid[location.x + direction.getX()][location.y + direction.getY()].getIsOccupied()) {
+		if(!grid[location.x + Math.abs(direction.getX())][location.y + Math.abs(direction.getY())].getIsOccupied()) {
 			throw new IllegalArgumentException("Direction invalid, choose another");
 		}
 		else {
 			// Until next empty hole is found
-			while(grid[newLocation.x + direction.getX()][newLocation.y + direction.getY()].getIsOccupied()) {
-				newLocation.x += direction.getX();
-				newLocation.y += direction.getY();
+			while(grid[newLocation.x + Math.abs(direction.getX())][newLocation.y + Math.abs(direction.getY())].getIsOccupied()) {
+				newLocation.x += Math.abs(direction.getX());
+				newLocation.y += Math.abs(direction.getY());
 			}
-			addRabbitPiece(rabbitPiece, newLocation.x + direction.getX(), newLocation.y + direction.getY());
+			addRabbitPiece(rabbitPiece, newLocation.x + Math.abs(direction.getX()), newLocation.y + Math.abs(direction.getY()));
 			grid[location.x][location.y].removePiece(rabbitPiece);
 		}
 	}
