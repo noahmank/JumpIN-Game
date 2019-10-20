@@ -39,10 +39,12 @@ public class JumpInGame {
 	
 	public void slideFox(String name, Direction direction) throws IllegalArgumentException{
 		gameBoard.moveFoxPiece(name, direction);
+		displayBoard();
 	}
 	
 	public void jumpRabbit(String name, Direction direction) {
 		gameBoard.moveRabbitPiece(name, direction);
+		displayBoard();
 	}
 	
 	public void displayBoard() {
