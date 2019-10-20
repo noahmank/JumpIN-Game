@@ -206,15 +206,20 @@ public class GameBoard {
 			newLocation.x = rabbits.get(rabbitPiece).x;
 			newLocation.y = rabbits.get(rabbitPiece).y;
 		}
+		
 		// If heading directly into an empty space, invalid
-		if(!grid[location.x + Math.abs(direction.getX())][location.y + Math.abs(direction.getY())].getIsOccupied()) {
+		if(!grid[location.x + direction.getX()][location.y + direction.getY()].getIsOccupied()) {
 			throw new IllegalArgumentException("Direction invalid, choose another");
 		}
 		else {
 			// Until next empty hole is found
-			while(grid[newLocation.x + Math.abs(direction.getX())][newLocation.y + Math.abs(direction.getY())].getIsOccupied()) {
+			while(grid[newLocation.x + direction.getX()][newLocation.y + direction.getY()].getIsOccupied()) {
+				//check out of bound
 				newLocation.x += Math.abs(direction.getX());
 				newLocation.y += Math.abs(direction.getY());
+			}
+			if(newLocation.x > this.numColumns | newLocation.y> this.numRows){
+				throw new IllegalArgumentException("Move is out of bounds");
 			}
 			addRabbitPiece(rabbitPiece, newLocation.x + Math.abs(direction.getX()), newLocation.y + Math.abs(direction.getY()));
 			grid[location.x][location.y].removePiece(rabbitPiece);
