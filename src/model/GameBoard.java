@@ -215,13 +215,13 @@ public class GameBoard {
 			// Until next empty hole is found
 			while(grid[newLocation.x + direction.getX()][newLocation.y + direction.getY()].getIsOccupied()) {
 				//check out of bound
-				newLocation.x += Math.abs(direction.getX());
-				newLocation.y += Math.abs(direction.getY());
+				newLocation.x += direction.getX();
+				newLocation.y += direction.getY();
 			}
 			if(newLocation.x > this.numColumns | newLocation.y> this.numRows){
 				throw new IllegalArgumentException("Move is out of bounds");
 			}
-			addRabbitPiece(rabbitPiece, newLocation.x + Math.abs(direction.getX()), newLocation.y + Math.abs(direction.getY()));
+			addRabbitPiece(rabbitPiece, newLocation.x + direction.getX(), newLocation.y + direction.getY());
 			grid[location.x][location.y].removePiece(rabbitPiece);
 		}
 	}
