@@ -78,6 +78,6 @@ public class Hole {
 		if(this.getIsOccupied()) {
 			return this.getPiece().toString();
 		}
-		else return "EH";
+		else return "  ";
 	}
 }
