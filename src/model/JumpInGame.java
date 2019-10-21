@@ -33,6 +33,7 @@ public class JumpInGame {
 	 * the start method verifies if the game is ready to play
 	 */
 	public void start() {
+		// Will always be true for now
 		if(gameStatus == GameStatus.READY_TO_PLAY) {
 			gameStatus = GameStatus.IN_PROGRESS;
 		}
@@ -41,17 +42,16 @@ public class JumpInGame {
 		}
 		
 		System.out.println("			Welcome to The JumpIn Game.");
-		System.out.println("GAME RULES\n 1) Select a challenge (Numbers between 1 and TBD).\n "
+		System.out.println("GAME RULES\n 1) Select a challenge (Numbers between 1 and 1).\n "
 				+ "2) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.\n"
 				+ " 3) You have found a solution when all of the rabbits are inside brown holes!\n");
 		
-		System.out.println("Enter which level you would like to play (Starting at 1): ");
+		System.out.println("Enter which level you would like to play (Starting at 1, only 1 is available for now): ");
 		
 		scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
 		
-		System.out.println("");
-		System.out.println("");
+		System.out.println("\n");
 		
 		this.challenge(input);
 		
@@ -95,7 +95,6 @@ public class JumpInGame {
 				}
 				catch(Exception e) {
 					System.out.println("Direction invalid, choose another.\n");
-					System.out.println("\n");
 				}
 			}
 			
@@ -156,7 +155,7 @@ public class JumpInGame {
 			this.addPieceToBoard(new Rabbit("White"), 4, 2);
 			this.addPieceToBoard(new Rabbit("Brown"), 1, 4);
 			this.addPieceToBoard(new Fox(Direction.SOUTH, 1), 1, 0);
-			this.addPieceToBoard(new Fox(Direction.EAST, 2), 4, 3);
+			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
 			displayBoard();

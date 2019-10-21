@@ -260,16 +260,12 @@ public class GameBoard {
 	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
 	*/
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
-		BrownHole b = new BrownHole();
-		if(grid[column][row].getClass().equals(b.getClass())) {
-			throw new IllegalArgumentException("Cannot place a Rabbit inside a BrownHole to start");
-		}
 		grid[column][row].setPiece(piece);
 		this.rabbits.put(piece, new Point(column, row));
 	}
 	
 	/**
-	* A method to add a fox piece tot he board
+	* A method to add a fox piece to the board
 	* @param piece is the fox piece to add to the board
 	* @param column is the column to add the fox piece to
 	* @param row is the row to add the fox piece to
