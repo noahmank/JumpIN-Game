@@ -21,8 +21,8 @@ public class Hole {
 	}
 	
 	/**
-	 * the toggleIsOccupied method switches between a Hole being occupied or not occupied,
-	 * upon a piece landing on a Hole or leaving a Hole.
+	 * the setIsOccupied method sets if the hole is occupied or not
+	 * @param occupied is the true or false value if hole is occupied
 	 */
 	private void setIsOccupied(Boolean occupied) {
 		
@@ -46,6 +46,10 @@ public class Hole {
 		this.setIsOccupied(true);
 	}
 	
+	/**
+	* This method gets the piece
+	* @return returns the piece value 
+	*/
 	public Piece getPiece() {
 		return this.piece;
 	}
@@ -63,6 +67,8 @@ public class Hole {
 	
 	/**
 	 * A text representation of the Hole object
+	 * @return returns the piece if the hole is occupied,
+	 * otherwise returns an empty hole
 	 */
 	public String toString() {
 		if(this.getIsOccupied()) {
