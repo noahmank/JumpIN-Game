@@ -3,6 +3,9 @@ package model;
 import java.awt.Point;
 import java.util.HashMap;
 
+/**
+* Creates and initializes the playing gameboard
+*/
 public class GameBoard {
 	private static final int DEFAULT_COLUMNS = 5;
 	private static final int DEFAULT_ROWS = 5;
@@ -84,6 +87,12 @@ public class GameBoard {
 		this.grid[numColumn][numRow] = new RaisedHole();
 	}
 	
+	/**
+	* A method to add a piece to the board
+	* @param piece is the piece to add to the board
+	* @param column is the column to add the piece to
+	* @param row is the row to add the piece to
+	*/
 	public void addPiece(Piece piece, int column, int row) {
 		try {
 			checkValidSpace(column, row);
@@ -102,6 +111,9 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	* A method to check if the puzzle is finished
+	*/
 	public Boolean isFinished() {
 		for(Point point : rabbits.values()) {
 			if(!(grid[point.x][point.y] instanceof BrownHole)) {
@@ -111,6 +123,10 @@ public class GameBoard {
 		return true;
 	}
 	
+	/**
+	* Contains a legend for the board
+	* @returns the legend for the user
+	*/
 	public String getLegend() {
 		String s = "\n";
 		s += "BH = Brown Hole\n";
@@ -145,6 +161,11 @@ public class GameBoard {
 		return s;
 	}
 	
+	/**
+	* A method to move the fox piece on the board
+	* @param name is the name of the fox piece
+	* @param direction is the direction in which the fox will move
+	*/
 	public void moveFoxPiece(String name, Direction direction) throws IllegalArgumentException {
 		// Check to see if input name exists in foxes
 		Fox foxPiece = null;
@@ -188,6 +209,11 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	* A method to move the rabbit on the board
+	* @param name the name of the rabbit to move
+	* @param direction the direction in which the rabbit will move
+	*/
 	public void moveRabbitPiece(String name, Direction direction) {
 		Rabbit rabbitPiece = null;
 		Point location = new Point();
@@ -225,7 +251,14 @@ public class GameBoard {
 			grid[location.x][location.y].removePiece(rabbitPiece);
 		}
 	}
-
+	
+	/**
+	* A method to add a rabbit to the board
+	* @param piece the rabbit piece to add to the board
+	* @param column is the column to add the rabbit piece to
+	* @param row is the row to add the rabbit piece to
+	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
+	*/
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
 		BrownHole b = new BrownHole();
 		if(grid[column][row].getClass().equals(b.getClass())) {
@@ -235,6 +268,13 @@ public class GameBoard {
 		this.rabbits.put(piece, new Point(column, row));
 	}
 	
+	/**
+	* A method to add a fox piece tot he board
+	* @param piece is the fox piece to add to the board
+	* @param column is the column to add the fox piece to
+	* @param row is the row to add the fox piece to
+	* @throws IllegalArgumentException
+	*/
 	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
 		RaisedHole r = new RaisedHole();
 		BrownHole b = new BrownHole();
@@ -264,6 +304,14 @@ public class GameBoard {
 		this.foxes.put(piece, new Point(column, row));
 	}
 	
+	/**
+	* A method to add a mushroom piece to the board
+	* @param piece is the mushroom piece to add to the board
+	* @param column is the column to add the mushroom piece to
+	* @param row is the row to add the mushroom piece to
+	* @throws IllegalArgumentException if a mushroom is placed off the board or if
+	* the space is not occupied and therefore not valid
+	*/
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
 		grid[column][row].setPiece(piece);
 	}
