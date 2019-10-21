@@ -1,7 +1,7 @@
 package model;
 
 /**
-* Represents the BrownHoles the rabbits will jump into
+* This class represents the BrownHoles the rabbits will jump into
 * @author Adela Tullio
 */
 public class BrownHole extends RaisedHole {
@@ -14,7 +14,8 @@ public class BrownHole extends RaisedHole {
 	}
 	
 	/**
-	* Represents the BrownHole as a string
+	* If there is a piece in that hole, print it out as a string
+	* otherwise represents the BrownHole as a string
 	* @returns BrownHole string value
 	*/
 	@Override
