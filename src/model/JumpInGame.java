@@ -46,7 +46,7 @@ public class JumpInGame {
 		
 		System.out.println("Enter which level you would like to play (Starting at 1): ");
 		
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
 		
 		System.out.println("");
