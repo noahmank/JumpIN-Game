@@ -23,3 +23,26 @@ The objective of the game is to move the rabbits and foxes around the game board
 
 You have found a solution when all of the rabbits are inside brown holes! The end position of the foxes is not important.
 For more information regarding the rules, visit http://www.smartgamesandpuzzles.com/inventor/JumpIn.html
+
+# Authors
+
+ - Adela Tullio
+ - Aubin Musingya
+ - Kelly Harrison
+ - Liya Abebe
+ - Noah Mank
+
+# Deliverables
+
+This submission includes an up-to-date UML diagram, source code and executable code, along with documentation. 
+
+# Advancement
+
+A text-based playable version of the "Jump IN" game has been implemented from the UML diagram generated.
+It has been designed to allow the user to play the game using the keyboard through the console. In our implementation,
+we included a text-based view of the board at the beginning of the game and after each move. In addition, we hard coded the game 
+to only implement one puzzle challenge, challenge 1. We plan to expand this to allow for different puzzle challenges.
+
+# Known Issues
+
+ ADD TO ME!
