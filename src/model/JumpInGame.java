@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class JumpInGame {
 	private GameBoard gameBoard;
 	private GameStatus gameStatus;
+	private Scanner scanner;
 	
 	/**
 	 * the JumpInGame constructor builds the default game board
@@ -46,7 +47,7 @@ public class JumpInGame {
 		
 		System.out.println("Enter which level you would like to play (Starting at 1): ");
 		
-		Scanner scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
 		
 		System.out.println("");
@@ -87,7 +88,7 @@ public class JumpInGame {
 				
 				String directionInput = scanner.next();
 				
-				Direction Rdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
+				Direction Fdirection = (directionInput.toUpperCase().equals("EAST"))? Direction.EAST : (directionInput.toUpperCase().equals("WEST"))? Direction.WEST :(directionInput.toUpperCase().equals("NORTH"))? Direction.NORTH : (directionInput.toUpperCase().equals("SOUTH"))? Direction.SOUTH : null;
 				
 				try{
 					this.slideFox(piece, Fdirection);
@@ -101,6 +102,7 @@ public class JumpInGame {
 		}while(this.getGameStatus() == GameStatus.IN_PROGRESS);
 		
 		gameStatus = (this.gameBoard.isFinished())? GameStatus.FINISHED: GameStatus.IN_PROGRESS;
+		
 	}
 	
 	/**
@@ -110,6 +112,8 @@ public class JumpInGame {
 	 */
 	public void slideFox(String name, Direction direction) {
 		gameBoard.moveFoxPiece(name, direction);
+		System.out.println("");
+		displayBoard();
 	}
 	
 	/**
@@ -119,6 +123,8 @@ public class JumpInGame {
 	 */
 	public void jumpRabbit(String name, Direction direction) {
 		gameBoard.moveRabbitPiece(name, direction);
+		System.out.println("");
+		displayBoard();
 	}
 	
 	/**
@@ -146,11 +152,11 @@ public class JumpInGame {
 	public void challenge(int challenge) {
 		
 		if(challenge == 1) {
-			this.addPieceToBoard(new Rabbit("Red"), 3, 0);
+			this.addPieceToBoard(new Rabbit("Grey"), 3, 0);
 			this.addPieceToBoard(new Rabbit("White"), 4, 2);
-			this.addPieceToBoard(new Rabbit("Black"), 1, 4);
-			this.addPieceToBoard(new Fox(Direction.SOUTH, 1), 1, 1);
-			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
+			this.addPieceToBoard(new Rabbit("Brown"), 1, 4);
+			this.addPieceToBoard(new Fox(Direction.SOUTH, 1), 1, 0);
+			this.addPieceToBoard(new Fox(Direction.EAST, 2), 4, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
 			displayBoard();
