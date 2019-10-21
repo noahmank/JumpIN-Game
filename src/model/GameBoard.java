@@ -185,12 +185,12 @@ public class GameBoard {
 		// Check to see if direction is valid
 		switch(direction) {
 			case NORTH: case SOUTH:
-				if((foxPiece.getDirection() != Direction.NORTH) || (foxPiece.getDirection() != Direction.SOUTH)) {
+				if((foxPiece.getDirection() != Direction.NORTH) && (foxPiece.getDirection() != Direction.SOUTH)) {
 					throw new IllegalArgumentException("Direction is not valid, Choose either EAST or WEST");
 				}
 				break;
 			case EAST: case WEST:
-				if((foxPiece.getDirection() != Direction.EAST) || (foxPiece.getDirection() != Direction.WEST)) {
+				if((foxPiece.getDirection() != Direction.EAST) && (foxPiece.getDirection() != Direction.WEST)) {
 					throw new IllegalArgumentException("Direction is not valid, Choose either NORTH or SOUTH");
 				}
 				break;

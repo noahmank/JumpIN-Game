@@ -55,8 +55,7 @@ public class JumpInGame {
 		
 		this.challenge(input);
 		
-		do {
-			
+		while(!this.gameBoard.isFinished()) {
 			System.out.println("Select a moveable piece from the list above that you would like to move (Use Legend title e.g F1 or WR): ");
 			
 			String piece = scanner.next();
@@ -75,7 +74,8 @@ public class JumpInGame {
 				}
 				catch(Exception e) {
 					System.out.println("Direction invalid, choose another.\n");
-					System.out.println("\n");
+					System.out.println(gameBoard.toString() +"\n\n" + gameBoard.getLegend());
+
 				}
 
 			}
@@ -98,10 +98,9 @@ public class JumpInGame {
 				}
 			}
 			
-		}while(this.getGameStatus() == GameStatus.IN_PROGRESS);
-		
-		gameStatus = (this.gameBoard.isFinished())? GameStatus.FINISHED: GameStatus.IN_PROGRESS;
-		
+		}
+		gameStatus = GameStatus.FINISHED;
+		System.out.println("Congratulations! You have beat this level!");
 	}
 	
 	/**
