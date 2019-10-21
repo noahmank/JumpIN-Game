@@ -21,7 +21,7 @@ public class JumpInGame {
 	}
 	
 	/**
-	 * the start method verifies if the game is ready to play
+	 * the start method verifies if the game is ready to play and initializes the JumpIn game
 	 */
 	public void start() {
 		// Will always be true for now
