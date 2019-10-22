@@ -3,8 +3,8 @@ package model;
 import java.util.Scanner;
 
 /**
- * 
- * @author
+ * Creates and starts the game, is the main interface with which the player interacts
+ * @author Aubin Musingya
  *
  */
 public class JumpInGame {

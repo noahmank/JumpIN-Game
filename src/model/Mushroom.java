@@ -1,6 +1,7 @@
 package model;
 /**
 * Mushroom class that initializes a mushroom
+* @author Noah Mank
 */
 public class Mushroom implements Piece{
 	/**

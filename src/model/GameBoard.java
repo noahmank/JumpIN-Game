@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.HashMap;
 
 /**
-* Creates and initializes the playing gameboard
+* Creates and initializes the playing gameboard, and provides methods to add and move pieces
 */
 public class GameBoard {
 	private static final int DEFAULT_COLUMNS = 5;
@@ -35,14 +35,16 @@ public class GameBoard {
 	}
 	
 	/**
-	 *  Default constructor of the GameBoard
+	 *  Default constructor of the GameBoard that creates a 5x5 board
+	 *  @author Adela Tullio
 	 */
 	public GameBoard() {
 		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
 	}
 	
 	/**
-	 *  Resets the GameBoard
+	 *  Resets the GameBoard to a default state with only special holes initialized
+	 *  @author Liya Abebe
 	 */
 	public void resetBoard() {
 		
@@ -92,6 +94,7 @@ public class GameBoard {
 	* @param piece is the piece to add to the board
 	* @param column is the column to add the piece to
 	* @param row is the row to add the piece to
+	* @author Kelly Harrison
 	*/
 	public void addPiece(Piece piece, int column, int row) {
 		try {
@@ -112,8 +115,10 @@ public class GameBoard {
 	}
 	
 	/**
-	* A method to check if the puzzle is finished
-	*/
+	 * A method to check if the puzzle is finished
+	 * @return Boolean that shows if the gameBoard is completed (all rabbits in brown holes)
+	 * @author Noah Mank
+	 */
 	public Boolean isFinished() {
 		for(Point point : rabbits.values()) {
 			if(!(grid[point.x][point.y] instanceof BrownHole)) {
@@ -165,6 +170,7 @@ public class GameBoard {
 	* A method to move the fox piece on the board
 	* @param name is the name of the fox piece
 	* @param direction is the direction in which the fox will move
+	* @author Noah Mank
 	*/
 	public void moveFoxPiece(String name, Direction direction) throws IllegalArgumentException {
 		// Check to see if input name exists in foxes
@@ -213,6 +219,7 @@ public class GameBoard {
 	* A method to move the rabbit on the board
 	* @param name the name of the rabbit to move
 	* @param direction the direction in which the rabbit will move
+	* @author Noah Mank
 	*/
 	public void moveRabbitPiece(String name, Direction direction) {
 		Rabbit rabbitPiece = null;
@@ -258,6 +265,7 @@ public class GameBoard {
 	* @param column is the column to add the rabbit piece to
 	* @param row is the row to add the rabbit piece to
 	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
+	* @author Kelly Harrison
 	*/
 	private void addRabbitPiece(Rabbit piece, int column, int row) {
 		grid[column][row].setPiece(piece);
@@ -270,6 +278,7 @@ public class GameBoard {
 	* @param column is the column to add the fox piece to
 	* @param row is the row to add the fox piece to
 	* @throws IllegalArgumentException
+	* @author Kelly Harrison
 	*/
 	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
 		RaisedHole r = new RaisedHole();
@@ -307,14 +316,21 @@ public class GameBoard {
 	* @param row is the row to add the mushroom piece to
 	* @throws IllegalArgumentException if a mushroom is placed off the board or if
 	* the space is not occupied and therefore not valid
+	* @author Kelly Harrison
 	*/
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
 		grid[column][row].setPiece(piece);
 	}
 	
-	// Needs to throw exception, check if off grid
+	/**
+	 * A method that throws IllegalArgumentException for checked space that is invalid
+	 * @param column of space being checked
+	 * @param row of space being checked
+	 * @throws IllegalArgumentException if the space is off of the board or already occupied
+	 * @author Noah Mank
+	 */
 	private void checkValidSpace(int column, int row) throws IllegalArgumentException {
-		if(column >= numColumns || row >= numRows) {
+		if(column >= numColumns || row >= numRows || column < 0 || row < 0) {
 			throw new IllegalArgumentException("Space is not valid, Choose another square");
 		}
 		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty

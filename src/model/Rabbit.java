@@ -7,6 +7,7 @@ public class Rabbit implements Piece{
 	 * @param color identifies the color of the Rabbit
 	 * @param row the X coordinate of the Rabbit
 	 * @param column the Y coordinate of the Rabbit
+	 * @author Aubin Musingya
 	 */
 	public Rabbit(String color) {
 		this.color = color;
