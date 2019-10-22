@@ -122,7 +122,7 @@ public class JumpInGame {
 	 * @param column is the column to which the piece is added
 	 * @param row is the row in which the piece is added
 	 */
-	public void addPieceToBoard(Piece piece, int column, int row) {
+	private void addPieceToBoard(Piece piece, int column, int row) {
 		gameBoard.addPiece(piece, column, row);
 	}
 	
