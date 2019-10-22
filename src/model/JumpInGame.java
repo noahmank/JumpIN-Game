@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class JumpInGame {
 	private GameBoard gameBoard;
 	private GameStatus gameStatus;
-	private Scanner scanner;
 	
 	/**
 	 * the JumpInGame constructor builds the default game board
@@ -24,6 +23,7 @@ public class JumpInGame {
 	 * the start method verifies if the game is ready to play and initializes the JumpIn game
 	 */
 	public void start() {
+		Scanner scanner;
 		// Will always be true for now
 		if(gameStatus == GameStatus.READY_TO_PLAY) {
 			gameStatus = GameStatus.IN_PROGRESS;
@@ -83,6 +83,7 @@ public class JumpInGame {
 			}
 			
 		}
+		scanner.close();
 		gameStatus = GameStatus.FINISHED;
 		System.out.println("Congratulations! You have beat this level!");
 	}
