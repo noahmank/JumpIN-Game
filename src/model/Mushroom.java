@@ -12,7 +12,7 @@ public class Mushroom implements Piece{
 	
 	/**
 	* Method that converts the mushroom to a string
-	* @return string representaiton of mushroom
+	* @return string representation of mushroom
 	*/
 	@Override
 	public String toString() {

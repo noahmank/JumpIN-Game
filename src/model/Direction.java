@@ -16,7 +16,7 @@ public enum Direction {
 	* @param x the x co-ordinate of the direction
 	* @param y the y co-ordinate of the direction
 	*/
-	Direction(final int x, final int y) {
+	private Direction(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 	}

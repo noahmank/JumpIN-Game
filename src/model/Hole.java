@@ -24,7 +24,7 @@ public class Hole {
 	 * the setIsOccupied method sets if the hole is occupied or not
 	 * @param occupied is the true or false value if hole is occupied
 	 */
-	private void setIsOccupied(Boolean occupied) {
+	public void setIsOccupied(Boolean occupied) {
 		
 		this.isOccupied = occupied;			
 	}

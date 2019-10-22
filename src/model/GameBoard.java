@@ -30,7 +30,7 @@ public class GameBoard {
 		this.numColumns = numColumns;
 		this.numRows = numRows;
 		this.grid = new Hole[numRows][numColumns];		
-		this.resetGame();
+		this.resetBoard();
 		
 	}
 	
@@ -44,7 +44,7 @@ public class GameBoard {
 	/**
 	 *  Resets the GameBoard
 	 */
-	public void resetGame() {
+	public void resetBoard() {
 		
 		this.foxes = new HashMap<>();
 		this.rabbits = new HashMap<>();
@@ -55,16 +55,16 @@ public class GameBoard {
 				this.grid[r][c] = new Hole();
 			}
 		}
-		this.initializeBrownHoles(0, 0);
-		this.initializeBrownHoles(4, 0);
-		this.initializeBrownHoles(2, 2);
-		this.initializeBrownHoles(0, 4);
-		this.initializeBrownHoles(4, 4);
+		this.initializeBrownHole(0, 0);
+		this.initializeBrownHole(4, 0);
+		this.initializeBrownHole(2, 2);
+		this.initializeBrownHole(0, 4);
+		this.initializeBrownHole(4, 4);
 		
-		this.initializeRaisedHoles(2, 0);
-		this.initializeRaisedHoles(0, 2);
-		this.initializeRaisedHoles(4, 2);
-		this.initializeRaisedHoles(2, 4);
+		this.initializeRaisedHole(2, 0);
+		this.initializeRaisedHole(0, 2);
+		this.initializeRaisedHole(4, 2);
+		this.initializeRaisedHole(2, 4);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class GameBoard {
 	* @param numRow the row you wish to enter the BrownHole
 	* @author Adela Tullio
 	*/
-	public void initializeBrownHoles(int numColumn, int numRow) {
+	public void initializeBrownHole(int numColumn, int numRow) {
 		this.grid[numColumn][numRow] = new BrownHole();	
 	}
 	
@@ -83,7 +83,7 @@ public class GameBoard {
 	 * @param numRow the row you wish to enter RaisedHole
 	 * @author Adela Tullio
 	 */
-	public void initializeRaisedHoles(int numColumn, int numRow) {
+	public void initializeRaisedHole(int numColumn, int numRow) {
 		this.grid[numColumn][numRow] = new RaisedHole();
 	}
 	
