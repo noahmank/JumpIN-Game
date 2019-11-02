@@ -1,5 +1,8 @@
 package model;
-
+/**
+* Tests for Raised Hole class implementation
+* @author Adela Tullio
+*/
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -10,14 +13,20 @@ public class RaisedHoleTest {
 	private RaisedHole raisedhole;
 	private GameBoard gameboard;
 	private Mushroom mushroom;
-
+	
+	/**
+	* Set up the variables
+	*/
 	@Before
 	public void setUp() throws Exception {
 		raisedhole = new RaisedHole();
 		gameboard = new GameBoard();
 		mushroom = new Mushroom();
 	}
-
+	
+	/**
+	* Tear down the variables
+	*/
 	@After
 	public void tearDown() throws Exception {
 		raisedhole = null;
@@ -26,16 +35,10 @@ public class RaisedHoleTest {
 	}
 
 	/**
-	 * Tests what ToString() outputs if the
-	 * hole is empty
+	 * Tests the toString method
 	 */
 	@Test
 	public void testEmptyHoleToString() {
 		assertEquals("Should be 'RH'.", "RH", raisedhole.toString());
-	}
-	
-	@Test
-	public void testTakenHoleToString() {
-		
 	}
 }
