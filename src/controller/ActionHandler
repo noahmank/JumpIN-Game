@@ -1,0 +1,45 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.*;
+
+public class ActionHandler implements ActionListener{
+	JumpInGame game;
+	private Piece piece;
+	private Direction direction;
+	
+	public ActionHandler(JumpInGame game) {
+		super();
+		this.game = game;
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+		
+		if(event.getSource() instanceof BoardButton){
+			int row = ((BoardButton) event.getSource()).getRow();
+			int column = ((BoardButton) event.getSource()).getColumn();
+			if(game.getBoard().getHoleContent(column, row) != null) {
+				piece = game.getBoard().getHoleContent(column, row).getPiece();
+			}
+			System.out.println(row + ", " + column);
+		}
+		else {
+			this.direction = ((DirectionButton) event.getSource()).getDirection();
+		}
+		if((direction != null) && (piece != null)) {
+			if(piece instanceof Fox) {
+				game.slideFox(piece.toString(), direction);
+			}
+			if(piece instanceof Rabbit) {
+				game.jumpRabbit(piece.toString(), direction);
+			}
+			direction = null;
+		}
+	}
+
+}
