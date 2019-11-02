@@ -33,12 +33,12 @@ public class BoardFrame extends JFrame {
 		BoardGrid = new BoardButton[columns][rows];
 		frame = new JFrame("Jump-In Game");
     	contents = getContentPane();
-        contents.setLayout(new GridLayout(rows, columns));	      	        	     
+        contents.setLayout(new GridLayout(columns, rows));	      	        	     
 //      this.game.addDisplay(this);
         //Green Holes
-    	for (int i = 0; i < rows; i++)
+    	for (int i = 0; i < columns; i++)
         {
-            for (int j = 0; j < columns; j++)
+            for (int j = 0; j < rows; j++)
             {
             		BoardGrid[i][j] = new BoardButton(i, j, green);
             		contents.add(BoardGrid[i][j]);
@@ -63,21 +63,25 @@ public class BoardFrame extends JFrame {
         leftArrow.setBounds(0, 0, 30, 30);
         leftArrow.setIcon(resizeIcon(new ImageIcon("leftArrow.png"),leftArrow.getWidth(), leftArrow.getHeight()));
         arrowPanel.add(leftArrow);
+        leftArrow.addActionListener(handler);	
         
         DirectionButton upArrow = new DirectionButton(Direction.NORTH);
         upArrow.setBounds(0, 0, 30, 30);
         upArrow.setIcon(resizeIcon(new ImageIcon("upArrow.png"),upArrow.getWidth(), upArrow.getHeight()));
         arrowPanel.add(upArrow);            
+        upArrow.addActionListener(handler);	
         
         DirectionButton downArrow = new DirectionButton(Direction.SOUTH);
         downArrow.setBounds(0, 0, 30, 30);
         downArrow.setIcon(resizeIcon(new ImageIcon("downArrow.png"),downArrow.getWidth(), downArrow.getHeight()));
         arrowPanel.add(downArrow);
-                 
+        downArrow.addActionListener(handler);	
+        
         DirectionButton rightArrow = new DirectionButton(Direction.EAST);
         rightArrow.setBounds(0, 0, 30, 30);
         rightArrow.setIcon(resizeIcon(new ImageIcon("rightArrow.png"),rightArrow.getWidth(), rightArrow.getHeight()));
         arrowPanel.add(rightArrow);
+        rightArrow.addActionListener(handler);	
 	    	
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
@@ -85,21 +89,6 @@ public class BoardFrame extends JFrame {
     	frame.add(contents, BorderLayout.CENTER);	    	   
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
     	frame.setVisible(true);	    	
-    }
-	
-	
-
-	/**
-	 * 
-	 * @param icon
-	 * @param resizedWidth
-	 * @param resizedHeight
-	 * @return
-	 */
-	public Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
-        Image img = icon.getImage();
-        Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);
-        return new ImageIcon(resizedImage);
     }
 	
 	/**
