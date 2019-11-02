@@ -1,5 +1,11 @@
 package view;
 
-public class BoardDisplay {
+import model.*;
 
+public class BoardDisplay {
+	private JumpInGame game;
+	
+	public void update() {
+		//Do something
+	}
 }

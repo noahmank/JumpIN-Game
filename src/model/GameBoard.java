@@ -1,7 +1,10 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import view.BoardDisplay;
 
 /**
 * Creates and initializes the playing gameboard, and provides methods to add and move pieces
@@ -14,6 +17,7 @@ public class GameBoard {
 	private Hole[][] grid;
 	private HashMap<Rabbit, Point> rabbits;
 	private HashMap<Fox, Point> foxes;
+	private ArrayList<BoardDisplay> boardDisplays;
 	
 	/**
 	* Creates a new GameBoard with the specified number of
@@ -336,5 +340,19 @@ public class GameBoard {
 		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
             throw new IllegalArgumentException("Space is not valid, Choose another square");
         }
+	}
+	
+	public void addBoardDisplay(BoardDisplay b) {
+		this.boardDisplays.add(b);
+	}
+	
+	public void removeBoardDisplay(BoardDisplay b) {
+		this.boardDisplays.remove(b);
+	}
+	
+	public void notifyBoardDisplays() {
+		for(BoardDisplay b : boardDisplays) {
+			b.update();
+		}
 	}
 }
