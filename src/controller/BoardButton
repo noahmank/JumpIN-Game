@@ -1,0 +1,102 @@
+package controller;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+import model.*;
+import view.*;
+
+public class BoardButton extends JButton {
+	
+	private int row;
+	private int column;
+	private Color color;
+	
+	/**
+	 * @param column
+	 * @param row
+	 * @param color
+	 */
+	public BoardButton(int column, int row, Color color) {
+		this.column = column;
+		this.row = row;
+		this.color = color;
+		this.setBackground(color);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getRow() {
+		return this.row;
+	}
+
+	/**
+	 * 
+	 * @param row
+	 */
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getColumn() {
+		return this.column;
+	}
+
+	/**
+	 * 
+	 * @param column
+	 */
+	public void setColumn(int column) {
+		this.column = column;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * 
+	 * @param color
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + this.getColumn() + ", " + this.getRow() + ", " + this.getColor() + ")";
+	}
+
+	@Override 
+	public boolean equals(Object o) {
+		if(o == this) {
+			return true;
+		}
+		
+		if(o == null) {
+			return false;
+		}
+		
+		if(this.getClass() != o.getClass()) {
+			return false;
+		}
+		
+		BoardButton buttonBoard = (BoardButton) o;
+		return (this == buttonBoard);
+	}
+
+}
