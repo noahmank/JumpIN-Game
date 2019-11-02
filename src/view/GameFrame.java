@@ -2,7 +2,7 @@ package view;
 
 import model.*;
 
-public class BoardDisplay {
+public class GameFrame {
 	private JumpInGame game;
 	
 	public void update() {
