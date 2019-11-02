@@ -94,6 +94,17 @@ public class GameBoard {
 	}
 	
 	/**
+	* Method to get the contents of a Hole
+	*@param numColumn is the column you wish to check
+	*@param numRow is the row you wish to check
+	*@return the contents within a hole
+	*@author Adela Tullio
+	*/
+	public Hole getHoleContent(int numColumn, int numRow) {
+		return grid[numColumn][numRow];	
+	}
+	
+	/**
 	* A method to add a piece to the board
 	* @param piece is the piece to add to the board
 	* @param column is the column to add the piece to
