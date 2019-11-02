@@ -20,19 +20,24 @@ public class HoleTest {
 		hole = null;
 	}
 
-	@Test
-	public void testSetPiece() {
-		
-	}
 	
 	@Test
 	public void testRemovePiece() {
-		
+		Rabbit rabbit = new Rabbit("Grey");
+		hole.setPiece(rabbit);
+		hole.removePiece(rabbit);
+	}
+	
+	@Test
+	public void testRemoveMushroom() {
+		Mushroom mushroom = new Mushroom();
+		hole.setPiece(mushroom);
+		hole.removePiece(mushroom);
 	}
 	
 	@Test
 	public void testToString() {
-		
+		assertEquals("Should be '  '", "  ", hole.toString());
 	}
 
 }
