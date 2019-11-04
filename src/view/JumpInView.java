@@ -1,5 +1,8 @@
 package view;
-
+/**
+* The view implementation for the game
+*
+*/
 import java.awt.*;
 import java.io.File;
 
@@ -21,9 +24,9 @@ public class JumpInView extends JFrame {
 
 	/**
 	 * 
-	 * @param g
-	 * @param columns
-	 * @param rows
+	 * @param g is the game
+	 * @param columns is the number of columns
+	 * @param rows is the number of rows
 	 */
 	public JumpInView(JumpInGame g, int columns, int  rows) {
 		this.game = g;
@@ -99,18 +102,22 @@ public class JumpInView extends JFrame {
     }
 	
 	/**
-	 * 
-	 * @param icon
-	 * @param resizedWidth
-	 * @param resizedHeight
-	 * @return
+	 * @param icon is the image of the icon
+	 * @param resizedWidth is the new width you wish to change it to
+	 * @param resizedHeight is the new height you wish to change it to
+	 * @return the resized image icon to the specified dimensions
 	 */
 	public Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
-        Image img = icon.getImage();
-        Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);
-        return new ImageIcon(resizedImage);
-    }	
+        	Image img = icon.getImage();
+        	Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);
+        	return new ImageIcon(resizedImage);
+    	}	
 	
+	/**
+	* @param column	is the column in which you wish to set icon
+	* @param row is the row in which you wish to set icon
+	* @param iconName is the name of the icon
+	*/
 	public void updateIcon(int column, int row, String iconName) {
 		BoardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
 		
