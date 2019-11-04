@@ -25,43 +25,60 @@ public class BoardButton extends JButton {
 		this.setBackground(color);
 	}
 
-	// Returns Row number of button
+	/**
+	* Returns Row number of button
+	*/
 	public int getRow() {
 		return this.row;
 	}
 
-	//Sets Column number of button
+	/**
+	* Sets Row number of button
+	*/
 	public void setRow(int row) {
 		this.row = row;
 	}
 
-	//
+	/**
+	* Gets Column number of button
+	*/
 	public int getColumn() {
 		return this.column;
 	}
 	
-	//
+	/**
+	* Sets Column number of button
+	*/
 	public void setColumn(int column) {
 		this.column = column;
 	}
 
-	//
+	/**
+	* Returns the color
+	*/
 	public Color getColor() {
 		return color;
 	}
 
-	//
+	/**
+	* Sets the color
+	*/
 	public void setColor(Color color) {
 		this.color = color;
 	}
 	
-	//
+	/**
+	* Overrides and implements the toString method
+	*/
 	@Override
 	public String toString() {
 		return "(" + this.getColumn() + ", " + this.getRow() + ", " + this.getColor() + ")";
 	}
 
-	//
+	/**
+	* Equals method to check if objects are equal to one another
+	* @returns a boolean value whether the objects are equal(true) or not (false)
+	*/
 	@Override 
 	public boolean equals(Object o) {
 		if(o == this) {
