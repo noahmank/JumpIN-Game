@@ -34,14 +34,22 @@ For more information regarding the rules, visit http://www.smartgamesandpuzzles.
 
 # Deliverables
 
+### Deliverable 1
 This submission includes an up-to-date UML diagram, source code and executable code, along with documentation. 
+
+### Deliverable 2
+This submission includes the updates UML diagram, source code and along with documentation and in addition, a GUI component for the game.
 
 # Advancement
 
+### Deliverable 1
 A text-based playable version of the "Jump IN" game has been implemented from the UML diagram generated.
 It has been designed to allow the user to play the game using the keyboard through the console. In our implementation,
 we included a text-based view of the board at the beginning of the game and after each move. In addition, we hard coded the game 
 to only implement one puzzle challenge, challenge 1. We plan to expand this to allow for different puzzle challenges.
+
+### Deliverable 2
+The GUI of the game has been implemented using the MVC Design pattern. This version allows the user to play the game using Buttons on a window and manipulate movable pieces using direction arrows at the bottom of the window. The puzzle challenge implemented is the same as challenge 1 in deliverable 1.
 
 # Solution for Challenge 1
 
@@ -50,12 +58,18 @@ One of the solutions for the current challenge is:
 
 # Known Issues
 
+### Deliverable 1
 Some exceptions are not handled correctly - namely, when moving certain pieces in invalid directions, an exception is thrown,
 but no message describing the issue is provided to the user.
-
 The Direction enum currently describes North and South opposite to how they are logically, due to our board being located in the
 fourth quadrant. When the GUI is properly implemented, this will be shifted back to the first quadrant and fixed.
+
+### Deliverable 2
  
 # Design
 
+### Deliverable 1
 Three classes were made to describe the Mushroom, Rabbit, and Fox pieces. As these are all considered to be a Piece, we made an interface implemented by the three of them to describe that relationship. The Fox class requires a description of its direction (while still and to describe its movement) so a Direction enumeration was created to represent the cardinal directions. A Hole class was also constructed to be the main unit of the GameBoard, and these Hole objects have an instance variable to hold a Piece if required. This class is inherited by RaisedHole, which is in turn inherited by BrownHole. The GameBoard class stores and handles the movement and placement of all the pieces and holes on the Board, and keeps track of all of the moveable pieces. It currently only has the capability to create 5x5 boards, but this will be expanded on later. It also has a method to see if all the rabbits on the board are currently occupying brown holes, indicating a completed game. The JumpInGame class stores an instance of GameBoard and provides an interface for the user to interact with. This interface describes the rules of the game and prompts the user for input, which is then used to call various methods to try and complete the game.
+
+### Deliverable 2
+JumpInController and JumpInView were added implementing the roles of a controller and view class in a MVC design pattern. The JumpInGame plays the role of a model class.
