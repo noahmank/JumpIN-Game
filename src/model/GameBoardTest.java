@@ -48,9 +48,9 @@ public class GameBoardTest {
 	@Test
 	public void testResetBoard() {
 		gameboard.resetBoard();
-		assertEquals("Expected 'BH'", "BH", gameboard.getHoleContent(4, 4).toString());
-		assertEquals("Expected '  '", "  ", gameboard.getHoleContent(1, 2).toString());
-		assertEquals("Expected 'RH'", "RH", gameboard.getHoleContent(4, 2).toString());
+		assertEquals("Expected 'BH'", "BH", gameboard.getHole(4, 4).toString());
+		assertEquals("Expected '  '", "  ", gameboard.getHole(1, 2).toString());
+		assertEquals("Expected 'RH'", "RH", gameboard.getHole(4, 2).toString());
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class GameBoardTest {
 	@Test
 	public void testAddingMushroomPiece() {
 		gameboard.addPiece(mushroom, 2, 1);
-		assertEquals("Expecting 'MS' in column 2, row 2", "MS", gameboard.getHoleContent(2, 1).toString());
+		assertEquals("Expecting 'MS' in column 2, row 2", "MS", gameboard.getHole(2, 1).toString());
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class GameBoardTest {
 	@Test
 	public void testAddingFoxPiece() {
 		gameboard.addPiece(fox, 3, 2);
-		assertEquals("Expecting 'F1'", "F1", gameboard.getHoleContent(3, 2).toString());
+		assertEquals("Expecting 'F1'", "F1", gameboard.getHole(3, 2).toString());
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class GameBoardTest {
 	@Test
 	public void testAddingRabbitPiece() {
 		gameboard.addPiece(rabbit, 0, 2);
-		assertEquals("Expecting 'GR'", "GR", gameboard.getHoleContent(0,  2).toString());
+		assertEquals("Expecting 'GR'", "GR", gameboard.getHole(0,  2).toString());
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class GameBoardTest {
 	public void testMoveFoxPiece() {
 		gameboard.addPiece(fox, 3, 2);
 		gameboard.moveFoxPiece("F1", direction.NORTH);
-		assertEquals("Expecting 'F1'", "F1", gameboard.getHoleContent(3, 0).toString());
+		assertEquals("Expecting 'F1'", "F1", gameboard.getHole(3, 0).toString());
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class GameBoardTest {
 		gameboard.addPiece(mushroom, 1, 2);
 		gameboard.addPiece(rabbit, 0, 2);
 		gameboard.moveRabbitPiece("GR", direction.EAST);
-		assertEquals("Expecting 'GR'.", "GR", gameboard.getHoleContent(2, 2).toString());
+		assertEquals("Expecting 'GR'.", "GR", gameboard.getHole(2, 2).toString());
 	}
 	
 	/**

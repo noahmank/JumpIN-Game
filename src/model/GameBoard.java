@@ -97,7 +97,7 @@ public class GameBoard {
 	*@return the contents within a hole
 	*@author Adela Tullio
 	*/
-	public Hole getHoleContent(int numColumn, int numRow) {
+	public Hole getHole(int numColumn, int numRow) {
 		return grid[numColumn][numRow];	
 	}
 	
