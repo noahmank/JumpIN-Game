@@ -1,4 +1,4 @@
-package model;
+package model.tests;
 /**
 * Tests the Hole class implementation
 * @author Adela Tullio
