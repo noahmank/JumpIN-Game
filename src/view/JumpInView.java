@@ -45,7 +45,7 @@ public class JumpInView extends JFrame {
             }
         }
     	
-    	Color brown = new Color(150,75,0);
+    	Color brown = new Color(175, 100, 0);
     	Color darkgreen = new Color(0, 100, 0);
     	String mushroom  = "images" + File.separator +"mushroom.png";
     	 
