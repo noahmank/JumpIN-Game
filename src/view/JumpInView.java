@@ -52,7 +52,6 @@ public class JumpInView extends JFrame {
     	String whiteRabbit = "images" + File.separator + "whiteRabbit.png";
     	String brownRabbit = "images" + File.separator + "brownRabbit.png";
     	String fox = "images" + File.separator + "fox.jpg";
->>>>>>> branch 'master' of https://github.com/noahmank/JumpIN-Game
     	 
     	boardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
     	boardGrid[2][4].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));
