@@ -1,6 +1,10 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import view.*;
+
 
 /**
  * Creates and starts the game, is the main interface with which the player interacts
@@ -10,6 +14,7 @@ import java.util.Scanner;
 public class JumpInGame {
 	private GameBoard gameBoard;
 	private GameStatus gameStatus;
+	private ArrayList<JumpInView> views;
 	
 	/**
 	 * the JumpInGame constructor builds the default game board
@@ -143,6 +148,20 @@ public class JumpInGame {
 		}
 	}
 	
+	public void addView(JumpInView v) {
+		this.views.add(v);
+	}
+	
+	public void removeView(JumpInView v) {
+		this.views.remove(v);
+	}
+	
+	public void notifyViews() {
+		for(JumpInView v : views) {
+			v.updateView();
+		}
+	}
+	
 	/**
 	 * 
 	 * @param args
@@ -151,4 +170,6 @@ public class JumpInGame {
 		JumpInGame game = new JumpInGame();
 		game.start();
 	}
+	
+	
 }

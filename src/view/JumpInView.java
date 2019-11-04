@@ -36,7 +36,7 @@ public class JumpInView extends JFrame {
     	contents = getContentPane();
         contents.setLayout(new GridLayout(columns, rows));	
                 
-//      this.game.addDisplay(this);
+        this.game.addView(this);
         //Green Holes
     	for (int i = 0; i < rows; i++)
         {
@@ -120,6 +120,9 @@ public class JumpInView extends JFrame {
 	*/
 	public void updateIcon(int column, int row, String iconName) {
 		BoardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
-		
+	}
+	
+	public void updateView() {
+		// TODO
 	}
 }
