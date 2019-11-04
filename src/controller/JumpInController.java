@@ -53,13 +53,4 @@ public class JumpInController implements ActionListener{
 			direction = null;
 		}
 	}
-
-	/**
-	* Updates the view
-	*/
-	public void updateView() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
