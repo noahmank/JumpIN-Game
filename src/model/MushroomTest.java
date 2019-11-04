@@ -5,6 +5,8 @@ package model;
 */
 import static org.junit.Assert.*;
 
+import org.junit.*;
+
 public class MushroomTest {
 
 	private Mushroom mushroom;

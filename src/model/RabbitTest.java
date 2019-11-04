@@ -4,6 +4,7 @@ package model;
 * @author Adela Tullio
 */
 import static org.junit.Assert.*;
+import org.junit.*;
 
 public class RabbitTest {
 
