@@ -98,7 +98,7 @@ public class JumpInGame {
 	 * @param name is the identity of the fox e.g F1
 	 * @param direction is the desired direction that the fox is being moved to
 	 */
-	private void slideFox(String name, Direction direction) {
+	public void slideFox(String name, Direction direction) {
 		gameBoard.moveFoxPiece(name, direction);
 		System.out.println("");
 	}
@@ -108,7 +108,7 @@ public class JumpInGame {
 	 * @param name is the identity of the rabbit e.g Black
 	 * @param direction is the desired direction that the rabbit is being moved to
 	 */
-	private void jumpRabbit(String name, Direction direction) {
+	public void jumpRabbit(String name, Direction direction) {
 		gameBoard.moveRabbitPiece(name, direction);
 		System.out.println("");
 	}
@@ -116,7 +116,7 @@ public class JumpInGame {
 	/**
 	 * the displayBoard method reflects the appearance of the board
 	 */
-	private void displayBoard() {
+	public void displayBoard() {
 		System.out.println(gameBoard.toString());
 		System.out.println(gameBoard.getLegend());
 	}
@@ -127,7 +127,7 @@ public class JumpInGame {
 	 * @param column is the column to which the piece is added
 	 * @param row is the row in which the piece is added
 	 */
-	private void addPieceToBoard(Piece piece, int column, int row) {
+	public void addPieceToBoard(Piece piece, int column, int row) {
 		gameBoard.addPiece(piece, column, row);
 	}
 	
@@ -135,7 +135,7 @@ public class JumpInGame {
 	 * The challenge method constructs the board for the specified challenge
 	 * @param challenge is the number that identifies the challenge
 	 */
-	private void challenge(int challenge) {
+	public void challenge(int challenge) {
 		
 		if(challenge == 1) {
 			this.addPieceToBoard(new Rabbit("Grey"), 3, 0);
@@ -146,6 +146,10 @@ public class JumpInGame {
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
 		}
+	}
+	
+	public GameBoard getBoard() {
+		return this.gameBoard;
 	}
 	
 	public void addView(JumpInView v) {

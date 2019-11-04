@@ -34,9 +34,9 @@ public class JumpInController implements ActionListener{
 		if(event.getSource() instanceof BoardButton){
 			int row = ((BoardButton) event.getSource()).getRow();
 			int column = ((BoardButton) event.getSource()).getColumn();
-//			if(game.getBoard().getHoleContent(column, row).getIsOccupied()) {
-//				piece = game.getBoard().getHoleContent(column, row).getPiece();
-//			}
+			if(game.getBoard().getHoleContent(column, row).getIsOccupied()) {
+				piece = game.getBoard().getHoleContent(column, row).getPiece();
+		}
 			System.out.println(row + ", " + column);
 		}
 		else if(event.getSource() instanceof DirectionButton){
@@ -45,10 +45,10 @@ public class JumpInController implements ActionListener{
 		}
 		if((direction != null) && (piece != null)) {
 			if(piece instanceof Fox) {
-				//game.slideFox(piece.toString(), direction);
+				game.slideFox(piece.toString(), direction);
 			}
 			if(piece instanceof Rabbit) {
-				//game.jumpRabbit(piece.toString(), direction);
+				game.jumpRabbit(piece.toString(), direction);
 			}
 			direction = null;
 		}
