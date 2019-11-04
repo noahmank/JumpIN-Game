@@ -1,4 +1,4 @@
-package model;
+package model.tests;
 /**
 * Tests for Raised Hole class implementation
 * @author Adela Tullio
