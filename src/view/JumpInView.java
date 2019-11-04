@@ -49,12 +49,23 @@ public class JumpInView extends JFrame {
             }
         }
     	
-    	 Color brown = new Color(150,75,0);
-    	 Color darkgreen = new Color(0, 100, 0);
-    	 String mushroom  = "images" + File.separator +"mushroom.png";
+    	Color brown = new Color(150,75,0);
+    	Color darkgreen = new Color(0, 100, 0);
+    	String mushroom  = "images" + File.separator +"mushroom.png";
+    	String greyRabbit = "images" + File.separator + "greyRabbit.png";
+    	String whiteRabbit = "images" + File.separator + "whiteRabbit.png";
+    	String brownRabbit = "images" + File.separator + "brownRabbit.png";
+    	String fox = "images" + File.separator + "fox.jpg";
     	 
     	boardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
-    	boardGrid[4][2].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50)); 
+    	boardGrid[2][4].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));
+    	boardGrid[3][0].setIcon(resizeIcon(new ImageIcon(greyRabbit), 50, 50));
+    	boardGrid[4][2].setIcon(resizeIcon(new ImageIcon(whiteRabbit), 50, 50));
+    	boardGrid[1][4].setIcon(resizeIcon(new ImageIcon(brownRabbit), 50, 50));
+    	boardGrid[1][0].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+    	boardGrid[1][1].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+    	boardGrid[3][3].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+    	boardGrid[4][3].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
     	
     	boardGrid[0][0].setBackground(brown);
     	boardGrid[0][4].setBackground(brown);
