@@ -165,15 +165,4 @@ public class JumpInGame {
 			v.updateView();
 		}
 	}
-	
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		JumpInGame game = new JumpInGame();
-		game.start();
-	}
-	
-	
 }
