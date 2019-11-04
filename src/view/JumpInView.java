@@ -14,7 +14,7 @@ import model.*;
 public class JumpInView extends JFrame {
 	private JumpInGame game;
 	private Container contents;
-	private BoardButton[][] BoardGrid;
+	private BoardButton[][] boardGrid;
 	
 	private JFrame frame;
 	
@@ -31,7 +31,7 @@ public class JumpInView extends JFrame {
 	public JumpInView(JumpInGame g, int columns, int  rows) {
 		this.game = g;
 		handler = new JumpInController(this.game, this);
-		BoardGrid = new BoardButton[columns][rows];
+		boardGrid = new BoardButton[columns][rows];
 		frame = new JFrame("Jump-In Game");
     	contents = getContentPane();
         contents.setLayout(new GridLayout(columns, rows));	
@@ -42,9 +42,9 @@ public class JumpInView extends JFrame {
         {
             for (int j = 0; j <columns; j++)
             {
-            		BoardGrid[j][i] = new BoardButton(j, i, Color.green);
-            		contents.add(BoardGrid[j][i]);
-            		BoardGrid[j][i].addActionListener(handler);	                
+            		boardGrid[j][i] = new BoardButton(j, i, Color.green);
+            		contents.add(boardGrid[j][i]);
+            		boardGrid[j][i].addActionListener(handler);	                
             		            	            	
             }
         }
@@ -53,18 +53,18 @@ public class JumpInView extends JFrame {
     	 Color darkgreen = new Color(0, 100, 0);
     	 String mushroom  = "images" + File.separator +"mushroom.png";
     	 
-    	BoardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
-    	BoardGrid[4][2].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50)); 
+    	boardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
+    	boardGrid[4][2].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50)); 
     	
-    	BoardGrid[0][0].setBackground(brown);
-    	BoardGrid[0][4].setBackground(brown);
-    	BoardGrid[4][0].setBackground(brown);
-    	BoardGrid[4][4].setBackground(brown);
-    	BoardGrid[2][2].setBackground(brown);
-    	BoardGrid[0][2].setBackground(darkgreen);
-    	BoardGrid[2][0].setBackground(darkgreen);
-    	BoardGrid[4][2].setBackground(darkgreen);
-    	BoardGrid[2][4].setBackground(darkgreen);
+    	boardGrid[0][0].setBackground(brown);
+    	boardGrid[0][4].setBackground(brown);
+    	boardGrid[4][0].setBackground(brown);
+    	boardGrid[4][4].setBackground(brown);
+    	boardGrid[2][2].setBackground(brown);
+    	boardGrid[0][2].setBackground(darkgreen);
+    	boardGrid[2][0].setBackground(darkgreen);
+    	boardGrid[4][2].setBackground(darkgreen);
+    	boardGrid[2][4].setBackground(darkgreen);
     	
     	//setting arrow panel with all arrow buttons
         arrowPanel = new JPanel();
@@ -119,7 +119,7 @@ public class JumpInView extends JFrame {
 	* @param iconName is the name of the icon
 	*/
 	public void updateIcon(int column, int row, String iconName) {
-		BoardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
+		boardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
 	}
 	
 	public void updateView() {
