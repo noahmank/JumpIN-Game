@@ -9,6 +9,7 @@ public class JumpInGameMVC {
 		JumpInGame game = new JumpInGame();
 		JumpInView view = new JumpInView(game,5,5);
 		JumpInController controller = new JumpInController(game,view);		
+		game.challenge(1);
 	}
 
 }

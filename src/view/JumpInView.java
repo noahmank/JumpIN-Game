@@ -52,16 +52,6 @@ public class JumpInView extends JFrame {
     	String whiteRabbit = "images" + File.separator + "whiteRabbit.png";
     	String brownRabbit = "images" + File.separator + "brownRabbit.png";
     	String fox = "images" + File.separator + "fox.jpg";
-    	 
-    	boardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
-    	boardGrid[2][4].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));
-    	boardGrid[3][0].setIcon(resizeIcon(new ImageIcon(greyRabbit), 50, 50));
-    	boardGrid[4][2].setIcon(resizeIcon(new ImageIcon(whiteRabbit), 50, 50));
-    	boardGrid[1][4].setIcon(resizeIcon(new ImageIcon(brownRabbit), 50, 50));
-    	boardGrid[1][0].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
-    	boardGrid[1][1].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
-    	boardGrid[3][3].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
-    	boardGrid[4][3].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
     	
     	boardGrid[0][0].setBackground(brown);
     	boardGrid[0][4].setBackground(brown);
@@ -134,6 +124,36 @@ public class JumpInView extends JFrame {
 	}
 	
 	public void updateView() {
-		// TODO
+		System.out.println("View update start");
+		String fox = "images" + File.separator + "fox.jpg";
+		String mushroom  = "images" + File.separator +"mushroom.png";
+    	String greyRabbit = "images" + File.separator + "greyRabbit.png";
+    	String whiteRabbit = "images" + File.separator + "whiteRabbit.png";
+    	String brownRabbit = "images" + File.separator + "brownRabbit.png";
+    	// Assign all Fox icons
+		for(Fox f : game.getBoard().getFoxes().keySet()) {
+			System.out.println("Assigning fox " + f.toString());
+			Point tail = game.getBoard().getFoxes().get(f);
+			boardGrid[tail.x][tail.y].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+		}
+		// Assign all Rabbit icons
+		String rabbit = null;
+		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
+			System.out.println("Assigning rabbit " + r.toString());
+			Point p = game.getBoard().getRabbits().get(r);
+			switch(r.toString()) {
+				case "BR": rabbit = brownRabbit; break;
+				case "WR": rabbit = whiteRabbit; break;
+				case "GR": rabbit = greyRabbit; break;
+			}
+			boardGrid[p.x][p.y].setIcon(resizeIcon(new ImageIcon(rabbit), 50, 50));
+		}
+		// Assign all Mushroom icons
+		for(Point m : game.getBoard().getMushrooms().values()) {
+			System.out.println("Assigning mushroom " + m.toString());
+			boardGrid[m.x][m.y].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));  
+		}
+		
 	}
 }

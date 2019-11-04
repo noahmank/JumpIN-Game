@@ -52,7 +52,7 @@ public class GameBoard {
 		
 		this.foxes = new HashMap<>();
 		this.rabbits = new HashMap<>();
-		
+		this.mushrooms = new HashMap<>();
 		//Initializing every spot in the grid to be a hole
 		for(int r = 0; r < this.numRows; r++) {
 			for(int c = 0; c < this.numColumns; c++) {
