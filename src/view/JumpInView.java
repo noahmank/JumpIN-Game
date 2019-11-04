@@ -15,10 +15,7 @@ public class JumpInView extends JFrame {
 	private JumpInGame game;
 	private Container contents;
 	private BoardButton[][] boardGrid;
-	
 	private JFrame frame;
-	
-	
 	private JumpInController handler;
 	private JPanel arrowPanel;
 
@@ -36,7 +33,6 @@ public class JumpInView extends JFrame {
     	contents = getContentPane();
         contents.setLayout(new GridLayout(columns, rows));	
                 
-        this.game.addView(this);
         //Green Holes
     	for (int i = 0; i < rows; i++)
         {
@@ -100,6 +96,10 @@ public class JumpInView extends JFrame {
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
     	frame.setVisible(true);	    	
     }
+	
+	public void init() {
+        this.game.addView(this);
+	}
 	
 	/**
 	 * @param icon is the image of the icon
