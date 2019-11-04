@@ -19,7 +19,7 @@ public class BrownHoleTest {
 	*/
 	@Before
 	public void setUp() throws Exception {
-		BrownHole bh = new BrownHole();
+		bh = new BrownHole();
 	}
 	
 	/**
