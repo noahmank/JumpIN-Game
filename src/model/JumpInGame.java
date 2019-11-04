@@ -22,6 +22,7 @@ public class JumpInGame {
 	public JumpInGame() {
 		gameBoard = new GameBoard();
 		gameStatus = GameStatus.READY_TO_PLAY;
+		views = new ArrayList<>();
 	}
 	
 	/**
