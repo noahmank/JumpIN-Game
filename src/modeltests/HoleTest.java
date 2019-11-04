@@ -1,8 +1,8 @@
-package model.tests;
+package modeltests;
+import model.*;
 /**
-* Tests for the BrownHole class 
+* Tests the Hole class implementation
 * @author Adela Tullio
-*
 */
 import static org.junit.Assert.*;
 
@@ -10,32 +10,33 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BrownHoleTest {
-	private BrownHole bh;
+public class HoleTest {
+	private Hole hole;
 	
 	/**
-	* Sets up the variables
-	* @throws Exception 
+	* Set up method for variables
+	* @throws Exception
 	*/
 	@Before
 	public void setUp() throws Exception {
-		bh = new BrownHole();
+		hole = new Hole();
 	}
 	
 	/**
-	* Tear down method
+	* Tear down method for variables
 	* @throws Exception
 	*/
 	@After
 	public void tearDown() throws Exception {
-		bh = null;
+		hole = null;
 	}
 	
 	/**
-	* Tests the toString method
+	* Tests the toString method within Hole
 	*/
 	@Test
 	public void testToString() {
-		assertEquals("String should be 'BH'.", "BH", bh.toString());
+		assertEquals("Should be '  '", "  ", hole.toString());
 	}
+
 }

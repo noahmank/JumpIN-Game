@@ -1,4 +1,5 @@
-package model.tests;
+package modeltests;
+import model.*;
 /**
 * Tests for Raised Hole class implementation
 * @author Adela Tullio

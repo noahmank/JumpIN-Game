@@ -1,4 +1,5 @@
-package model.tests;
+package modeltests;
+import model.*;
 /**
 * Tests for the Rabbit class implementation
 * @author Adela Tullio

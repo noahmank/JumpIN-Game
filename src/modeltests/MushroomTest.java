@@ -1,4 +1,5 @@
-package model.tests;
+package modeltests;
+import model.*;
 /**
 * Tests for the Mushroom class implementation
 * @author Adela Tullio
