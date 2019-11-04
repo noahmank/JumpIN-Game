@@ -15,6 +15,7 @@ public class GameBoard {
 	private Hole[][] grid;
 	private HashMap<Rabbit, Point> rabbits;
 	private HashMap<Fox, Point> foxes;
+	private HashMap<Mushroom, Point> mushrooms;
 	
 	/**
 	* Creates a new GameBoard with the specified number of
@@ -332,6 +333,19 @@ public class GameBoard {
 	*/
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
 		grid[column][row].setPiece(piece);
+		this.mushrooms.put(piece, new Point(column, row));
+	}
+	
+	public HashMap<Mushroom, Point> getMushrooms() {
+		return this.mushrooms;
+	}
+	
+	public HashMap<Fox, Point> getFoxes() {
+		return this.foxes;
+	}
+	
+	public HashMap<Rabbit, Point> getRabbits() {
+		return this.rabbits;
 	}
 	
 	/**

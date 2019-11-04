@@ -146,6 +146,7 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
+			notifyViews();
 		}
 	}
 	
