@@ -30,7 +30,6 @@ public class JumpInController implements ActionListener{
 	*/
 	@Override
 	public void actionPerformed(ActionEvent event) {
-	
 		if(event.getSource() instanceof BoardButton){
 			int row = ((BoardButton) event.getSource()).getRow();
 			int column = ((BoardButton) event.getSource()).getColumn();
