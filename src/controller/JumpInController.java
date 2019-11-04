@@ -4,17 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.*;
+import view.*;
 
-public class ActionHandler implements ActionListener{
-	JumpInGame game;
+public class JumpInController implements ActionListener{
+	private JumpInGame game;
 	private Piece piece;
-	private Direction direction;
+	private Direction direction;	
+	private JumpInView view;
 	
-	public ActionHandler(JumpInGame game) {
-		super();
+	public JumpInController(JumpInGame game, JumpInView view) {		
 		this.game = game;
+		this.view = view;
 		
 	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
 	
@@ -32,13 +36,19 @@ public class ActionHandler implements ActionListener{
 		}
 		if((direction != null) && (piece != null)) {
 			if(piece instanceof Fox) {
-				game.slideFox(piece.toString(), direction);
+				//game.slideFox(piece.toString(), direction);
 			}
 			if(piece instanceof Rabbit) {
-				game.jumpRabbit(piece.toString(), direction);
+				//game.jumpRabbit(piece.toString(), direction);
 			}
 			direction = null;
 		}
+	}
+
+
+	public void updateView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
