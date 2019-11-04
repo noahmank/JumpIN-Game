@@ -38,16 +38,16 @@ public class JumpInView extends JFrame {
         {
             for (int j = 0; j <columns; j++)
             {
-            		boardGrid[j][i] = new BoardButton(j, i, Color.green);
-            		contents.add(boardGrid[j][i]);
-            		boardGrid[j][i].addActionListener(handler);	                
+            	boardGrid[j][i] = new BoardButton(j, i, Color.green);
+            	contents.add(boardGrid[j][i]);
+            	boardGrid[j][i].addActionListener(handler);	                
             		            	            	
             }
         }
     	
-    	 Color brown = new Color(150,75,0);
-    	 Color darkgreen = new Color(0, 100, 0);
-    	 String mushroom  = "images" + File.separator +"mushroom.png";
+    	Color brown = new Color(150,75,0);
+    	Color darkgreen = new Color(0, 100, 0);
+    	String mushroom  = "images" + File.separator +"mushroom.png";
     	 
     	boardGrid[3][1].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));   
     	boardGrid[4][2].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50)); 
