@@ -101,6 +101,7 @@ public class JumpInGame {
 	 */
 	public void slideFox(String name, Direction direction) {
 		gameBoard.moveFoxPiece(name, direction);
+		notifyViews();
 		System.out.println("");
 	}
 	
@@ -111,6 +112,7 @@ public class JumpInGame {
 	 */
 	public void jumpRabbit(String name, Direction direction) {
 		gameBoard.moveRabbitPiece(name, direction);
+		notifyViews();
 		System.out.println("");
 	}
 	
@@ -139,6 +141,7 @@ public class JumpInGame {
 	public void challenge(int challenge) {
 		
 		if(challenge == 1) {
+			System.out.println("Challenge 1 started.");
 			this.addPieceToBoard(new Rabbit("Grey"), 3, 0);
 			this.addPieceToBoard(new Rabbit("White"), 4, 2);
 			this.addPieceToBoard(new Rabbit("Brown"), 1, 4);

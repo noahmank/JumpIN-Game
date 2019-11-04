@@ -18,6 +18,8 @@ public class JumpInView extends JFrame {
 	private JFrame frame;
 	private JumpInController handler;
 	private JPanel arrowPanel;
+	private int columns;
+	private int rows;
 
 	/**
 	 * 
@@ -27,6 +29,8 @@ public class JumpInView extends JFrame {
 	 */
 	public JumpInView(JumpInGame g, int columns, int  rows) {
 		this.game = g;
+		this.columns = columns;
+		this.rows = rows;
 		handler = new JumpInController(this.game, this);
 		boardGrid = new BoardButton[columns][rows];
 		frame = new JFrame("Jump-In Game");
@@ -45,7 +49,7 @@ public class JumpInView extends JFrame {
             }
         }
     	
-    	Color brown = new Color(150,75,0);
+    	Color brown = new Color(175, 100, 0);
     	Color darkgreen = new Color(0, 100, 0);
     	boardGrid[0][0].setBackground(brown);
     	boardGrid[0][4].setBackground(brown);
@@ -118,7 +122,11 @@ public class JumpInView extends JFrame {
 	}
 	
 	public void updateView() {
-		System.out.println("View update start");
+		for (int i = 0; i < columns; i++) {
+			for (int j = 0; j < rows; j++) {
+				boardGrid[i][j].setIcon(null);
+			}
+		}
 		String fox = "images" + File.separator + "fox.jpg";
 		String mushroom  = "images" + File.separator +"mushroom.png";
     	String greyRabbit = "images" + File.separator + "greyRabbit.png";
@@ -126,7 +134,7 @@ public class JumpInView extends JFrame {
     	String brownRabbit = "images" + File.separator + "brownRabbit.png";
     	// Assign all Fox icons
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
-			System.out.println("Assigning fox " + f.toString());
+
 			Point tail = game.getBoard().getFoxes().get(f);
 			boardGrid[tail.x][tail.y].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
 			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
@@ -134,7 +142,6 @@ public class JumpInView extends JFrame {
 		// Assign all Rabbit icons
 		String rabbit = null;
 		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
-			System.out.println("Assigning rabbit " + r.toString());
 			Point p = game.getBoard().getRabbits().get(r);
 			switch(r.toString()) {
 				case "BR": rabbit = brownRabbit; break;
@@ -145,9 +152,7 @@ public class JumpInView extends JFrame {
 		}
 		// Assign all Mushroom icons
 		for(Point m : game.getBoard().getMushrooms().values()) {
-			System.out.println("Assigning mushroom " + m.toString());
 			boardGrid[m.x][m.y].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));  
 		}
-		
 	}
 }
