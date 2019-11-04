@@ -1,4 +1,4 @@
-package model;
+package model.tests;
 /**
 * Test suite for all the tests within this package
 * @author Adela Tullio
