@@ -1,4 +1,4 @@
-package model;
+package model.tests;
 /**
 * Tests for the Fox class implementation
 * @author Adela Tullio
