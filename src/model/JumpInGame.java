@@ -167,18 +167,34 @@ public class JumpInGame {
 		}
 	}
 	
+	/**
+	 * Getter to allow access to gameBoard
+	 * @return the stored GameBoard
+	 */
 	public GameBoard getBoard() {
 		return this.gameBoard;
 	}
 	
+	/**
+	 * Add a view to watch any changes in the game
+	 * @param v is the view to be added to the views collection
+	 */
 	public void addView(JumpInView v) {
 		this.views.add(v);
 	}
 	
+	/**
+	 * Remove a view from those watching the game
+	 * @param v is the view to be removed from the views collection
+	 */
 	public void removeView(JumpInView v) {
 		this.views.remove(v);
 	}
 	
+	/**
+	 * Tell any views that a change has been made in the game
+	 * @param s is a message describing the change
+	 */
 	public void notifyViews(String s) {
 		for(JumpInView v : views) {
 			v.updateView(s);
