@@ -35,12 +35,10 @@ public class JumpInController implements ActionListener{
 			int column = ((BoardButton) event.getSource()).getColumn();
 			if(game.getBoard().getHole(column, row).getIsOccupied()) {
 				piece = game.getBoard().getHole(column, row).getPiece();
-		}
-			//System.out.println(column + ", " + row);
+			}
 		}
 		else if(event.getSource() instanceof DirectionButton){
 			this.direction = ((DirectionButton) event.getSource()).getDirection();
-			//System.out.println(this.direction);
 		}
 		if((direction != null) && (piece != null)) {
 			if(piece instanceof Fox) {

@@ -100,9 +100,16 @@ public class JumpInGame {
 	 * @param direction is the desired direction that the fox is being moved to
 	 */
 	public void slideFox(String name, Direction direction) {
-		gameBoard.moveFoxPiece(name, direction);
-		notifyViews();
-		System.out.println("");
+		if(!gameBoard.isFinished()) {
+			try {
+				gameBoard.moveFoxPiece(name, direction);
+				notifyViews(name + " was moved " + direction.toString());
+			}
+			catch(IllegalArgumentException e) {
+				notifyViews(e.getMessage());
+			}
+			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
+		}
 	}
 	
 	/**
@@ -111,9 +118,16 @@ public class JumpInGame {
 	 * @param direction is the desired direction that the rabbit is being moved to
 	 */
 	public void jumpRabbit(String name, Direction direction) {
-		gameBoard.moveRabbitPiece(name, direction);
-		notifyViews();
-		System.out.println("");
+		if(!gameBoard.isFinished()) {
+			try {
+				gameBoard.moveRabbitPiece(name, direction);
+				notifyViews(name + " was moved " + direction.toString());
+			}
+			catch(IllegalArgumentException e) {
+				notifyViews(e.getMessage());
+			}
+			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
+		}
 	}
 	
 	/**
@@ -149,7 +163,7 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
-			notifyViews();
+			notifyViews("Challenge 1: Begun");
 		}
 	}
 	
@@ -165,9 +179,9 @@ public class JumpInGame {
 		this.views.remove(v);
 	}
 	
-	public void notifyViews() {
+	public void notifyViews(String s) {
 		for(JumpInView v : views) {
-			v.updateView();
+			v.updateView(s);
 		}
 	}
 }

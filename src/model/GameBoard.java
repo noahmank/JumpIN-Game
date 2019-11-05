@@ -109,13 +109,8 @@ public class GameBoard {
 	* @param row is the row to add the piece to
 	* @author Kelly Harrison
 	*/
-	public void addPiece(Piece piece, int column, int row) {
-		try {
-			checkValidSpace(column, row);
-		}
-		catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+	public void addPiece(Piece piece, int column, int row) throws IllegalArgumentException {
+		checkValidSpace(column, row);
 		if(piece instanceof Mushroom) {
 			this.addMushroomPiece((Mushroom) piece, column, row);
 		}
@@ -224,7 +219,7 @@ public class GameBoard {
 		catch(IllegalArgumentException e) {
 			grid[location.x][location.y].setPiece(foxPiece);
 			grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].setPiece(foxPiece);
-			System.out.println(e);
+			throw e;
 		}
 	}
 	
@@ -234,7 +229,7 @@ public class GameBoard {
 	* @param direction the direction in which the rabbit will move
 	* @author Noah Mank
 	*/
-	public void moveRabbitPiece(String name, Direction direction) {
+	public void moveRabbitPiece(String name, Direction direction) throws IllegalArgumentException {
 		Rabbit rabbitPiece = null;
 		Point location = new Point();
 		Point newLocation = new Point();
@@ -252,7 +247,9 @@ public class GameBoard {
 			newLocation.x = rabbits.get(rabbitPiece).x;
 			newLocation.y = rabbits.get(rabbitPiece).y;
 		}
-		
+		if((location.x + direction.getX() >= this.numColumns) || (location.x + direction.getX() < 0) || (location.y + direction.getY() >= this.numRows) || (location.y + direction.getY() < 0)) {
+			throw new IllegalArgumentException("Cannot move rabbit out of bounds");
+		}
 		// If heading directly into an empty space, invalid
 		if(!grid[location.x + direction.getX()][location.y + direction.getY()].getIsOccupied()) {
 			throw new IllegalArgumentException("Direction invalid, choose another");
@@ -293,29 +290,20 @@ public class GameBoard {
 	* @throws IllegalArgumentException
 	* @author Kelly Harrison
 	*/
-	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {
-		RaisedHole r = new RaisedHole();
-		BrownHole b = new BrownHole();
-		
-		if(grid[column][row].getClass().equals(r.getClass())) {
+	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {	
+		Direction direction = piece.getDirection();
+		// Check we are within board bounds
+		if((column + direction.getX() >= numColumns) || (row + direction.getY() >= numRows) || (column + direction.getX() <= 0) || (row + direction.getY() <= 0)) {
+			throw new IllegalArgumentException("Cannot move fox outside of board bounds.");
+		}
+		if(grid[column][row] instanceof RaisedHole) {
 			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");
 		}
-		
-		if(grid[column][row].getClass().equals(b.getClass())) {
-			throw new IllegalArgumentException("Cannot place a Fox on a BrownHole");
-		}
-		
-		Direction direction = piece.getDirection();
 		// checkValidSpace has already occurred for tail part, check head
-		try {
-			checkValidSpace(column + direction.getX(), row + direction.getY());
-		}
-		catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		checkValidSpace(column + direction.getX(), row + direction.getY());
 		// Check if tail or head holes are hills -> they shouldn't be
 		if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
-			throw new IllegalArgumentException("Foxes cannot be placed on raised holes, choose a new location");
+			throw new IllegalArgumentException("Foxes cannot be placed on raised holes, choose new location");
 		}
 		grid[column + direction.getX()][row + direction.getY()].setPiece(piece);
 		grid[column][row].setPiece(piece);

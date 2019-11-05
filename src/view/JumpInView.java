@@ -18,6 +18,8 @@ public class JumpInView extends JFrame {
 	private JFrame frame;
 	private JumpInController handler;
 	private JPanel arrowPanel;
+	private JTextField output;
+	private JPanel textPanel;
 	private int columns;
 	private int rows;
 
@@ -87,11 +89,18 @@ public class JumpInView extends JFrame {
         rightArrow.setIcon(resizeIcon(new ImageIcon("images" + File.separator +"rightArrow.png"),rightArrow.getWidth(), rightArrow.getHeight()));
         arrowPanel.add(rightArrow);
         rightArrow.addActionListener(handler);	
-	    	
-        frame.setSize(500, 500);
+	    
+        //creating console for output (game over)
+        textPanel = new JPanel();
+        output = new JTextField("Game initialized", 60);
+        output.setEditable(false);
+        textPanel.add(output);
+        
+        frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
-    	frame.add(contents, BorderLayout.CENTER);	    	   
+    	frame.add(contents, BorderLayout.CENTER);	    
+    	frame.add(textPanel, BorderLayout.NORTH);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
     	frame.setVisible(true);	    	
     }
@@ -121,7 +130,7 @@ public class JumpInView extends JFrame {
 		boardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
 	}
 	
-	public void updateView() {
+	public void updateView(String s) {
 		for (int i = 0; i < columns; i++) {
 			for (int j = 0; j < rows; j++) {
 				boardGrid[i][j].setIcon(null);
@@ -154,5 +163,6 @@ public class JumpInView extends JFrame {
 		for(Point m : game.getBoard().getMushrooms().values()) {
 			boardGrid[m.x][m.y].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));  
 		}
+		output.setText(s);
 	}
 }
