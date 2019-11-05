@@ -115,6 +115,9 @@ public class JumpInView extends JFrame {
     	frame.setVisible(true);	    	
     }
 	
+	/**
+	 * Subscribe this view to the model
+	 */
 	public void init() {
         this.game.addView(this);
 	}
@@ -140,6 +143,10 @@ public class JumpInView extends JFrame {
 		boardGrid[column][row].setIcon(resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
 	}
 	
+	/**
+	 * Reconstruct the view based on the location of all the pieces on the board
+	 * @param s is the console output for the view
+	 */
 	public void updateView(String s) {
 		for (int i = 0; i < columns; i++) {
 			for (int j = 0; j < rows; j++) {

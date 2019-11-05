@@ -324,14 +324,26 @@ public class GameBoard {
 		this.mushrooms.put(piece, new Point(column, row));
 	}
 	
+	/**
+	 * Getter for mushrooms HashMap
+	 * @return HashMap containing all the mushroom pieces and respective Point locations
+	 */
 	public HashMap<Mushroom, Point> getMushrooms() {
 		return this.mushrooms;
 	}
 	
+	/**
+	 * Getter for foxes HashMap
+	 * @return HashMap containing all the fox pieces and respective Point locations
+	 */
 	public HashMap<Fox, Point> getFoxes() {
 		return this.foxes;
 	}
 	
+	/**
+	 * Getter for rabbits HashMap
+	 * @return HashMap containing all the rabbit pieces and respective Point locations
+	 */
 	public HashMap<Rabbit, Point> getRabbits() {
 		return this.rabbits;
 	}
