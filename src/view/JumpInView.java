@@ -96,19 +96,20 @@ public class JumpInView extends JFrame {
         output.setEditable(false);
         textPanel.add(output);
 		
-	//setting up the rulePanel
+        //setting up the rulePanel
     	JLabel ruleText = new JLabel("<html>Welcome to The JumpIn Game.<br/><br/>GAME RULES<br/> "    			
     			+ "1) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.<br/> "
     			+ "2) To move a rabbit or a foxe, select one of them first then click the direction you want to move them in from the direction buttons at the bottom of the screen <br/><html/>"
     			+ "3) You have found a solution when all of the rabbits are inside brown holes!<br/><html/>");   
     	    	
-    	ruleText.setPreferredSize(new Dimension(200,150));
+    	ruleText.setPreferredSize(new Dimension(400,200));
+    	
+    	textPanel.add(ruleText);
         	          		    	       		        	         
         frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
     	frame.add(contents, BorderLayout.CENTER);
-	frame.add(ruleText, BorderLayout.PAGE_START);
     	frame.add(textPanel, BorderLayout.NORTH);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
     	frame.setVisible(true);	    	
