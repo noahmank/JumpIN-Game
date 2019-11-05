@@ -67,6 +67,7 @@ fourth quadrant. When the GUI is properly implemented, this will be shifted back
 ### Deliverable 2
 Foxes can currently move through each other - does not greatly affect the difficulty of the only challenge, but in more difficult problems it could.
 A lot of refactoring needs to be done; there are many methods (like start()) that either have redundant functionality or are just no longer in use.
+Exporting the project in its current state does not include the images - this will be remedied in the next deliverable, but for now it must be run through an IDE.
 # Design
 
 ### Deliverable 1
