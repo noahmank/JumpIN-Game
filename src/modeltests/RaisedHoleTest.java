@@ -12,7 +12,6 @@ import org.junit.Test;
 
 public class RaisedHoleTest {
 	private RaisedHole raisedhole;
-	private GameBoard gameboard;
 	private Mushroom mushroom;
 	
 	/**
@@ -21,7 +20,6 @@ public class RaisedHoleTest {
 	@Before
 	public void setUp() throws Exception {
 		raisedhole = new RaisedHole();
-		gameboard = new GameBoard();
 		mushroom = new Mushroom();
 	}
 	
@@ -31,15 +29,25 @@ public class RaisedHoleTest {
 	@After
 	public void tearDown() throws Exception {
 		raisedhole = null;
-		gameboard = null;
 		mushroom = null;
 	}
 
 	/**
 	 * Tests the toString method
+	 * of an empty raised hole
 	 */
 	@Test
 	public void testEmptyHoleToString() {
 		assertEquals("Should be 'RH'.", "RH", raisedhole.toString());
+	}
+	
+	/**
+	 * Tests toString method
+	 * with a piece in it
+	 */
+	@Test
+	public void testOccupiedHoleToString() {
+		raisedhole.setPiece(mushroom);
+		assertEquals("Should be 'MS'", "MS", raisedhole.toString());
 	}
 }
