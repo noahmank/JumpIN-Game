@@ -32,6 +32,23 @@ public class FoxTest {
 	}
 	
 	/**
+	 * Tests getDirection method
+	 */
+	@Test
+	public void testGetDirection() {
+		assertEquals("Fox direction should be 'NORTH' for this fox.", direction.NORTH, fox.getDirection());
+	}
+	
+	/**
+	 * Tests getNumber method
+	 */
+	@Test
+	public void testGetNumber() {
+		assertEquals("Fox number should be 1", 1, fox.getNumber());
+	}
+	
+	
+	/**
 	* Tests the toString method
 	*/
 	@Test
