@@ -55,6 +55,24 @@ public class GameBoardTest {
 	}
 	
 	/**
+	 * Tests initializeBrownHoles method
+	 */
+	@Test
+	public void testInitializeBrownHole() {
+		gameboard.initializeBrownHole(2, 2);
+		assertEquals("Expected 'BH'", "BH", gameboard.getHole(2, 2).toString());
+	}
+	
+	/**
+	 * Tests initializeRaisedHole method
+	 */
+	@Test
+	public void testInitializeRaisedHole() {
+		gameboard.initializeRaisedHole(2, 2);
+		assertEquals("Expected 'RH'", "RH", gameboard.getHole(2, 2).toString());
+	}
+	
+	/**
 	* Tests the addPiece method with mushrooms specifically
 	*/
 	@Test
