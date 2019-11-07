@@ -8,4 +8,12 @@ public class MoveAction {
 		this.piece = piece;
 		this.direction = direction;
 	}
+	
+	public Direction getDirection() {
+		return this.direction;
+	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
 }

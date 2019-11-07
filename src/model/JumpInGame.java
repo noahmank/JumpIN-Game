@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -100,6 +101,22 @@ public class JumpInGame {
 	}
 	*/
 	
+	
+	public void movePiece(Piece p, Direction direction) {
+		if(!gameBoard.isFinished()) {
+			try {
+				if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
+				if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
+				notifyViews(p.toString() + " was moved " + direction.toString());
+				undoableMoveActions.push(new MoveAction(p, direction));
+			}
+			catch(IllegalArgumentException e) {
+				notifyViews(e.getMessage());
+			}
+			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
+		}
+	}
+	
 	/**
 	 * the slideFox method performs the movement of the fox (sliding parallel to its location)
 	 * @param name is the identity of the fox e.g F1
@@ -110,6 +127,7 @@ public class JumpInGame {
 			try {
 				gameBoard.moveFoxPiece(f, direction);
 				notifyViews(f.toString() + " was moved " + direction.toString());
+				undoableMoveActions.push(new MoveAction(f, direction));
 			}
 			catch(IllegalArgumentException e) {
 				notifyViews(e.getMessage());
@@ -128,6 +146,7 @@ public class JumpInGame {
 			try {
 				gameBoard.moveRabbitPiece(r, direction);
 				notifyViews(r.toString() + " was moved " + direction.toString());
+				undoableMoveActions.push(new MoveAction(r, direction));
 			}
 			catch(IllegalArgumentException e) {
 				notifyViews(e.getMessage());
@@ -163,6 +182,11 @@ public class JumpInGame {
 			this.addPieceToBoard(new Mushroom(), 2, 4);
 			notifyViews("Challenge 1: Begun");
 		}
+	}
+	
+	public void undoMoveAction() throws EmptyStackException{
+		MoveAction move = undoableMoveActions.pop();
+		
 	}
 	
 	/**
