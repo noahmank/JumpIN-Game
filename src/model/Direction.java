@@ -9,15 +9,15 @@ public enum Direction {
 	SOUTH(0,1),
 	WEST(-1,0);
 	
-	private int x;
-	private int y;
+	private final int x;
+	private final int y;
 	
 	/**
 	* Constructor to initialize arguments
 	* @param x the x coordinate of the direction
 	* @param y the y coordinate of the direction
 	*/
-	private Direction(final int x, final int y) {
+	private Direction(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
