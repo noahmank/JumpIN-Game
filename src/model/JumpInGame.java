@@ -152,7 +152,8 @@ public class JumpInGame {
 	 */
 	public void undoMoveAction() throws EmptyStackException{
 		MoveAction move = undoableMoveActions.pop();
-		
+		movePiece(move.getPiece(), move.getDirection().getOpposite());
+		redoableMoveActions.push(move);
 	}
 	
 	/**

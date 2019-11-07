@@ -36,7 +36,7 @@ public enum Direction {
 		return this.y;
 	}
 	
-	public Direction getReverseDirection() {
+	public Direction getOpposite() {
 		switch(this) {
 			case NORTH: return SOUTH;
 			case SOUTH: return NORTH;
