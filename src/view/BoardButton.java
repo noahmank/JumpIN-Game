@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import javax.swing.JButton;
 
+import controller.JumpInController;
+
 
 /*
  * This Class represents a Button on the BoardGrid of the view 

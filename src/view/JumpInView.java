@@ -65,21 +65,17 @@ public class JumpInView extends JFrame {
     	//setting arrow panel with all arrow buttons
         arrowPanel = new JPanel();
         
-        DirectionButton leftArrow = new DirectionButton(Direction.WEST);
-        arrowPanel.add(leftArrow);
-        leftArrow.addActionListener(controller);	
+        DirectionButton leftArrow = new DirectionButton(Direction.WEST, controller);
+        arrowPanel.add(leftArrow);	
         
-        DirectionButton upArrow = (new DirectionButton(Direction.NORTH));
+        DirectionButton upArrow = (new DirectionButton(Direction.NORTH, controller));
         arrowPanel.add(upArrow);            
-        upArrow.addActionListener(controller);	
         
-        DirectionButton downArrow = new DirectionButton(Direction.SOUTH);
+        DirectionButton downArrow = new DirectionButton(Direction.SOUTH, controller);
         arrowPanel.add(downArrow);
-        downArrow.addActionListener(controller);	
         
-        DirectionButton rightArrow = new DirectionButton(Direction.EAST);
+        DirectionButton rightArrow = new DirectionButton(Direction.EAST, controller);
         arrowPanel.add(rightArrow);
-        rightArrow.addActionListener(controller);	
         
         //creating console for output (game over)
         textPanel = new JPanel();

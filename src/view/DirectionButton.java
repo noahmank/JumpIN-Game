@@ -14,11 +14,12 @@ public class DirectionButton extends JButton {
 	/**
 	* @param d is the direction you wish the button to be
 	*/
-	public DirectionButton(Direction d) {
+	public DirectionButton(Direction d, JumpInController c) {
 		this.direction = d;
 		handler = new ImageHandler();
 		this.setBounds(0, 0, 30, 30);
 		this.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(d.getSrc())), this.getWidth(), this.getHeight()));
+		this.addActionListener(c);
 	}
 	
 	/**
