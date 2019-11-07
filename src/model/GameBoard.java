@@ -191,7 +191,7 @@ public class GameBoard {
 		catch(IllegalArgumentException e) {
 			grid[location.x][location.y].setPiece(f);
 			grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].setPiece(f);
-			throw e;
+			throw new IllegalArgumentException("Cannot move the fox this way!");
 		}
 	}
 	
@@ -259,9 +259,7 @@ public class GameBoard {
 	private void addFoxPiece(Fox f, int column, int row) throws IllegalArgumentException {	
 		Direction direction = f.getDirection();
 		// Check we are within board bounds
-		if((column + direction.getX() >= numColumns) || (row + direction.getY() >= numRows) || (column + direction.getX() <= 0) || (row + direction.getY() <= 0)) {
-			throw new IllegalArgumentException("Cannot have fox outside of board bounds.");
-		}
+		checkValidSpace(column + direction.getX(), row + direction.getX());
 		if(grid[column][row] instanceof RaisedHole) {
 			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");
 		}
@@ -322,11 +320,8 @@ public class GameBoard {
 	 * @author Noah Mank
 	 */
 	private void checkValidSpace(int column, int row) throws IllegalArgumentException {
-		if(column >= numColumns || row >= numRows || column < 0 || row < 0) {
+		if(column >= numColumns || row >= numRows || column < 0 || row < 0 || grid[column][row].getIsOccupied()) {
 			throw new IllegalArgumentException("Space is not valid, Choose another square");
 		}
-		if(grid[column][row].getIsOccupied()){ // checks to see if hole is empty
-            throw new IllegalArgumentException("Space is not valid, Choose another square");
-        }
 	}
 }
