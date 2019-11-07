@@ -35,8 +35,6 @@ public class GameBoard {
 		this.foxes = new HashMap<>();
 		this.rabbits = new HashMap<>();
 		this.mushrooms = new HashMap<>();
-		
-		
 	}
 	
 	/**
@@ -116,7 +114,7 @@ public class GameBoard {
 		else if(piece instanceof Fox) {
 			this.addFoxPiece((Fox) piece, column, row);
 		}
-		else {
+		else if(piece instanceof Rabbit) {
 			this.addRabbitPiece((Rabbit) piece, column, row);
 		}
 	}
@@ -183,16 +181,15 @@ public class GameBoard {
 		switch(direction) {
 			case NORTH: case SOUTH:
 				if((foxPiece.getDirection() != Direction.NORTH) && (foxPiece.getDirection() != Direction.SOUTH)) {
-					throw new IllegalArgumentException("Direction is not valid, Choose either EAST or WEST");
+					throw new IllegalArgumentException("Direction is not valid, Choose either East or West");
 				}
 				break;
 			case EAST: case WEST:
 				if((foxPiece.getDirection() != Direction.EAST) && (foxPiece.getDirection() != Direction.WEST)) {
-					throw new IllegalArgumentException("Direction is not valid, Choose either NORTH or SOUTH");
+					throw new IllegalArgumentException("Direction is not valid, Choose either North or South");
 				}
 				break;
 		}
-		// This does not yet account for hills -> need to think about that in addFoxPiece
 		// Start move process by removing from initial locations (object and location are still stored locally)
 		grid[location.x][location.y].removePiece(foxPiece);
 		grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].removePiece(foxPiece);
