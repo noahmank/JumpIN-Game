@@ -4,22 +4,24 @@ package model;
 * @author Noah Mank
 */
 public enum Direction {
-	NORTH(0,-1),
-	EAST(1,0),
-	SOUTH(0,1),
-	WEST(-1,0);
+	NORTH(0, -1, "upArrow.png"),
+	EAST(1, 0, "rightArrow.png"),
+	SOUTH(0, 1, "downArrow.png"),
+	WEST(-1, 0, "leftArrow.png");
 	
 	private final int x;
 	private final int y;
+	private final String src;
 	
 	/**
 	* Constructor to initialize arguments
 	* @param x the x coordinate of the direction
 	* @param y the y coordinate of the direction
 	*/
-	private Direction(int x, int y) {
+	private Direction(int x, int y, String src) {
 		this.x = x;
 		this.y = y;
+		this.src = src;
 	}
 	
 	/**
@@ -34,6 +36,10 @@ public enum Direction {
 	*/
 	public int getY() {
 		return this.y;
+	}
+	
+	public String getSrc() {
+		return this.src;
 	}
 	
 	public Direction getOpposite() {
