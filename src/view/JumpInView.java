@@ -115,7 +115,7 @@ public class JumpInView extends JFrame {
 	* @param iconName is the name of the icon
 	*/
 	public void updateIcon(int column, int row, String iconName) {
-		boardGrid[column][row].setIcon(handler.resizeIcon(new ImageIcon("images" + File.separator + iconName +".png"), 50, 50)); 
+		boardGrid[column][row].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(iconName)), 50, 50)); 
 	}
 	
 	/**
@@ -130,7 +130,6 @@ public class JumpInView extends JFrame {
 		}
     	// Assign all Fox icons
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
-
 			Point tail = game.getBoard().getFoxes().get(f);
 			boardGrid[tail.x][tail.y].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("fox.jpg")), 50, 50));
 			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("fox.jpg")), 50, 50));
