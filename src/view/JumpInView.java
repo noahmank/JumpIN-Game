@@ -155,11 +155,6 @@ public class JumpInView extends JFrame {
 				boardGrid[i][j].setIcon(null);
 			}
 		}
-		String fox = "images" + File.separator + "fox.jpg";
-		String mushroom  = "images" + File.separator +"mushroom.png";
-    	String greyRabbit = "images" + File.separator + "greyRabbit.png";
-    	String whiteRabbit = "images" + File.separator + "whiteRabbit.png";
-    	String brownRabbit = "images" + File.separator + "brownRabbit.png";
     	// Assign all Fox icons
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
 
