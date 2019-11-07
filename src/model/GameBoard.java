@@ -186,6 +186,7 @@ public class GameBoard {
 		grid[location.x][location.y].removePiece(f);
 		grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
 		try {
+			checkValidSpace(location.x + direction.getX(), location.y + direction.getY());
 			this.addFoxPiece(f, location.x + direction.getX(), location.y + direction.getY());
 		}
 		catch(IllegalArgumentException e) {
@@ -259,7 +260,6 @@ public class GameBoard {
 	private void addFoxPiece(Fox f, int column, int row) throws IllegalArgumentException {	
 		Direction direction = f.getDirection();
 		// Check we are within board bounds
-		checkValidSpace(column + direction.getX(), row + direction.getX());
 		if(grid[column][row] instanceof RaisedHole) {
 			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");
 		}

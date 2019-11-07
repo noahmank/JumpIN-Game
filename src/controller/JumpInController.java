@@ -37,7 +37,7 @@ public class JumpInController implements ActionListener{
 				piece = game.getBoard().getHole(column, row).getPiece();
 			}
 		}
-		else if(event.getSource() instanceof DirectionButton){
+		else if((event.getSource() instanceof DirectionButton) && (piece != null)){
 			this.direction = ((DirectionButton) event.getSource()).getDirection();
 		}
 		if((direction != null) && (piece != null)) {
