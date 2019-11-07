@@ -109,6 +109,7 @@ public class JumpInGame {
 				if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
 				notifyViews(p.toString() + " was moved " + direction.toString());
 				undoableMoveActions.push(new MoveAction(p, direction));
+				redoableMoveActions.clear();
 			}
 			catch(IllegalArgumentException e) {
 				notifyViews(e.getMessage());
@@ -150,10 +151,21 @@ public class JumpInGame {
 	 * undo the last action recorded in the undoableMoveActions stack and store in redoableMoveActions stack
 	 * @throws EmptyStackException
 	 */
-	public void undoMoveAction() throws EmptyStackException{
+	public void undoMoveAction() throws EmptyStackException {
 		MoveAction move = undoableMoveActions.pop();
+		// Do the opposite with the piece
 		movePiece(move.getPiece(), move.getDirection().getOpposite());
 		redoableMoveActions.push(move);
+	}
+	
+	/**
+	 * redo the last action recorded in the redoableMoveActions stack and restore in undoableMoveActions stack
+	 * @throws EmptyStackException
+	 */
+	public void redoMoveAction() throws EmptyStackException {
+		MoveAction move = redoableMoveActions.pop();
+		movePiece(move.getPiece(), move.getDirection());
+		undoableMoveActions.push(move);
 	}
 	
 	/**
