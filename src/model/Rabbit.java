@@ -34,7 +34,6 @@ public class Rabbit implements Piece{
 		if(this == obj) return true;
 		if(obj == null || obj.getClass() != this.getClass()) return false;
 		Rabbit rabbit = (Rabbit) obj;
-		if(rabbit.getColor() == this.getColor()) return true;
-		else return false;
+		return rabbit.getColor() == this.getColor();
 	}
 }

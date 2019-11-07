@@ -81,20 +81,10 @@ public class BoardButton extends JButton {
 	*/
 	@Override 
 	public boolean equals(Object o) {
-		if(o == this) {
-			return true;
-		}
-		
-		if(o == null) {
-			return false;
-		}
-		
-		if(this.getClass() != o.getClass()) {
-			return false;
-		}
-		
-		BoardButton buttonBoard = (BoardButton) o;
-		return (this == buttonBoard);
+		if(o == this) return true;
+		if(o == null || this.getClass() != o.getClass()) return false;
+		BoardButton b = (BoardButton) o;
+		return ((this.getRow() == b.getRow()) && (this.getColumn() == b.getColumn()) && (this.getColor() == b.getColor()));
 	}
 
 }
