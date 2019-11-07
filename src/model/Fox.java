@@ -42,8 +42,18 @@ public class Fox implements Piece {
 	 * 
 	 * @return A string containing the fox number
 	 */
+	@Override
 	public String toString() {
 		return "Fox " + this.getNumber();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null || obj.getClass() != this.getClass()) return false;
+		Fox fox = (Fox) obj;
+		if((fox.getDirection() == this.getDirection()) && (fox.getNumber() == this.getNumber())) return true;
+		else return false;
 	}
 }
 

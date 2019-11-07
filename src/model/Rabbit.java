@@ -28,4 +28,13 @@ public class Rabbit implements Piece{
 	public String toString() {
 		return this.color.toString() + " Rabbit";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null || obj.getClass() != this.getClass()) return false;
+		Rabbit rabbit = (Rabbit) obj;
+		if(rabbit.getColor() == this.getColor()) return true;
+		else return false;
+	}
 }
