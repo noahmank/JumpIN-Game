@@ -11,7 +11,6 @@ import model.*;
 public class DirectionButton extends JButton {
 	private Direction direction;
 	private ImageHandler handler;
-	private JumpInController controller;
 	/**
 	* @param d is the direction you wish the button to be
 	*/
@@ -19,8 +18,7 @@ public class DirectionButton extends JButton {
 		this.direction = d;
 		handler = new ImageHandler();
 		this.setBounds(0, 0, 30, 30);
-		this.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("leftArrow.png")), this.getWidth(), this.getHeight()));
-		this.addActionListener(controller);
+		this.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(d.getSrc())), this.getWidth(), this.getHeight()));
 	}
 	
 	/**

@@ -69,29 +69,21 @@ public class JumpInView extends JFrame {
         arrowPanel = new JPanel();
         
         DirectionButton leftArrow = new DirectionButton(Direction.WEST);
-        leftArrow.setBounds(0, 0, 30, 30);
-        leftArrow.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("leftArrow.png")),leftArrow.getWidth(), leftArrow.getHeight()));
         arrowPanel.add(leftArrow);
         leftArrow.addActionListener(controller);	
         
-        DirectionButton upArrow = new DirectionButton(Direction.NORTH);
-        upArrow.setBounds(0, 0, 30, 30);
-        upArrow.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("upArrow.png")),upArrow.getWidth(), upArrow.getHeight()));
+        DirectionButton upArrow = (new DirectionButton(Direction.NORTH));
         arrowPanel.add(upArrow);            
         upArrow.addActionListener(controller);	
         
         DirectionButton downArrow = new DirectionButton(Direction.SOUTH);
-        downArrow.setBounds(0, 0, 30, 30);
-        downArrow.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("downArrow.png")),downArrow.getWidth(), downArrow.getHeight()));
         arrowPanel.add(downArrow);
         downArrow.addActionListener(controller);	
         
         DirectionButton rightArrow = new DirectionButton(Direction.EAST);
-        rightArrow.setBounds(0, 0, 30, 30);
-        rightArrow.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("rightArrow.png")),rightArrow.getWidth(), rightArrow.getHeight()));
         arrowPanel.add(rightArrow);
         rightArrow.addActionListener(controller);	
-	    
+        
         //creating console for output (game over)
         textPanel = new JPanel();
         output = new JTextField("Game initialized", 60);
