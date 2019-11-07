@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 import view.*;
 
@@ -15,13 +16,16 @@ public class JumpInGame {
 	private GameBoard gameBoard;
 	private GameStatus gameStatus;
 	private ArrayList<JumpInView> views;
-	
+	private Stack<MoveAction> undoableMoveActions;
+	private Stack<MoveAction> redoableMoveActions;
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
 	public JumpInGame() {
 		gameBoard = new GameBoard();
 		views = new ArrayList<>();
+		undoableMoveActions = new Stack<>();
+		redoableMoveActions = new Stack<>();
 		gameStatus = GameStatus.READY_TO_PLAY;
 	}
 	
