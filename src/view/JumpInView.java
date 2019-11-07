@@ -5,6 +5,7 @@ package view;
 */
 import java.awt.*;
 import java.io.File;
+import java.net.URL;
 
 import javax.swing.*;
 
@@ -30,6 +31,7 @@ public class JumpInView extends JFrame {
 	 * @param rows is the number of rows
 	 */
 	public JumpInView(JumpInGame g, int columns, int  rows) {
+		String f = File.separator;
 		this.game = g;
 		this.columns = columns;
 		this.rows = rows;
@@ -68,25 +70,25 @@ public class JumpInView extends JFrame {
         
         DirectionButton leftArrow = new DirectionButton(Direction.WEST);
         leftArrow.setBounds(0, 0, 30, 30);
-        leftArrow.setIcon(resizeIcon(new ImageIcon("images" + File.separator +"leftArrow.png"),leftArrow.getWidth(), leftArrow.getHeight()));
+        leftArrow.setIcon(resizeIcon(new ImageIcon(getImageURL("leftArrow.png")),leftArrow.getWidth(), leftArrow.getHeight()));
         arrowPanel.add(leftArrow);
         leftArrow.addActionListener(handler);	
         
         DirectionButton upArrow = new DirectionButton(Direction.NORTH);
         upArrow.setBounds(0, 0, 30, 30);
-        upArrow.setIcon(resizeIcon(new ImageIcon("images" + File.separator +"upArrow.png"),upArrow.getWidth(), upArrow.getHeight()));
+        upArrow.setIcon(resizeIcon(new ImageIcon(getImageURL("upArrow.png")),upArrow.getWidth(), upArrow.getHeight()));
         arrowPanel.add(upArrow);            
         upArrow.addActionListener(handler);	
         
         DirectionButton downArrow = new DirectionButton(Direction.SOUTH);
         downArrow.setBounds(0, 0, 30, 30);
-        downArrow.setIcon(resizeIcon(new ImageIcon("images" + File.separator +"downArrow.png"),downArrow.getWidth(), downArrow.getHeight()));
+        downArrow.setIcon(resizeIcon(new ImageIcon(getImageURL("downArrow.png")),downArrow.getWidth(), downArrow.getHeight()));
         arrowPanel.add(downArrow);
         downArrow.addActionListener(handler);	
         
         DirectionButton rightArrow = new DirectionButton(Direction.EAST);
         rightArrow.setBounds(0, 0, 30, 30);
-        rightArrow.setIcon(resizeIcon(new ImageIcon("images" + File.separator +"rightArrow.png"),rightArrow.getWidth(), rightArrow.getHeight()));
+        rightArrow.setIcon(resizeIcon(new ImageIcon(getImageURL("rightArrow.png")),rightArrow.getWidth(), rightArrow.getHeight()));
         arrowPanel.add(rightArrow);
         rightArrow.addActionListener(handler);	
 	    
@@ -162,24 +164,28 @@ public class JumpInView extends JFrame {
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
 
 			Point tail = game.getBoard().getFoxes().get(f);
-			boardGrid[tail.x][tail.y].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
-			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(resizeIcon(new ImageIcon(fox), 50, 50));
+			boardGrid[tail.x][tail.y].setIcon(resizeIcon(new ImageIcon(getImageURL("fox.jpg")), 50, 50));
+			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(resizeIcon(new ImageIcon(getImageURL("fox.jpg")), 50, 50));
 		}
 		// Assign all Rabbit icons
 		String rabbit = null;
 		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
 			Point p = game.getBoard().getRabbits().get(r);
 			switch(r.toString()) {
-				case "BR": rabbit = brownRabbit; break;
-				case "WR": rabbit = whiteRabbit; break;
-				case "GR": rabbit = greyRabbit; break;
+				case "BR": rabbit = "brownRabbit.png"; break;
+				case "WR": rabbit = "whiteRabbit.png"; break;
+				case "GR": rabbit = "greyRabbit.png"; break;
 			}
-			boardGrid[p.x][p.y].setIcon(resizeIcon(new ImageIcon(rabbit), 50, 50));
+			boardGrid[p.x][p.y].setIcon(resizeIcon(new ImageIcon(getImageURL(rabbit)), 50, 50));
 		}
 		// Assign all Mushroom icons
 		for(Point m : game.getBoard().getMushrooms().values()) {
-			boardGrid[m.x][m.y].setIcon(resizeIcon(new ImageIcon(mushroom), 50, 50));  
+			boardGrid[m.x][m.y].setIcon(resizeIcon(new ImageIcon(getImageURL("mushroom.png")), 50, 50));  
 		}
 		output.setText(s);
+	}
+	
+	private URL getImageURL(String imageName) {
+		return JumpInView.class.getResource("/images/" + imageName);
 	}
 }
