@@ -87,7 +87,7 @@ public class HoleTest {
 	 */
 	@Test
 	public void testRemoveRabbitPiece() {
-		Rabbit rabbit = new Rabbit("Grey");
+		Rabbit rabbit = new Rabbit(RabbitColor.GREY);
 		hole.setPiece(rabbit);
 		hole.removePiece(rabbit);
 		assertEquals("Expecting 'false' as the space is free after removal", false, hole.getIsOccupied());

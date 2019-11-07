@@ -166,11 +166,7 @@ public class JumpInView extends JFrame {
 		String rabbit = null;
 		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
 			Point p = game.getBoard().getRabbits().get(r);
-			switch(r.toString()) {
-				case "BR": rabbit = "brownRabbit.png"; break;
-				case "WR": rabbit = "whiteRabbit.png"; break;
-				case "GR": rabbit = "greyRabbit.png"; break;
-			}
+			rabbit = r.getColor().getSrc();
 			boardGrid[p.x][p.y].setIcon(resizeIcon(new ImageIcon(getImageURL(rabbit)), 50, 50));
 		}
 		// Assign all Mushroom icons

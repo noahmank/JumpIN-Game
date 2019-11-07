@@ -20,9 +20,9 @@ public class RabbitTest {
 	*/
 	@Before
 	public void setUp() throws Exception {
-		rabbit = new Rabbit("Grey");
-		rabbit2 = new Rabbit("Brown");
-		rabbit3 = new Rabbit("White");
+		rabbit = new Rabbit(RabbitColor.GREY);
+		rabbit2 = new Rabbit(RabbitColor.BROWN);
+		rabbit3 = new Rabbit(RabbitColor.WHITE);
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class RabbitTest {
 	*/
 	@Test
 	public void testToStringGreyRabbit() {
-		assertEquals("Should be 'GR'", "GR", rabbit.toString());
+		assertEquals("Should be 'Grey Rabbit'", "Grey Rabbit", rabbit.toString());
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class RabbitTest {
 	 */
 	@Test
 	public void testToStringBrownRabbit() {
-		assertEquals("Should be 'BR'", "BR", rabbit2.toString());
+		assertEquals("Should be 'Brown Rabbit'", "Brown Rabbit", rabbit2.toString());
 	}
 	
 	/**
@@ -60,6 +60,6 @@ public class RabbitTest {
 	 */
 	@Test
 	public void testToStringWhiteRabbit() {
-		assertEquals("Should be 'WR'", "WR", rabbit3.toString());
+		assertEquals("Should be 'White Rabbit'", "White Rabbit", rabbit3.toString());
 	}
 }

@@ -27,7 +27,7 @@ public class GameBoardTest {
 		gameboard = new GameBoard();
 		mushroom = new Mushroom();
 		fox = new Fox(direction.NORTH, 1);
-		rabbit = new Rabbit("Grey");
+		rabbit = new Rabbit(RabbitColor.GREY);
 	}
 	
 	/**
@@ -125,8 +125,8 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testIsFinished() {
-		Rabbit rabbit2 = new Rabbit("Brown");
-		Rabbit rabbit3 = new Rabbit("White");
+		Rabbit rabbit2 = new Rabbit(RabbitColor.BROWN);
+		Rabbit rabbit3 = new Rabbit(RabbitColor.WHITE);
 		gameboard.addPiece(rabbit, 0, 0);
 		gameboard.addPiece(rabbit2, 4, 0);
 		gameboard.addPiece(rabbit3, 0, 4);

@@ -14,4 +14,9 @@ public enum RabbitColor {
 	public String getSrc() {
 		return this.src;
 	}
+	
+	@Override
+	public String toString() {
+		return name().substring(0, 1).toUpperCase() + name().substring(1).toLowerCase();
+	}
 }

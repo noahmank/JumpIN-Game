@@ -156,9 +156,9 @@ public class JumpInGame {
 		
 		if(challenge == 1) {
 			System.out.println("Challenge 1 started.");
-			this.addPieceToBoard(new Rabbit("Grey"), 3, 0);
-			this.addPieceToBoard(new Rabbit("White"), 4, 2);
-			this.addPieceToBoard(new Rabbit("Brown"), 1, 4);
+			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 3, 0);
+			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 4, 2);
+			this.addPieceToBoard(new Rabbit(RabbitColor.BROWN), 1, 4);
 			this.addPieceToBoard(new Fox(Direction.SOUTH, 1), 1, 0);
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);

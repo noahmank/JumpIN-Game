@@ -1,7 +1,7 @@
 package model;
 
 public class Rabbit implements Piece{
-	private String color;
+	private RabbitColor color;
 	/**
 	 * The Rabbit constructor constructs a new Rabbit constructor
 	 * @param color identifies the color of the Rabbit
@@ -9,7 +9,7 @@ public class Rabbit implements Piece{
 	 * @param column the Y coordinate of the Rabbit
 	 * @author Aubin Musingya
 	 */
-	public Rabbit(String color) {
+	public Rabbit(RabbitColor color) {
 		this.color = color;
 	}
 	
@@ -17,7 +17,7 @@ public class Rabbit implements Piece{
 	 * Returns the color of the rabbit
 	 * @return String representing the color
 	 */
-	private String getColor() {
+	public RabbitColor getColor() {
 		return this.color;
 	}
 	
@@ -26,12 +26,6 @@ public class Rabbit implements Piece{
 	 * @return String representing the rabbit
 	 */
 	public String toString() {
-		if(this.getColor().toUpperCase().equals("GREY")) {
-			return "GR";
-		}
-		else if(this.getColor().toUpperCase().equals("BROWN")) {
-			return "BR";
-		}
-		else return "WR";
+		return this.color.toString() + " Rabbit";
 	}
 }
