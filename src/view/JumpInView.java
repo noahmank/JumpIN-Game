@@ -42,7 +42,7 @@ public class JumpInView extends JFrame {
         //Green Holes
     	for (int i = 0; i < rows; i++)
         {
-            for (int j = 0; j <columns; j++)
+            for (int j = 0; j < columns; j++)
             {
             	boardGrid[j][i] = new BoardButton(j, i, Color.green);
             	contents.add(boardGrid[j][i]);
@@ -110,15 +110,6 @@ public class JumpInView extends JFrame {
 	}
 	
 	/**
-	* @param column	is the column in which you wish to set icon
-	* @param row is the row in which you wish to set icon
-	* @param iconName is the name of the icon
-	*/
-	public void updateIcon(int column, int row, String iconName) {
-		boardGrid[column][row].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(iconName)), 50, 50)); 
-	}
-	
-	/**
 	 * Reconstruct the view based on the location of all the pieces on the board
 	 * @param s is the console output for the view
 	 */
@@ -131,19 +122,19 @@ public class JumpInView extends JFrame {
     	// Assign all Fox icons
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
 			Point tail = game.getBoard().getFoxes().get(f);
-			boardGrid[tail.x][tail.y].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("fox.jpg")), 50, 50));
-			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("fox.jpg")), 50, 50));
+			boardGrid[tail.x][tail.y].updateButtonIcon(Fox.getSrc());
+			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].updateButtonIcon(Fox.getSrc());
 		}
 		// Assign all Rabbit icons
 		String rabbit = null;
 		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
 			Point p = game.getBoard().getRabbits().get(r);
 			rabbit = r.getColor().getSrc();
-			boardGrid[p.x][p.y].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(rabbit)), 50, 50));
+			boardGrid[p.x][p.y].updateButtonIcon(rabbit);
 		}
 		// Assign all Mushroom icons
 		for(Point m : game.getBoard().getMushrooms().values()) {
-			boardGrid[m.x][m.y].setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL("mushroom.png")), 50, 50));  
+			boardGrid[m.x][m.y].updateButtonIcon(Mushroom.getSrc());
 		}
 		output.setText(s);
 	}

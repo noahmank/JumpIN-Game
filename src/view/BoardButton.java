@@ -1,16 +1,15 @@
 package view;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import controller.JumpInController;
-
 
 /*
  * This Class represents a Button on the BoardGrid of the view 
  */
 public class BoardButton extends JButton {
-	
+	private ImageHandler handler;
 	private int row;
 	private int column;
 	private Color color;
@@ -21,10 +20,15 @@ public class BoardButton extends JButton {
 	 * @param color -> color of button
 	 */
 	public BoardButton(int column, int row, Color color) {
+		this.handler = new ImageHandler();
 		this.column = column;
 		this.row = row;
 		this.color = color;
 		this.setBackground(color);
+	}
+	
+	public void updateButtonIcon(String iconName) {
+		this.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(iconName)), 50, 50)); 
 	}
 
 	/**
@@ -35,24 +39,10 @@ public class BoardButton extends JButton {
 	}
 
 	/**
-	* Sets Row number of button
-	*/
-	public void setRow(int row) {
-		this.row = row;
-	}
-
-	/**
 	* Gets Column number of button
 	*/
 	public int getColumn() {
 		return this.column;
-	}
-	
-	/**
-	* Sets Column number of button
-	*/
-	public void setColumn(int column) {
-		this.column = column;
 	}
 
 	/**

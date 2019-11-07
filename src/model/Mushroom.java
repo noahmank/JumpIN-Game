@@ -4,11 +4,16 @@ package model;
 * @author Noah Mank
 */
 public class Mushroom implements Piece{
+	private static final String src = "mushroom.png";
 	/**
 	* Default constructor
 	*/
 	public Mushroom() {
 		
+	}
+	
+	public static String getSrc() {
+		return Mushroom.src;
 	}
 	
 	/**

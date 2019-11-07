@@ -8,6 +8,7 @@ package model;
 public class Fox implements Piece {
 	private Direction direction;
 	private int number;
+	private static final String src = "fox.jpg";
 		
 	/** Constructor of a fox piece
 	 * 	 
@@ -35,6 +36,10 @@ public class Fox implements Piece {
 	 */
 	public int getNumber() {
 		return this.number;
+	}
+	
+	public static String getSrc() {
+		return Fox.src;
 	}
 	
 	
