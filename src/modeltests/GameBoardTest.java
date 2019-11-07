@@ -105,8 +105,8 @@ public class GameBoardTest {
 	@Test
 	public void testMoveFoxPiece() {
 		gameboard.addPiece(fox, 3, 2);
-		gameboard.moveFoxPiece("F1", Direction.NORTH);
-		assertEquals("Expecting 'F1'", "F1", gameboard.getHole(3, 0).toString());
+		gameboard.moveFoxPiece(fox, Direction.NORTH);
+		assertEquals("Expecting 'Fox 1'", "Fox 1", gameboard.getHole(3, 0).toString());
 	}
 	
 	/**
@@ -116,8 +116,8 @@ public class GameBoardTest {
 	public void testMoveRabbitPiece() {
 		gameboard.addPiece(mushroom, 1, 2);
 		gameboard.addPiece(rabbit, 0, 2);
-		gameboard.moveRabbitPiece("GR", Direction.EAST);
-		assertEquals("Expecting 'GR'.", "GR", gameboard.getHole(2, 2).toString());
+		gameboard.moveRabbitPiece(rabbit, Direction.EAST);
+		assertEquals("Expecting 'Grey Rabbit'.", "Grey Rabbit", gameboard.getHole(2, 2).toString());
 	}
 	
 	/**
