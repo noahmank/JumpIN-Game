@@ -9,7 +9,6 @@ import javax.swing.JButton;
  * This Class represents a Button on the BoardGrid of the view 
  */
 public class BoardButton extends JButton {
-	private ImageHandler handler;
 	private int row;
 	private int column;
 	private Color color;
@@ -20,7 +19,6 @@ public class BoardButton extends JButton {
 	 * @param color -> color of button
 	 */
 	public BoardButton(int column, int row, Color color) {
-		this.handler = new ImageHandler();
 		this.column = column;
 		this.row = row;
 		this.color = color;
@@ -28,7 +26,7 @@ public class BoardButton extends JButton {
 	}
 	
 	public void updateButtonIcon(String iconName) {
-		this.setIcon(handler.resizeIcon(new ImageIcon(handler.getImageURL(iconName)), 50, 50)); 
+		this.setIcon(ImageHandler.resizeIcon(new ImageIcon(ImageHandler.getImageURL(iconName)), 50, 50)); 
 	}
 
 	/**

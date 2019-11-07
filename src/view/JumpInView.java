@@ -4,7 +4,6 @@ package view;
 *
 */
 import java.awt.*;
-import java.io.File;
 import javax.swing.*;
 import controller.JumpInController;
 import model.*;
@@ -20,7 +19,6 @@ public class JumpInView extends JFrame {
 	private JPanel textPanel;
 	private int columns;
 	private int rows;
-	private ImageHandler handler;
 
 	/**
 	 * 
@@ -37,7 +35,6 @@ public class JumpInView extends JFrame {
 		frame = new JFrame("Jump-In Game");
     	contents = getContentPane();
         contents.setLayout(new GridLayout(columns, rows));	
-        handler = new ImageHandler();
                 
         //Green Holes
     	for (int i = 0; i < rows; i++)
