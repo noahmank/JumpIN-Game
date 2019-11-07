@@ -32,7 +32,10 @@ public class GameBoard {
 		this.numColumns = numColumns;
 		this.numRows = numRows;
 		this.grid = new Hole[numRows][numColumns];		
-		this.resetBoard();
+		this.foxes = new HashMap<>();
+		this.rabbits = new HashMap<>();
+		this.mushrooms = new HashMap<>();
+		
 		
 	}
 	
@@ -42,17 +45,14 @@ public class GameBoard {
 	 */
 	public GameBoard() {
 		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
+		this.resetDefaultBoard();
 	}
 	
 	/**
 	 *  Resets the GameBoard to a default state with only special holes initialized
 	 *  @author Liya Abebe
 	 */
-	public void resetBoard() {
-		
-		this.foxes = new HashMap<>();
-		this.rabbits = new HashMap<>();
-		this.mushrooms = new HashMap<>();
+	public void resetDefaultBoard() {
 		//Initializing every spot in the grid to be a hole
 		for(int r = 0; r < this.numRows; r++) {
 			for(int c = 0; c < this.numColumns; c++) {
@@ -70,7 +70,6 @@ public class GameBoard {
 		this.initializeRaisedHole(4, 2);
 		this.initializeRaisedHole(2, 4);
 	}
-	
 	/**
 	* Method to initialize Brown Holes that bunnies will hop into
 	* @param numColumn the column you wish to enter the BrownHole
@@ -294,7 +293,7 @@ public class GameBoard {
 		Direction direction = piece.getDirection();
 		// Check we are within board bounds
 		if((column + direction.getX() >= numColumns) || (row + direction.getY() >= numRows) || (column + direction.getX() <= 0) || (row + direction.getY() <= 0)) {
-			throw new IllegalArgumentException("Cannot move fox outside of board bounds.");
+			throw new IllegalArgumentException("Cannot have fox outside of board bounds.");
 		}
 		if(grid[column][row] instanceof RaisedHole) {
 			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");

@@ -43,7 +43,7 @@ public class Fox implements Piece {
 	 * @return A string containing the fox number
 	 */
 	public String toString() {
-		return "F" + this.getNumber();
+		return "Fox " + this.getNumber();
 	}
 }
 
