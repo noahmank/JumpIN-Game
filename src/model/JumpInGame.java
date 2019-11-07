@@ -146,6 +146,10 @@ public class JumpInGame {
 		}
 	}
 	
+	/**
+	 * undo the last action recorded in the undoableMoveActions stack and store in redoableMoveActions stack
+	 * @throws EmptyStackException
+	 */
 	public void undoMoveAction() throws EmptyStackException{
 		MoveAction move = undoableMoveActions.pop();
 		
