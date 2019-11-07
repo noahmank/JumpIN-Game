@@ -118,44 +118,6 @@ public class JumpInGame {
 	}
 	
 	/**
-	 * the slideFox method performs the movement of the fox (sliding parallel to its location)
-	 * @param name is the identity of the fox e.g F1
-	 * @param direction is the desired direction that the fox is being moved to
-	 */
-	public void slideFox(Fox f, Direction direction) {
-		if(!gameBoard.isFinished()) {
-			try {
-				gameBoard.moveFoxPiece(f, direction);
-				notifyViews(f.toString() + " was moved " + direction.toString());
-				undoableMoveActions.push(new MoveAction(f, direction));
-			}
-			catch(IllegalArgumentException e) {
-				notifyViews(e.getMessage());
-			}
-			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
-		}
-	}
-	
-	/**
-	 * the jumpRabbit method performs the movement of the rabbit (jumping over obstacles)
-	 * @param name is the identity of the rabbit e.g Black
-	 * @param direction is the desired direction that the rabbit is being moved to
-	 */
-	public void jumpRabbit(Rabbit r, Direction direction) {
-		if(!gameBoard.isFinished()) {
-			try {
-				gameBoard.moveRabbitPiece(r, direction);
-				notifyViews(r.toString() + " was moved " + direction.toString());
-				undoableMoveActions.push(new MoveAction(r, direction));
-			}
-			catch(IllegalArgumentException e) {
-				notifyViews(e.getMessage());
-			}
-			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
-		}
-	}
-	
-	/**
 	 * the addPieceToBoard method adds the specified the object to the board
 	 * @param piece is the object that is being added
 	 * @param column is the column to which the piece is added

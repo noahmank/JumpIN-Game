@@ -41,12 +41,7 @@ public class JumpInController implements ActionListener{
 			this.direction = ((DirectionButton) event.getSource()).getDirection();
 		}
 		if((direction != null) && (piece != null)) {
-			if(piece instanceof Fox) {
-				game.slideFox((Fox) piece, direction);
-			}
-			if(piece instanceof Rabbit) {
-				game.jumpRabbit((Rabbit) piece, direction);
-			}
+			game.movePiece(piece, direction);
 			direction = null;
 		}
 	}
