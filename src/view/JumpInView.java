@@ -5,10 +5,7 @@ package view;
 */
 import java.awt.*;
 import java.io.File;
-import java.net.URL;
-
 import javax.swing.*;
-
 import controller.JumpInController;
 import model.*;
 
