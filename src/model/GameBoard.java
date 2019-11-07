@@ -161,44 +161,37 @@ public class GameBoard {
 	* @param direction is the direction in which the fox will move
 	* @author Noah Mank
 	*/
-	public void moveFoxPiece(String name, Direction direction) throws IllegalArgumentException {
-		// Check to see if input name exists in foxes
-		Fox foxPiece = null;
+	public void moveFoxPiece(Fox f, Direction direction) throws IllegalArgumentException {
 		Point location;
-		for(Fox fox : foxes.keySet()) {
-			if(fox.toString().equals(name)) {
-				foxPiece = fox;
-			}
-		}
-		// Input name is invalid
-		if(foxPiece == null) {
-			throw new IllegalArgumentException("Name is not valid, Choose another fox");
+		// Input fox is invalid
+		if(!foxes.containsKey(f)) {
+			throw new IllegalArgumentException("Fox is not valid, Choose another fox");
 		}
 		else {
-			location = foxes.get(foxPiece);
+			location = foxes.get(f);
 		}
 		// Check to see if direction is valid
 		switch(direction) {
 			case NORTH: case SOUTH:
-				if((foxPiece.getDirection() != Direction.NORTH) && (foxPiece.getDirection() != Direction.SOUTH)) {
+				if((f.getDirection() != Direction.NORTH) && (f.getDirection() != Direction.SOUTH)) {
 					throw new IllegalArgumentException("Direction is not valid, Choose either East or West");
 				}
 				break;
 			case EAST: case WEST:
-				if((foxPiece.getDirection() != Direction.EAST) && (foxPiece.getDirection() != Direction.WEST)) {
+				if((f.getDirection() != Direction.EAST) && (f.getDirection() != Direction.WEST)) {
 					throw new IllegalArgumentException("Direction is not valid, Choose either North or South");
 				}
 				break;
 		}
 		// Start move process by removing from initial locations (object and location are still stored locally)
-		grid[location.x][location.y].removePiece(foxPiece);
-		grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].removePiece(foxPiece);
+		grid[location.x][location.y].removePiece(f);
+		grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
 		try {
-			this.addFoxPiece(foxPiece, location.x + direction.getX(), location.y + direction.getY());
+			this.addFoxPiece(f, location.x + direction.getX(), location.y + direction.getY());
 		}
 		catch(IllegalArgumentException e) {
-			grid[location.x][location.y].setPiece(foxPiece);
-			grid[location.x + foxPiece.getDirection().getX()][location.y + foxPiece.getDirection().getY()].setPiece(foxPiece);
+			grid[location.x][location.y].setPiece(f);
+			grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].setPiece(f);
 			throw e;
 		}
 	}
@@ -209,23 +202,17 @@ public class GameBoard {
 	* @param direction the direction in which the rabbit will move
 	* @author Noah Mank
 	*/
-	public void moveRabbitPiece(String name, Direction direction) throws IllegalArgumentException {
-		Rabbit rabbitPiece = null;
+	public void moveRabbitPiece(Rabbit r, Direction direction) throws IllegalArgumentException {
 		Point location = new Point();
 		Point newLocation = new Point();
-		for(Rabbit rabbit : rabbits.keySet()) {
-			if(rabbit.toString().equals(name)) {
-				rabbitPiece = rabbit;
-			}
-		}
-		if(rabbitPiece == null) {
+		if(!rabbits.containsKey(r)) {
 			throw new IllegalArgumentException("Name is not valid, Choose another rabbit");
 		}
 		else {
-			location.x = rabbits.get(rabbitPiece).x;
-			location.y = rabbits.get(rabbitPiece).y;
-			newLocation.x = rabbits.get(rabbitPiece).x;
-			newLocation.y = rabbits.get(rabbitPiece).y;
+			location.x = rabbits.get(r).x;
+			location.y = rabbits.get(r).y;
+			newLocation.x = rabbits.get(r).x;
+			newLocation.y = rabbits.get(r).y;
 		}
 		if((location.x + direction.getX() >= this.numColumns) || (location.x + direction.getX() < 0) || (location.y + direction.getY() >= this.numRows) || (location.y + direction.getY() < 0)) {
 			throw new IllegalArgumentException("Cannot move rabbit out of bounds");
@@ -244,8 +231,8 @@ public class GameBoard {
 			if(newLocation.x > this.numColumns | newLocation.y> this.numRows){
 				throw new IllegalArgumentException("Move is out of bounds");
 			}
-			addRabbitPiece(rabbitPiece, newLocation.x + direction.getX(), newLocation.y + direction.getY());
-			grid[location.x][location.y].removePiece(rabbitPiece);
+			addRabbitPiece(r, newLocation.x + direction.getX(), newLocation.y + direction.getY());
+			grid[location.x][location.y].removePiece(r);
 		}
 	}
 	
@@ -257,21 +244,21 @@ public class GameBoard {
 	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
 	* @author Kelly Harrison
 	*/
-	private void addRabbitPiece(Rabbit piece, int column, int row) {
-		grid[column][row].setPiece(piece);
-		this.rabbits.put(piece, new Point(column, row));
+	private void addRabbitPiece(Rabbit r, int column, int row) {
+		grid[column][row].setPiece(r);
+		this.rabbits.put(r, new Point(column, row));
 	}
 	
 	/**
 	* A method to add a fox piece to the board
-	* @param piece is the fox piece to add to the board
+	* @param f is the fox piece to add to the board
 	* @param column is the column to add the fox piece to
 	* @param row is the row to add the fox piece to
 	* @throws IllegalArgumentException
 	* @author Kelly Harrison
 	*/
-	private void addFoxPiece(Fox piece, int column, int row) throws IllegalArgumentException {	
-		Direction direction = piece.getDirection();
+	private void addFoxPiece(Fox f, int column, int row) throws IllegalArgumentException {	
+		Direction direction = f.getDirection();
 		// Check we are within board bounds
 		if((column + direction.getX() >= numColumns) || (row + direction.getY() >= numRows) || (column + direction.getX() <= 0) || (row + direction.getY() <= 0)) {
 			throw new IllegalArgumentException("Cannot have fox outside of board bounds.");
@@ -285,9 +272,9 @@ public class GameBoard {
 		if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
 			throw new IllegalArgumentException("Foxes cannot be placed on raised holes, choose new location");
 		}
-		grid[column + direction.getX()][row + direction.getY()].setPiece(piece);
-		grid[column][row].setPiece(piece);
-		this.foxes.put(piece, new Point(column, row));
+		grid[column + direction.getX()][row + direction.getY()].setPiece(f);
+		grid[column][row].setPiece(f);
+		this.foxes.put(f, new Point(column, row));
 	}
 	
 	/**

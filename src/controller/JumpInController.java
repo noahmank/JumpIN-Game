@@ -42,10 +42,10 @@ public class JumpInController implements ActionListener{
 		}
 		if((direction != null) && (piece != null)) {
 			if(piece instanceof Fox) {
-				game.slideFox(piece.toString(), direction);
+				game.slideFox((Fox) piece, direction);
 			}
 			if(piece instanceof Rabbit) {
-				game.jumpRabbit(piece.toString(), direction);
+				game.jumpRabbit((Rabbit) piece, direction);
 			}
 			direction = null;
 		}

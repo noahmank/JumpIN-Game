@@ -25,9 +25,11 @@ public class JumpInGame {
 		gameStatus = GameStatus.READY_TO_PLAY;
 	}
 	
+	
 	/**
 	 * the start method verifies if the game is ready to play and initializes the JumpIn game
 	 */
+	/*
 	public void start() {
 		Scanner scanner;
 		// Will always be true for now
@@ -92,17 +94,18 @@ public class JumpInGame {
 		gameStatus = GameStatus.FINISHED;
 		System.out.println("Congratulations! You have beat this level!");
 	}
+	*/
 	
 	/**
 	 * the slideFox method performs the movement of the fox (sliding parallel to its location)
 	 * @param name is the identity of the fox e.g F1
 	 * @param direction is the desired direction that the fox is being moved to
 	 */
-	public void slideFox(String name, Direction direction) {
+	public void slideFox(Fox f, Direction direction) {
 		if(!gameBoard.isFinished()) {
 			try {
-				gameBoard.moveFoxPiece(name, direction);
-				notifyViews(name + " was moved " + direction.toString());
+				gameBoard.moveFoxPiece(f, direction);
+				notifyViews(f.toString() + " was moved " + direction.toString());
 			}
 			catch(IllegalArgumentException e) {
 				notifyViews(e.getMessage());
@@ -116,11 +119,11 @@ public class JumpInGame {
 	 * @param name is the identity of the rabbit e.g Black
 	 * @param direction is the desired direction that the rabbit is being moved to
 	 */
-	public void jumpRabbit(String name, Direction direction) {
+	public void jumpRabbit(Rabbit r, Direction direction) {
 		if(!gameBoard.isFinished()) {
 			try {
-				gameBoard.moveRabbitPiece(name, direction);
-				notifyViews(name + " was moved " + direction.toString());
+				gameBoard.moveRabbitPiece(r, direction);
+				notifyViews(r.toString() + " was moved " + direction.toString());
 			}
 			catch(IllegalArgumentException e) {
 				notifyViews(e.getMessage());
