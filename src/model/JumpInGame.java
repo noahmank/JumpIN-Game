@@ -54,7 +54,6 @@ public class JumpInGame {
 		this.challenge(input);
 		
 		while(!this.gameBoard.isFinished()) {
-			displayBoard();
 			System.out.println("Select a moveable piece from the list above that you would like to move (Use Legend title e.g F1 or WR): ");
 			
 			String piece = scanner.next().toUpperCase();
@@ -128,14 +127,6 @@ public class JumpInGame {
 			}
 			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
 		}
-	}
-	
-	/**
-	 * the displayBoard method reflects the appearance of the board
-	 */
-	public void displayBoard() {
-		System.out.println(gameBoard.toString());
-		System.out.println(gameBoard.getLegend());
 	}
 	
 	/**

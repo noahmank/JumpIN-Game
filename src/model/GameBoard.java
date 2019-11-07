@@ -136,22 +136,6 @@ public class GameBoard {
 	}
 	
 	/**
-	* Contains a legend for the board
-	* @returns the legend for the user
-	*/
-	public String getLegend() {
-		String s = "\n";
-		s += "BH = Brown Hole\n";
-		s += "EH = Empty Hole\n";
-		s += "RH = Raised Hole\n";
-		s += "GR = Grey Rabbit\n";
-		s += "BR = Brown Rabbit\n";
-		s += "WR = White Rabbit\n";
-		s += "MS = Mushroom\n";
-		return s;
-	}
-	
-	/**
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
