@@ -6,7 +6,7 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public abstract class ImageHandler {
+public final class ImageHandler {
 	public static URL getImageURL(String imageName) {
 		return JumpInView.class.getResource("/images/" + imageName);
 	}
