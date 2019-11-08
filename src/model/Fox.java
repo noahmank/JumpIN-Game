@@ -5,7 +5,7 @@ package model;
  * @author Liya Abebe
  * @version 1.0
 */
-public class Fox implements Piece {
+public class Fox implements MoveablePiece {
 	private Direction direction;
 	private int number;
 	private static final String src = "fox.jpg";

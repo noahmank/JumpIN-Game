@@ -10,7 +10,7 @@ import view.*;
 */
 public class JumpInController implements ActionListener{
 	private JumpInGame game;
-	private Piece piece;
+	private MoveablePiece piece;
 	private Direction direction;	
 	private JumpInView view;
 	
@@ -33,8 +33,8 @@ public class JumpInController implements ActionListener{
 		if(event.getSource() instanceof BoardButton){
 			int row = ((BoardButton) event.getSource()).getRow();
 			int column = ((BoardButton) event.getSource()).getColumn();
-			if(game.getBoard().getHole(column, row).getIsOccupied()) {
-				piece = game.getBoard().getHole(column, row).getPiece();
+			if(game.getBoard().getHole(column, row).getIsOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
+				piece = (MoveablePiece) game.getBoard().getHole(column, row).getPiece();
 			}
 		}
 		else if((event.getSource() instanceof DirectionButton) && (piece != null)){

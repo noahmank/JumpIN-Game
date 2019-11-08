@@ -1,10 +1,10 @@
 package model;
 
 public class MoveAction {
-	private Piece piece;
+	private MoveablePiece piece;
 	private Direction direction;
 	
-	public MoveAction(Piece piece, Direction direction) {
+	public MoveAction(MoveablePiece piece, Direction direction) {
 		this.piece = piece;
 		this.direction = direction;
 	}
@@ -13,7 +13,7 @@ public class MoveAction {
 		return this.direction;
 	}
 	
-	public Piece getPiece() {
+	public MoveablePiece getPiece() {
 		return this.piece;
 	}
 }

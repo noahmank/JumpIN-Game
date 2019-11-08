@@ -1,6 +1,6 @@
 package model;
 
-public class Rabbit implements Piece{
+public class Rabbit implements MoveablePiece {
 	private RabbitColor color;
 	/**
 	 * The Rabbit constructor constructs a new Rabbit constructor

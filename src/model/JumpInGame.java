@@ -102,7 +102,7 @@ public class JumpInGame {
 	*/
 	
 	
-	public void movePiece(Piece p, Direction direction) {
+	public void movePiece(MoveablePiece p, Direction direction) {
 		if(!gameBoard.isFinished()) {
 			try {
 				if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
