@@ -53,6 +53,6 @@ public class FoxTest {
 	*/
 	@Test
 	public void testToString() {
-		assertEquals("Should be 'F1'.", "F1", fox.toString());
+		assertEquals("Should be 'Fox 1'.", "Fox 1", fox.toString());
 	}
 }
