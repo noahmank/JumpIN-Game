@@ -8,7 +8,7 @@ package model;
 public class Fox implements MoveablePiece {
 	private Direction direction;
 	private int number;
-	private static final String src = "fox.jpg";
+	private static final String src = "fox.png";
 		
 	/** Constructor of a fox piece
 	 * 	 
