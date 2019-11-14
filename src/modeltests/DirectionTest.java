@@ -55,5 +55,16 @@ public class DirectionTest {
 		assertEquals("Expected to be NORTH", Direction.NORTH, Direction.SOUTH.getOpposite());
 		assertEquals("Expected to be EAST", Direction.EAST, Direction.WEST.getOpposite());
 	}
+	
+	/**
+	 * Tests the toString method for direction
+	 */
+	@Test
+	public void testToString() {
+		assertEquals("Expected to be 'North'", "North", Direction.NORTH.toString());
+		assertEquals("Expected to be 'East'", "East", Direction.EAST.toString());
+		assertEquals("Expected to be 'South'", "South", Direction.SOUTH.toString());
+		assertEquals("Expected to be 'West'", "West", Direction.WEST.toString());
+	}
 
 }
