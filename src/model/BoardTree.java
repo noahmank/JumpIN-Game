@@ -1,56 +1,19 @@
 package model;
 
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.*;
+import java.util.LinkedList;
 
-public class BoardTree implements TreeModel {
-
-	@Override
-	public void addTreeModelListener(TreeModelListener arg0) {
-		// TODO Auto-generated method stub
-		
+public class BoardTree {
+	private BoardTreeNode root;
+	private LinkedList<BoardTreeNode> childrenNodes;
+	
+	public BoardTree(BoardTreeNode root) {
+		this.root = root;
+		this.childrenNodes = new LinkedList<>();
 	}
-
-	@Override
-	public Object getChild(Object arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public BoardTreeNode addChild(GameBoard boardState, MoveAction action) { 
+		BoardTreeNode child = new BoardTreeNode(boardState, action, this.root);
+		this.childrenNodes.add(child);
+		return child;
 	}
-
-	@Override
-	public int getChildCount(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getIndexOfChild(Object arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object getRoot() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isLeaf(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void removeTreeModelListener(TreeModelListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void valueForPathChanged(TreePath arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
