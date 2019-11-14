@@ -8,7 +8,7 @@ package model;
 public class Fox implements MoveablePiece {
 	private Direction direction;
 	private int number;
-	private static final String src = "fox.png";
+	private static final String src = "fox.png"; // Is this too much to know?
 		
 	/** Constructor of a fox piece
 	 * 	 
@@ -34,7 +34,7 @@ public class Fox implements MoveablePiece {
 	 * 
 	 * @return number The identifier number of the fox
 	 */
-	public int getNumber() {
+	private int getNumber() {
 		return this.number;
 	}
 	
