@@ -1,11 +1,23 @@
 package model;
 
 import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.tree.*;
 
 public class BoardTreeNode implements TreeNode {
-
+	private GameBoard boardState;
+	private MoveAction action;
+	public BoardTreeNode parentNode; // Edit this visibility
+	private List<BoardTreeNode> childrenNodes;
+	
+	public BoardTreeNode(GameBoard boardState, MoveAction action) {
+		this.boardState = boardState;
+		this.action = action;
+		this.childrenNodes = new LinkedList<>();
+	}
+	
 	@Override
 	public Enumeration children() {
 		// TODO Auto-generated method stub
