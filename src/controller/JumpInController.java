@@ -44,5 +44,11 @@ public class JumpInController implements ActionListener{
 			game.movePiece(piece, direction);
 			direction = null;
 		}
+		if((event.getSource() instanceof UndoRedoButton) && ((UndoRedoButton)event.getSource()).getLabel().equals("Undo")) {
+			game.undoMoveAction();
+		}
+		else if((event.getSource() instanceof UndoRedoButton) && ((UndoRedoButton)event.getSource()).getLabel().equals("Redo")) {
+			game.redoMoveAction();
+		}
 	}
 }
