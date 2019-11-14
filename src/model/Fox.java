@@ -34,7 +34,7 @@ public class Fox implements MoveablePiece {
 	 * 
 	 * @return number The identifier number of the fox
 	 */
-	private int getNumber() {
+	public int getNumber() {
 		return this.number;
 	}
 	

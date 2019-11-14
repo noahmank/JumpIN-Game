@@ -40,6 +40,14 @@ public class FoxTest {
 	}	
 	
 	/**
+	 * Tests getNumber method
+	 */
+	@Test
+	public void testGetNumber() {
+		assertEquals("Fox number should be 1", 1, fox.getNumber());
+	}
+	
+	/**
 	* Tests the toString method
 	*/
 	@Test
