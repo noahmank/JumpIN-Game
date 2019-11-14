@@ -103,10 +103,29 @@ public class JumpInView extends JFrame {
         output.setColumns(20);
         output.setEditable(false);                       	 
         textPanel.add(output, BorderLayout.EAST);
-		
+	
+	//Creating menu bar
+        JMenuBar menuBar = new JMenuBar();
+        
+        JMenu fileMenu = new JMenu("File");
+        menuBar.add(fileMenu);
+        
+        JMenu editMenu = new JMenu("Edit");
+        menuBar.add(editMenu);
+    
+        JMenuItem item;
+        item = new JMenuItem("Undo");
+        item.addActionListener(controller);
+        editMenu.add(item);
+        
+        item = new JMenuItem("Redo");
+        item.addActionListener(controller);
+        editMenu.add(item);
+        	
         
         frame.setSize(700, 700);
-        frame.setLocationRelativeTo(null);      
+        frame.setLocationRelativeTo(null);
+	frame.setJMenuBar(menuBar);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
     	frame.add(contents, BorderLayout.CENTER);
     	frame.add(textPanel, BorderLayout.NORTH);    	
