@@ -154,6 +154,14 @@ public class GameBoard {
 		return s;
 	}
 	
+	public boolean checkValidFoxMove(Fox f, Direction direction) throws IllegalArgumentException {
+		return false;
+	}
+	
+	public boolean checkValidRabbitMove(Rabbit r, Direction direction) throws IllegalArgumentException {
+		return false;
+	}
+	
 	/**
 	* A method to move the fox piece on the board
 	* @param name is the name of the fox piece

@@ -4,12 +4,12 @@ import java.util.LinkedList;
 
 
 public class BoardTreeNode {
-	private GameBoard boardState;
+	private GameBoard board;
 	private BoardTreeNode parentNode; // Edit this visibility
 	private LinkedList<BoardTreeNode> childrenNodes;
 	
 	public BoardTreeNode(GameBoard boardState, BoardTreeNode parent) {
-		this.boardState = boardState;
+		this.board = boardState;
 		this.childrenNodes = new LinkedList<>();
 		this.parentNode = parent;
 	}
@@ -25,6 +25,10 @@ public class BoardTreeNode {
 		return this.parentNode;
 	}
 	
+	public GameBoard getBoard() {
+		return this.board;
+	}
+	
 	public LinkedList<BoardTreeNode> getChildren() {
 		return this.childrenNodes;
 	}
@@ -34,6 +38,6 @@ public class BoardTreeNode {
 		if(this == o) return true;
 		if(o == null || o.getClass() != this.getClass()) return false;
 		BoardTreeNode node = (BoardTreeNode) o;
-		return (node.boardState == this.boardState);
+		return (node.board == this.board);
 	}
 }
