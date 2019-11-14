@@ -89,9 +89,29 @@ public class JumpInView extends JFrame {
     	ruleText.setPreferredSize(new Dimension(400,200));
     	
     	textPanel.add(ruleText);
-        	          		    	       		        	         
+        
+		//Creating menu bar
+        JMenuBar menuBar = new JMenuBar();
+        
+        JMenu fileMenu = new JMenu("File");
+        menuBar.add(fileMenu);
+        
+        JMenu editMenu = new JMenu("Edit");
+        menuBar.add(editMenu);
+    
+        UndoRedoButton item;
+        item = new UndoRedoButton("Undo", controller);
+        editMenu.add(item);
+        
+        item = new UndoRedoButton("Redo", controller);
+        item.addActionListener(controller);
+        editMenu.add(item);
+		
+		
+		
         frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
+	frame.setJMenuBar(menuBar);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
     	frame.add(contents, BorderLayout.CENTER);
     	frame.add(textPanel, BorderLayout.NORTH);
