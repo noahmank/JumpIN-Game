@@ -13,6 +13,8 @@ public class JumpInView extends JFrame {
 	private Container contents;
 	private BoardButton[][] boardGrid;
 	private JFrame frame;
+	private JFrame preFrame;
+
 	private JumpInController controller;
 	private JPanel arrowPanel;
 	private JTextField output;
@@ -32,11 +34,32 @@ public class JumpInView extends JFrame {
 		this.rows = rows;
 		controller = new JumpInController(this.game, this);
 		boardGrid = new BoardButton[columns][rows];
+		
+		//Setting up frame to display rules and challenges
+		preFrame = new JFrame("Welcome to Jump-In Game");
+		JButton start = new JButton("Click here to Start Game");
+		start.addActionListener(controller);
+		
+				//setting up the rulePanel
+    	JLabel ruleText = new JLabel("<html>Welcome to The JumpIn Game.<br/><br/>GAME RULES<br/> "    			
+    			+ "1) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.<br/> "
+    			+ "2) To move a rabbit or a fox, select one of them first then click the direction you want to move them in from the direction buttons at the bottom of the screen <br/><html/>"
+    			+ "3) You have found a solution when all of the rabbits are inside brown holes!<br/><html/>");       	    	
+    	ruleText.setPreferredSize(new Dimension(400,200));
+    	preFrame.add(ruleText);
+    	 
+		preFrame.add(start, BorderLayout.SOUTH);
+		preFrame.setSize(700, 700);
+		preFrame.setVisible(true);
+		preFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		//Setting up frame to display game
 		frame = new JFrame("Jump-In Game");
     	contents = getContentPane();
         contents.setLayout(new GridLayout(columns, rows));	
-                
-        //Green Holes
+        
+        //Setting grid color
     	for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -77,26 +100,47 @@ public class JumpInView extends JFrame {
         //creating console for output (game over)
         textPanel = new JPanel();
         output = new JTextField("Game initialized", 60);
-        output.setEditable(false);
-        textPanel.add(output);
-		
-        //setting up the rulePanel
-    	JLabel ruleText = new JLabel("<html>Welcome to The JumpIn Game.<br/><br/>GAME RULES<br/> "    			
-    			+ "1) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.<br/> "
-    			+ "2) To move a rabbit or a fox, select one of them first then click the direction you want to move them in from the direction buttons at the bottom of the screen <br/><html/>"
-    			+ "3) You have found a solution when all of the rabbits are inside brown holes!<br/><html/>");   
-    	    	
-    	ruleText.setPreferredSize(new Dimension(400,200));
-    	
-    	textPanel.add(ruleText);
-        	          		    	       		        	         
+        output.setColumns(20);
+        output.setEditable(false);                       	 
+        textPanel.add(output, BorderLayout.EAST);
+	
+	//Creating menu bar
+        JMenuBar menuBar = new JMenuBar();
+        
+        JMenu fileMenu = new JMenu("File");
+        menuBar.add(fileMenu);
+        
+        JMenu editMenu = new JMenu("Edit");
+        menuBar.add(editMenu);
+    
+        JMenuItem item;
+        item = new JMenuItem("Undo");
+        item.addActionListener(controller);
+        editMenu.add(item);
+        
+        item = new JMenuItem("Redo");
+        item.addActionListener(controller);
+        editMenu.add(item);
+        	
+        
         frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
+	frame.setJMenuBar(menuBar);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
     	frame.add(contents, BorderLayout.CENTER);
-    	frame.add(textPanel, BorderLayout.NORTH);
-    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
+    	frame.add(textPanel, BorderLayout.NORTH);    	
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		
+	}
+	
+	public void ToGameFrame() {			
+	    preFrame.setVisible(false);
     	frame.setVisible(true);	    	
+    }
+	
+	public void ToGameMenu() {			
+	    preFrame.setVisible(true);
+    	frame.setVisible(false);	    	
     }
 	
 	/**

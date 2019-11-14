@@ -40,6 +40,12 @@ public class JumpInController implements ActionListener{
 		else if((event.getSource() instanceof DirectionButton) && (piece != null)){
 			this.direction = ((DirectionButton) event.getSource()).getDirection();
 		}
+		else if((event.getSource() instanceof JMenuItem) && ((JMenuItem)event.getSource()).getText().equals("Undo")) {
+			game.undoMoveAction();
+		}
+		else if((event.getSource() instanceof JMenuItem) && ((JMenuItem)event.getSource()).getText().equals("Redo")) {
+			game.redoMoveAction();
+		}
 		if((direction != null) && (piece != null)) {
 			game.movePiece(piece, direction);
 			direction = null;
