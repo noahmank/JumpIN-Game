@@ -114,6 +114,11 @@ public class JumpInView extends JFrame {
         menuBar.add(editMenu);
     
         JMenuItem item;
+	
+	item = new JMenuItem("Home");
+        item.addActionListener(controller);
+        fileMenu.add(item);	
+	
         item = new JMenuItem("Undo");
         item.addActionListener(controller);
         editMenu.add(item);
