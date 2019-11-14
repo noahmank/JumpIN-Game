@@ -16,4 +16,8 @@ public class BoardTree {
 		this.childrenNodes.add(child);
 		return child;
 	}
+	
+	public BoardTreeNode getRoot() {
+		return this.root;
+	}
 }
