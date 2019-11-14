@@ -5,20 +5,18 @@ import java.util.LinkedList;
 
 public class BoardTreeNode {
 	private GameBoard boardState;
-	private MoveAction action;
 	private BoardTreeNode parentNode; // Edit this visibility
 	private LinkedList<BoardTreeNode> childrenNodes;
 	
-	public BoardTreeNode(GameBoard boardState, MoveAction action, BoardTreeNode parent) {
+	public BoardTreeNode(GameBoard boardState, BoardTreeNode parent) {
 		this.boardState = boardState;
-		this.action = action;
 		this.childrenNodes = new LinkedList<>();
 		this.parentNode = parent;
 	}
 	
 	// Might want to change return type to void? Nah
-	public BoardTreeNode addChild(GameBoard boardState, MoveAction action) { 
-		BoardTreeNode child = new BoardTreeNode(boardState, action, this);
+	public BoardTreeNode addChild(GameBoard boardState) { 
+		BoardTreeNode child = new BoardTreeNode(boardState, this);
 		this.childrenNodes.add(child);
 		return child;
 	}
@@ -29,5 +27,13 @@ public class BoardTreeNode {
 	
 	public LinkedList<BoardTreeNode> getChildren() {
 		return this.childrenNodes;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null || o.getClass() != this.getClass()) return false;
+		BoardTreeNode node = (BoardTreeNode) o;
+		return (node.boardState == this.boardState);
 	}
 }

@@ -11,8 +11,8 @@ public class BoardTree {
 		this.childrenNodes = new LinkedList<>();
 	}
 	
-	public BoardTreeNode addChild(GameBoard boardState, MoveAction action) { 
-		BoardTreeNode child = new BoardTreeNode(boardState, action, this.root);
+	public BoardTreeNode addChild(GameBoard boardState) { 
+		BoardTreeNode child = new BoardTreeNode(boardState, this.root);
 		this.childrenNodes.add(child);
 		return child;
 	}
