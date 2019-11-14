@@ -9,13 +9,22 @@ import javax.swing.tree.*;
 public class BoardTreeNode implements TreeNode {
 	private GameBoard boardState;
 	private MoveAction action;
-	public BoardTreeNode parentNode; // Edit this visibility
+	private BoardTreeNode parentNode; // Edit this visibility
 	private List<BoardTreeNode> childrenNodes;
 	
-	public BoardTreeNode(GameBoard boardState, MoveAction action) {
+	public BoardTreeNode(GameBoard boardState, MoveAction action, BoardTreeNode parent) {
 		this.boardState = boardState;
 		this.action = action;
 		this.childrenNodes = new LinkedList<>();
+		this.parentNode = parent;
+	}
+	
+	// Might want to change return type to void?
+	public BoardTreeNode addChild(GameBoard boardState, MoveAction action) { 
+		BoardTreeNode child = new BoardTreeNode(boardState, action, this);
+		child.parentNode = this;
+		this.childrenNodes.add(child);
+		return child;
 	}
 	
 	@Override
