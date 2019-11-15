@@ -4,7 +4,11 @@ import model.*;
 * Tests for the GameBoard class implementation
 * @author Adela Tullio
 */
+
 import static org.junit.Assert.*;
+
+import java.awt.Point;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -132,4 +136,57 @@ public class GameBoardTest {
 		gameboard.addPiece(rabbit3, 0, 4);
 		assertEquals("Expecting a value true.", true, gameboard.isFinished());
 	}
+	
+	/**
+	 * Tests the toString representation of the gameboard
+	 */
+	@Test
+	public void testToString() {
+		String string = "  |  0 |  1 |  2 |  3 |  4 |  \n" + 
+						"0 | BH |    | RH |    | BH | \n" + 
+						"1 |    |    |    |    |    | \n" + 
+						"2 | RH |    | BH |    | RH | \n" + 
+						"3 |    |    |    |    |    | \n" + 
+						"4 | BH |    | RH |    | BH | \n";
+		assertEquals("Expecting string representation of the board", string, gameboard.toString());
+	}
+	
+	/**
+	 * Tests checkValidFoxMove
+	 */
+	@Test
+	public void testCheckValidFoxMove() {
+		assertEquals("Expecting False", false, gameboard.checkValidFoxMove(fox, Direction.NORTH));
+	}
+	
+	/**
+	 * Tests checkValidRabbitMove
+	 */
+	@Test
+	public void testCheckValidRabbitMove() {
+		assertEquals("Expecting false", false, gameboard.checkValidRabbitMove(rabbit, Direction.SOUTH));
+	}
+	
+	/**
+	*Tests getting the Mushrooms
+	*/
+	@Test
+	public void testGetMushrooms() {
+	}
+	
+	/**
+	* Tests getting the Rabbits
+	*/
+	@Test
+	public void testGetRabbits() {
+	}
+	
+	/**
+	* Tests getting the Foxes
+	*/
+	@Test
+	public void testGetFoxes() {
+		
+	}
 }	
+
