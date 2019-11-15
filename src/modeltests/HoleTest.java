@@ -41,7 +41,7 @@ public class HoleTest {
 	@Test
 	public void testSetIsOccupied() {
 		hole.setIsOccupied(false);
-		assertEquals("Expecting 'false'", false, hole.getIsOccupied());
+		assertEquals("Expecting 'false'", false, hole.isOccupied());
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class HoleTest {
 	 */
 	@Test
 	public void testGetIsOccupied() {
-		assertEquals("Expecting 'false' upon initiating", false, hole.getIsOccupied());
+		assertEquals("Expecting 'false' upon initiating", false, hole.isOccupied());
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class HoleTest {
 	@Test
 	public void testSetPiece() {
 		hole.setPiece(mushroom);
-		assertEquals("Expecting 'true' that hole is occupied", true, hole.getIsOccupied());
+		assertEquals("Expecting 'true' that hole is occupied", true, hole.isOccupied());
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class HoleTest {
 	public void testRemoveMushroomPiece() {
 		hole.setPiece(mushroom);
 		hole.removePiece(mushroom);
-		assertEquals("Expecting 'true' as you cannot remove a mushroom", true, hole.getIsOccupied());
+		assertEquals("Expecting 'true' as you cannot remove a mushroom", true, hole.isOccupied());
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class HoleTest {
 		Rabbit rabbit = new Rabbit(RabbitColor.GREY);
 		hole.setPiece(rabbit);
 		hole.removePiece(rabbit);
-		assertEquals("Expecting 'false' as the space is free after removal", false, hole.getIsOccupied());
+		assertEquals("Expecting 'false' as the space is free after removal", false, hole.isOccupied());
 	}
 	
 	/**

@@ -156,7 +156,7 @@ public class GameBoardTest {
 	 */
 	@Test
 	public void testCheckValidFoxMove() {
-		assertEquals("Expecting False", false, gameboard.checkValidFoxMove(fox, Direction.NORTH));
+		assertEquals("Expecting False", false, gameboard.canMoveFox(fox, Direction.NORTH));
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public class GameBoardTest {
 	 */
 	@Test
 	public void testCheckValidRabbitMove() {
-		assertEquals("Expecting false", false, gameboard.checkValidRabbitMove(rabbit, Direction.SOUTH));
+		assertEquals("Expecting false", false, gameboard.canMoveRabbit(rabbit, Direction.SOUTH));
 	}
 	
 	/**

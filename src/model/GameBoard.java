@@ -106,7 +106,7 @@ public class GameBoard {
 	* @author Kelly Harrison
 	*/
 	public void addPiece(Piece piece, int column, int row) throws IllegalArgumentException {
-		checkValidSpace(column, row);
+		spaceIsEmpty(column, row);
 		if(piece instanceof Mushroom) {
 			this.addMushroomPiece((Mushroom) piece, column, row);
 		}
@@ -154,53 +154,68 @@ public class GameBoard {
 		return s;
 	}
 	
-	public boolean checkValidFoxMove(Fox f, Direction direction) throws IllegalArgumentException {
-		return false;
+	public boolean canMoveFox(Fox f, Direction direction) {
+		Point tailLocation;
+		Point headLocation;
+		// Input fox is invalid
+		if(!foxes.containsKey(f)) return false;
+		else tailLocation = foxes.get(f);
+		
+		tailLocation = new Point(tailLocation.x + direction.getX(), tailLocation.y + direction.getY());
+		headLocation = new Point(tailLocation.x + f.getDirection().getX(), tailLocation.y + f.getDirection().getY());
+		
+		// Check to see if move direction is on same axis as fox
+		if(!(f.getDirection() == direction || f.getDirection() == direction.getOpposite())) return false;
+		// Check to see if fox is being moved into a hole on the board
+		if(!(spaceIsOnBoard(tailLocation.x, tailLocation.y) && spaceIsOnBoard(tailLocation.x + f.getDirection().getX(), tailLocation.y + f.getDirection().getY()))) return false;
+		// Check to see if fox tail is being moved to a space not occupied by itself
+		if(!spaceIsEmpty(tailLocation.x, tailLocation.y)) {
+			if(!grid[tailLocation.x][tailLocation.y].getPiece().equals(f)) return false;
+		}
+		// Check to see if fox head is being moved to a space not occupied by itself
+		if(!spaceIsEmpty(headLocation.x, headLocation.y)) {
+			if(!grid[headLocation.x][headLocation.y].getPiece().equals(f)) return false;
+		}
+		return true;
 	}
 	
-	public boolean checkValidRabbitMove(Rabbit r, Direction direction) throws IllegalArgumentException {
+	public boolean canMoveRabbit(Rabbit r, Direction direction) {
+		Point currentLocation;
+		if(!rabbits.containsKey(r)) return false;
+		else currentLocation = rabbits.get(r);
+		
+		currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
+		// Check to see that it is not trying to jump out of grid
+		if(!spaceIsOnBoard(currentLocation.x, currentLocation.y)) return false;
+		// Check to see if there is at least one valid object to jump over in that direction
+		if(grid[currentLocation.x][currentLocation.y].isOccupied()) {
+			// Keep moving along the same direction until either an empty hole or off the board
+			while(spaceIsOnBoard(currentLocation.x, currentLocation.y)) {
+				if(!grid[currentLocation.x][currentLocation.y].isOccupied()) return true;
+				currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
+			}
+		}
 		return false;
 	}
 	
 	/**
 	* A method to move the fox piece on the board
 	* @param name is the name of the fox piece
-	* @param direction is the direction in which the fox will move
+	* @param moveDirection is the direction in which the fox will move
 	* @author Noah Mank
 	*/
-	public void moveFoxPiece(Fox f, Direction direction) throws IllegalArgumentException {
-		Point location;
-		// Input fox is invalid
-		if(!foxes.containsKey(f)) {
-			throw new IllegalArgumentException("Fox is not valid, Choose another fox");
-		}
-		else {
-			location = foxes.get(f);
-		}
-		// Check to see if direction is valid
-		switch(direction) {
-			case NORTH: case SOUTH:
-				if((f.getDirection() != Direction.NORTH) && (f.getDirection() != Direction.SOUTH)) {
-					throw new IllegalArgumentException("Direction is not valid, Choose either East or West");
-				}
-				break;
-			case EAST: case WEST:
-				if((f.getDirection() != Direction.EAST) && (f.getDirection() != Direction.WEST)) {
-					throw new IllegalArgumentException("Direction is not valid, Choose either North or South");
-				}
-				break;
-		}
-		// Start move process by removing from initial locations (object and location are still stored locally)
-		grid[location.x][location.y].removePiece(f);
-		grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
-		try {
-			checkValidSpace(location.x + direction.getX(), location.y + direction.getY());
-			this.addFoxPiece(f, location.x + direction.getX(), location.y + direction.getY());
-		}
-		catch(IllegalArgumentException e) {
+	public void moveFoxPiece(Fox f, Direction moveDirection) {
+		if(canMoveFox(f, moveDirection)) {
+			Point location = foxes.get(f);
+			// Remove from previous location
+			grid[location.x][location.y].removePiece(f);
+			grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
+			// Add to new location
+			location = new Point(location.x + moveDirection.getX(), location.y + moveDirection.getY());
 			grid[location.x][location.y].setPiece(f);
 			grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].setPiece(f);
-			throw new IllegalArgumentException("Cannot move the fox this way!");
+			// Update in HashMap
+			this.foxes.put(f, location);
 		}
 	}
 	
@@ -210,37 +225,15 @@ public class GameBoard {
 	* @param direction the direction in which the rabbit will move
 	* @author Noah Mank
 	*/
-	public void moveRabbitPiece(Rabbit r, Direction direction) throws IllegalArgumentException {
-		Point location = new Point();
-		Point newLocation = new Point();
-		if(!rabbits.containsKey(r)) {
-			throw new IllegalArgumentException("Name is not valid, Choose another rabbit");
-		}
-		else {
-			location.x = rabbits.get(r).x;
-			location.y = rabbits.get(r).y;
-			newLocation.x = rabbits.get(r).x;
-			newLocation.y = rabbits.get(r).y;
-		}
-		if((location.x + direction.getX() >= this.numColumns) || (location.x + direction.getX() < 0) || (location.y + direction.getY() >= this.numRows) || (location.y + direction.getY() < 0)) {
-			throw new IllegalArgumentException("Cannot move rabbit out of bounds");
-		}
-		// If heading directly into an empty space, invalid
-		if(!grid[location.x + direction.getX()][location.y + direction.getY()].getIsOccupied()) {
-			throw new IllegalArgumentException("Direction invalid, choose another");
-		}
-		else {
-			// Until next empty hole is found
-			while(grid[newLocation.x + direction.getX()][newLocation.y + direction.getY()].getIsOccupied()) {
-				//check out of bound
-				newLocation.x += direction.getX();
-				newLocation.y += direction.getY();
+	public void moveRabbitPiece(Rabbit r, Direction direction) {
+		if(canMoveRabbit(r, direction)) {
+			Point currentLocation = rabbits.get(r);
+			grid[currentLocation.x][currentLocation.y].removePiece(r);
+			currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
+			while(grid[currentLocation.x][currentLocation.y].isOccupied()) {
+				currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
 			}
-			if(newLocation.x > this.numColumns | newLocation.y> this.numRows){
-				throw new IllegalArgumentException("Move is out of bounds");
-			}
-			addRabbitPiece(r, newLocation.x + direction.getX(), newLocation.y + direction.getY());
-			grid[location.x][location.y].removePiece(r);
+			addRabbitPiece(r, currentLocation.x, currentLocation.y);		
 		}
 	}
 	
@@ -265,22 +258,28 @@ public class GameBoard {
 	* @throws IllegalArgumentException
 	* @author Kelly Harrison
 	*/
-	private void addFoxPiece(Fox f, int column, int row) throws IllegalArgumentException {	
-		Direction direction = f.getDirection();
-		// Check we are within board bounds
-		if(grid[column][row] instanceof RaisedHole) {
-			throw new IllegalArgumentException("Cannot place a Fox on a RaisedHole");
+	private void addFoxPiece(Fox f, int column, int row) {	
+		Direction d = f.getDirection();
+		if(canAddFox(f, column, row)) {
+			grid[column + d.getX()][row + d.getY()].setPiece(f);
+			grid[column][row].setPiece(f);
+			this.foxes.put(f, new Point(column, row));
 		}
-		// checkValidSpace has already occurred for tail part, check head
-		checkValidSpace(column + direction.getX(), row + direction.getY());
-		// Check if tail or head holes are hills -> they shouldn't be
-		if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
-			throw new IllegalArgumentException("Foxes cannot be placed on raised holes, choose new location");
-		}
-		grid[column + direction.getX()][row + direction.getY()].setPiece(f);
-		grid[column][row].setPiece(f);
-		this.foxes.put(f, new Point(column, row));
 	}
+	
+	public boolean canAddFox(Fox f, int column, int row) {
+		Direction direction = f.getDirection();
+		// Check that Fox is within board bounds and on empty hole, tail has already been checked
+		if(spaceIsEmpty(column + direction.getX(), row + direction.getY())) {
+			// Check that Fox is not being placed on a RaisedHole
+			if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
+				return false;
+			}
+			return true;
+		}
+		else return false;
+	}
+	
 	
 	/**
 	* A method to add a mushroom piece to the board
@@ -327,9 +326,11 @@ public class GameBoard {
 	 * @throws IllegalArgumentException if the space is off of the board or already occupied
 	 * @author Noah Mank
 	 */
-	private void checkValidSpace(int column, int row) throws IllegalArgumentException {
-		if(column >= numColumns || row >= numRows || column < 0 || row < 0 || grid[column][row].getIsOccupied()) {
-			throw new IllegalArgumentException("Space is not valid, Choose another square");
-		}
+	private boolean spaceIsEmpty(int column, int row) {
+		return (spaceIsOnBoard(column, row) && !grid[column][row].isOccupied());
+	}
+	
+	private boolean spaceIsOnBoard(int column, int row) {
+		return !(column >= numColumns || row >= numRows || column < 0 || row < 0);
 	}
 }

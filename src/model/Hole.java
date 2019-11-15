@@ -25,7 +25,6 @@ public class Hole {
 	 * @param occupied is the true or false value if hole is occupied
 	 */
 	public void setIsOccupied(Boolean occupied) {
-		
 		this.isOccupied = occupied;			
 	}
 	
@@ -33,7 +32,7 @@ public class Hole {
 	 * getIsOccupied retrieves the current occupation status of the Hole
 	 * @return true or false
 	 */
-	public Boolean getIsOccupied() {
+	public Boolean isOccupied() {
 		return this.isOccupied;
 	}
 	
@@ -71,7 +70,7 @@ public class Hole {
 	 * otherwise returns an empty hole
 	 */
 	public String toString() {
-		if(this.getIsOccupied()) {
+		if(this.isOccupied()) {
 			return this.getPiece().toString();
 		}
 		else return "  ";

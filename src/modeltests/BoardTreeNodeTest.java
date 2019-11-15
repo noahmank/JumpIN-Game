@@ -1,3 +1,5 @@
+package modeltests;
+
 
 import static org.junit.Assert.*;
 

@@ -104,16 +104,11 @@ public class JumpInGame {
 	
 	public void movePiece(MoveablePiece p, Direction direction) {
 		if(!gameBoard.isFinished()) {
-			try {
-				if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
-				if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
-				notifyViews(p.toString() + " was moved " + direction.toString());
-				undoableMoveActions.push(new MoveAction(p, direction));
-				redoableMoveActions.clear();
-			}
-			catch(IllegalArgumentException e) {
-				notifyViews(e.getMessage());
-			}
+			if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
+			if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
+			notifyViews(p.toString() + " was moved " + direction.toString());
+			undoableMoveActions.push(new MoveAction(p, direction));
+			redoableMoveActions.clear();
 			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
 		}
 	}

@@ -20,7 +20,7 @@ public class BrownHole extends RaisedHole {
 	*/
 	@Override
 	public String toString() {
-		if(this.getIsOccupied()) {
+		if(this.isOccupied()) {
 			return this.getPiece().toString();
 		}
 		else return "BH";

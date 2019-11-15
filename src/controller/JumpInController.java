@@ -38,7 +38,7 @@ public class JumpInController implements ActionListener {
 		if (event.getSource() instanceof BoardButton) {
 			int row = ((BoardButton) event.getSource()).getRow();
 			int column = ((BoardButton) event.getSource()).getColumn();
-			if (game.getBoard().getHole(column, row).getIsOccupied()
+			if (game.getBoard().getHole(column, row).isOccupied()
 					&& (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
 				piece = (MoveablePiece) game.getBoard().getHole(column, row).getPiece();
 			}
