@@ -36,6 +36,14 @@ public class GameBoard {
 		this.mushrooms = new HashMap<>();
 	}
 	
+	public GameBoard(GameBoard board) {
+		this();
+		this.foxes = board.getFoxes();
+		this.rabbits = board.getRabbits();
+		this.mushrooms = board.getMushrooms();
+		this.grid = board.getGrid();
+	}
+	
 	/**
 	 *  Default constructor of the GameBoard that creates a 5x5 board
 	 *  @author Adela Tullio
@@ -67,6 +75,15 @@ public class GameBoard {
 		this.initializeRaisedHole(4, 2);
 		this.initializeRaisedHole(2, 4);
 	}
+	
+	public int getNumColumns() {
+		return numColumns;
+	}
+
+	public int getNumRows() {
+		return numRows;
+	}
+	
 	/**
 	* Method to initialize Brown Holes that bunnies will hop into
 	* @param numColumn the column you wish to enter the BrownHole
@@ -130,6 +147,26 @@ public class GameBoard {
 			}
 		}
 		return true;
+	}
+	
+	public Hole[][] getGrid() {
+		return grid;
+	}
+
+	public void setGrid(Hole[][] grid) {
+		this.grid = grid;
+	}
+
+	public void setRabbits(HashMap<Rabbit, Point> rabbits) {
+		this.rabbits = rabbits;
+	}
+
+	public void setFoxes(HashMap<Fox, Point> foxes) {
+		this.foxes = foxes;
+	}
+
+	public void setMushrooms(HashMap<Mushroom, Point> mushrooms) {
+		this.mushrooms = mushrooms;
 	}
 	
 	/**
