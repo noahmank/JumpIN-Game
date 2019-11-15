@@ -54,11 +54,17 @@ public class BoardSolver {
 	 * Populates the next level of child nodes if the board is still not solved
 	 * @param board the game board from the parent node
 	 */
-	private void populateBoardTree(GameBoard board) {
-		for(Rabbit r : board.getRabbits().keySet()) {
-			
+	private void populateBoardTreeChildren(BoardTreeNode node) {
+		GameBoard parentBoard = node.getBoard();
+		GameBoard childBoard;
+		for(Rabbit r : parentBoard.getRabbits().keySet()) {
+			for(Direction d : Direction.values()) {
+				if(parentBoard.canMoveRabbit(r, d)) {
+					// Construct new board with action done
+				}
+			}
 		}
-		for(Fox f : board.getFoxes().keySet()) {
+		for(Fox f : parentBoard.getFoxes().keySet()) {
 			
 		}
 	}
