@@ -1,8 +1,5 @@
 package model;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -24,7 +21,7 @@ public class BoardSolver {
 	public BoardSolver(GameBoard board) {
 		this.initialBoard = board;
 		// Root node has no action and no parent
-		BoardTreeNode root = new BoardTreeNode(board, null, null);
+		boardTree = new BoardTree(new BoardTreeNode(board, null, null));
 		checkNodes = new LinkedList<>();
 		solution = new Stack<>();
 	}
