@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -9,7 +11,8 @@ import java.util.LinkedList;
  */
 public class BoardTreeNode {
 	private GameBoard board;
-	private BoardTreeNode parentNode; // Edit this visibility
+	private MoveAction action;
+	private BoardTreeNode parentNode;
 	private LinkedList<BoardTreeNode> childrenNodes;
 	
 	/**
@@ -17,8 +20,9 @@ public class BoardTreeNode {
 	 * @param board is the initial board passed as the one on which actions are performed
 	 * @param parent the root node containing the initial board with no actions performed
 	 */
-	public BoardTreeNode(GameBoard board, BoardTreeNode parent) {
+	public BoardTreeNode(GameBoard board, MoveAction action, BoardTreeNode parent) {
 		this.board = board;
+		this.action = action;
 		this.childrenNodes = new LinkedList<>();
 		this.parentNode = parent;
 	}
@@ -28,8 +32,8 @@ public class BoardTreeNode {
 	 * @param board is the board contained by the previous parent node
 	 * @return the child node created
 	 */
-	public BoardTreeNode addChild(GameBoard board) { 
-		BoardTreeNode child = new BoardTreeNode(board, this);
+	public BoardTreeNode addChild(GameBoard board, MoveAction action) { 
+		BoardTreeNode child = new BoardTreeNode(board, action, this);
 		this.childrenNodes.add(child);
 		return child;
 	}
@@ -42,12 +46,20 @@ public class BoardTreeNode {
 		return this.parentNode;
 	}
 	
+	public boolean isRoot() {
+		return (action == null && parentNode == null);
+	}
+	
 	/**
 	 * Gets the game board
 	 * @return GameBoard Object
 	 */
 	public GameBoard getBoard() {
 		return this.board;
+	}
+	
+	public MoveAction getAction() {
+		return action;
 	}
 	
 	/**
@@ -61,11 +73,29 @@ public class BoardTreeNode {
 	@Override
 	public boolean equals(Object o) {
 		if(this == o) return true;
-
-		
-		
 		if(o == null || o.getClass() != this.getClass()) return false;
 		BoardTreeNode node = (BoardTreeNode) o;
 		return (node.board == this.board);
+	}
+	
+	/**
+	 * Populates the next level of child nodes if the board is still not solved
+	 * @param board the game board from the parent node
+	 */
+	public void populateChildren() {
+		GameBoard parentBoard = this.getBoard();
+		GameBoard childBoard;
+		HashMap<MoveablePiece, Point> moveablePieces = new HashMap<>();
+		moveablePieces.putAll(parentBoard.getRabbits());
+		moveablePieces.putAll(parentBoard.getFoxes());
+		
+		for(MoveablePiece p : moveablePieces.keySet()) {
+			for(Direction d : Direction.values()) {
+				if(parentBoard.canMovePiece(p, d)) {
+					childBoard = parentBoard.applyActionToBoard(p, d);
+					this.addChild(childBoard, new MoveAction(p,d));
+				}
+			}
+		}
 	}
 }

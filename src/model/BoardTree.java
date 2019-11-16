@@ -25,8 +25,8 @@ public class BoardTree {
 	 * @param board is the board contained in the child node
 	 * @return returns the child node created
 	 */
-	public BoardTreeNode addChild(GameBoard board) { 
-		BoardTreeNode child = new BoardTreeNode(board, this.root);
+	public BoardTreeNode addChild(GameBoard board, MoveAction action) { 
+		BoardTreeNode child = new BoardTreeNode(board, action, this.root);
 		this.childrenNodes.add(child);
 		return child;
 	}

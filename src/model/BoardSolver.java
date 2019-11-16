@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 
@@ -13,7 +14,7 @@ import java.util.LinkedList;
 public class BoardSolver {
 	GameBoard initialBoard;
 	BoardTree boardTree;
-	ArrayList<MoveAction> solution;
+	Stack<MoveAction> solution;
 	LinkedList<BoardTreeNode> checkNodes;
 	
 	/**
@@ -22,25 +23,36 @@ public class BoardSolver {
 	 */
 	public BoardSolver(GameBoard board) {
 		this.initialBoard = board;
-		BoardTreeNode root = new BoardTreeNode(board, null);
+		// Root node has no action and no parent
+		BoardTreeNode root = new BoardTreeNode(board, null, null);
 		checkNodes = new LinkedList<>();
-		solution = new ArrayList<>();
+		solution = new Stack<>();
 	}
 	
 	/**
 	 * Begins to solve the board by iterating through possible solutions
 	 * @return the solution, containing all the actions performed to solve challenge
 	 */
-	public ArrayList<MoveAction> solveBoard() {
+	public Stack<MoveAction> solveBoard() {
+		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
-		BoardTreeNode checkNode = checkNodes.pop();
-		if(checkNode.getBoard().isFinished()) {
-			return solution;
-		}
-		else {
-			
-		}
 		
+		while(!checkNodes.isEmpty()) {
+			checkNode = checkNodes.pop();
+			if(checkNode.getBoard().isFinished()) {
+				// Need to go up through tree from node, adding the actions that have happened to stack
+				while(!checkNode.isRoot()) {
+					solution.add(checkNode.getAction());
+					checkNode = checkNode.getParent();
+				}
+				return solution;
+			}
+			else {
+				checkNode.populateChildren();
+				checkNodes.addAll(checkNode.getChildren());
+			}
+		}
+		// No possible solution
 		return null;
 	}
 	
@@ -50,26 +62,5 @@ public class BoardSolver {
 	 */
 	public GameBoard getSolvedBoard() {
 		return null;
-	}
-	
-	/**
-	 * Populates the next level of child nodes if the board is still not solved
-	 * @param board the game board from the parent node
-	 */
-	private void populateBoardTreeChildren(BoardTreeNode node) {
-		GameBoard parentBoard = node.getBoard();
-		GameBoard childBoard;
-		HashMap<MoveablePiece, Point> moveablePieces = new HashMap<>();
-		moveablePieces.putAll(parentBoard.getRabbits());
-		moveablePieces.putAll(parentBoard.getFoxes());
-		
-		for(MoveablePiece p : moveablePieces.keySet()) {
-			for(Direction d : Direction.values()) {
-				if(parentBoard.canMovePiece(p, d)) {
-					childBoard = parentBoard.applyActionToBoard(p, d);
-					node.addChild(childBoard);
-				}
-			}
-		}
 	}
 }
