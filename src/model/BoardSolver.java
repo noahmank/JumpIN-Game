@@ -11,7 +11,6 @@ import java.util.Stack;
 public class BoardSolver {
 	GameBoard initialBoard;
 	BoardTree boardTree;
-	Stack<MoveAction> solution;
 	LinkedList<BoardTreeNode> checkNodes;
 	
 	/**
@@ -23,33 +22,25 @@ public class BoardSolver {
 		// Root node has no action and no parent
 		boardTree = new BoardTree(new BoardTreeNode(board, null, null));
 		checkNodes = new LinkedList<>();
-		solution = new Stack<>();
 	}
 	
 	/**
 	 * Begins to solve the board by iterating through possible solutions
 	 * @return the solution, containing all the actions performed to solve challenge
 	 */
-	public Stack<MoveAction> solveBoard() {
+	public BoardTreeNode solveBoard() {
 		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
 		
 		while(!checkNodes.isEmpty()) {
 			checkNode = checkNodes.pop();
-			if(checkNode.getBoard().isFinished()) {
-				// Need to go up through tree from node, adding the actions that have happened to stack
-				while(!checkNode.isRoot()) {
-					solution.add(checkNode.getAction());
-					checkNode = checkNode.getParent();
-				}
-				return solution;
-			}
+			if(checkNode.getBoard().isFinished()) return checkNode;
 			else {
 				checkNode.populateChildren();
 				checkNodes.addAll(checkNode.getChildren());
 			}
 		}
-		// No possible solution
+		// If no solution
 		return null;
 	}
 	
@@ -59,5 +50,17 @@ public class BoardSolver {
 	 */
 	public GameBoard getSolvedBoard() {
 		return null;
+	}
+	
+	public Stack<MoveAction> getActionsToSolve(BoardTreeNode node) {
+		BoardTreeNode currentNode = node;
+		Stack<MoveAction> solution = new Stack<>();
+		
+		// Need to go up through tree from node, adding the actions that have happened to stack
+		while(!currentNode.isRoot()) {
+			solution.add(currentNode.getAction());
+			currentNode = currentNode.getParent();
+		}
+		return solution;
 	}
 }
