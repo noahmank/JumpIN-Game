@@ -150,7 +150,8 @@ public class JumpInGame {
 		MoveAction move = undoableMoveActions.pop();
 		// Do the opposite with the piece
 		movePiece(move.getPiece(), move.getDirection().getOpposite());
-		redoableMoveActions.push(move);
+		MoveAction newMove = undoableMoveActions.pop();
+		redoableMoveActions.push(newMove);
 	}
 	
 	/**
