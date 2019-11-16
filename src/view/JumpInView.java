@@ -167,8 +167,8 @@ public class JumpInView extends JFrame {
     	// Assign all Fox icons
 		for(Fox f : game.getBoard().getFoxes().keySet()) {
 			Point tail = game.getBoard().getFoxes().get(f);
-			boardGrid[tail.x][tail.y].updateButtonIcon(Fox.getSrc());
-			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].updateButtonIcon(Fox.getSrc());
+			boardGrid[tail.x][tail.y].updateButtonIcon(f.getSrc());
+			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].updateButtonIcon(f.getSrc());
 		}
 		// Assign all Rabbit icons
 		String rabbit = null;

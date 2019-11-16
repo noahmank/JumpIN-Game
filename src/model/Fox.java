@@ -38,7 +38,8 @@ public class Fox implements MoveablePiece {
 		return this.number;
 	}
 	
-	public static String getSrc() {
+	@Override
+	public String getSrc() {
 		return Fox.src;
 	}
 	

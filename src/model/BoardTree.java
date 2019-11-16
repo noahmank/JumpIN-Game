@@ -14,7 +14,6 @@ public class BoardTree {
 	 */
 	public BoardTree(BoardTreeNode root) {
 		this.root = root;
-
 	}
 	
 	/**

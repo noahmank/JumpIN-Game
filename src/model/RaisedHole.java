@@ -19,9 +19,7 @@ public class RaisedHole extends Hole {
 	*/
 	@Override
 	public String toString() {
-		if(this.isOccupied()) {
-			return this.getPiece().toString();
-		}
+		if(this.isOccupied()) return this.getPiece().toString();
 		else return "RH";
 	}
 }

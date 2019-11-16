@@ -21,6 +21,11 @@ public class Rabbit implements MoveablePiece {
 		return this.color;
 	}
 	
+	@Override
+	public String getSrc() {
+		return this.color.getSrc();
+	}
+	
 	/**
 	 * A text representation of the Rabbit
 	 * @return String representing the rabbit

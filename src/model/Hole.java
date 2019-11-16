@@ -14,10 +14,8 @@ public class Hole {
 	 * and initializes piece object to null, assuming that there is no piece on there yet.
 	 */
 	public Hole() {
-		
 		this.isOccupied = false;
 		this.piece = null;
-		
 	}
 	
 	/**
@@ -68,9 +66,7 @@ public class Hole {
 	 * otherwise returns an empty hole
 	 */
 	public String toString() {
-		if(this.isOccupied()) {
-			return this.getPiece().toString();
-		}
+		if(this.isOccupied()) return this.getPiece().toString();
 		else return "  ";
 	}
 }
