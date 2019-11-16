@@ -38,27 +38,23 @@ public class JumpInController implements ActionListener {
 		if (event.getSource() instanceof BoardButton) {
 			int row = ((BoardButton) event.getSource()).getRow();
 			int column = ((BoardButton) event.getSource()).getColumn();
-			if (game.getBoard().getHole(column, row).isOccupied()
-					&& (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
+			if (game.getBoard().getHole(column, row).isOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
 				piece = (MoveablePiece) game.getBoard().getHole(column, row).getPiece();
 			}
-
-		} else if ((event.getSource() instanceof DirectionButton) && (piece != null)) {
+		} 
+		else if ((event.getSource() instanceof DirectionButton) && (piece != null)) {
 			this.direction = ((DirectionButton) event.getSource()).getDirection();
-		} else if ((event.getSource() instanceof JButton)
-				&& ((JButton) event.getSource()).getText().equals("Click here to Start Game")) {
-
+		} 
+		else if ((event.getSource() instanceof JButton) && ((JButton) event.getSource()).getText().equals("Click here to Start Game")) {
 			this.view.ToGameFrame();
-
-		} else if ((event.getSource() instanceof JMenuItem)
-				&& ((JMenuItem) event.getSource()).getText().equals("Home")) {
+		} 
+		else if ((event.getSource() instanceof JMenuItem) && ((JMenuItem) event.getSource()).getText().equals("Home")) {
 			this.view.ToGameMenu();
-
-		} else if ((event.getSource() instanceof JMenuItem)
-				&& ((JMenuItem) event.getSource()).getText().equals("Undo")) {
+		} 
+		else if ((event.getSource() instanceof JMenuItem) && ((JMenuItem) event.getSource()).getText().equals("Undo")) {
 			game.undoMoveAction();
-		} else if ((event.getSource() instanceof JMenuItem)
-				&& ((JMenuItem) event.getSource()).getText().equals("Redo")) {
+		} 
+		else if ((event.getSource() instanceof JMenuItem) && ((JMenuItem) event.getSource()).getText().equals("Redo")) {
 			game.redoMoveAction();
 		}
 		if ((direction != null) && (piece != null)) {
