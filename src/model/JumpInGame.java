@@ -108,7 +108,6 @@ public class JumpInGame {
 			if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
 			notifyViews(p.toString() + " was moved " + direction.toString());
 			undoableMoveActions.push(new MoveAction(p, direction));
-			redoableMoveActions.clear();
 			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
 		}
 	}
@@ -160,8 +159,10 @@ public class JumpInGame {
 	 */
 	public void redoMoveAction() throws EmptyStackException {
 		MoveAction move = redoableMoveActions.pop();
-		movePiece(move.getPiece(), move.getDirection());
+		movePiece(move.getPiece(), move.getDirection().getOpposite());
 		undoableMoveActions.push(move);
+		MoveAction newMove = redoableMoveActions.pop();
+		undoableMoveActions.push(newMove);
 	}
 	
 	/**
