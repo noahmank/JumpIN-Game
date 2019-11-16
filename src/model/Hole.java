@@ -54,14 +54,12 @@ public class Hole {
 	}
 	
 	/**
-	 * removePiece removes the piece (Rabbit, Fox) from a Hole. (Only Rabbits and Foxes can me removed in a game)
+	 * removePiece removes the piece from a Hole. 
 	 * @param piece is the desired piece
 	 */
 	public void removePiece(Piece piece) {
-		if(!(piece instanceof Mushroom)) {//Mushrooms cannot be moved during a game
-			this.piece = null;
-			this.setIsOccupied(false);
-		}
+		this.piece = null;
+		this.setIsOccupied(false);
 	}
 	
 	/**
