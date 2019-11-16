@@ -60,10 +60,9 @@ public class JumpInView extends JFrame {
         contents.setLayout(new GridLayout(columns, rows));	
         
         //Setting grid color
-    	for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {	Color green = new Color(34, 139, 34);
+    	for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {	
+            	Color green = new Color(34, 139, 34);
             	boardGrid[j][i] = new BoardButton(j, i, green);
             	contents.add(boardGrid[j][i]);
             	boardGrid[j][i].addActionListener(controller);	                	            	            	
@@ -104,7 +103,7 @@ public class JumpInView extends JFrame {
         output.setEditable(false);                       	 
         textPanel.add(output, BorderLayout.EAST);
 	
-	//Creating menu bar
+        //Creating menu bar
         JMenuBar menuBar = new JMenuBar();
         
         JMenu fileMenu = new JMenu("File");
@@ -115,7 +114,7 @@ public class JumpInView extends JFrame {
     
         JMenuItem item;
 	
-	item = new JMenuItem("Home");
+        item = new JMenuItem("Home");
         item.addActionListener(controller);
         fileMenu.add(item);	
 	
@@ -130,7 +129,7 @@ public class JumpInView extends JFrame {
         
         frame.setSize(700, 700);
         frame.setLocationRelativeTo(null);
-	frame.setJMenuBar(menuBar);
+        frame.setJMenuBar(menuBar);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
     	frame.add(contents, BorderLayout.CENTER);
     	frame.add(textPanel, BorderLayout.NORTH);    	
