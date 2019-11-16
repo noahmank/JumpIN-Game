@@ -53,6 +53,13 @@ public class GameBoard {
 		this.resetDefaultBoard();
 	}
 	
+	public GameBoard applyActionToBoard(MoveablePiece p, Direction d) {
+		GameBoard b = new GameBoard(this);
+		if(p instanceof Rabbit) b.moveRabbitPiece((Rabbit) p, d);
+		if(p instanceof Fox) b.moveFoxPiece((Fox) p, d);
+		return b;
+	}
+	
 	/**
 	 *  Resets the GameBoard to a default state with only special holes initialized
 	 *  @author Liya Abebe
