@@ -242,6 +242,12 @@ public class GameBoard {
 		return false;
 	}
 	
+	public boolean canMovePiece(MoveablePiece p, Direction direction) {
+		if(p instanceof Fox) return canMoveFox((Fox) p, direction);
+		if(p instanceof Rabbit) return canMoveRabbit((Rabbit) p, direction);
+		return false;
+	}
+	
 	/**
 	* A method to move the fox piece on the board
 	* @param name is the name of the fox piece

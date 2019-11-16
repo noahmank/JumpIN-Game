@@ -1,6 +1,8 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -57,15 +59,17 @@ public class BoardSolver {
 	private void populateBoardTreeChildren(BoardTreeNode node) {
 		GameBoard parentBoard = node.getBoard();
 		GameBoard childBoard;
-		for(Rabbit r : parentBoard.getRabbits().keySet()) {
+		HashMap<MoveablePiece, Point> moveablePieces = new HashMap<>();
+		moveablePieces.putAll(parentBoard.getRabbits());
+		moveablePieces.putAll(parentBoard.getFoxes());
+		
+		for(MoveablePiece p : moveablePieces.keySet()) {
 			for(Direction d : Direction.values()) {
-				if(parentBoard.canMoveRabbit(r, d)) {
-					// Construct new board with action done
+				if(parentBoard.canMovePiece(p, d)) {
+					childBoard = parentBoard.applyActionToBoard(p, d);
+					node.addChild(childBoard);
 				}
 			}
-		}
-		for(Fox f : parentBoard.getFoxes().keySet()) {
-			
 		}
 	}
 }
