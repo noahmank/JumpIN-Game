@@ -22,10 +22,6 @@ public class MoveAction {
 		return this.direction;
 	}
 	
-	public Direction getOppositeDirection() {
-		return this.direction.getOpposite();
-	}
-	
 	public MoveablePiece getPiece() {
 		return this.piece;
 	}

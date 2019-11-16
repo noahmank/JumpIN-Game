@@ -49,14 +49,6 @@ public class MoveActionTest {
 	}
 	
 	/**
-	 * tests the getOppositeDirection method
-	 */
-	@Test
-	public void testGetOppositeDirection() {
-		assertEquals("Expected output to be NORTH", Direction.NORTH, moveAction.getOppositeDirection());
-	}
-	
-	/**
 	 * tests the getPiece method
 	 */
 	@Test
