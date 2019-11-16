@@ -9,6 +9,11 @@ public class MoveAction {
 		this.direction = direction;
 	}
 	
+	public MoveAction(MoveAction move) {
+		this.piece = move.getPiece();
+		this.direction = move.getDirection();
+	}
+	
 	public Direction getDirection() {
 		return this.direction;
 	}
