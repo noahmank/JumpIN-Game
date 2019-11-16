@@ -151,9 +151,10 @@ public class JumpInGame {
 	public void undoMoveAction() throws EmptyStackException {
 		MoveAction move = undoableMoveActions.pop();
 		// Do the opposite with the piece
-		movePiece(move.getPiece(), move.getDirection().getOpposite());
-		MoveAction newMove = undoableMoveActions.pop();
-		redoableMoveActions.push(newMove);
+		movePiece(move.getOppositeMove());
+		// Remove MoveAction that was added to undoableMoveActions when undone
+		undoableMoveActions.pop();
+		redoableMoveActions.push(move);
 	}
 	
 	/**
@@ -162,10 +163,7 @@ public class JumpInGame {
 	 */
 	public void redoMoveAction() throws EmptyStackException {
 		MoveAction move = redoableMoveActions.pop();
-		movePiece(move.getPiece(), move.getDirection().getOpposite());
-		undoableMoveActions.push(move);
-		MoveAction newMove = redoableMoveActions.pop();
-		undoableMoveActions.push(newMove);
+		movePiece(move);
 	}
 	
 	/**
