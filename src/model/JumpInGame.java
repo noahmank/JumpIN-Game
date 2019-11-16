@@ -101,6 +101,9 @@ public class JumpInGame {
 	}
 	*/
 	
+	public void movePiece(MoveAction move) {
+		movePiece(move.getPiece(), move.getDirection());
+	}
 	
 	public void movePiece(MoveablePiece p, Direction direction) {
 		if(!gameBoard.isFinished()) {
