@@ -14,6 +14,10 @@ public class MoveAction {
 		this.direction = move.getDirection();
 	}
 	
+	public MoveAction getOppositeMove(MoveAction move) {
+		return new MoveAction(move.getPiece(), move.getOppositeDirection());
+	}
+	
 	public Direction getDirection() {
 		return this.direction;
 	}
