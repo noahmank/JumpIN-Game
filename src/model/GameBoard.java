@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
 * Creates and initializes the playing gameboard, and provides methods to add and move pieces
@@ -12,8 +13,8 @@ public class GameBoard {
 	private int numColumns;
 	private int numRows;
 	private Hole[][] grid;
-	private HashMap<Rabbit, Point> rabbits;
-	private HashMap<Fox, Point> foxes;
+	private LinkedHashMap<Rabbit, Point> rabbits;
+	private LinkedHashMap<Fox, Point> foxes;
 	private HashMap<Mushroom, Point> mushrooms;
 	
 	/**
@@ -31,8 +32,8 @@ public class GameBoard {
 		this.numColumns = numColumns;
 		this.numRows = numRows;
 		this.grid = new Hole[numRows][numColumns];		
-		this.foxes = new HashMap<>();
-		this.rabbits = new HashMap<>();
+		this.foxes = new LinkedHashMap<>();
+		this.rabbits = new LinkedHashMap<>();
 		this.mushrooms = new HashMap<>();
 	}
 	
@@ -164,11 +165,11 @@ public class GameBoard {
 		this.grid = grid;
 	}
 
-	public void setRabbits(HashMap<Rabbit, Point> rabbits) {
+	public void setRabbits(LinkedHashMap<Rabbit, Point> rabbits) {
 		this.rabbits = rabbits;
 	}
 
-	public void setFoxes(HashMap<Fox, Point> foxes) {
+	public void setFoxes(LinkedHashMap<Fox, Point> foxes) {
 		this.foxes = foxes;
 	}
 
@@ -357,7 +358,7 @@ public class GameBoard {
 	 * Getter for foxes HashMap
 	 * @return HashMap containing all the fox pieces and respective Point locations
 	 */
-	public HashMap<Fox, Point> getFoxes() {
+	public LinkedHashMap<Fox, Point> getFoxes() {
 		return this.foxes;
 	}
 	
@@ -365,7 +366,7 @@ public class GameBoard {
 	 * Getter for rabbits HashMap
 	 * @return HashMap containing all the rabbit pieces and respective Point locations
 	 */
-	public HashMap<Rabbit, Point> getRabbits() {
+	public LinkedHashMap<Rabbit, Point> getRabbits() {
 		return this.rabbits;
 	}
 	

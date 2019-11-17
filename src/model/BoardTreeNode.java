@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 /**
@@ -85,7 +86,7 @@ public class BoardTreeNode {
 	public void populateChildren() {
 		GameBoard parentBoard = this.getBoard();
 		GameBoard childBoard;
-		HashMap<MoveablePiece, Point> moveablePieces = new HashMap<>();
+		LinkedHashMap<MoveablePiece, Point> moveablePieces = new LinkedHashMap<>();
 		moveablePieces.putAll(parentBoard.getRabbits());
 		moveablePieces.putAll(parentBoard.getFoxes());
 		
