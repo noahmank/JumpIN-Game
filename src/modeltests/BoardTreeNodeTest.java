@@ -2,6 +2,7 @@ package modeltests;
 
 
 import static org.junit.Assert.*;
+import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,16 +15,24 @@ import model.*;
  *
  */
 public class BoardTreeNodeTest {
+	private BoardTreeNode root;
+	private GameBoard board;
+	private Rabbit rabbit;
+	private MoveAction action;
 	private BoardTreeNode node;
-	private GameBoard gameboard;
+	private LinkedList<BoardTreeNode> list;
 	/**
 	 * sets up the variables for the tests
 	 * @throws Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		gameboard = new GameBoard();
-		node = new BoardTreeNode(gameboard, node);
+		board = new GameBoard();
+		rabbit = new Rabbit(RabbitColor.GREY);
+		action = new MoveAction(rabbit, Direction.SOUTH);
+		root = new BoardTreeNode(board, null, null);
+		node = new BoardTreeNode(board, action, root);
+		list = new LinkedList<>();
 	}
 
 	/**
@@ -32,7 +41,10 @@ public class BoardTreeNodeTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		gameboard = null;
+		board = null;
+		root = null;
+		rabbit = null;
+		action = null;
 		node = null;
 	}
 
@@ -41,6 +53,9 @@ public class BoardTreeNodeTest {
 	 */
 	@Test
 	public void testAddChild() {
+		root.addChild(board, action);
+		list.add(0, node);
+		assertEquals("Expecting node", list, root.getChildren());
 		
 	}
 	
@@ -49,6 +64,18 @@ public class BoardTreeNodeTest {
 	 */
 	@Test
 	public void testGetParent() {
+		assertEquals("Expecting root", root, node.getParent());
+	}
+	
+	/**
+	 * tests the isRoot method
+	 */
+	@Test
+	public void testIsRoot() {
+		//testing if root is a root (should be)
+		assertEquals("Expecting true", true, root.isRoot());
+		//testing if a regular node with an action and parent would pass as a root
+		assertEquals("Expecting false", false, node.isRoot());
 	}
 	
 	/**
@@ -56,7 +83,15 @@ public class BoardTreeNodeTest {
 	 */
 	@Test
 	public void testGetBoard() {
-		assertEquals("Expecting gameboard", gameboard, node.getBoard());
+		assertEquals("Expecting gameboard", board, root.getBoard());
+	}
+	
+	/**
+	 * tests the getAction method
+	 */
+	@Test
+	public void testGetAction() {
+		assertEquals("Expecting action", action, node.getAction());
 	}
 	
 	/**
@@ -64,6 +99,13 @@ public class BoardTreeNodeTest {
 	 */
 	@Test
 	public void testGetChildren() {
+		MoveAction newAction = new MoveAction(rabbit, Direction.WEST);
+		BoardTreeNode node2 = new BoardTreeNode(board, newAction, root);
+		root.addChild(board, action);
+		root.addChild(board, newAction);
+		list.add(0, node);
+		list.add(1, node2);
+		assertEquals("Expected list of children", list, root.getChildren()); 
 		
 	}
 	
@@ -72,7 +114,19 @@ public class BoardTreeNodeTest {
 	 */
 	@Test
 	public void testEquals() {
+		BoardTreeNode node2 = new BoardTreeNode(board, action, root);
+		assertEquals("Expecting true", true, node.equals(node2));
 		
+		node = null;
+		assertEquals("Expecting false", false, node2.equals(node));
+	}
+	
+	/**
+	 * tests populateChildren method
+	 */
+	@Test
+	public void testPopulateChildren() {
+		root.populateChildren();
 	}
 
 }
