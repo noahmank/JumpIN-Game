@@ -117,12 +117,5 @@ public class BoardSolverTest {
 		gameboard = solver.getSolvedBoard();
 		assertEquals("Expecting for a solved board", true,  gameboard.isFinished());
 	}
-	
-	/**
-	 * tests the calculateActionsToSolve method
-	 */
-	@Test
-	public void testCalculateActionsToSolve() {
-	}
 
 }
