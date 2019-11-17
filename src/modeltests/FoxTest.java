@@ -12,14 +12,14 @@ import org.junit.Test;
 
 public class FoxTest {
 	private Fox fox;
-	private Direction direction;
+
 	/**
 	* Sets up the variables
 	* @throws Exception
 	*/
 	@Before
 	public void setUp() throws Exception {
-		fox = new Fox(direction.NORTH, 1);
+		fox = new Fox(Direction.NORTH, 1);
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class FoxTest {
 	 */
 	@Test
 	public void testGetDirection() {
-		assertEquals("Fox direction should be 'NORTH' for this fox.", direction.NORTH, fox.getDirection());
+		assertEquals("Fox direction should be 'NORTH' for this fox.", Direction.NORTH, fox.getDirection());
 	}	
 	
 	/**
