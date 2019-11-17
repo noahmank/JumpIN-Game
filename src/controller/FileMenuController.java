@@ -21,7 +21,7 @@ public class FileMenuController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem source = (JMenuItem) e.getSource();
 		if(source.getText().equals("Home")) {
-			this.view.ToGameMenu();
+			this.view.toGameMenu();
 		} 
 	}
 
