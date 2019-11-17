@@ -2,18 +2,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import model.JumpInGame;
-import view.DirectionButton;
-import view.JumpInView;
+import model.*;
+import view.*;
 
 public class DirectionButtonController implements ActionListener {
 	private JumpInGame game;
-	private JumpInView view;
 	
-	public DirectionButtonController(JumpInGame game, JumpInView view) {
+	public DirectionButtonController(JumpInGame game) {
 		this.game = game;
-		this.view = view;
 	}
 	
 	@Override
