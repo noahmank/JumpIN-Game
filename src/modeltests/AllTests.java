@@ -10,7 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ BoardSolverTest.class, BoardTreeNodeTest.class, BoardTreeTest.class, BrownHoleTest.class,
 		DirectionTest.class, FoxTest.class, GameBoardTest.class, HoleTest.class, MoveActionTest.class,
-		MushroomTest.class, RabbitColorTest.class, RabbitTest.class, RaisedHoleTest.class })
+		MushroomTest.class, RabbitColorTest.class, RabbitTest.class, RaisedHoleTest.class, JumpInGameTest.class })
 public class AllTests {
 
 }
