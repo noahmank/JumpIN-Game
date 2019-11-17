@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import model.*;
 
-
 public class EditMenuController implements ActionListener {
 	private JumpInGame game;
 	

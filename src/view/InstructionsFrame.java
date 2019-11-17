@@ -14,7 +14,7 @@ public class InstructionsFrame extends JFrame {
 	
 	public InstructionsFrame(JumpInView v) {
 		super("Welcome to Jump-In Game");
-		this.controller = new JumpInController(this, v);
+		this.controller = new JumpInController(v);
 		JButton start = new JButton("Click here to Start Game");
 		start.addActionListener(controller);
 		

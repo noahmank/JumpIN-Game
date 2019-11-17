@@ -14,7 +14,7 @@ public class FileMenu extends JMenu implements View{
 	public FileMenu(JumpInGame game, JumpInView view) {
 		super("Home");
 		this.game = game;
-		this.controller = new FileMenuController(game, view);
+		this.controller = new FileMenuController(view);
 		
 		JMenuItem item;
 		

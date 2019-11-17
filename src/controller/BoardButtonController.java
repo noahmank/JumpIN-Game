@@ -12,7 +12,6 @@ public class BoardButtonController implements ActionListener {
 		this.game = game;
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BoardButton b = (BoardButton) e.getSource();

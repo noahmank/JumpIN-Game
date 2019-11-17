@@ -9,9 +9,7 @@ import view.*;
  * The controller for the JumpIN game
  */
 public class JumpInController implements ActionListener {
-
-	private InstructionsFrame homeView;
-	private JumpInView gameView;
+	private JumpInView jumpInView;
 
 	/**
 	 * Constructor for the JumpInController
@@ -19,9 +17,8 @@ public class JumpInController implements ActionListener {
 	 * @param game is the JumpInGame
 	 * @param homeView is the view of the game
 	 */
-	public JumpInController(InstructionsFrame homeView, JumpInView gameView) {
-		this.homeView = homeView;
-		this.gameView = gameView;
+	public JumpInController(JumpInView gameView) {
+		this.jumpInView = gameView;
 	}
 
 	/**
@@ -32,7 +29,7 @@ public class JumpInController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if ((event.getSource() instanceof JButton) && ((JButton) event.getSource()).getText().equals("Click here to Start Game")) {
-			gameView.toGameFrame();
+			jumpInView.toGameFrame();
 		}
 	}
 }
