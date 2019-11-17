@@ -17,6 +17,8 @@ public class BoardTreeTest {
 	private BoardTree tree;
 	private BoardTreeNode root;
 	private GameBoard board;
+	private MoveAction action;
+	private Rabbit rabbit;
 	
 	/**
 	 * set up variables for tests
@@ -24,7 +26,9 @@ public class BoardTreeTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		root = new BoardTreeNode(board, root);
+		rabbit = new Rabbit(RabbitColor.GREY);
+		action = new MoveAction(rabbit, Direction.SOUTH);
+		root = new BoardTreeNode(board, action, root);
 		tree = new BoardTree(root);
 	}
 	
@@ -36,15 +40,10 @@ public class BoardTreeTest {
 	public void tearDown() throws Exception {
 		root = null;
 		tree = null;
+		rabbit = null;
+		action = null;
 	}
 
-	/**
-	 * test addChild method
-	 */
-	@Test
-	public void testAddChild() {
-	}
-	
 	/**
 	 * test getRoot method
 	 */
@@ -54,3 +53,4 @@ public class BoardTreeTest {
 	}
 
 }
+
