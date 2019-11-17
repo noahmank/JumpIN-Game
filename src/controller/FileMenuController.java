@@ -8,11 +8,11 @@ import javax.swing.JMenuItem;
 import model.JumpInGame;
 import view.JumpInView;
 
-public class HomeMenuButtonController implements ActionListener {
+public class FileMenuController implements ActionListener {
 	JumpInGame game;
 	JumpInView view;
 	
-	public HomeMenuButtonController(JumpInGame game, JumpInView view) {
+	public FileMenuController(JumpInGame game, JumpInView view) {
 		this.game = game;
 		this.view = view;
 	}

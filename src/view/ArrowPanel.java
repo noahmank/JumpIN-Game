@@ -13,7 +13,7 @@ public class ArrowPanel extends JPanel {
 	public ArrowPanel(JumpInGame g) {
 		super();
 		this.g = g;
-		controller = new DirectionButtonController(this.g);
+		this.controller = new DirectionButtonController(this.g);
 		DirectionButton leftArrow = new DirectionButton(Direction.WEST, controller);
         this.add(leftArrow);	
         

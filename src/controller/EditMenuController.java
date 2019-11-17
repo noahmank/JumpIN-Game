@@ -8,10 +8,10 @@ import javax.swing.JMenuItem;
 import model.*;
 import view.*;
 
-public class EditMenuButtonController implements ActionListener {
+public class EditMenuController implements ActionListener {
 	private JumpInGame game;
 	
-	public EditMenuButtonController(JumpInGame game) {
+	public EditMenuController(JumpInGame game) {
 		this.game = game;
 	}
 	
