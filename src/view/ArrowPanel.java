@@ -28,8 +28,7 @@ public class ArrowPanel extends JPanel  implements View {
         subscribeToModel();
 	}
 	
-	public void updateView(String s) {
-		
+	public void updateView() {
 	}
 	
 	public void subscribeToModel() {

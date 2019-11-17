@@ -23,7 +23,7 @@ public class FileMenu extends JMenu implements View{
         this.add(item);	
 	}
 	
-	public void updateView(String s) {
+	public void updateView() {
 		
 	}
 	

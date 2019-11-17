@@ -20,6 +20,7 @@ public class JumpInGame {
 	private Stack<MoveAction> redoableMoveActions;
 	private MoveablePiece piece;
 	private Direction direction;
+	private String consoleOutput;
 
 	/**
 	 * the JumpInGame constructor builds the default game board
@@ -32,6 +33,7 @@ public class JumpInGame {
 		gameStatus = GameStatus.READY_TO_PLAY;
 		piece = null;
 		direction = null;
+		consoleOutput = null;
 	}
 	
 	public void movePiece(MoveAction move) {
@@ -40,11 +42,16 @@ public class JumpInGame {
 	
 	public void movePiece(MoveablePiece p, Direction direction) {
 		if(!gameBoard.isFinished()) {
+			if(gameBoard.canMovePiece(p, direction)) this.consoleOutput = p.toString() + " was moved " + direction.toString();
+			else this.consoleOutput = p.toString() + " cannot be moved " + direction.toString();
 			if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
 			if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
-			notifyViews(p.toString() + " was moved " + direction.toString());
+			notifyViews();
 			undoableMoveActions.push(new MoveAction(p, direction));
-			if(this.gameBoard.isFinished()) notifyViews("Congratulations, you completed the game!.");
+			if(this.gameBoard.isFinished()) {
+				this.consoleOutput = "Congratulations, you completed the game!.";
+				notifyViews();
+			}
 		}
 	}
 	
@@ -73,7 +80,8 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
-			notifyViews("Challenge 1: Begun");
+			this.consoleOutput = "Challenge 1: Begun";
+			notifyViews();
 		}
 	}
 	
@@ -127,9 +135,9 @@ public class JumpInGame {
 	 * Tell any views that a change has been made in the game
 	 * @param s is a message describing the change
 	 */
-	public void notifyViews(String s) {
+	public void notifyViews() {
 		for(View v : views) {
-			v.updateView(s);
+			v.updateView();
 		}
 	}
 	
@@ -148,4 +156,13 @@ public class JumpInGame {
 	public Direction getDirection() {
 		return this.direction;
 	}
+	
+	public String getConsoleOutput() {
+		return consoleOutput;
+	}
+	
+	public void setConsoleOutput(String s) {
+		this.consoleOutput = s;
+	}
+
 }

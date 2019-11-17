@@ -54,7 +54,7 @@ public class GridPanel extends JPanel implements View {
 		this.g.addView(this);
 	}
 	
-	public void updateView(String s) {
+	public void updateView() {
 		for (int i = 0; i < columns; i++) {
 			for (int j = 0; j < rows; j++) {
 				boardGrid[i][j].setIcon(null);

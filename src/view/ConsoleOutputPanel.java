@@ -17,10 +17,11 @@ public class ConsoleOutputPanel extends JPanel implements View {
         output.setColumns(20);
         output.setEditable(false);                       	 
         this.add(output, BorderLayout.EAST);
+        subscribeToModel();
 	}
 	
-	public void updateView(String s) {
-	
+	public void updateView() {
+		this.output.setText(g.getConsoleOutput());
 	}
 	
 	public void subscribeToModel() {
