@@ -18,6 +18,9 @@ public class JumpInGame {
 	private ArrayList<JumpInView> views;
 	private Stack<MoveAction> undoableMoveActions;
 	private Stack<MoveAction> redoableMoveActions;
+	private MoveablePiece piece;
+	private Direction direction;
+
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
@@ -27,6 +30,8 @@ public class JumpInGame {
 		undoableMoveActions = new Stack<>();
 		redoableMoveActions = new Stack<>();
 		gameStatus = GameStatus.READY_TO_PLAY;
+		piece = null;
+		direction = null;
 	}
 	
 	public void movePiece(MoveAction move) {
@@ -126,5 +131,21 @@ public class JumpInGame {
 		for(JumpInView v : views) {
 			v.updateView(s);
 		}
+	}
+	
+	public void setPiece(MoveablePiece piece) {
+		this.piece = piece;
+	}
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
+	
+	public MoveablePiece getPiece() {
+		return this.piece;
+	}
+	
+	public Direction getDirection() {
+		return this.direction;
 	}
 }

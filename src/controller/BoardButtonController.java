@@ -8,10 +8,8 @@ import model.*;
 import view.*;
 
 public class BoardButtonController implements ActionListener {
-	JumpInGame game;
-	JumpInView view;
-	MoveablePiece piece;
-	Direction direction;
+	private JumpInGame game;
+	private JumpInView view;
 	
 	public BoardButtonController(JumpInGame game, JumpInView view) {
 		this.game = game;
@@ -25,13 +23,13 @@ public class BoardButtonController implements ActionListener {
 		int row = b.getRow();
 		int column = b.getColumn();
 		if (game.getBoard().getHole(column, row).isOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
-			piece = (MoveablePiece) game.getBoard().getHole(column, row).getPiece();
+			game.setPiece((MoveablePiece) game.getBoard().getHole(column, row).getPiece());
 		}
-		if ((direction != null) && (piece != null)) {
-			game.movePiece(piece, direction);
-			direction = null;
+		// Might need to be JumpInGame's responsibility
+		if ((game.getDirection() != null) && (game.getPiece() != null)) {
+			game.movePiece(game.getPiece(), game.getDirection());
+			game.setDirection(null);
 		}
-		
 	}
 
 }
