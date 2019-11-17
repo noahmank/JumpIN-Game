@@ -29,7 +29,7 @@ public class JumpInView extends JFrame {
 		this.game = g;
 		this.columns = columns;
 		this.rows = rows;
-		this.controller = new JumpInController(game, this);
+		this.controller = new JumpInController(this);
 		
 		//Setting up frame to display rules and challenges
 		preFrame = new JFrame("Welcome to Jump-In Game");
