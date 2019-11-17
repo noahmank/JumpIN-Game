@@ -10,7 +10,7 @@ public class JumpInGameMVC {
 
 	public static void main(String[] args) {
 		JumpInGame game = new JumpInGame();
-		JumpInView view = new JumpInView(game);
+		new JumpInView(game);
 		game.challenge(1);
 	}
 
