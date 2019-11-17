@@ -7,14 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import controller.JumpInController;
+import controller.FrameViewController;
 
 public class InstructionsFrame extends JFrame {
-	private JumpInController controller;
+	private FrameViewController controller;
 	
 	public InstructionsFrame(JumpInView v) {
 		super("Welcome to Jump-In Game");
-		this.controller = new JumpInController(v);
+		this.controller = new FrameViewController(v);
 		JButton start = new JButton("Click here to Start Game");
 		start.addActionListener(controller);
 		
@@ -29,13 +29,5 @@ public class InstructionsFrame extends JFrame {
 		this.setSize(700, 700);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-	public void hideFrame() {
-		this.setVisible(false);
-	}
-	
-	public void showFrame() {
-		this.setVisible(true);
 	}
 }

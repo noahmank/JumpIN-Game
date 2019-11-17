@@ -8,7 +8,7 @@ import view.*;
 /**
  * The controller for the JumpIN game
  */
-public class JumpInController implements ActionListener {
+public class FrameViewController implements ActionListener {
 	private JumpInView jumpInView;
 
 	/**
@@ -17,7 +17,7 @@ public class JumpInController implements ActionListener {
 	 * @param game is the JumpInGame
 	 * @param homeView is the view of the game
 	 */
-	public JumpInController(JumpInView gameView) {
+	public FrameViewController(JumpInView gameView) {
 		this.jumpInView = gameView;
 	}
 
