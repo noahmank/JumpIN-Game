@@ -72,21 +72,9 @@ public class HoleTest {
 	
 	/**
 	 * Test the removePiece method
-	 * with special case Mushroom
 	 */
 	@Test
-	public void testRemoveMushroomPiece() {
-		hole.setPiece(mushroom);
-		hole.removePiece(mushroom);
-		assertEquals("Expecting 'true' as you cannot remove a mushroom", true, hole.isOccupied());
-	}
-	
-	/**
-	 * Test the removePiece method
-	 * with a regular rabbit
-	 */
-	@Test
-	public void testRemoveRabbitPiece() {
+	public void testRemovePiece() {
 		Rabbit rabbit = new Rabbit(RabbitColor.GREY);
 		hole.setPiece(rabbit);
 		hole.removePiece(rabbit);
