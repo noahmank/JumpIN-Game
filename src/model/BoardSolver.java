@@ -13,6 +13,7 @@ public class BoardSolver {
 	BoardTree boardTree;
 	LinkedList<BoardTreeNode> checkNodes;
 	BoardTreeNode solvedNode;
+	Stack<MoveAction> solution;
 	
 	/**
 	 * Constructs the Board solver with the given board game
@@ -24,6 +25,7 @@ public class BoardSolver {
 		boardTree = new BoardTree(new BoardTreeNode(board, null, null));
 		checkNodes = new LinkedList<>();
 		solvedNode = null;
+		solution = new Stack<>();
 	}
 	
 	/**
@@ -54,15 +56,17 @@ public class BoardSolver {
 		return solvedNode.getBoard();
 	}
 	
-	public Stack<MoveAction> getActionsToSolve() {
+	public void calculateActionsToSolve() {
 		BoardTreeNode currentNode = solvedNode;
-		Stack<MoveAction> solution = new Stack<>();
 		
 		// Need to go up through tree from node, adding the actions that have happened to stack
 		while(!currentNode.isRoot()) {
 			solution.add(currentNode.getAction());
 			currentNode = currentNode.getParent();
 		}
-		return solution;
+	}
+	
+	public MoveAction getNextActionToSolve() {
+		return solution.pop();
 	}
 }
