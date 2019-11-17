@@ -16,8 +16,6 @@ public class JumpInView extends JFrame {
 	private JumpInController controller;
 	private JPanel arrowPanel;
 	private JPanel textPanel;
-	private int columns;
-	private int rows;
 
 	/**
 	 * 
@@ -25,10 +23,8 @@ public class JumpInView extends JFrame {
 	 * @param columns is the number of columns
 	 * @param rows is the number of rows
 	 */
-	public JumpInView(JumpInGame g, int columns, int  rows) {
+	public JumpInView(JumpInGame g) {
 		this.game = g;
-		this.columns = columns;
-		this.rows = rows;
 		this.controller = new JumpInController(this);
 		
 		//Setting up frame to display rules and challenges

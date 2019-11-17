@@ -14,7 +14,8 @@ public class ConsoleOutputPanel extends JPanel implements View {
 		super();
 		this.g = g;
         output = new JTextField("Game initialized", 60);
-        output.setColumns(20);
+        output.setHorizontalAlignment(JTextField.CENTER);
+        output.setColumns(30);
         output.setEditable(false);                       	 
         this.add(output, BorderLayout.EAST);
         subscribeToModel();

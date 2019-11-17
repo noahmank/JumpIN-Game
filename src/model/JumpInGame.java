@@ -41,7 +41,7 @@ public class JumpInGame {
 	}
 	
 	public void movePiece(MoveablePiece p, Direction direction) {
-		if(!gameBoard.isFinished()) {
+		if(this.gameStatus == GameStatus.IN_PROGRESS) {
 			if(gameBoard.canMovePiece(p, direction)) this.consoleOutput = p.toString() + " was moved " + direction.toString();
 			else this.consoleOutput = p.toString() + " cannot be moved " + direction.toString();
 			if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
@@ -49,7 +49,8 @@ public class JumpInGame {
 			notifyViews();
 			undoableMoveActions.push(new MoveAction(p, direction));
 			if(this.gameBoard.isFinished()) {
-				this.consoleOutput = "Congratulations, you completed the game!.";
+				this.consoleOutput = "Congratulations, you completed the game!";
+				this.gameStatus = GameStatus.FINISHED;
 				notifyViews();
 			}
 		}
@@ -81,6 +82,7 @@ public class JumpInGame {
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
 			this.consoleOutput = "Challenge 1: Begun";
+			this.gameStatus = GameStatus.IN_PROGRESS;
 			notifyViews();
 		}
 	}
