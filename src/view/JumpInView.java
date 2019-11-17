@@ -11,13 +11,10 @@ import model.*;
 public class JumpInView extends JFrame {
 	private JumpInGame game;
 	private JPanel gridPanel;
-	private BoardButton[][] boardGrid;
 	private JFrame frame;
 	private JFrame preFrame;
-
 	private JumpInController controller;
 	private JPanel arrowPanel;
-	private JTextField output;
 	private JPanel textPanel;
 	private int columns;
 	private int rows;
@@ -32,8 +29,7 @@ public class JumpInView extends JFrame {
 		this.game = g;
 		this.columns = columns;
 		this.rows = rows;
-		controller = new JumpInController(this.game, this);
-		boardGrid = new BoardButton[columns][rows];
+		this.controller = new JumpInController(game, this);
 		
 		//Setting up frame to display rules and challenges
 		preFrame = new JFrame("Welcome to Jump-In Game");
@@ -56,75 +52,17 @@ public class JumpInView extends JFrame {
 		
 		//Setting up frame to display game
 		frame = new JFrame("Jump-In Game");
-    	gridPanel = new JPanel();
-        gridPanel.setLayout(new GridLayout(columns, rows));	
-        
-        //Setting grid color
-    	for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {	
-            	Color green = new Color(34, 139, 34);
-            	boardGrid[j][i] = new BoardButton(j, i, green);
-            	gridPanel.add(boardGrid[j][i]);
-            	boardGrid[j][i].addActionListener(controller);	                	            	            	
-            }
-        }
-    	
-    	Color brown = new Color(51, 24, 0);
-    	Color darkgreen = new Color(7, 36, 0);
-    	boardGrid[0][0].setBackground(brown);
-    	boardGrid[0][4].setBackground(brown);
-    	boardGrid[4][0].setBackground(brown);
-    	boardGrid[4][4].setBackground(brown);
-    	boardGrid[2][2].setBackground(brown);
-    	boardGrid[0][2].setBackground(darkgreen);
-    	boardGrid[2][0].setBackground(darkgreen);
-    	boardGrid[4][2].setBackground(darkgreen);
-    	boardGrid[2][4].setBackground(darkgreen);
+    	gridPanel = new GridPanel(game);
     	
     	//setting arrow panel with all arrow buttons
-        arrowPanel = new JPanel();
+        arrowPanel = new ArrowPanel(game);
         
-        DirectionButton leftArrow = new DirectionButton(Direction.WEST, controller);
-        arrowPanel.add(leftArrow);	
-        
-        DirectionButton upArrow = (new DirectionButton(Direction.NORTH, controller));
-        arrowPanel.add(upArrow);            
-        
-        DirectionButton downArrow = new DirectionButton(Direction.SOUTH, controller);
-        arrowPanel.add(downArrow);
-        
-        DirectionButton rightArrow = new DirectionButton(Direction.EAST, controller);
-        arrowPanel.add(rightArrow);
         
         //creating console for output (game over)
-        textPanel = new JPanel();
-        output = new JTextField("Game initialized", 60);
-        output.setColumns(20);
-        output.setEditable(false);                       	 
-        textPanel.add(output, BorderLayout.EAST);
+        textPanel = new ConsoleOutputPanel(game);
 	
         //Creating menu bar
-        JMenuBar menuBar = new JMenuBar();
-        
-        JMenu fileMenu = new JMenu("File");
-        menuBar.add(fileMenu);
-        
-        JMenu editMenu = new JMenu("Edit");
-        menuBar.add(editMenu);
-    
-        JMenuItem item;
-	
-        item = new JMenuItem("Home");
-        item.addActionListener(controller);
-        fileMenu.add(item);	
-	
-        item = new JMenuItem("Undo");
-        item.addActionListener(controller);
-        editMenu.add(item);
-        
-        item = new JMenuItem("Redo");
-        item.addActionListener(controller);
-        editMenu.add(item);
+        JMenuBar menuBar = new GameMenuBar(game, this);
         	
         
         frame.setSize(700, 700);
@@ -146,41 +84,4 @@ public class JumpInView extends JFrame {
 	    preFrame.setVisible(true);
     	frame.setVisible(false);	    	
     }
-	
-	/**
-	 * Subscribe this view to the model
-	 */
-	public void init() {
-        this.game.addView(this);
-	}
-	
-	/**
-	 * Reconstruct the view based on the location of all the pieces on the board
-	 * @param s is the console output for the view
-	 */
-	public void updateView(String s) {
-		for (int i = 0; i < columns; i++) {
-			for (int j = 0; j < rows; j++) {
-				boardGrid[i][j].setIcon(null);
-			}
-		}
-    	// Assign all Fox icons
-		for(Fox f : game.getBoard().getFoxes().keySet()) {
-			Point tail = game.getBoard().getFoxes().get(f);
-			boardGrid[tail.x][tail.y].updateButtonIcon(f.getSrc());
-			boardGrid[tail.x + f.getDirection().getX()][tail.y + f.getDirection().getY()].updateButtonIcon(f.getSrc());
-		}
-		// Assign all Rabbit icons
-		String rabbit = null;
-		for(Rabbit r : game.getBoard().getRabbits().keySet()) {
-			Point p = game.getBoard().getRabbits().get(r);
-			rabbit = r.getColor().getSrc();
-			boardGrid[p.x][p.y].updateButtonIcon(rabbit);
-		}
-		// Assign all Mushroom icons
-		for(Point m : game.getBoard().getMushrooms().values()) {
-			boardGrid[m.x][m.y].updateButtonIcon(Mushroom.getSrc());
-		}
-		output.setText(s);
-	}
 }

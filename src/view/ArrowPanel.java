@@ -6,7 +6,7 @@ import controller.DirectionButtonController;
 import model.Direction;
 import model.JumpInGame;
 
-public class ArrowPanel extends JPanel {
+public class ArrowPanel extends JPanel  implements View {
 	DirectionButtonController controller;
 	JumpInGame g;
 	
@@ -25,5 +25,14 @@ public class ArrowPanel extends JPanel {
         
         DirectionButton rightArrow = new DirectionButton(Direction.EAST, controller);
         this.add(rightArrow);
+        subscribeToModel();
+	}
+	
+	public void updateView(String s) {
+		
+	}
+	
+	public void subscribeToModel() {
+		this.g.addView(this);
 	}
 }

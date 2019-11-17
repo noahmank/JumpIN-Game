@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 import controller.EditMenuController;
 import model.JumpInGame;
 
-public class EditMenu extends JMenu {
+public class EditMenu extends JMenu implements View {
 	EditMenuController controller;
 	JumpInGame game;
 	
@@ -23,5 +23,13 @@ public class EditMenu extends JMenu {
         item = new JMenuItem("Redo");
         item.addActionListener(controller);
         this.add(item);
+	}
+	
+	public void updateView(String s) {
+		
+	}
+	
+	public void subscribeToModel() {
+		this.game.addView(this);
 	}
 }

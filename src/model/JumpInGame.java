@@ -15,7 +15,7 @@ import view.*;
 public class JumpInGame {
 	private GameBoard gameBoard;
 	private GameStatus gameStatus;
-	private ArrayList<JumpInView> views;
+	private ArrayList<View> views;
 	private Stack<MoveAction> undoableMoveActions;
 	private Stack<MoveAction> redoableMoveActions;
 	private MoveablePiece piece;
@@ -111,7 +111,7 @@ public class JumpInGame {
 	 * Add a view to watch any changes in the game
 	 * @param v is the view to be added to the views collection
 	 */
-	public void addView(JumpInView v) {
+	public void addView(View v) {
 		this.views.add(v);
 	}
 	
@@ -119,7 +119,7 @@ public class JumpInGame {
 	 * Remove a view from those watching the game
 	 * @param v is the view to be removed from the views collection
 	 */
-	public void removeView(JumpInView v) {
+	public void removeView(View v) {
 		this.views.remove(v);
 	}
 	
@@ -128,7 +128,7 @@ public class JumpInGame {
 	 * @param s is a message describing the change
 	 */
 	public void notifyViews(String s) {
-		for(JumpInView v : views) {
+		for(View v : views) {
 			v.updateView(s);
 		}
 	}
