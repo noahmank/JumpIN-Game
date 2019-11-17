@@ -10,7 +10,7 @@ import model.*;
 
 public class JumpInView extends JFrame {
 	private JumpInGame game;
-	private Container contents;
+	private JPanel gridPanel;
 	private BoardButton[][] boardGrid;
 	private JFrame frame;
 	private JFrame preFrame;
@@ -56,15 +56,15 @@ public class JumpInView extends JFrame {
 		
 		//Setting up frame to display game
 		frame = new JFrame("Jump-In Game");
-    	contents = getContentPane();
-        contents.setLayout(new GridLayout(columns, rows));	
+    	gridPanel = new JPanel();
+        gridPanel.setLayout(new GridLayout(columns, rows));	
         
         //Setting grid color
     	for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {	
             	Color green = new Color(34, 139, 34);
             	boardGrid[j][i] = new BoardButton(j, i, green);
-            	contents.add(boardGrid[j][i]);
+            	gridPanel.add(boardGrid[j][i]);
             	boardGrid[j][i].addActionListener(controller);	                	            	            	
             }
         }
@@ -131,7 +131,7 @@ public class JumpInView extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setJMenuBar(menuBar);
         frame.add(arrowPanel, BorderLayout.SOUTH);	
-    	frame.add(contents, BorderLayout.CENTER);
+    	frame.add(gridPanel, BorderLayout.CENTER);
     	frame.add(textPanel, BorderLayout.NORTH);    	
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
