@@ -21,11 +21,5 @@ public class BoardButtonController implements ActionListener {
 		if (game.getBoard().getHole(column, row).isOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
 			game.setPiece((MoveablePiece) game.getBoard().getHole(column, row).getPiece());
 		}
-		// Might need to be JumpInGame's responsibility
-		if ((game.getDirection() != null) && (game.getPiece() != null)) {
-			game.movePiece(game.getPiece(), game.getDirection());
-			game.setDirection(null);
-		}
 	}
-
 }
