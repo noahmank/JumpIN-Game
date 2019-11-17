@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 */
 import javax.swing.JButton;
 
+import controller.DirectionButtonController;
 import controller.JumpInController;
 import model.*;
 
@@ -13,6 +14,13 @@ public class DirectionButton extends JButton {
 	/**
 	* @param d is the direction you wish the button to be
 	*/
+	public DirectionButton(Direction d, DirectionButtonController c) {
+		this.direction = d;
+		this.setBounds(0, 0, 30, 30);
+		this.setIcon(ImageHandler.resizeIcon(new ImageIcon(ImageHandler.getImageURL(d.getSrc())), this.getWidth(), this.getHeight()));
+		this.addActionListener(c);
+	}
+	
 	public DirectionButton(Direction d, JumpInController c) {
 		this.direction = d;
 		this.setBounds(0, 0, 30, 30);
