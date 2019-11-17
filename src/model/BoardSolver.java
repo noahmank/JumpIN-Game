@@ -32,20 +32,22 @@ public class BoardSolver {
 	 * Begins to solve the board by iterating through possible solutions
 	 * @return the solution, containing all the actions performed to solve challenge
 	 */
-	public BoardTreeNode solveBoard() {
+	public void solveBoard() {
 		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
 		
 		while(!checkNodes.isEmpty()) {
 			checkNode = checkNodes.pop();
-			if(checkNode.getBoard().isFinished()) return checkNode;
+			if(checkNode.getBoard().isFinished()) {
+				solvedNode = checkNode;
+				calculateActionsToSolve();
+			}
 			else {
 				checkNode.populateChildren();
 				checkNodes.addAll(checkNode.getChildren());
 			}
 		}
-		// If no solution
-		return null;
+		// solvedNode will be null if no solution
 	}
 	
 	/**
@@ -56,7 +58,7 @@ public class BoardSolver {
 		return solvedNode.getBoard();
 	}
 	
-	public void calculateActionsToSolve() {
+	private void calculateActionsToSolve() {
 		BoardTreeNode currentNode = solvedNode;
 		
 		// Need to go up through tree from node, adding the actions that have happened to stack
