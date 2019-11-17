@@ -8,10 +8,10 @@ import javax.swing.JMenuItem;
 import model.*;
 import view.*;
 
-public class UndoRedoButtonController implements ActionListener {
+public class EditMenuButtonController implements ActionListener {
 	private JumpInGame game;
 	
-	public UndoRedoButtonController(JumpInGame game, JumpInView view) {
+	public EditMenuButtonController(JumpInGame game) {
 		this.game = game;
 	}
 	

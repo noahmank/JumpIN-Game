@@ -9,6 +9,7 @@ import model.JumpInGame;
 public class ArrowPanel extends JPanel {
 	DirectionButtonController controller;
 	JumpInGame g;
+	
 	public ArrowPanel(JumpInGame g) {
 		super();
 		this.g = g;
