@@ -17,7 +17,6 @@ public class DirectionButtonController implements ActionListener {
 		if(game.getPiece() != null) {
 			game.setDirection(((DirectionButton) e.getSource()).getDirection());
 		}
-		// Might need to be JumpInGame's responsibility
 		if ((game.getDirection() != null) && (game.getPiece() != null)) {
 			game.movePiece(game.getPiece(), game.getDirection());
 			game.setDirection(null);
