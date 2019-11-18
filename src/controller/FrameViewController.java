@@ -31,5 +31,8 @@ public class FrameViewController implements ActionListener {
 		if ((event.getSource() instanceof JButton) && ((JButton) event.getSource()).getText().equals("Click here to Start Game")) {
 			jumpInView.toGameFrame();
 		}
+		if ((event.getSource() instanceof JButton) && ((JButton) event.getSource()).getText().equals("Click here to Solve Game")) {
+			jumpInView.toSolverFrame();
+		}
 	}
 }
