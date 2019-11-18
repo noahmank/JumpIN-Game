@@ -72,8 +72,21 @@ public class BoardSolverTest {
 	/**
 	 * tests solving the board 
 	 */
-	//@Test
-	public void testSolveBoardAndGetNextActionToSolve() {
+	@Test
+	public void testSolveBoardAndGetNextActionToSolveChallenge1() {
+		gameboard.addPiece(greyRabbit, 3, 0);
+		gameboard.addPiece(whiteRabbit, 4, 2);
+		gameboard.addPiece(brownRabbit, 1, 4);
+		gameboard.addPiece(fox1, 1, 0);
+		gameboard.addPiece(fox2, 3, 3);
+		gameboard.addPiece(new Mushroom(), 3, 1);
+		gameboard.addPiece(new Mushroom(), 2, 4);
+		gameboardCopy = new GameBoard(gameboard);
+		// Initialize solver and solve
+
+		solver = new BoardSolver(gameboard);
+		solver.solveBoard();
+		
 		gameboard = solver.getSolvedBoard();
 		
 		//the first step to solving
@@ -121,8 +134,20 @@ public class BoardSolverTest {
 	/**
 	 * tests getSolvedBoard method
 	 */
-	//@Test
-	public void testGetSolvedBoard() {
+	@Test
+	public void testGetSolvedBoardChallenge1() {
+		gameboard.addPiece(greyRabbit, 3, 0);
+		gameboard.addPiece(whiteRabbit, 4, 2);
+		gameboard.addPiece(brownRabbit, 1, 4);
+		gameboard.addPiece(fox1, 1, 0);
+		gameboard.addPiece(fox2, 3, 3);
+		gameboard.addPiece(new Mushroom(), 3, 1);
+		gameboard.addPiece(new Mushroom(), 2, 4);
+		gameboardCopy = new GameBoard(gameboard);
+		// Initialize solver and solve
+
+		solver = new BoardSolver(gameboard);
+		solver.solveBoard();
 		gameboard = solver.getSolvedBoard();
 		assertEquals("Expecting for a solved board", true,  gameboard.isFinished());
 		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.SOUTH);

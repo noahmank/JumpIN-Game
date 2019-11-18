@@ -39,7 +39,7 @@ public class BoardSolver {
 		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
 		int i = 0;
-		while((!checkNodes.isEmpty()) && (i <= 10000000)) {
+		while((!checkNodes.isEmpty()) && (i <= 1000000)) {
 			checkNode = checkNodes.pop();
 			if(checkNode.getBoard().isFinished()) {
 				solvedNode = checkNode;
