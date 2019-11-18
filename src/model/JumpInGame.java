@@ -71,6 +71,11 @@ public class JumpInGame {
 		gameBoard.addPiece(piece, column, row);
 	}
 	
+	public void resetChallenge() {
+		gameBoard.resetAllPieces();
+		notifyViews();
+	}
+	
 	/**
 	 * The challenge method constructs the board for the specified challenge
 	 * @param challenge is the number that identifies the challenge

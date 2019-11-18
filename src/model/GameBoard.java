@@ -91,6 +91,12 @@ public class GameBoard {
 		this.initializeRaisedHole(2, 4);
 	}
 	
+	public void resetAllPieces() {
+		resetDefaultBoard();
+		this.foxes.clear();
+		this.rabbits.clear();
+		this.mushrooms.clear();
+	}
 	public int getNumColumns() {
 		return numColumns;
 	}
@@ -137,7 +143,7 @@ public class GameBoard {
 	* @param row is the row to add the piece to
 	* @author Kelly Harrison
 	*/
-	public void addPiece(Piece piece, int column, int row) throws IllegalArgumentException {
+	public void addPiece(Piece piece, int column, int row) {
 		spaceIsEmpty(column, row);
 		if(piece instanceof Mushroom) {
 			this.addMushroomPiece((Mushroom) piece, column, row);
@@ -149,6 +155,7 @@ public class GameBoard {
 			this.addRabbitPiece((Rabbit) piece, column, row);
 		}
 	}
+	
 	
 	/**
 	 * A method to check if the puzzle is finished
