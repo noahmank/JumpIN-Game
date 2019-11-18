@@ -68,11 +68,11 @@ public class JumpInGameTest {
 	 * Test movePiece method by moving a piece to an out of bounds spot
 	 */
 	@Test 
-	public void testMovePeiceOutOfBounds() {
+	public void testMovePieceOutOfBounds() {
 		game.addPieceToBoard(rabbit, 3, 1);
 		game.addPieceToBoard(mushroom, 3, 0);
 		game.movePiece(rabbit, Direction.NORTH);
-		assertEquals("Expecting Rabbit in the same spot", "Grey Rabbit", board.getHole(3, 1),toString());
+		assertEquals("Expecting Rabbit in the same spot", "Grey Rabbit", board.getHole(3, 1).toString());
 	}
 	
 	/**
@@ -91,7 +91,8 @@ public class JumpInGameTest {
 	 */
 	@Test
 	public void testChallengeOne() {
-		game.challenge(1);
+		game.setSelectedChallenge(1);
+		game.startChallenge();
 		assertEquals("Expected Mushroom at (3, 1)", "MS", board.getHole(3, 1).toString());
 		assertEquals("Expected Mushroom at (2, 4)", "MS", board.getHole(2, 4).toString());
 		assertEquals("Expected Grey Rabbit at (3, 0)", "Grey Rabbit", board.getHole(3, 0).toString());
@@ -158,7 +159,7 @@ public class JumpInGameTest {
 	@Test
 	public void testGetDirection() {
 		fox = new Fox(Direction.NORTH, 1);
-		assertEquals("Expecting NORTH", "NORTH", fox.getDirection());
+		assertEquals("Expecting NORTH", Direction.NORTH, fox.getDirection());
 	}
 
 }
