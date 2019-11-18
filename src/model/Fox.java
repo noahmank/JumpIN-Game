@@ -38,6 +38,10 @@ public class Fox implements MoveablePiece {
 		return this.number;
 	}
 	
+	/**
+	* gets the image url for the foxes
+	* @return the image url
+	*/
 	@Override
 	public String getSrc() {
 		return Fox.src;
@@ -53,6 +57,11 @@ public class Fox implements MoveablePiece {
 		return "Fox " + this.getNumber();
 	}
 	
+	/**
+	* method to determine if two objects of foxes are equal or not
+	* @param obj is the object to be compared
+	* @return true or false whether it is equal or not
+	*/
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) return true;
