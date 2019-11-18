@@ -76,7 +76,7 @@ A lot of refactoring needs to be done; there are many methods (like start()) tha
 Exporting the project in its current state does not include the images - this will be remedied in the next deliverable, but for now it must be run through an IDE.
 
 ### Deliverable 3
-There's is some delay while the solver running. The user will have to wait for about 35 seconds before they get the option to see the minimum set of moves required to solve the game.
+There is some delay while the solver is running, though this is less of an issue and more of a weakness of the chosen solve strategy. The user might have to wait up to about 35 seconds before they get the option to see the minimum set of moves required to solve the game. A bigger issue is that for especially complex challenges, like challenge 3, the tree becomes too large, and ends up running out of memory.
 
 # Design
 
