@@ -28,18 +28,27 @@ public class JumpInView extends JFrame {
 		solverFrame = new SolverFrame(this.game, this);
 	}
 	
+	/**
+	 * Make the GameFrame visible, and other frames invisible
+	 */
 	public void toGameFrame() {			
 		solverFrame.setVisible(false);
 	    instructionsFrame.setVisible(false);
     	gameFrame.setVisible(true);	    	
     }
 	
+	/**
+	 * Make the InstructionsFrame visible, and other frames invisible
+	 */
 	public void toInstructionsFrame() {		
 		solverFrame.setVisible(false);
 	    instructionsFrame.setVisible(true);
     	gameFrame.setVisible(false);	    	
     }
 	
+	/**
+	 * Make the SolverFrame visible, and other frames invisible
+	 */
 	public void toSolverFrame() {		
 		solverFrame.setVisible(true);
 	    instructionsFrame.setVisible(false);
