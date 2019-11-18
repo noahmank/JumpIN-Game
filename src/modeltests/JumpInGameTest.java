@@ -17,6 +17,7 @@ public class JumpInGameTest {
 	private GameBoard board;
 	private Mushroom mushroom;
 	private Rabbit rabbit;
+	private Fox fox;
 	
 	/**
 	 * Sets up variables for tests
@@ -28,6 +29,7 @@ public class JumpInGameTest {
 		board = game.getBoard();
 		mushroom = new Mushroom();
 		rabbit = new Rabbit(RabbitColor.GREY);
+		fox = new Fox(Direction.NORTH, 1);
 	}
 	
 	/**
@@ -48,6 +50,29 @@ public class JumpInGameTest {
 		game.addPieceToBoard(mushroom, 3, 1);
 		game.movePiece(rabbit, Direction.SOUTH);
 		assertEquals("Expected grey rabbit at this location", "Grey Rabbit", board.getHole(3, 2).toString());
+	}
+	
+	/**
+	 * Test movePiece method by moving a piece to an occupied spot
+	 */
+	@Test
+	public void testMovePieceToInvalidSpot() {
+		game.addPieceToBoard(rabbit, 3, 0);
+		game.addPieceToBoard(mushroom, 3, 1);
+		game.addPieceToBoard(mushroom, 3, 2);
+		game.movePiece(rabbit, Direction.SOUTH);
+		assertEquals("Expected mushroom at this location", "MS", board.getHole(3, 2).toString());
+	}
+	
+	/**
+	 * Test movePiece method by moving a piece to an out of bounds spot
+	 */
+	@Test 
+	public void testMovePeiceOutOfBounds() {
+		game.addPieceToBoard(rabbit, 3, 1);
+		game.addPieceToBoard(mushroom, 3, 0);
+		game.movePiece(rabbit, Direction.NORTH);
+		assertEquals("Expecting Rabbit in the same spot", "Grey Rabbit", board.getHole(3, 1),toString());
 	}
 	
 	/**
@@ -108,6 +133,32 @@ public class JumpInGameTest {
 		assertEquals("Expecting Grey Rabbit at (3, 2)", "Grey Rabbit", board.getHole(3, 2).toString());
 		game.redoMoveAction();
 		assertEquals("Expecting Grey Rabbit at (3, 4)", "Grey Rabbit", board.getHole(3, 4).toString());
+	}
+	
+	/**
+	 * Test setPiece method
+	 */
+	@Test
+	public void testSetPiece() {
+		game.setPiece(rabbit);
+		assertEquals("Expecting Grey Rabbit", "Grey Rabbit", game.getPiece().toString());
+		
+	}
+	/**
+	 * Test getPiece method
+	 */
+	@Test
+	public void testGetPiece() {
+		game.addPieceToBoard(rabbit, 3, 2);
+		assertEquals("Expecting Grey Rabbit", "Grey Rabbit", board.getHole(3,2).getPiece().toString());
+	}
+	/**
+	 * Test getDirection method
+	 */
+	@Test
+	public void testGetDirection() {
+		fox = new Fox(Direction.NORTH, 1);
+		assertEquals("Expecting NORTH", "NORTH", fox.getDirection());
 	}
 
 }
