@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 import view.*;
 import model.*;
 
-public class BoardButtonController implements ActionListener {
+public class GameBoardButtonController implements ActionListener {
 	private JumpInGame game;
 	
-	public BoardButtonController(JumpInGame game) {
+	public GameBoardButtonController(JumpInGame game) {
 		this.game = game;
 	}
 	
@@ -18,7 +18,7 @@ public class BoardButtonController implements ActionListener {
 		int row = b.getRow();
 		int column = b.getColumn();
 		if (game.getBoard().getHole(column, row).isOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
-			game.setPiece((MoveablePiece) game.getBoard().getHole(column, row).getPiece());
+			game.setPiece((MoveablePiece) game.getBoard().getHole(column, row).getPiece()); //  change to game.savePieceAt(int c, int r)
 		}
 	}
 }

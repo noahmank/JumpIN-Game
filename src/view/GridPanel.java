@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 
 import javax.swing.JPanel;
-import controller.BoardButtonController;
+import controller.GameBoardButtonController;
 import model.Fox;
 import model.JumpInGame;
 import model.Mushroom;
@@ -13,18 +13,18 @@ import model.Rabbit;
 
 public class GridPanel extends JPanel implements JumpInGameListener {
 	private BoardButton[][] boardGrid;
-	private BoardButtonController controller;
+	private GameBoardButtonController controller;
 	private JumpInGame g;
 	private int columns;
 	private int rows;
 	
-	public GridPanel(JumpInGame g) {
+	public GridPanel(JumpInGame g, GameBoardButtonController c) {
 		super();
 		this.columns = 5;
 		this.rows = 5;
 		this.boardGrid = new BoardButton[columns][rows];
 		this.g = g;
-		this.controller = new BoardButtonController(this.g);
+		this.controller = c;
 		this.setLayout(new GridLayout(5, 5));	
 		//Setting grid color
     	for (int i = 0; i < 5; i++) {

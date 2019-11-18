@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+
+import controller.GameBoardButtonController;
 import model.JumpInGame;
 
 public class GameFrame extends JFrame {
@@ -14,7 +16,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(JumpInGame game, JumpInView view) {
 		super("Jump-In Game");
 		
-    	this.gridPanel = new GridPanel(game);
+    	this.gridPanel = new GridPanel(game, new GameBoardButtonController(game));
         this.arrowPanel = new ArrowPanel(game);
         this.consoleOutputPanel = new ConsoleOutputPanel(game);
         this.menuBar = new GameMenuBar(game, view);
