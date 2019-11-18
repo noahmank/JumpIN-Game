@@ -7,9 +7,19 @@ import javax.swing.JButton;
 
 import model.JumpInGame;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public class SolverButtonController implements ActionListener {
+	
 	private JumpInGame game;
 	
+	/**
+	 * Instantiates the solver button controller
+	 * @param g is the JumpIn game model
+	 */
 	public SolverButtonController(JumpInGame g) {
 		this.game = g;
 	}

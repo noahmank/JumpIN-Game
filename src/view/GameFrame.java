@@ -9,14 +9,14 @@ import model.JumpInGame;
 
 public class GameFrame extends JFrame {
 	private ArrowButtonPanel arrowPanel;
-	private GridPanel gridPanel;
+	private BoardGrid gridPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
 	private GameMenuBar menuBar;
 	
 	public GameFrame(JumpInGame game, JumpInView view) {
 		super("Jump-In Game");
 		
-    	this.gridPanel = new GridPanel(game, new GameBoardButtonController(game));
+    	this.gridPanel = new BoardGrid(game, new GameBoardButtonController(game));
         this.arrowPanel = new ArrowButtonPanel(game);
         this.consoleOutputPanel = new ConsoleOutputPanel(game);
         this.menuBar = new GameMenuBar(game, view);

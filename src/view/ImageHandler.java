@@ -6,7 +6,17 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public final class ImageHandler {
+	/**
+	 * 
+	 * @param imageName is the name of the image
+	 * @return the desired image
+	 */
 	public static URL getImageURL(String imageName) {
 		return JumpInView.class.getResource("/images/" + imageName);
 	}

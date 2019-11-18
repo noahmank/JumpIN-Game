@@ -10,10 +10,20 @@ import javax.swing.JLabel;
 import controller.FrameViewController;
 import model.JumpInGame;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public class InstructionsFrame extends JFrame {
 	private JumpInView view;
 	private FrameModePanel frameModePanel;
 	private ChallengeSelectPanel challengeSelectPanel;
+	/**
+	 * Constructing a frame containing all the game rules, the Start game Button and the Solve game Button
+	 * @param g
+	 * @param v
+	 */
 	public InstructionsFrame(JumpInGame g, JumpInView v) {
 		super("Welcome to Jump-In Game");
 		this.view = v;
