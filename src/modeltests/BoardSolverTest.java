@@ -33,24 +33,8 @@ public class BoardSolverTest {
 		greyRabbit = new Rabbit(RabbitColor.GREY);
 		whiteRabbit = new Rabbit(RabbitColor.WHITE);
 		brownRabbit = new Rabbit(RabbitColor.BROWN);
-		
 		fox1 = new Fox(Direction.SOUTH, 1);
 		fox2 = new Fox(Direction.EAST, 2);
-		/*
-		// Add pieces to GameBoard
-		gameboard.addPiece(greyRabbit, 3, 0);
-		gameboard.addPiece(whiteRabbit, 4, 2);
-		gameboard.addPiece(brownRabbit, 1, 4);
-		gameboard.addPiece(fox1, 1, 0);
-		gameboard.addPiece(fox2, 3, 3);
-		gameboard.addPiece(new Mushroom(), 3, 1);
-		gameboard.addPiece(new Mushroom(), 2, 4);
-		gameboardCopy = new GameBoard(gameboard);
-		// Initialize solver and solve
-
-		solver = new BoardSolver(gameboard);
-		solver.solveBoard();
-		*/
 	}
 	
 	/**
@@ -59,7 +43,6 @@ public class BoardSolverTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		
 		gameboard = null;
 		solver = null;
 		greyRabbit = null;
