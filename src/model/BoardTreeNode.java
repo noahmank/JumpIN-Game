@@ -70,6 +70,12 @@ public class BoardTreeNode {
 		return this.childrenNodes;
 	}
 	
+	/**
+	* Equals method for the BoardTreeNode class
+	* @param o is the object to be compared to
+	* @return boolean value whether the objects are
+	* equal (true) or not (false)
+	*/
 	@Override
 	public boolean equals(Object o) {
 		if(this == o) return true;
@@ -100,6 +106,10 @@ public class BoardTreeNode {
 		}
 	}
 	
+	/**
+	* creates a string representation of the node
+	* @return String representation of node
+	*/
 	@Override
 	public String toString() {
 		return this.action.toString();
