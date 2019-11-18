@@ -127,6 +127,34 @@ public class GameBoardTest {
 	}
 	
 	/**
+	* Tests the addPiece method with fox pieces specifically adding fox to a hill
+	*/
+	@Test
+	public void testAddingFoxPieceOnHill() {
+		gameboard.addPiece(fox, 2, 0);
+		assertEquals("Expecting 'RH'", "RH", gameboard.getHole(2,0).toString());
+	}
+	
+	/**
+	* Tests the addPiece method with fox pieces specifically adding fox to space already occupied
+	*/
+	@Test
+	public void testAddingFoxPieceOnOccupiedSpace() {
+		gameboard.addPiece(mushroom, 2, 0);
+		gameboard.addPiece(fox, 2, 0);
+		assertEquals("Expecting 'MS'", "MS", gameboard.getHole(2,0).toString());
+	}
+	
+	/**
+	* Tests the addPiece method with fox pieces specifically adding fox to a Brown hole
+	*/
+	@Test
+	public void testAddingFoxPieceOnBronHole() {
+		gameboard.addPiece(fox, 0, 0);
+		assertEquals("Expecting 'BH'", "BH", gameboard.getHole(0,0).toString());
+	}
+	
+	/**
 	* Tests the addPiece method with rabbit pieces specifically
 	*/
 	@Test
@@ -204,6 +232,8 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testGetMushrooms() {
+		gameboard.addPiece(mushroom, 3, 1);
+		assertEquals("Expecting MS", "{MS=java.awt.Point[x=3,y=1]}", gameboard.getMushrooms().toString());
 	}
 	
 	/**
@@ -211,6 +241,8 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testGetRabbits() {
+		gameboard.addPiece(rabbit, 3, 1);
+		assertEquals("Expecting Grey Rabbit", "{Grey Rabbit=java.awt.Point[x=3,y=1]}", gameboard.getRabbits().toString());
 	}
 	
 	/**
@@ -218,7 +250,8 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testGetFoxes() {
-		
+		gameboard.addPiece(fox, 3, 1);
+		assertEquals("Expecting Fox 1", "{Fox 1=java.awt.Point[x=3,y=1]}", gameboard.getFoxes().toString());
 	}
 	
 	/**
