@@ -27,6 +27,7 @@ public class InstructionsFrame extends JFrame {
     	 
 		this.add(start, BorderLayout.SOUTH);
 		this.setSize(700, 700);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
