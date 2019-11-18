@@ -6,11 +6,11 @@ import controller.DirectionButtonController;
 import model.Direction;
 import model.JumpInGame;
 
-public class ArrowPanel extends JPanel  implements JumpInGameListener {
+public class ArrowButtonPanel extends JPanel  implements JumpInGameListener {
 	DirectionButtonController controller;
 	JumpInGame g;
 	
-	public ArrowPanel(JumpInGame g) {
+	public ArrowButtonPanel(JumpInGame g) {
 		super();
 		this.g = g;
 		this.controller = new DirectionButtonController(this.g);
