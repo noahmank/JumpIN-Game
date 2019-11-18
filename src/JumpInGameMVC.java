@@ -11,6 +11,8 @@ public class JumpInGameMVC {
 	public static void main(String[] args) {
 		JumpInGame game = new JumpInGame();
 		new JumpInView(game);
+		//Need to add Buttons for choosing challenge
+		//Select challenge 1 for one
 		game.challenge(1);
 	}
 
