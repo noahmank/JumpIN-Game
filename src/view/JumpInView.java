@@ -1,11 +1,12 @@
 package view;
-/**
-* The view implementation for the game
-*
-*/
+
 import javax.swing.*;
 import model.*;
 
+/**
+* The main view class for the game, that manages the various JFrames
+*
+*/
 public class JumpInView extends JFrame {
 	private JumpInGame game;
 	private GameFrame gameFrame;
@@ -14,9 +15,7 @@ public class JumpInView extends JFrame {
 
 	/**
 	 * 
-	 * @param g is the game
-	 * @param columns is the number of columns
-	 * @param rows is the number of rows
+	 * @param game that the view is based on
 	 */
 	public JumpInView(JumpInGame game) {
 		this.game = game;
