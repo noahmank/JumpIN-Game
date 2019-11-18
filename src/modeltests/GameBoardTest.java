@@ -46,7 +46,19 @@ public class GameBoardTest {
 		mushroom = null;
 		fox = null;
 	}
-
+	
+	/**
+	 * tests applyActionToBoard method
+	 */
+	@Test
+	public void testApplyActionToBoard() {
+		GameBoard newBoard = new GameBoard();
+		gameboard.addPiece(rabbit, 3, 0);
+		gameboard.addPiece(mushroom, 3, 1);
+		newBoard = gameboard.applyActionToBoard(rabbit, Direction.SOUTH);
+		assertEquals("Expecting 'Grey Rabbit' at new location", "Grey Rabbit", newBoard.getHole(3, 2).toString());
+	}
+	
 	/**
 	* Tests the ResetBoard method
 	*/
@@ -56,6 +68,22 @@ public class GameBoardTest {
 		assertEquals("Expected 'BH'", "BH", gameboard.getHole(4, 4).toString());
 		assertEquals("Expected '  '", "  ", gameboard.getHole(1, 2).toString());
 		assertEquals("Expected 'RH'", "RH", gameboard.getHole(4, 2).toString());
+	}
+	
+	/**
+	 * Tests getNumColumns method
+	 */
+	@Test
+	public void testGetNumColumns() {
+		assertEquals("Expecting 5 for the number of columns of the default board", 5, gameboard.getNumColumns());
+	}
+	
+	/**
+	 * Tests getNumRows method
+	 */
+	@Test
+	public void testGetNumRows() {
+		assertEquals("Expecting 5 for the number of rows of the default board", 5, gameboard.getNumRows());
 	}
 	
 	/**
@@ -74,6 +102,16 @@ public class GameBoardTest {
 	public void testInitializeRaisedHole() {
 		gameboard.initializeRaisedHole(2, 2);
 		assertEquals("Expected 'RH'", "RH", gameboard.getHole(2, 2).toString());
+	}
+	
+	/**
+	 * Tests the getHole Method
+	 */
+	@Test
+	public void testGetHoleMethod() {
+		Hole hole = new Hole();
+		hole = gameboard.getHole(2, 2);
+		assertEquals("Expected 'BH'", "BH", hole.toString());
 	}
 	
 	/**
@@ -186,6 +224,44 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testGetFoxes() {
+		
+	}
+	
+	/**
+	*Tests setting the Mushrooms
+	*/
+	@Test
+	public void testSetMushrooms() {
+	}
+	
+	/**
+	* Tests setting the Rabbits
+	*/
+	@Test
+	public void testSetRabbits() {
+	}
+	
+	/**
+	* Tests setting the Foxes
+	*/
+	@Test
+	public void testSetFoxes() {
+		
+	}
+	
+	/**
+	 * tests getting the grid
+	 */
+	@Test
+	public void testGetGrid() {
+		
+	}
+	
+	/**
+	 * tests setting the grid
+	 */
+	@Test
+	public void testSetGrid() {
 		
 	}
 }	
