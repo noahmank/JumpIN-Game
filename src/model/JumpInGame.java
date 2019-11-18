@@ -23,6 +23,7 @@ public class JumpInGame {
 	private String consoleOutput;
 	private BoardSolver solver;
 	private int selectedChallenge;
+	private int numChallenges;
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
@@ -36,6 +37,8 @@ public class JumpInGame {
 		direction = null;
 		consoleOutput = null;
 		solver = null;
+		selectedChallenge = 1;
+		numChallenges = 3;
 	}
 	
 	public void movePiece(MoveAction move) {
@@ -200,10 +203,14 @@ public class JumpInGame {
 	}
 	
 	public void setSelectedChallenge(int i) {
-		this.selectedChallenge = i;
+		if(i > 0 && i <= this.numChallenges) this.selectedChallenge = i;
 	}
 	
 	public int getSelectedChallenge() {
 		return this.selectedChallenge;
+	}
+	
+	public int getNumChallenges() {
+		return this.numChallenges;
 	}
 }

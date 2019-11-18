@@ -32,6 +32,7 @@ public class FrameViewController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		JButton source = (JButton) event.getSource();
+		game.startChallenge();
 		if (source.getText().equals("Click here to Start Game")) {
 			jumpInView.toGameFrame();
 			this.game.setConsoleOutput("Challenge " + this.game.getSelectedChallenge() + ": Begun");

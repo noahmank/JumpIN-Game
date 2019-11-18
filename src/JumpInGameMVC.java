@@ -13,8 +13,6 @@ public class JumpInGameMVC {
 		new JumpInView(game);
 		//Need to add Buttons for choosing challenge
 		//Select challenge 1 for one
-		game.setSelectedChallenge(2);
-		game.startChallenge();
 	}
 
 }
