@@ -12,7 +12,7 @@ import java.util.Stack;
 public class BoardSolver {
 	private GameBoard initialBoard;
 	private BoardTree boardTree;
-	private LinkedList<BoardTreeNode> checkNodes;
+	private LinkedList<BoardTreeNode> nodesToCheck;
 	private BoardTreeNode solvedNode;
 	private Stack<MoveAction> solution;
 	private ArrayList<BoardTreeNode> checkedNodes;
@@ -25,7 +25,7 @@ public class BoardSolver {
 		this.initialBoard = new GameBoard(board);
 		// Root node has no action and no parent
 		boardTree = new BoardTree(new BoardTreeNode(this.initialBoard, null, null));
-		checkNodes = new LinkedList<>();
+		nodesToCheck = new LinkedList<>();
 		checkedNodes = new ArrayList<>();
 		solvedNode = null;
 		solution = new Stack<>();
@@ -36,21 +36,21 @@ public class BoardSolver {
 	 * @return the solution, containing all the actions performed to solve challenge
 	 */
 	public void solveBoard() {
-		BoardTreeNode checkNode;
-		checkNodes.add(boardTree.getRoot());
+		BoardTreeNode currentNode;
+		nodesToCheck.add(boardTree.getRoot());
 		int i = 0;
-		while((!checkNodes.isEmpty()) && (i <= 1000000)) {
-			checkNode = checkNodes.pop();
-			if(checkNode.getBoard().isFinished()) {
-				solvedNode = checkNode;
+		while((!nodesToCheck.isEmpty()) && (i <= 1000000)) {
+			currentNode = nodesToCheck.pop();
+			if(currentNode.getBoard().isFinished()) {
+				solvedNode = currentNode;
 				calculateActionsToSolve();
 				break;
 			}
 			else {
-				if(!checkedNodes.contains(checkNode)) {
-					checkNode.populateChildren();
-					checkedNodes.add(checkNode);
-					checkNodes.addAll(checkNode.getChildren());
+				if(!checkedNodes.contains(currentNode)) {
+					currentNode.populateChildren();
+					checkedNodes.add(currentNode);
+					nodesToCheck.addAll(currentNode.getChildren());
 				}
 			}
 			i++;
