@@ -1,6 +1,6 @@
 package view;
 
-public interface View {
+public interface JumpInGameListener {
 	public void updateView();
 	public void subscribeToModel();
 }

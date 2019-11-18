@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 import controller.FileMenuController;
 import model.JumpInGame;
 
-public class FileMenu extends JMenu implements View{
+public class FileMenu extends JMenu implements JumpInGameListener{
 	FileMenuController controller;
 	JumpInView view;
 	JumpInGame game;

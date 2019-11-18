@@ -11,7 +11,7 @@ import model.JumpInGame;
 import model.Mushroom;
 import model.Rabbit;
 
-public class GridPanel extends JPanel implements View {
+public class GridPanel extends JPanel implements JumpInGameListener {
 	private BoardButton[][] boardGrid;
 	private BoardButtonController controller;
 	private JumpInGame g;

@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import model.JumpInGame;
 
-public class ConsoleOutputPanel extends JPanel implements View {
+public class ConsoleOutputPanel extends JPanel implements JumpInGameListener {
 	private JTextField output;
 	private JumpInGame g;
 	
