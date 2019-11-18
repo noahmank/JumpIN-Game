@@ -6,10 +6,6 @@ import model.*;
 */
 
 import static org.junit.Assert.*;
-
-import java.awt.Point;
-import java.util.HashMap;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +13,6 @@ import org.junit.Test;
 public class GameBoardTest {
 	
 	private GameBoard gameboard;
-	private Direction direction;
 	private Mushroom mushroom;
 	private Fox fox;
 	private Rabbit rabbit;
@@ -30,7 +25,7 @@ public class GameBoardTest {
 	public void setUp() throws Exception {
 		gameboard = new GameBoard();
 		mushroom = new Mushroom();
-		fox = new Fox(direction.NORTH, 1);
+		fox = new Fox(Direction.NORTH, 1);
 		rabbit = new Rabbit(RabbitColor.GREY);
 	}
 	
@@ -42,7 +37,6 @@ public class GameBoardTest {
 	public void tearDown() throws Exception {
 		gameboard = null;
 		rabbit = null;
-		direction = null;
 		mushroom = null;
 		fox = null;
 	}
