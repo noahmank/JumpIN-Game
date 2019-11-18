@@ -6,16 +6,15 @@ import javax.swing.JMenuItem;
 import model.*;
 
 /**
- * 
+ * Controller for the EditMenu
  * @author RunTime Terror
  *
  */
 public class EditMenuController implements ActionListener {
-	
 	private JumpInGame game;
 	
 	/**
-	 * Instantiates the 'Edit' menu handler
+	 * Instantiates the 'Edit' menu controller
 	 * @param game is the JumpIn game Model
 	 */
 	public EditMenuController(JumpInGame game) {
