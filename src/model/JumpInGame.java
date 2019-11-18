@@ -41,10 +41,21 @@ public class JumpInGame {
 		numChallenges = 3;
 	}
 	
+	/**
+	* A method that calls the movePiece function with specific 
+	* direction and piece used in undo and redo
+	* @param move is the MoveAction 
+	*/
 	public void movePiece(MoveAction move) {
 		movePiece(move.getPiece(), move.getDirection());
 	}
 	
+	/**
+	* movePiece method takes a moveable piece and moves it in the
+	*specified direction
+	* @param p is the moveable piece
+	* @param direction is the direction in which you wish to move the piece
+	*/
 	public void movePiece(MoveablePiece p, Direction direction) {
 		if(this.gameStatus == GameStatus.IN_PROGRESS) {
 			if(gameBoard.canMovePiece(p, direction)) this.consoleOutput = p.toString() + " was moved " + direction.toString();
@@ -71,6 +82,10 @@ public class JumpInGame {
 		gameBoard.addPiece(piece, column, row);
 	}
 	
+	/**
+	* A method to reset the challenge,
+	* resets all the pieces on the board
+	*/
 	public void resetChallenge() {
 		gameBoard.resetAllPieces();
 		notifyViews();
@@ -172,49 +187,92 @@ public class JumpInGame {
 		}
 	}
 	
+	/**
+	* a setter for the piece
+	* @param piece is the piece you wish to set it to
+	*/
 	public void setPiece(MoveablePiece piece) {
 		this.piece = piece;
 	}
-
+	
+	/**
+	* a setter for the direction
+	* @param direction is the direction you wish to set it to
+	*/
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 	
+	/**
+	* gets the piece value
+	* @return the value of the MoveablePiece object
+	*/
 	public MoveablePiece getPiece() {
 		return this.piece;
 	}
 	
+	/**
+	* gets the direction
+	* @return the specified direction
+	*/
 	public Direction getDirection() {
 		return this.direction;
 	}
 	
+	/**
+	* getter for console ouput
+	* @return the colsole output as a string
+	*/
 	public String getConsoleOutput() {
 		return consoleOutput;
 	}
 	
+	/**
+	* a setter for the console output
+	* @param s is the string value you wish to set as the console output
+	*/
 	public void setConsoleOutput(String s) {
 		this.consoleOutput = s;
 		notifyViews();
 	}
 
+	/**
+	* a method that solves the game
+	*/
 	public void solveGame() {
 		this.solver = new BoardSolver(this.gameBoard);
 		solver.solveBoard();
 	}
 	
+	/**
+	* a method that calculates the next move for the solution
+	*/
 	public void doNextMoveFromSolution() {
 		MoveAction nextMove = this.solver.getNextActionToSolve();
 		if(nextMove != null) this.movePiece(nextMove);
 	}
 	
+	/**
+	* a setter for the challenge of the board
+	* @param i is the level number you wish to set the challenge to
+	*/
 	public void setSelectedChallenge(int i) {
 		if(i > 0 && i <= this.numChallenges) this.selectedChallenge = i;
 	}
 	
+	/**
+	* a getter for the selected challenge
+	* @return an integer of the challenge level that is 
+	* the current selected challenge
+	*/
 	public int getSelectedChallenge() {
 		return this.selectedChallenge;
 	}
 	
+	/**
+	* a getter for the number of challenges available
+	* @return integer value of the number of challenges
+	*/
 	public int getNumChallenges() {
 		return this.numChallenges;
 	}
