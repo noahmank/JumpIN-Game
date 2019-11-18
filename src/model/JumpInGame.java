@@ -81,7 +81,35 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
-			this.consoleOutput = "Challenge 1: Begun";
+			this.consoleOutput = "Challenge 1: Started";
+			this.gameStatus = GameStatus.IN_PROGRESS;
+			notifyViews();
+		}
+		else if(challenge ==  2) {
+			System.out.println("Challenge 2 started.");
+			this.addPieceToBoard(new Mushroom(), 0, 1);
+			this.addPieceToBoard(new Mushroom(), 0, 2);
+			this.addPieceToBoard(new Mushroom(), 0, 4);
+			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 1, 0);
+			this.addPieceToBoard(new Rabbit(RabbitColor.BROWN), 3, 0);
+			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 4, 1);
+			this.addPieceToBoard(new Fox(Direction.NORTH, 1), 1, 2);
+			this.addPieceToBoard(new Fox(Direction.WEST, 2), 2, 3);
+			this.consoleOutput = "Challenge 2: Started";
+			this.gameStatus = GameStatus.IN_PROGRESS;
+			notifyViews();
+		}
+		else if(challenge == 3) {
+			System.out.println("Challenge 3 started.");
+			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 0, 3);
+			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 3, 1);
+			this.addPieceToBoard(new Rabbit(RabbitColor.BROWN), 4, 2);
+			this.addPieceToBoard(new Mushroom(), 3, 0);
+			this.addPieceToBoard(new Mushroom(), 2, 2);
+			this.addPieceToBoard(new Mushroom(), 4, 4);
+			this.addPieceToBoard(new Fox(Direction.EAST, 1), 0, 1);
+			this.addPieceToBoard(new Fox(Direction.WEST, 2), 3, 3);
+			this.consoleOutput = "Challenge 3: Begun";
 			this.gameStatus = GameStatus.IN_PROGRESS;
 			notifyViews();
 		}
