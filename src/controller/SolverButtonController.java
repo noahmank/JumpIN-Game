@@ -18,11 +18,11 @@ public class SolverButtonController implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		JButton source = (JButton) event.getSource();
 		if (source.getText().equals("Solve Board")) {
-			// Solve Board
+			this.game.solveGame();
 			source.setText("Do next move");
 		}
-		if (source.getText().equals("Do next move")) {
-			// Apply next solve board move to board
+		else if (source.getText().equals("Do next move")) {
+			this.game.doNextMoveFromSolution();
 		}
 	}
 

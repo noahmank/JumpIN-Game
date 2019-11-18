@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+
+import model.JumpInGame;
 import view.*;
 
 /**
@@ -10,15 +12,16 @@ import view.*;
  */
 public class FrameViewController implements ActionListener {
 	private JumpInView jumpInView;
-
+	private JumpInGame game;
 	/**
 	 * Constructor for the JumpInController
 	 * 
 	 * @param game is the JumpInGame
 	 * @param homeView is the view of the game
 	 */
-	public FrameViewController(JumpInView gameView) {
+	public FrameViewController(JumpInGame game, JumpInView gameView) {
 		this.jumpInView = gameView;
+		this.game = game;
 	}
 
 	/**
@@ -31,9 +34,11 @@ public class FrameViewController implements ActionListener {
 		JButton source = (JButton) event.getSource();
 		if (source.getText().equals("Click here to Start Game")) {
 			jumpInView.toGameFrame();
+			this.game.setConsoleOutput("Challenge 1: Begun");
 		}
 		if (source.getText().equals("Click here to Solve Game")) {
 			jumpInView.toSolverFrame();
+			this.game.setConsoleOutput("Challenge 1 Solver: Begun");
 		}
 	}
 }

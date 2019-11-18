@@ -8,15 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.FrameViewController;
+import model.JumpInGame;
 
 public class InstructionsFrame extends JFrame {
 	private JumpInView view;
 	private FrameModePanel frameModePanel;
 	
-	public InstructionsFrame(JumpInView v) {
+	public InstructionsFrame(JumpInGame g, JumpInView v) {
 		super("Welcome to Jump-In Game");
 		this.view = v;
-		this.frameModePanel = new FrameModePanel(this.view);
+		this.frameModePanel = new FrameModePanel(g, this.view);
 		
     	JLabel ruleText = new JLabel("<html>Welcome to The JumpIn Game.<br/><br/>GAME RULES<br/> "    			
     			+ "1) The Objective of the game is to move the rabbits and foxes around the gameboard until all of the rabbits are safe in brown holes.<br/> "

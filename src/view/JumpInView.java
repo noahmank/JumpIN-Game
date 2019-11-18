@@ -21,7 +21,7 @@ public class JumpInView extends JFrame {
 	public JumpInView(JumpInGame game) {
 		this.game = game;
 		//Setting up frame to display rules and challenges
-		instructionsFrame = new InstructionsFrame(this);	
+		instructionsFrame = new InstructionsFrame(game, this);	
 		//Setting up frame to display game
 		gameFrame = new GameFrame(this.game, this);
 		// Setting up frame to display solver

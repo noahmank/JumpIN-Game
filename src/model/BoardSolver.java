@@ -77,7 +77,8 @@ public class BoardSolver {
 	}
 	
 	public MoveAction getNextActionToSolve() {
-		return solution.pop();
+		if(!solution.isEmpty()) return solution.pop();
+		else return null;
 	}
 	
 	public Stack<MoveAction> getSolution() {

@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import controller.SolverButtonController;
-import model.Direction;
 import model.JumpInGame;
 
 public class SolverButtonPanel extends JPanel {

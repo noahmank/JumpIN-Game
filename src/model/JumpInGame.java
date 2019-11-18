@@ -21,6 +21,7 @@ public class JumpInGame {
 	private MoveablePiece piece;
 	private Direction direction;
 	private String consoleOutput;
+	private BoardSolver solver;
 
 	/**
 	 * the JumpInGame constructor builds the default game board
@@ -34,6 +35,7 @@ public class JumpInGame {
 		piece = null;
 		direction = null;
 		consoleOutput = null;
+		solver = null;
 	}
 	
 	public void movePiece(MoveAction move) {
@@ -81,7 +83,6 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
-			this.consoleOutput = "Challenge 1: Begun";
 			this.gameStatus = GameStatus.IN_PROGRESS;
 			notifyViews();
 		}
@@ -165,6 +166,16 @@ public class JumpInGame {
 	
 	public void setConsoleOutput(String s) {
 		this.consoleOutput = s;
+		notifyViews();
 	}
 
+	public void solveGame() {
+		this.solver = new BoardSolver(this.gameBoard);
+		solver.solveBoard();
+	}
+	
+	public void doNextMoveFromSolution() {
+		MoveAction nextMove = this.solver.getNextActionToSolve();
+		if(nextMove != null) this.movePiece(nextMove);
+	}
 }
