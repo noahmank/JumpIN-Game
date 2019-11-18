@@ -41,7 +41,7 @@ This submission includes an up-to-date UML diagram, source code and executable c
 This submission includes the updates UML diagram, source code and along with documentation and in addition, a GUI component for the game.
 
 ### Deliverable 3
-This submission includes the updates UML diagram, source code and along with documentation and in addition, an updated GUI component for the game and a game solver for the game.
+This submission includes the updated UML diagram, source code, test cases, along with documentation. In addition, an updated GUI component, a game solver, as well as undo and redo buttons.
 
 # Advancement
 
@@ -55,7 +55,7 @@ to only implement one puzzle challenge, challenge 1. We plan to expand this to a
 The GUI of the game has been implemented using the MVC Design pattern. This version allows the user to play the game using Buttons on a window and manipulate movable pieces using direction arrows at the bottom of the window. The puzzle challenge implemented is the same as challenge 1 in deliverable 1.
 
 ### Deliverable 3
-A game solver is implemented and integrated in the GUI as well. There are updates on the GUI to accomodate this and some changes were made to improve the GUI aesthetics.
+A game solver was implemented and integrated in the GUI along with undo and redo functions. There are updates on the GUI to accomodate this and some changes were made to improve the GUI aesthetics, including new foxes, rabbits, mushrooms, colours, new buttons and more.  
 
 # Solution for Challenge 1
 
@@ -76,7 +76,7 @@ A lot of refactoring needs to be done; there are many methods (like start()) tha
 Exporting the project in its current state does not include the images - this will be remedied in the next deliverable, but for now it must be run through an IDE.
 
 ### Deliverable 3
-There's a some delay while the solver runs. User will have to wait for about 35 seconds before they get the option to see the minimum set of moves required to solve the game.
+There's is some delay while the solver running. The user will have to wait for about 35 seconds before they get the option to see the minimum set of moves required to solve the game.
 
 # Design
 
