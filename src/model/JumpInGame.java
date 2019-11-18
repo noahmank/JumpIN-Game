@@ -109,7 +109,7 @@ public class JumpInGame {
 			this.addPieceToBoard(new Mushroom(), 4, 4);
 			this.addPieceToBoard(new Fox(Direction.EAST, 1), 0, 1);
 			this.addPieceToBoard(new Fox(Direction.WEST, 2), 3, 3);
-			this.consoleOutput = "Challenge 3: Begun";
+			this.consoleOutput = "Challenge 3: Started";
 			this.gameStatus = GameStatus.IN_PROGRESS;
 			notifyViews();
 		}
