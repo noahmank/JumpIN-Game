@@ -5,13 +5,25 @@ import java.awt.event.ActionListener;
 import model.*;
 import view.*;
 
+/**
+ * Controller for the DirectionButtons
+ * @author Noah Mank
+ *
+ */
 public class DirectionButtonController implements ActionListener {
 	private JumpInGame game;
 	
+	/**
+	 * Constructor for a DirectionButtonController
+	 * @param game is the model that needs to be updated
+	 */
 	public DirectionButtonController(JumpInGame game) {
 		this.game = game;
 	}
 	
+	/**
+	 * Method that is called when a DirectionButton is pressed, updates Direction variable in model.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(game.getPiece() != null) {
