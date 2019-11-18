@@ -240,6 +240,17 @@ public class GameBoardTest {
 	*/
 	@Test
 	public void testSetFoxes() {
+		//Adding fox  with head on a brown hole
+		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 0, 1));
+		
+		//Adding a fox with head out of bounds
+		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 0, 0));
+		
+		//Adding fox with head on a rabbit piece
+		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 3, 0));
+		
+		//Adding fox in a valid Place
+		assertEquals("Expecting true", true, gameboard.canAddFox(fox, 1, 1));
 		
 	}
 	
