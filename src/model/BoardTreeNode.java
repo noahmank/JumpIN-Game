@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
