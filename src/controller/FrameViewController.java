@@ -34,11 +34,11 @@ public class FrameViewController implements ActionListener {
 		JButton source = (JButton) event.getSource();
 		if (source.getText().equals("Click here to Start Game")) {
 			jumpInView.toGameFrame();
-			this.game.setConsoleOutput("Challenge 1: Begun");
+			this.game.setConsoleOutput("Challenge " + this.game.getSelectedChallenge() + ": Begun");
 		}
 		if (source.getText().equals("Click here to Solve Game")) {
 			jumpInView.toSolverFrame();
-			this.game.setConsoleOutput("Challenge 1 Solver: Begun");
+			this.game.setConsoleOutput("Challenge " + this.game.getSelectedChallenge() + " Solver: Begun");
 		}
 	}
 }

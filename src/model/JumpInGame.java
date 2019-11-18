@@ -22,7 +22,7 @@ public class JumpInGame {
 	private Direction direction;
 	private String consoleOutput;
 	private BoardSolver solver;
-
+	private int selectedChallenge;
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
@@ -72,9 +72,9 @@ public class JumpInGame {
 	 * The challenge method constructs the board for the specified challenge
 	 * @param challenge is the number that identifies the challenge
 	 */
-	public void challenge(int challenge) {
+	public void startChallenge() {
 		
-		if(challenge == 1) {
+		if(this.selectedChallenge == 1) {
 			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 3, 0);
 			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 4, 2);
 			this.addPieceToBoard(new Rabbit(RabbitColor.BROWN), 1, 4);
@@ -82,11 +82,8 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 2), 3, 3);
 			this.addPieceToBoard(new Mushroom(), 3, 1);
 			this.addPieceToBoard(new Mushroom(), 2, 4);
-			this.consoleOutput = "Challenge 1: Started";
-			this.gameStatus = GameStatus.IN_PROGRESS;
-			notifyViews();
 		}
-		else if(challenge ==  2) {
+		else if(this.selectedChallenge ==  2) {
 			this.addPieceToBoard(new Mushroom(), 0, 1);
 			this.addPieceToBoard(new Mushroom(), 0, 2);
 			this.addPieceToBoard(new Mushroom(), 0, 4);
@@ -95,11 +92,8 @@ public class JumpInGame {
 			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 4, 1);
 			this.addPieceToBoard(new Fox(Direction.NORTH, 1), 1, 2);
 			this.addPieceToBoard(new Fox(Direction.WEST, 2), 2, 3);
-			this.consoleOutput = "Challenge 2: Started";
-			this.gameStatus = GameStatus.IN_PROGRESS;
-			notifyViews();
 		}
-		else if(challenge == 3) {
+		else if(this.selectedChallenge == 3) {
 			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 0, 3);
 			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 3, 1);
 			this.addPieceToBoard(new Rabbit(RabbitColor.BROWN), 4, 2);
@@ -108,10 +102,10 @@ public class JumpInGame {
 			this.addPieceToBoard(new Mushroom(), 4, 4);
 			this.addPieceToBoard(new Fox(Direction.EAST, 1), 0, 1);
 			this.addPieceToBoard(new Fox(Direction.WEST, 2), 3, 3);
-			this.consoleOutput = "Challenge 3: Started";
-			this.gameStatus = GameStatus.IN_PROGRESS;
-			notifyViews();
 		}
+		this.gameStatus = GameStatus.IN_PROGRESS;
+		this.consoleOutput = "Challenge " + this.selectedChallenge + ": Started";
+		notifyViews();
 	}
 	
 	/**
@@ -203,5 +197,13 @@ public class JumpInGame {
 	public void doNextMoveFromSolution() {
 		MoveAction nextMove = this.solver.getNextActionToSolve();
 		if(nextMove != null) this.movePiece(nextMove);
+	}
+	
+	public void setSelectedChallenge(int i) {
+		this.selectedChallenge = i;
+	}
+	
+	public int getSelectedChallenge() {
+		return this.selectedChallenge;
 	}
 }
