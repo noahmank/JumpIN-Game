@@ -13,6 +13,7 @@ import model.*;
  */
 public class BoardSolverTest {
 	private GameBoard gameboard;
+	private GameBoard gameboardCopy;
 	private BoardSolver solver;
 	private Rabbit greyRabbit;
 	private Rabbit whiteRabbit;
@@ -26,7 +27,17 @@ public class BoardSolverTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		// Initialize GameBoard
 		gameboard = new GameBoard();
+		// Initialize pieces
+		/*
+		greyRabbit = new Rabbit(RabbitColor.GREY);
+		whiteRabbit = new Rabbit(RabbitColor.WHITE);
+		brownRabbit = new Rabbit(RabbitColor.BROWN);
+		
+		fox1 = new Fox(Direction.SOUTH, 1);
+		fox2 = new Fox(Direction.EAST, 2);
+		// Add pieces to GameBoard
 		gameboard.addPiece(greyRabbit, 3, 0);
 		gameboard.addPiece(whiteRabbit, 4, 2);
 		gameboard.addPiece(brownRabbit, 1, 4);
@@ -34,15 +45,12 @@ public class BoardSolverTest {
 		gameboard.addPiece(fox2, 3, 3);
 		gameboard.addPiece(new Mushroom(), 3, 1);
 		gameboard.addPiece(new Mushroom(), 2, 4);
-		
+		gameboardCopy = new GameBoard(gameboard);
+		// Initialize solver and solve
+
 		solver = new BoardSolver(gameboard);
-		
-		greyRabbit = new Rabbit(RabbitColor.GREY);
-		whiteRabbit = new Rabbit(RabbitColor.WHITE);
-		brownRabbit = new Rabbit(RabbitColor.BROWN);
-		
-		fox1 = new Fox(Direction.SOUTH, 1);
-		fox2 = new Fox(Direction.EAST, 2);
+		solver.solveBoard();
+		*/
 	}
 	
 	/**
@@ -51,19 +59,20 @@ public class BoardSolverTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		
 		gameboard = null;
 		solver = null;
 		greyRabbit = null;
 		whiteRabbit = null;
 		brownRabbit = null;
 		fox1 = null;
-		fox2 = null;
+		fox2 = null;	
 	}
 
 	/**
 	 * tests solving the board 
 	 */
-	@Test
+	//@Test
 	public void testSolveBoardAndGetNextActionToSolve() {
 		gameboard = solver.getSolvedBoard();
 		
@@ -112,10 +121,63 @@ public class BoardSolverTest {
 	/**
 	 * tests getSolvedBoard method
 	 */
-	@Test
+	//@Test
 	public void testGetSolvedBoard() {
 		gameboard = solver.getSolvedBoard();
 		assertEquals("Expecting for a solved board", true,  gameboard.isFinished());
+		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.SOUTH);
+		gameboardCopy.moveRabbitPiece(whiteRabbit, Direction.WEST);
+		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.SOUTH);
+		gameboardCopy.moveRabbitPiece(brownRabbit, Direction.EAST);
+		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
+		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
+		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
+		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.WEST);
+		assertEquals("Expecting two boards to be equal", gameboardCopy, gameboard);
 	}
-
+	
+	@Test
+	public void testSolverAlreadySolvedOneRabbit() {
+		greyRabbit = new Rabbit(RabbitColor.GREY);
+		gameboard.addPiece(greyRabbit, 2, 2);
+		
+		solver = new BoardSolver(gameboard);
+		solver.solveBoard();
+		assertEquals("Expecting solved board to be the same as initial.", gameboard, solver.getSolvedBoard());
+		assertTrue("Expecting solution actions to be empty.", solver.getSolution().isEmpty());
+	}
+	
+	@Test
+	public void testSolverAlreadySolvedThreeRabbit() {
+		greyRabbit = new Rabbit(RabbitColor.GREY);
+		whiteRabbit = new Rabbit(RabbitColor.WHITE);
+		gameboard.addPiece(whiteRabbit, 0, 0);
+		gameboard.addPiece(greyRabbit, 2, 2);
+		
+		solver = new BoardSolver(gameboard);
+		solver.solveBoard();
+		assertEquals("Expecting solved board to be the same as initial.", gameboard, solver.getSolvedBoard());
+		assertTrue("Expecting solution actions to be empty.", solver.getSolution().isEmpty());
+	}
+	
+	@Test
+	public void testSolverOneRabbitOneMoveAway() {
+		greyRabbit = new Rabbit(RabbitColor.GREY);
+		gameboard.addPiece(new Mushroom(), 3, 2);
+		gameboard.addPiece(greyRabbit, 4, 2);
+		System.out.println(gameboard.toString());
+		
+		solver = new BoardSolver(gameboard);	
+		solver.solveBoard(); // this is changing gameboard
+		System.out.println(gameboard.toString());
+		GameBoard solvedBoard = new GameBoard();
+		solvedBoard.addPiece(greyRabbit, 2, 2);
+		solvedBoard.addPiece(new Mushroom(),  3, 2);
+		MoveAction move1 = new MoveAction(greyRabbit, Direction.WEST);
+		
+		
+		assertNotEquals("Expecting solved board to not be the same as initial.", gameboard, solver.getSolvedBoard());
+		assertEquals("Expecting two boards to be equal.", solvedBoard, solver.getSolvedBoard());
+		assertEquals("Expecting move action to be Grey Rabbit moving West", move1, solver.getNextActionToSolve());
+	}
 }

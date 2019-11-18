@@ -9,20 +9,20 @@ import java.util.Stack;
  *
  */
 public class BoardSolver {
-	GameBoard initialBoard;
-	BoardTree boardTree;
-	LinkedList<BoardTreeNode> checkNodes;
-	BoardTreeNode solvedNode;
-	Stack<MoveAction> solution;
+	private GameBoard initialBoard;
+	private BoardTree boardTree;
+	private LinkedList<BoardTreeNode> checkNodes;
+	private BoardTreeNode solvedNode;
+	private Stack<MoveAction> solution;
 	
 	/**
 	 * Constructs the Board solver with the given board game
 	 * @param board GameBoard object 
 	 */
 	public BoardSolver(GameBoard board) {
-		this.initialBoard = board;
+		this.initialBoard = new GameBoard(board);
 		// Root node has no action and no parent
-		boardTree = new BoardTree(new BoardTreeNode(board, null, null));
+		boardTree = new BoardTree(new BoardTreeNode(this.initialBoard, null, null));
 		checkNodes = new LinkedList<>();
 		solvedNode = null;
 		solution = new Stack<>();
@@ -35,17 +35,22 @@ public class BoardSolver {
 	public void solveBoard() {
 		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
-		
-		while(!checkNodes.isEmpty()) {
+		int i = 0;
+		while((!checkNodes.isEmpty()) && (i <= 100000000)) {
+			//if(i > 0)System.out.println("Need to check: " + checkNodes.toString());
 			checkNode = checkNodes.pop();
+			if(i > 0) System.out.println("Checking " + i + ": " + checkNode.toString()); // Debug String
 			if(checkNode.getBoard().isFinished()) {
 				solvedNode = checkNode;
 				calculateActionsToSolve();
+				System.out.println("Found solution!!!");
+				break;
 			}
 			else {
 				checkNode.populateChildren();
 				checkNodes.addAll(checkNode.getChildren());
 			}
+			i++;
 		}
 		// solvedNode will be null if no solution
 	}
@@ -70,5 +75,9 @@ public class BoardSolver {
 	
 	public MoveAction getNextActionToSolve() {
 		return solution.pop();
+	}
+	
+	public Stack<MoveAction> getSolution() {
+		return this.solution;
 	}
 }

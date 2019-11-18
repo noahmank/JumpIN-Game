@@ -93,10 +93,16 @@ public class BoardTreeNode {
 		for(MoveablePiece p : moveablePieces.keySet()) {
 			for(Direction d : Direction.values()) {
 				if(parentBoard.canMovePiece(p, d)) {
-					childBoard = parentBoard.applyActionToBoard(p, d);
+					childBoard = new GameBoard(parentBoard);
+					childBoard = childBoard.applyActionToBoard(p, d);
 					this.addChild(childBoard, new MoveAction(p,d));
 				}
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return this.action.toString();
 	}
 }

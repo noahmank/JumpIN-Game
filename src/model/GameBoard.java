@@ -39,10 +39,17 @@ public class GameBoard {
 	
 	public GameBoard(GameBoard board) {
 		this();
-		this.foxes = board.getFoxes();
-		this.rabbits = board.getRabbits();
-		this.mushrooms = board.getMushrooms();
-		this.grid = board.getGrid();
+		this.foxes = new LinkedHashMap<>(board.getFoxes());
+		this.rabbits = new LinkedHashMap<>(board.getRabbits());
+		this.mushrooms = new HashMap<>(board.getMushrooms());
+		HashMap<Piece, Point> pieces = new HashMap<>();
+		pieces.putAll(this.mushrooms);
+		pieces.putAll(this.foxes);
+		pieces.putAll(this.rabbits);
+		for(Piece p : pieces.keySet()) {
+			Point point = pieces.get(p);
+			this.addPiece(p, point.x, point.y);
+		}
 	}
 	
 	/**
@@ -383,5 +390,13 @@ public class GameBoard {
 	
 	private boolean spaceIsOnBoard(int column, int row) {
 		return !(column >= numColumns || row >= numRows || column < 0 || row < 0);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null || obj.getClass() != this.getClass()) return false;
+		GameBoard b = (GameBoard) obj;
+		return b.toString().equals(this.toString());
 	}
 }
