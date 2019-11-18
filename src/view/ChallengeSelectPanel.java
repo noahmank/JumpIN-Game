@@ -11,9 +11,19 @@ import javax.swing.JPanel;
 import controller.ChallengeSelectController;
 import model.JumpInGame;
 
+/**
+ * 
+ * @author Runtime Terror
+ *
+ */
 public class ChallengeSelectPanel extends JPanel {
+	
 	private JumpInGame game;
 	
+	/**
+	 * The challenge drop down panel
+	 * @param g is the JumpIn game model
+	 */
 	public ChallengeSelectPanel(JumpInGame g) {
 		super();
 		this.game = g;
