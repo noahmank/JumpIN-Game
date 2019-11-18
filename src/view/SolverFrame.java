@@ -4,15 +4,25 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import model.JumpInGame;
 
+/**
+ * 
+ * @author Runtime Terror
+ *
+ */
 public class SolverFrame extends JFrame {
-	private GridPanel gridPanel;
+	private BoardGrid gridPanel;
 	private SolverButtonPanel solverButtonPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
 	private SolverMenuBar menuBar;
 	
+	/**
+	 * Populating the Solver frame 
+	 * @param game is the JumpIN game Model
+	 * @param view is the JumpIN game view
+	 */
 	public SolverFrame(JumpInGame game, JumpInView view) {
 		super("Jump-In Solver");
-		this.gridPanel = new GridPanel(game, null);
+		this.gridPanel = new BoardGrid(game, null);
 		this.solverButtonPanel = new SolverButtonPanel(game);
 		this.consoleOutputPanel = new ConsoleOutputPanel(game);
 		this.menuBar = new SolverMenuBar(game, view);

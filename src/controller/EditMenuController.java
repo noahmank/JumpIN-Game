@@ -5,9 +5,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import model.*;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public class EditMenuController implements ActionListener {
+	
 	private JumpInGame game;
 	
+	/**
+	 * Instantiates the 'Edit' menu handler
+	 * @param game is the JumpIn game Model
+	 */
 	public EditMenuController(JumpInGame game) {
 		this.game = game;
 	}

@@ -5,9 +5,19 @@ import java.awt.event.ActionListener;
 import view.*;
 import model.*;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public class GameBoardButtonController implements ActionListener {
+	
 	private JumpInGame game;
 	
+	/**
+	 * Instantiates the game board button controller
+	 * @param game is the JumpIn game model
+	 */
 	public GameBoardButtonController(JumpInGame game) {
 		this.game = game;
 	}

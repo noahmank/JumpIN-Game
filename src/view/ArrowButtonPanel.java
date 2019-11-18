@@ -6,10 +6,19 @@ import controller.DirectionButtonController;
 import model.Direction;
 import model.JumpInGame;
 
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
 public class ArrowButtonPanel extends JPanel  implements JumpInGameListener {
 	DirectionButtonController controller;
 	JumpInGame g;
 	
+	/**
+	 * Constructs buttons that show the directions the user can select
+	 * @param g is the JumpIn game model
+	 */
 	public ArrowButtonPanel(JumpInGame g) {
 		super();
 		this.g = g;
@@ -31,6 +40,9 @@ public class ArrowButtonPanel extends JPanel  implements JumpInGameListener {
 	public void updateView() {
 	}
 	
+	/**
+	 * Subscribes the Arrow button panel to the JumpIn game model
+	 */
 	public void subscribeToModel() {
 		this.g.addView(this);
 	}

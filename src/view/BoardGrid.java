@@ -11,14 +11,25 @@ import model.JumpInGame;
 import model.Mushroom;
 import model.Rabbit;
 
-public class GridPanel extends JPanel implements JumpInGameListener {
+/**
+ * 
+ * @author RunTime Terror
+ *
+ */
+public class BoardGrid extends JPanel implements JumpInGameListener {
+	
 	private BoardButton[][] boardGrid;
 	private GameBoardButtonController controller;
 	private JumpInGame g;
 	private int columns;
 	private int rows;
 	
-	public GridPanel(JumpInGame g, GameBoardButtonController c) {
+	/**
+	 * Constructs the game board
+	 * @param g is the JumpIN game model
+	 * @param c is the JumpIN gameboard controller
+	 */
+	public BoardGrid(JumpInGame g, GameBoardButtonController c) {
 		super();
 		this.columns = 5;
 		this.rows = 5;
@@ -50,10 +61,16 @@ public class GridPanel extends JPanel implements JumpInGameListener {
     	subscribeToModel();
 	}
 	
+	/**
+	 * Subscribes the game board view to the JumpIN game model
+	 */
 	public void subscribeToModel() {
 		this.g.addView(this);
 	}
 	
+	/**
+	 * Handles the updating of the the BoardGrid
+	 */
 	public void updateView() {
 		for (int i = 0; i < columns; i++) {
 			for (int j = 0; j < rows; j++) {

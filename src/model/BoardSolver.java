@@ -66,6 +66,9 @@ public class BoardSolver {
 		return solvedNode.getBoard();
 	}
 	
+	/**
+	 * Determines the number of actions performed to reach end of game
+	 */
 	private void calculateActionsToSolve() {
 		BoardTreeNode currentNode = solvedNode;
 		
@@ -76,11 +79,19 @@ public class BoardSolver {
 		}
 	}
 	
+	/**
+	 * Gets the next action to be performed
+	 * @return the action 
+	 */
 	public MoveAction getNextActionToSolve() {
 		if(!solution.isEmpty()) return solution.pop();
 		else return null;
 	}
 	
+	/**
+	 * The Stack containing the solutions
+	 * @return the Stack
+	 */
 	public Stack<MoveAction> getSolution() {
 		return this.solution;
 	}
