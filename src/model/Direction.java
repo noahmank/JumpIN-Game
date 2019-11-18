@@ -38,10 +38,18 @@ public enum Direction {
 		return this.y;
 	}
 	
+	/**
+	* gets the image url for the direction
+	* @return image url based on what direction
+	*/
 	public String getSrc() {
 		return this.src;
 	}
 	
+	/**
+	* a method to get the opposite direction of the current one
+	* @return opposite direction
+	*/
 	public Direction getOpposite() {
 		switch(this) {
 			case NORTH: return SOUTH;
@@ -52,6 +60,10 @@ public enum Direction {
 		}
 	}
 	
+	/**
+	* creates a string representation of the directions
+	* @return string of the direction
+	*/
 	@Override
 	public String toString() {
 		return name().substring(0, 1).toUpperCase() + name().substring(1).toLowerCase();
