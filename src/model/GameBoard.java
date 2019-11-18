@@ -37,6 +37,11 @@ public class GameBoard {
 		this.mushrooms = new HashMap<>();
 	}
 	
+	/**
+	* Constructor to initialize a gameboard by calling the default constructor
+	* and initializing the variables
+	* @param board is the gameboard
+	*/
 	public GameBoard(GameBoard board) {
 		this();
 		this.foxes = new LinkedHashMap<>(board.getFoxes());
@@ -61,6 +66,12 @@ public class GameBoard {
 		this.resetDefaultBoard();
 	}
 	
+	/**
+	* A method to apply an action to the board
+	* @param p is the moveable piece you wish to apply an action to
+	* @param d is the direction you wish to move this moveable piece to
+	* @return new GameBoard with the moved pieces on it
+	*/
 	public GameBoard applyActionToBoard(MoveablePiece p, Direction d) {
 		GameBoard b = new GameBoard(this);
 		if(p instanceof Rabbit) b.moveRabbitPiece((Rabbit) p, d);
@@ -91,16 +102,28 @@ public class GameBoard {
 		this.initializeRaisedHole(2, 4);
 	}
 	
+	/**
+	* Resets all the pieces on the board
+	*/
 	public void resetAllPieces() {
 		resetDefaultBoard();
 		this.foxes.clear();
 		this.rabbits.clear();
 		this.mushrooms.clear();
 	}
+	
+	/**
+	* gets the number of columns within the board
+	* @return integer number of columns on the gameboard
+	*/
 	public int getNumColumns() {
 		return numColumns;
 	}
-
+	
+	/**
+	* gets the number of rows within the board
+	* @return integer number of rows on the gameboard
+	*/
 	public int getNumRows() {
 		return numRows;
 	}
@@ -171,22 +194,42 @@ public class GameBoard {
 		return true;
 	}
 	
+	/**
+	* gets the gameboard grid of holes
+	* @return grid of holes
+	*/
 	public Hole[][] getGrid() {
 		return grid;
 	}
-
+	
+	/**
+	* sets the grid 
+	* @param grid is a grid of holes to set it to
+	*/
 	public void setGrid(Hole[][] grid) {
 		this.grid = grid;
 	}
-
+	
+	/**
+	* sets the rabbits
+	* @param rabbits is a linkedhashmap of the rabbits and locations you wish to set it to
+	*/
 	public void setRabbits(LinkedHashMap<Rabbit, Point> rabbits) {
 		this.rabbits = rabbits;
 	}
-
+	
+	/**
+	* sets the foxes
+	* @param foxes is the linkedhashmap of foxes and locations you wish to set it to
+	*/
 	public void setFoxes(LinkedHashMap<Fox, Point> foxes) {
 		this.foxes = foxes;
 	}
-
+	
+	/**
+	* sets the mushrooms
+	* @param mushrooms is the hashmap of mushrooms and locations you wish to set it to
+	*/
 	public void setMushrooms(HashMap<Mushroom, Point> mushrooms) {
 		this.mushrooms = mushrooms;
 	}
@@ -213,6 +256,12 @@ public class GameBoard {
 		return s;
 	}
 	
+	/**
+	* method to determine if the user is able to move a fox
+	* @param f is the fox that is being determined if it can move
+	* @direction is the direction the user is seeing if it can move
+	* @return true or false whether the fox can move or not
+	*/
 	public boolean canMoveFox(Fox f, Direction direction) {
 		Point tailLocation;
 		Point headLocation;
@@ -238,6 +287,12 @@ public class GameBoard {
 		return true;
 	}
 	
+	/**
+	* method to determine if the user is able to move a rabbit
+	* @param r is the rabbit that is being determined if it can move
+	* @direction is the direction the user is seeing if it can move
+	* @return true or false whether the rabbit can move or not
+	*/
 	public boolean canMoveRabbit(Rabbit r, Direction direction) {
 		Point currentLocation;
 		if(!rabbits.containsKey(r)) return false;
@@ -257,6 +312,12 @@ public class GameBoard {
 		return false;
 	}
 	
+	/**
+	* method to determine if a moveable piece can be moved
+	* @param p is the piece to determine if it can move
+	* @param direction is the direction the user wishes to see if it can move
+	* @return true or false if the moveable piece can move or not
+	*/
 	public boolean canMovePiece(MoveablePiece p, Direction direction) {
 		if(p instanceof Fox) return canMoveFox((Fox) p, direction);
 		if(p instanceof Rabbit) return canMoveRabbit((Rabbit) p, direction);
@@ -332,6 +393,13 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	* method to determine if a fox can be added to a certain hole
+	* @param f is the fox to be added
+	* @param column is the column the user wishes to add it to
+	* @param row is the row the user wishes to add it to
+	* @return true or false whether the fox can be added to that location
+	*/
 	public boolean canAddFox(Fox f, int column, int row) {
 		Direction direction = f.getDirection();
 		// Check that Fox is within board bounds and on empty hole, tail has already been checked
@@ -395,10 +463,21 @@ public class GameBoard {
 		return (spaceIsOnBoard(column, row) && !grid[column][row].isOccupied());
 	}
 	
+	/**
+	* method to determine if a certain point is on the board
+	* @param column is the specified column you wish to check
+	* @param row is the specified row you wish to check
+	* @return true or false if the point is on the board or not
+	*/
 	private boolean spaceIsOnBoard(int column, int row) {
 		return !(column >= numColumns || row >= numRows || column < 0 || row < 0);
 	}
 	
+	/**
+	* equals method to compare two objects of gameboard
+	* @param obj is the object to be comapred
+	* @return true or false if the objects are equals or not
+	*/
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) return true;
