@@ -30,13 +30,13 @@ public class BoardSolverTest {
 		// Initialize GameBoard
 		gameboard = new GameBoard();
 		// Initialize pieces
-		/*
 		greyRabbit = new Rabbit(RabbitColor.GREY);
 		whiteRabbit = new Rabbit(RabbitColor.WHITE);
 		brownRabbit = new Rabbit(RabbitColor.BROWN);
 		
 		fox1 = new Fox(Direction.SOUTH, 1);
 		fox2 = new Fox(Direction.EAST, 2);
+		/*
 		// Add pieces to GameBoard
 		gameboard.addPiece(greyRabbit, 3, 0);
 		gameboard.addPiece(whiteRabbit, 4, 2);
@@ -138,7 +138,6 @@ public class BoardSolverTest {
 	
 	@Test
 	public void testSolverAlreadySolvedOneRabbit() {
-		greyRabbit = new Rabbit(RabbitColor.GREY);
 		gameboard.addPiece(greyRabbit, 2, 2);
 		
 		solver = new BoardSolver(gameboard);
@@ -149,8 +148,6 @@ public class BoardSolverTest {
 	
 	@Test
 	public void testSolverAlreadySolvedThreeRabbit() {
-		greyRabbit = new Rabbit(RabbitColor.GREY);
-		whiteRabbit = new Rabbit(RabbitColor.WHITE);
 		gameboard.addPiece(whiteRabbit, 0, 0);
 		gameboard.addPiece(greyRabbit, 2, 2);
 		
@@ -162,14 +159,11 @@ public class BoardSolverTest {
 	
 	@Test
 	public void testSolverOneRabbitOneMoveAway() {
-		greyRabbit = new Rabbit(RabbitColor.GREY);
 		gameboard.addPiece(new Mushroom(), 3, 2);
 		gameboard.addPiece(greyRabbit, 4, 2);
-		System.out.println(gameboard.toString());
 		
 		solver = new BoardSolver(gameboard);	
-		solver.solveBoard(); // this is changing gameboard
-		System.out.println(gameboard.toString());
+		solver.solveBoard();
 		GameBoard solvedBoard = new GameBoard();
 		solvedBoard.addPiece(greyRabbit, 2, 2);
 		solvedBoard.addPiece(new Mushroom(),  3, 2);
@@ -179,5 +173,16 @@ public class BoardSolverTest {
 		assertNotEquals("Expecting solved board to not be the same as initial.", gameboard, solver.getSolvedBoard());
 		assertEquals("Expecting two boards to be equal.", solvedBoard, solver.getSolvedBoard());
 		assertEquals("Expecting move action to be Grey Rabbit moving West", move1, solver.getNextActionToSolve());
+	}
+	
+	@Test
+	public void testSolverWithUnsolvableBoard() {
+		gameboard.addPiece(greyRabbit, 3, 2);
+		gameboard.addPiece(new Mushroom(), 3, 1);
+		
+		solver = new BoardSolver(gameboard);
+		solver.solveBoard();
+		
+		assertEquals("Solution stack should be empty.", true, solver.getSolution().isEmpty());
 	}
 }

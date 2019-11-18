@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -14,6 +15,7 @@ public class BoardSolver {
 	private LinkedList<BoardTreeNode> checkNodes;
 	private BoardTreeNode solvedNode;
 	private Stack<MoveAction> solution;
+	private ArrayList<BoardTreeNode> checkedNodes;
 	
 	/**
 	 * Constructs the Board solver with the given board game
@@ -24,6 +26,7 @@ public class BoardSolver {
 		// Root node has no action and no parent
 		boardTree = new BoardTree(new BoardTreeNode(this.initialBoard, null, null));
 		checkNodes = new LinkedList<>();
+		checkedNodes = new ArrayList<>();
 		solvedNode = null;
 		solution = new Stack<>();
 	}
@@ -36,19 +39,19 @@ public class BoardSolver {
 		BoardTreeNode checkNode;
 		checkNodes.add(boardTree.getRoot());
 		int i = 0;
-		while((!checkNodes.isEmpty()) && (i <= 100000000)) {
-			//if(i > 0)System.out.println("Need to check: " + checkNodes.toString());
+		while((!checkNodes.isEmpty()) && (i <= 10000000)) {
 			checkNode = checkNodes.pop();
-			if(i > 0) System.out.println("Checking " + i + ": " + checkNode.toString()); // Debug String
 			if(checkNode.getBoard().isFinished()) {
 				solvedNode = checkNode;
 				calculateActionsToSolve();
-				System.out.println("Found solution!!!");
 				break;
 			}
 			else {
-				checkNode.populateChildren();
-				checkNodes.addAll(checkNode.getChildren());
+				if(!checkedNodes.contains(checkNode)) {
+					checkNode.populateChildren();
+					checkedNodes.add(checkNode);
+					checkNodes.addAll(checkNode.getChildren());
+				}
 			}
 			i++;
 		}

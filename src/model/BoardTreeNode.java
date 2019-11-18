@@ -76,7 +76,7 @@ public class BoardTreeNode {
 		if(this == o) return true;
 		if(o == null || o.getClass() != this.getClass()) return false;
 		BoardTreeNode node = (BoardTreeNode) o;
-		return (node.board == this.board);
+		return (node.board.equals(this.board));
 	}
 	
 	/**
