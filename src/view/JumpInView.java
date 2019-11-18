@@ -29,7 +29,7 @@ public class JumpInView extends JFrame {
     	gameFrame.setVisible(true);	    	
     }
 	
-	public void toGameMenu() {			
+	public void toInstructionsFrame() {			
 	    instructionsFrame.setVisible(true);
     	gameFrame.setVisible(false);	    	
     }
