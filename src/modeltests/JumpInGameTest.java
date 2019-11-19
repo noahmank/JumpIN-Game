@@ -39,6 +39,10 @@ public class JumpInGameTest {
 	@After
 	public void tearDown() throws Exception {
 		game = null;
+		board = null;
+		mushroom = null;
+		rabbit = null;
+		fox = null;
 	}
 	
 	/**
@@ -46,8 +50,7 @@ public class JumpInGameTest {
 	 */
 	@Test
 	public void testMovePiece() {
-		game.addPieceToBoard(rabbit, 3, 0);
-		game.addPieceToBoard(mushroom, 3, 1);
+		game.startChallenge();
 		game.movePiece(rabbit, Direction.SOUTH);
 		assertEquals("Expected grey rabbit at this location", "Grey Rabbit", board.getHole(3, 2).toString());
 	}
@@ -107,14 +110,12 @@ public class JumpInGameTest {
 	 */
 	@Test
 	public void testUndo() {
-		Fox fox = new Fox(Direction.EAST, 1);
-		game.addPieceToBoard(rabbit, 3, 0);
-		game.addPieceToBoard(mushroom, 3, 1);
-		game.addPieceToBoard(fox, 3, 3);
+		game.startChallenge();
 		game.movePiece(rabbit, Direction.SOUTH);
+		System.out.println(game.getBoard().toString());
 		game.movePiece(rabbit, Direction.SOUTH);
 		game.undoMoveAction();
-		assertEquals("Expecting Grey Rabbit at (3, 2)", "Grey Rabbit", board.getHole(3, 2).toString());
+		assertEquals("Expecting Grey Rabbit at (3, 2)", "Grey Rabbit", game.getBoard().getPieceFromGrid(3, 2).toString());
 	}
 	
 	/**
@@ -122,10 +123,7 @@ public class JumpInGameTest {
 	 */
 	@Test
 	public void testRedo() {
-		Fox fox = new Fox(Direction.EAST, 1);
-		game.addPieceToBoard(rabbit, 3, 0);
-		game.addPieceToBoard(mushroom, 3, 1);
-		game.addPieceToBoard(fox, 3, 3);
+		game.startChallenge();
 		game.movePiece(rabbit, Direction.SOUTH);
 		game.movePiece(rabbit, Direction.SOUTH);
 		game.undoMoveAction();

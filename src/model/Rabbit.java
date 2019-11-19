@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Rabbit implements MoveablePiece {
 	private RabbitColor color;
 	/**
@@ -34,6 +36,11 @@ public class Rabbit implements MoveablePiece {
 		return this.color.toString() + " Rabbit";
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(color);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) return true;
