@@ -143,6 +143,7 @@ public class JumpInGame {
 	 * @throws EmptyStackException
 	 */
 	public void undoMoveAction() throws EmptyStackException {
+		if(this.undoableMoveActions.isEmpty()) return;
 		MoveAction move = undoableMoveActions.pop();
 		// Do the opposite with the piece
 		movePiece(move.getOppositeMove());
@@ -156,6 +157,7 @@ public class JumpInGame {
 	 * @throws EmptyStackException
 	 */
 	public void redoMoveAction() throws EmptyStackException {
+		if(this.redoableMoveActions.isEmpty()) return;
 		MoveAction move = redoableMoveActions.pop();
 		movePiece(move);
 	}
