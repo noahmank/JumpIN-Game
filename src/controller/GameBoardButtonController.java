@@ -6,7 +6,7 @@ import view.*;
 import model.*;
 
 /**
- * 
+ * Controller for BoardButtons
  * @author RunTime Terror
  *
  */
