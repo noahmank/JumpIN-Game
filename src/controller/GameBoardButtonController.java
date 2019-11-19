@@ -24,11 +24,10 @@ public class GameBoardButtonController implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		BoardButton b = (BoardButton) e.getSource();
-		int row = b.getRow();
-		int column = b.getColumn();
-		if (game.getBoard().getHole(column, row).isOccupied() && (game.getBoard().getHole(column, row).getPiece() instanceof MoveablePiece)) {
-			game.setPiece((MoveablePiece) game.getBoard().getHole(column, row).getPiece()); //  change to game.savePieceAt(int c, int r)
-		}
+		BoardButton button = (BoardButton) e.getSource();
+		GameBoard board = game.getBoard();
+		int row = button.getRow();
+		int column = button.getColumn();
+		game.savePieceToMove(column, row);
 	}
 }

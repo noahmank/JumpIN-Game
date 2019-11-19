@@ -283,4 +283,9 @@ public class JumpInGame {
 	public int getNumChallenges() {
 		return this.numChallenges;
 	}
+	
+	public void savePieceToMove(int column, int row) {
+		Piece p = this.gameBoard.getPieceFromGrid(column, row);
+		if(p instanceof MoveablePiece) this.selectedPiece = (MoveablePiece) p; 
+	}
 }

@@ -95,7 +95,6 @@ public class GameBoard {
 		this.initializeBrownHole(2, 2);
 		this.initializeBrownHole(0, 4);
 		this.initializeBrownHole(4, 4);
-		
 		this.initializeRaisedHole(2, 0);
 		this.initializeRaisedHole(0, 2);
 		this.initializeRaisedHole(4, 2);
@@ -156,7 +155,8 @@ public class GameBoard {
 	*@author Adela Tullio
 	*/
 	public Hole getHole(int numColumn, int numRow) {
-		return grid[numColumn][numRow];	
+		if(spaceIsOnBoard(numColumn, numRow)) return grid[numColumn][numRow];
+		else return null;
 	}
 	
 	/**
@@ -474,8 +474,29 @@ public class GameBoard {
 	}
 	
 	/**
+	 * Method to determine if the grid is occupied at a given location
+	 * @param column to check
+	 * @param row to check
+	 * @return boolean whether the grid is occupied at column, row
+	 */
+	public boolean gridIsOccupiedAt(int column, int row) {
+		return (getHole(column, row).isOccupied());
+	}
+	
+	/**
+	 * Method to get a piece from a space on the grid
+	 * @param column to get piece from
+	 * @param row to get piece from
+	 * @return Piece if there is one at the given location, otherwise null
+	 */
+	public Piece getPieceFromGrid(int column, int row) {
+		if(gridIsOccupiedAt(column, row)) return getHole(column, row).getPiece();
+		else return null;
+	}
+	
+	/**
 	* equals method to compare two objects of gameboard
-	* @param obj is the object to be comapred
+	* @param obj is the object to be compared
 	* @return true or false if the objects are equals or not
 	*/
 	@Override
