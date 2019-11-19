@@ -18,7 +18,7 @@ public class BoardSolver {
 	private ArrayList<BoardTreeNode> checkedNodes;
 	
 	/**
-	 * Constructs the Board solver with the given board game
+	 * Constructs the Board solver with the given GameBoard
 	 * @param board GameBoard object 
 	 */
 	public BoardSolver(GameBoard board) {
@@ -32,7 +32,7 @@ public class BoardSolver {
 	}
 	
 	/**
-	 * Begins to solve the board by iterating through possible solutions
+	 * Begins to solve the board by iterating through possible solutions and expanding tree when needed
 	 * @return the solution, containing all the actions performed to solve challenge
 	 */
 	public void solveBoard() {
@@ -67,7 +67,7 @@ public class BoardSolver {
 	}
 	
 	/**
-	 * Determines the number of actions performed to reach end of game
+	 * Determines the set of actions needed to be performed to reach end of game and adds them to solution
 	 */
 	private void calculateActionsToSolve() {
 		BoardTreeNode currentNode = solvedNode;
