@@ -24,18 +24,6 @@ public class DirectionButton extends JButton {
 		this.addActionListener(c);
 	}
 	
-//	/**
-//	 * 
-//	 * @param d is the direction you wish the button to indicate
-//	 * @param c is the controller responsible for handling the specified button
-//	 */
-//	public DirectionButton(Direction d, FrameViewController c) {
-//		this.direction = d;
-//		this.setBounds(0, 0, 30, 30);
-//		this.setIcon(ImageHandler.resizeIcon(new ImageIcon(ImageHandler.getImageURL(d.getSrc())), this.getWidth(), this.getHeight()));
-//		this.addActionListener(c);
-//	}
-	
 	/**
 	* @return the direction
 	*/
