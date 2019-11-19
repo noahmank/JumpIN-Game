@@ -46,6 +46,10 @@ public class BoardTreeNode {
 		return this.parentNode;
 	}
 	
+	/**
+	 * Checks to see if this node is the root of its tree
+	 * @return boolean based on if the node is the root
+	 */
 	public boolean isRoot() {
 		return (action == null && parentNode == null);
 	}
@@ -58,6 +62,10 @@ public class BoardTreeNode {
 		return this.board;
 	}
 	
+	/**
+	 * Gets the action taken from the last node (edge)
+	 * @return MoveAction taken from last board
+	 */
 	public MoveAction getAction() {
 		return action;
 	}
@@ -85,7 +93,7 @@ public class BoardTreeNode {
 	}
 	
 	/**
-	 * Populates the next level of child nodes if the board is still not solved
+	 * Populates the next level of child nodes based on possible MoveActions for the contained pieces
 	 * @param board the game board from the parent node
 	 */
 	public void populateChildren() {
