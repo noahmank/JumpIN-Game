@@ -113,13 +113,4 @@ public class BoardTreeNode {
 			}
 		}
 	}
-	
-	/**
-	* creates a string representation of the node
-	* @return String representation of node
-	*/
-	@Override
-	public String toString() {
-		return this.action.toString();
-	}
 }
