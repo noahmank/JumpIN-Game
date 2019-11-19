@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import model.JumpInGame;
 
 /**
- * 
+ * Controller for SolverButton
  * @author RunTime Terror
  *
  */
