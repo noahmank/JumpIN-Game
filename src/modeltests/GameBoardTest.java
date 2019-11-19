@@ -10,6 +10,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.Point;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public class GameBoardTest {
 	
 	private GameBoard gameboard;
@@ -42,6 +46,15 @@ public class GameBoardTest {
 	}
 	
 	/**
+	 * testing constructor of gameboard
+	 */
+	@Test
+	public void testGameBoardConstructor() {
+		GameBoard newBoard = new GameBoard(gameboard);
+		assertEquals("Expecting GameBoards to be the same", newBoard, gameboard);
+	}
+	
+	/**
 	 * tests applyActionToBoard method
 	 */
 	@Test
@@ -62,6 +75,21 @@ public class GameBoardTest {
 		assertEquals("Expected 'BH'", "BH", gameboard.getHole(4, 4).toString());
 		assertEquals("Expected '  '", "  ", gameboard.getHole(1, 2).toString());
 		assertEquals("Expected 'RH'", "RH", gameboard.getHole(4, 2).toString());
+	}
+	
+	/**
+	 * tests reset all pieces
+	 */
+	@Test
+	public void testResetAllPieces() {
+		LinkedHashMap<Rabbit, Point> rabbits = new LinkedHashMap<>();
+		LinkedHashMap<Fox, Point> foxes = new LinkedHashMap<>();
+		HashMap<Mushroom, Point> mushrooms = new HashMap<>();
+		
+		gameboard.resetAllPieces();
+		assertEquals("Expecting no rabbits", rabbits, gameboard.getRabbits());
+		assertEquals("Expecting no foxes", foxes, gameboard.getFoxes());
+		assertEquals("Expecting no mushrooms", mushrooms, gameboard.getMushrooms());
 	}
 	
 	/**
