@@ -8,7 +8,7 @@ import model.JumpInGame;
 import view.JumpInView;
 
 /**
- * 
+ * Controller for the FileMenu
  * @author RunTime Terror
  *
  */
