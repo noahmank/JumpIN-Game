@@ -39,6 +39,6 @@ public class Rabbit implements MoveablePiece {
 		if(this == obj) return true;
 		if(obj == null || obj.getClass() != this.getClass()) return false;
 		Rabbit rabbit = (Rabbit) obj;
-		return rabbit.getColor() == this.getColor();
+		return rabbit.getColor().equals(this.getColor());
 	}
 }
