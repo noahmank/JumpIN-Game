@@ -41,7 +41,7 @@ This submission includes an up-to-date UML diagram, source code and executable c
 This submission includes the updates UML diagram, source code and along with documentation and in addition, a GUI component for the game.
 
 ### Deliverable 3
-This submission includes the updated UML diagram, source code, test cases, along with documentation. In addition, an updated GUI component, a game solver, as well as undo and redo buttons.
+This submission includes the updated UML diagram, source code, test cases, along with documentation. In addition, an updated GUI component, a game solver, as well as undo and redo buttons. We also included to 2 new challenges to test the functionality of the solver.
 
 # Advancement
 
