@@ -28,11 +28,11 @@ public class ChallengeSelectPanel extends JPanel {
 		super();
 		this.game = g;
 		Integer[] challenges = new Integer[game.getNumChallenges()]; 
-		// Initalize array with number (i + 1) at index i, up to number of challenges in game
+		// Initialize array with number (i + 1) at index i, up to number of challenges in game
 		for(int i = 0; i < game.getNumChallenges(); i++) {
 			challenges[i] = i + 1;
 		}
-		JComboBox<Integer> challengeList = new JComboBox<Integer>(challenges);
+		JComboBox<Integer> challengeList = new JComboBox<>(challenges);
 		challengeList.setSelectedIndex(0);
 		challengeList.addActionListener(new ChallengeSelectController(this.game));
 		
