@@ -18,8 +18,8 @@ public class JumpInGame {
 	private ArrayList<JumpInGameListener> views;
 	private Stack<MoveAction> undoableMoveActions;
 	private Stack<MoveAction> redoableMoveActions;
-	private MoveablePiece piece;
-	private Direction direction;
+	private MoveablePiece selectedPiece;
+	private Direction selectedDirection;
 	private String consoleOutput;
 	private BoardSolver solver;
 	private int selectedChallenge;
@@ -33,12 +33,19 @@ public class JumpInGame {
 		undoableMoveActions = new Stack<>();
 		redoableMoveActions = new Stack<>();
 		gameStatus = GameStatus.READY_TO_PLAY;
-		piece = null;
-		direction = null;
+		selectedPiece = null;
+		selectedDirection = null;
 		consoleOutput = null;
 		solver = null;
 		selectedChallenge = 1;
 		numChallenges = 3;
+	}
+	
+	/**
+	 * A method that calls movePiece function with the stored selectedPiece and selectedDirection
+	 */
+	public void movePiece() {
+		movePiece(this.selectedPiece, this.selectedDirection);
 	}
 	
 	/**
@@ -192,7 +199,7 @@ public class JumpInGame {
 	* @param piece is the piece you wish to set it to
 	*/
 	public void setPiece(MoveablePiece piece) {
-		this.piece = piece;
+		this.selectedPiece = piece;
 	}
 	
 	/**
@@ -200,7 +207,7 @@ public class JumpInGame {
 	* @param direction is the direction you wish to set it to
 	*/
 	public void setDirection(Direction direction) {
-		this.direction = direction;
+		this.selectedDirection = direction;
 	}
 	
 	/**
@@ -208,7 +215,7 @@ public class JumpInGame {
 	* @return the value of the MoveablePiece object
 	*/
 	public MoveablePiece getPiece() {
-		return this.piece;
+		return this.selectedPiece;
 	}
 	
 	/**
@@ -216,7 +223,7 @@ public class JumpInGame {
 	* @return the specified direction
 	*/
 	public Direction getDirection() {
-		return this.direction;
+		return this.selectedDirection;
 	}
 	
 	/**
