@@ -26,11 +26,12 @@ public class DirectionButtonController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		DirectionButton b = (DirectionButton) e.getSource();
 		if(game.getPiece() != null) {
-			game.setDirection(((DirectionButton) e.getSource()).getDirection());
+			game.setDirection(b.getDirection());
 		}
 		if ((game.getDirection() != null) && (game.getPiece() != null)) {
-			game.movePiece(game.getPiece(), game.getDirection());
+			game.movePiece();
 			game.setDirection(null);
 		}
 	}
