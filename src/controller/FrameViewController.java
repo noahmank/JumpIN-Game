@@ -8,7 +8,8 @@ import model.JumpInGame;
 import view.*;
 
 /**
- * The controller for the JumpIN game
+ * The controller that manages which JFrame is currently shown.
+ * @author Noah Mank
  */
 public class FrameViewController implements ActionListener {
 	private JumpInView jumpInView;
