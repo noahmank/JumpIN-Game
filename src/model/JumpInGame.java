@@ -297,4 +297,8 @@ public class JumpInGame {
 		GameBoard emptyBoard = new GameBoard();
 		this.builder = new BoardBuilder(emptyBoard);
 	}
+	
+	public BoardBuilder getBuilder() {
+		return this.builder;
+	}
 }
