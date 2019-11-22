@@ -11,7 +11,7 @@ public class JumpInGameMVC {
 	public static void main(String[] args) {
 		JumpInGame game = new JumpInGame();
 		new JumpInView(game);
-		
+		System.out.println("Im messing this up");
 	}
 
 }
