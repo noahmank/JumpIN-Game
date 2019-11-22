@@ -10,6 +10,7 @@ public class JumpInGameMVC {
 
 	public static void main(String[] args) {
 		new JumpInView(new JumpInGame());
+		System.out.println("Aubin");
 	}
 
 }
