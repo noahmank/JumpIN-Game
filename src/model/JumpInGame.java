@@ -24,6 +24,7 @@ public class JumpInGame {
 	private BoardSolver solver;
 	private int selectedChallenge;
 	private int numChallenges;
+	private BoardBuilder builder;
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
@@ -39,6 +40,7 @@ public class JumpInGame {
 		solver = null;
 		selectedChallenge = 1;
 		numChallenges = 3;
+		builder = null;
 	}
 	
 	/**
@@ -289,5 +291,10 @@ public class JumpInGame {
 	public void savePieceToMove(int column, int row) {
 		Piece p = this.gameBoard.getPieceFromGrid(column, row);
 		if(p instanceof MoveablePiece) this.selectedPiece = (MoveablePiece) p; 
+	}
+	
+	public void startBuilder() {
+		GameBoard emptyBoard = new GameBoard();
+		this.builder = new BoardBuilder(emptyBoard);
 	}
 }
