@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import model.JumpInGame;
+import view.SolverButtonPanel;
 
 /**
  * Controller for SolverButton
@@ -20,8 +21,9 @@ public class SolverButtonController implements ActionListener {
 	 * Instantiates the solver button controller
 	 * @param g is the JumpIn game model
 	 */
-	public SolverButtonController(JumpInGame g) {
+	public SolverButtonController(JumpInGame g , SolverButtonPanel view) {
 		this.game = g;
+		view.subscribeToSolverController(this);
 	}
 	
 	@Override

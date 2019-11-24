@@ -16,7 +16,7 @@ import model.Rabbit;
  * @author RunTime Terror
  *
  */
-public class BoardGrid extends JPanel implements JumpInGameListener {
+public class BoardGridPanel extends JPanel implements JumpInGameListener {
 	
 	private BoardButton[][] boardGrid;
 	private GameBoardButtonController controller;
@@ -29,7 +29,7 @@ public class BoardGrid extends JPanel implements JumpInGameListener {
 	 * @param g is the JumpIN game model
 	 * @param c is the JumpIN gameboard controller
 	 */
-	public BoardGrid(JumpInGame g, GameBoardButtonController c) {
+	public BoardGridPanel(JumpInGame g, GameBoardButtonController c) {
 		super();
 		this.columns = 5;
 		this.rows = 5;
