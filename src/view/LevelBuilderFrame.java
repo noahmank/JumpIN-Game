@@ -10,7 +10,7 @@ public class LevelBuilderFrame extends JFrame {
 	//TODO Add constructing button panel
 	
 	public LevelBuilderFrame(JumpInGame g) {
-		this.builderPieceSelectionPanel = new BuilderPieceSelectionPanel(g);
+		//this.builderPieceSelectionPanel = new BuilderPieceSelectionPanel(g);
 		
 	}
 }

@@ -83,7 +83,7 @@ public class GameBoard {
 	 *  Resets the GameBoard to a default state with only special holes initialized
 	 *  @author Liya Abebe
 	 */
-	public void resetDefaultBoard() {
+	private void resetDefaultBoard() {
 		//Initializing every spot in the grid to be a hole
 		for(int r = 0; r < this.numRows; r++) {
 			for(int c = 0; c < this.numColumns; c++) {
@@ -133,7 +133,7 @@ public class GameBoard {
 	* @param numRow the row you wish to enter the BrownHole
 	* @author Adela Tullio
 	*/
-	public void initializeBrownHole(int numColumn, int numRow) {
+	private void initializeBrownHole(int numColumn, int numRow) {
 		this.grid[numColumn][numRow] = new BrownHole();	
 	}
 	
@@ -143,7 +143,7 @@ public class GameBoard {
 	 * @param numRow the row you wish to enter RaisedHole
 	 * @author Adela Tullio
 	 */
-	public void initializeRaisedHole(int numColumn, int numRow) {
+	private void initializeRaisedHole(int numColumn, int numRow) {
 		this.grid[numColumn][numRow] = new RaisedHole();
 	}
 	

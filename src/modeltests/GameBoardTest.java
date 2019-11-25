@@ -52,6 +52,9 @@ public class GameBoardTest {
 	public void testGameBoardConstructor() {
 		GameBoard newBoard = new GameBoard(gameboard);
 		assertEquals("Expecting GameBoards to be the same", newBoard, gameboard);
+		assertEquals("Expected 'BH'", "BH", gameboard.getHole(4, 4).toString());
+		assertEquals("Expected '  '", "  ", gameboard.getHole(1, 2).toString());
+		assertEquals("Expected 'RH'", "RH", gameboard.getHole(4, 2).toString());
 	}
 	
 	/**
@@ -64,17 +67,6 @@ public class GameBoardTest {
 		gameboard.addPiece(mushroom, 3, 1);
 		newBoard = gameboard.applyActionToBoard(rabbit, Direction.SOUTH);
 		assertEquals("Expecting 'Grey Rabbit' at new location", "Grey Rabbit", newBoard.getHole(3, 2).toString());
-	}
-	
-	/**
-	* Tests the ResetBoard method
-	*/
-	@Test
-	public void testResetBoard() {
-		gameboard.resetDefaultBoard();
-		assertEquals("Expected 'BH'", "BH", gameboard.getHole(4, 4).toString());
-		assertEquals("Expected '  '", "  ", gameboard.getHole(1, 2).toString());
-		assertEquals("Expected 'RH'", "RH", gameboard.getHole(4, 2).toString());
 	}
 	
 	/**
@@ -107,25 +99,7 @@ public class GameBoardTest {
 	public void testGetNumRows() {
 		assertEquals("Expecting 5 for the number of rows of the default board", 5, gameboard.getNumRows());
 	}
-	
-	/**
-	 * Tests initializeBrownHoles method
-	 */
-	@Test
-	public void testInitializeBrownHole() {
-		gameboard.initializeBrownHole(2, 2);
-		assertEquals("Expected 'BH'", "BH", gameboard.getHole(2, 2).toString());
-	}
-	
-	/**
-	 * Tests initializeRaisedHole method
-	 */
-	@Test
-	public void testInitializeRaisedHole() {
-		gameboard.initializeRaisedHole(2, 2);
-		assertEquals("Expected 'RH'", "RH", gameboard.getHole(2, 2).toString());
-	}
-	
+
 	/**
 	 * Tests the getHole Method
 	 */
@@ -244,7 +218,7 @@ public class GameBoardTest {
 	 */
 	@Test
 	public void testCheckValidFoxMove() {
-		assertEquals("Expecting False", false, gameboard.canMoveFox(fox, Direction.NORTH));
+		assertEquals("Expecting False", false, gameboard.canMovePiece(fox, Direction.NORTH));
 	}
 	
 	/**
@@ -252,7 +226,7 @@ public class GameBoardTest {
 	 */
 	@Test
 	public void testCheckValidRabbitMove() {
-		assertEquals("Expecting false", false, gameboard.canMoveRabbit(rabbit, Direction.SOUTH));
+		assertEquals("Expecting false", false, gameboard.canMovePiece(rabbit, Direction.SOUTH));
 	}
 	
 	/**
