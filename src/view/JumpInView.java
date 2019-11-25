@@ -61,6 +61,9 @@ public class JumpInView extends JFrame {
 		}	    	
     }
 	
+	/**
+	 * Make the BuilderFrame visible, and other frames invisible
+	 */
 	public void toBuilderFrame() {
 		for(JFrame f : frames) {
 			if(f instanceof BuilderFrame) f.setVisible(true);
