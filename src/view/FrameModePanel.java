@@ -24,9 +24,12 @@ public class FrameModePanel extends JPanel {
 		this.controller = new FrameViewController(g, v);
 		JButton start = new JButton("Click here to Start Game");
 		JButton solve = new JButton("Click here to Solve Game");
+		JButton build = new JButton("Click here to Build a Level");
 		this.add(start);
 		this.add(solve);
+		this.add(build);
 		solve.addActionListener(controller);
 		start.addActionListener(controller);
+		build.addActionListener(controller);
 	}
 }

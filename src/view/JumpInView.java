@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 import model.*;
 
@@ -8,10 +10,12 @@ import model.*;
 *
 */
 public class JumpInView extends JFrame {
+	private ArrayList<JFrame> frames;
 	private JumpInGame game;
 	private GameFrame gameFrame;
 	private InstructionsFrame instructionsFrame;
 	private SolverFrame solverFrame;
+	private BuilderFrame builderFrame;
 
 	/**
 	 * 
@@ -25,6 +29,8 @@ public class JumpInView extends JFrame {
 		gameFrame = new GameFrame(this.game, this);
 		// Setting up frame to display solver
 		solverFrame = new SolverFrame(this.game, this);
+		// Setting up frame to display builder
+		builderFrame = new BuilderFrame(this.game, this);
 	}
 	
 	/**
@@ -53,4 +59,11 @@ public class JumpInView extends JFrame {
 	    instructionsFrame.setVisible(false);
     	gameFrame.setVisible(false);	    	
     }
+	
+	public void toBuilderFrame() {
+		solverFrame.setVisible(false);
+		gameFrame.setVisible(false);
+		instructionsFrame.setVisible(false);
+		builderFrame.setVisible(true);
+	}
 }
