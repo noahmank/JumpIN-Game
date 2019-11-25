@@ -10,7 +10,7 @@ import model.JumpInGame;
  *
  */
 public class SolverFrame extends JFrame {
-	private BoardGrid gridPanel;
+	private BoardGridPanel gridPanel;
 	private SolverButtonPanel solverButtonPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
 	private SolverMenuBar menuBar;
@@ -22,7 +22,7 @@ public class SolverFrame extends JFrame {
 	 */
 	public SolverFrame(JumpInGame game, JumpInView view) {
 		super("Jump-In Solver");
-		this.gridPanel = new BoardGrid(game, null);
+		this.gridPanel = new BoardGridPanel(game, null);
 		this.solverButtonPanel = new SolverButtonPanel(game);
 		this.consoleOutputPanel = new ConsoleOutputPanel(game);
 		this.menuBar = new SolverMenuBar(game, view);
