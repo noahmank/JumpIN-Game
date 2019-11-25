@@ -55,7 +55,7 @@ public class JumpInGame {
 	* direction and piece used in undo and redo
 	* @param move is the MoveAction 
 	*/
-	public void movePiece(MoveAction move) {
+	private void movePiece(MoveAction move) {
 		movePiece(move.getPiece(), move.getDirection());
 	}
 	
@@ -65,7 +65,7 @@ public class JumpInGame {
 	* @param p is the moveable piece
 	* @param direction is the direction in which you wish to move the piece
 	*/
-	public void movePiece(MoveablePiece p, Direction direction) {
+	private void movePiece(MoveablePiece p, Direction direction) {
 		if(this.gameStatus == GameStatus.IN_PROGRESS) {
 			if(gameBoard.canMovePiece(p, direction)) this.consoleOutput = p.toString() + " was moved " + direction.toString();
 			else this.consoleOutput = p.toString() + " cannot be moved " + direction.toString();
