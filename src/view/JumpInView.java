@@ -12,58 +12,59 @@ import model.*;
 public class JumpInView extends JFrame {
 	private ArrayList<JFrame> frames;
 	private JumpInGame game;
-	private GameFrame gameFrame;
-	private InstructionsFrame instructionsFrame;
-	private SolverFrame solverFrame;
-	private BuilderFrame builderFrame;
 
 	/**
 	 * 
 	 * @param game that the view is based on
 	 */
 	public JumpInView(JumpInGame game) {
+		frames = new ArrayList<>();
 		this.game = game;
 		//Setting up frame to display rules and challenges
-		instructionsFrame = new InstructionsFrame(game, this);	
+		frames.add(new InstructionsFrame(this.game, this));
 		//Setting up frame to display game
-		gameFrame = new GameFrame(this.game, this);
+		frames.add(new GameFrame(this.game, this));
 		// Setting up frame to display solver
-		solverFrame = new SolverFrame(this.game, this);
+		frames.add(new SolverFrame(this.game, this));
 		// Setting up frame to display builder
-		builderFrame = new BuilderFrame(this.game, this);
+		frames.add(new BuilderFrame(this.game, this));
+		
 	}
 	
 	/**
 	 * Make the GameFrame visible, and other frames invisible
 	 */
-	public void toGameFrame() {			
-		solverFrame.setVisible(false);
-	    instructionsFrame.setVisible(false);
-    	gameFrame.setVisible(true);	    	
+	public void toGameFrame() {
+		for(JFrame f : frames) {
+			if(f instanceof GameFrame) f.setVisible(true);
+			else f.setVisible(false);
+		}
     }
 	
 	/**
 	 * Make the InstructionsFrame visible, and other frames invisible
 	 */
 	public void toInstructionsFrame() {		
-		solverFrame.setVisible(false);
-	    instructionsFrame.setVisible(true);
-    	gameFrame.setVisible(false);	    	
+		for(JFrame f : frames) {
+			if(f instanceof InstructionsFrame) f.setVisible(true);
+			else f.setVisible(false);    
+		}
     }
 	
 	/**
 	 * Make the SolverFrame visible, and other frames invisible
 	 */
 	public void toSolverFrame() {		
-		solverFrame.setVisible(true);
-	    instructionsFrame.setVisible(false);
-    	gameFrame.setVisible(false);	    	
+		for(JFrame f : frames) {
+			if(f instanceof SolverFrame) f.setVisible(true);
+			else f.setVisible(false);    
+		}	    	
     }
 	
 	public void toBuilderFrame() {
-		solverFrame.setVisible(false);
-		gameFrame.setVisible(false);
-		instructionsFrame.setVisible(false);
-		builderFrame.setVisible(true);
+		for(JFrame f : frames) {
+			if(f instanceof BuilderFrame) f.setVisible(true);
+			else f.setVisible(false);    
+		}
 	}
 }
