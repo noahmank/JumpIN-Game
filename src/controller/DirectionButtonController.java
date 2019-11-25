@@ -12,13 +12,16 @@ import view.*;
  */
 public class DirectionButtonController implements ActionListener {
 	private JumpInGame game;
+	private DirectionButton view;
 	
 	/**
 	 * Constructor for a DirectionButtonController
 	 * @param game is the model that needs to be updated
 	 */
-	public DirectionButtonController(JumpInGame game) {
+	public DirectionButtonController(JumpInGame game, DirectionButton view) {
 		this.game = game;
+		this.view = view;
+		view.subscribeToDirectionButton(this);
 	}
 	
 	/**

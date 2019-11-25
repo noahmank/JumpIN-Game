@@ -8,7 +8,7 @@ import controller.GameBoardButtonController;
 import model.JumpInGame;
 
 public class GameFrame extends JFrame {
-	private ArrowButtonPanel arrowPanel;
+	private DirectionButtonPanel arrowPanel;
 	private BoardGridPanel gridPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
 	private GameMenuBar menuBar;
@@ -17,7 +17,7 @@ public class GameFrame extends JFrame {
 		super("Jump-In Game");
 		
     	this.gridPanel = new BoardGridPanel(game, new GameBoardButtonController(game));
-        this.arrowPanel = new ArrowButtonPanel(game);
+        this.arrowPanel = new DirectionButtonPanel(game);
         this.consoleOutputPanel = new ConsoleOutputPanel(game);
         this.menuBar = new GameMenuBar(game, view);
         
