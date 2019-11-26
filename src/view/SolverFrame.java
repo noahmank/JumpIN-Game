@@ -13,7 +13,7 @@ public class SolverFrame extends JFrame {
 	private BoardGridPanel gridPanel;
 	private SolverButtonPanel solverButtonPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
-	private SolverMenuBar menuBar;
+	private DefaultMenuBar menuBar;
 	
 	/**
 	 * Populating the Solver frame 
@@ -25,7 +25,7 @@ public class SolverFrame extends JFrame {
 		this.gridPanel = new BoardGridPanel(game, null);
 		this.solverButtonPanel = new SolverButtonPanel(game);
 		this.consoleOutputPanel = new ConsoleOutputPanel(game);
-		this.menuBar = new SolverMenuBar(game, view);
+		this.menuBar = new DefaultMenuBar(game, view);
 		
 		this.add(gridPanel, BorderLayout.CENTER);
 		this.add(solverButtonPanel, BorderLayout.SOUTH);
