@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import model.Direction;
+import model.JumpInGame;
 import model.RabbitColor;
 
 
@@ -16,11 +17,13 @@ import model.RabbitColor;
  *
  */
 public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameListener {
-	JComboBox<String> rabbitProperty;
-	JComboBox<String> foxProperty;
-	JComboBox<String> property;
-	public BuilderPieceSelectionPanel() {
+	private JComboBox<String> rabbitProperty;
+	private JComboBox<String> foxProperty;
+	private JComboBox<String> property;
+	
+	public BuilderPieceSelectionPanel(JumpInGame g) {
 		super(new GridLayout(2, 2));
+		property = new JComboBox<>();
 		
 		// Piece type selection box
 		String[] pieceTypes = {"Fox", "Rabbit", "Mushroom"};

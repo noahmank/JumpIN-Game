@@ -41,3 +41,5 @@ public class AddButton extends JButton{
 	}
 
 }
+
+// This class will not be used, since this doesn't actually implement any new functionality from JButton (unlike direction or board button classes)

@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import controller.GameBoardButtonController;
@@ -19,7 +20,7 @@ import model.Rabbit;
 public class BoardGridPanel extends JPanel implements JumpInGameListener {
 	
 	private BoardButton[][] boardGrid;
-	private GameBoardButtonController controller;
+	private ActionListener controller;
 	private JumpInGame g;
 	private int columns;
 	private int rows;
@@ -29,7 +30,7 @@ public class BoardGridPanel extends JPanel implements JumpInGameListener {
 	 * @param g is the JumpIN game model
 	 * @param c is the JumpIN gameboard controller
 	 */
-	public BoardGridPanel(JumpInGame g, GameBoardButtonController c) {
+	public BoardGridPanel(JumpInGame g, ActionListener c) {
 		super();
 		this.columns = 5;
 		this.rows = 5;
