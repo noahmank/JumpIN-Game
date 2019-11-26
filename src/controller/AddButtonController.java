@@ -28,9 +28,8 @@ public class AddButtonController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
 		AddButton addButton = (AddButton) event.getSource();
-		
+		//TODO
 	}
 	
 
