@@ -48,6 +48,14 @@ public class FoxTest {
 	}
 	
 	/**
+	 * tests getting the image for the foxes
+	 */
+	@Test
+	public void testGetSRC() {
+		assertEquals("Expecting 'fox.png'", "fox.png", fox.getSrc());
+	}
+	
+	/**
 	* Tests the toString method
 	*/
 	@Test
