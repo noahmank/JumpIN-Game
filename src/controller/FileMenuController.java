@@ -31,7 +31,13 @@ public class FileMenuController implements ActionListener {
 		if(source.getText().equals("Home")) {
 			this.game.resetChallenge();
 			this.view.toInstructionsFrame();
-		} 
+		}
+		else if(source.getText().equals("Save")) {
+			//save the current state of the game
+		}
+		else if(source.getText().contentEquals("Open")) {
+			//open and load the saved game
+		}
 	}
 
 }
