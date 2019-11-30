@@ -23,14 +23,38 @@ public class BoardBuilder {
 		selectedPiece = null;
 	}
 	
-	
+	/**
+	 * sets the piece's name
+	 * @param name the name the piece is set to
+	 */
 	public void setPieceName(String name) {
 		this.pieceName = name;
 	}
 	
+	/**
+	 * gets the piece name
+	 * @return piece name
+	 */
+	public String getPieceName() {
+		return this.pieceName;
+	}
+	
+	/**
+	 * sets the piece's attribute
+	 * @param attribute is the attribute the piece is set to
+	 */
 	public void setPieceAttribute(String attribute) {
 		this.pieceAttribute = attribute;
 	}
+	
+	/**
+	 * gets the piece's attribute
+	 * @return piece attribute
+	 */
+	public String getPieceAttribute() {
+		return this.pieceAttribute;
+	}
+	
 	
 	/**
 	 * sets the column number
