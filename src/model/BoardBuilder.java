@@ -99,6 +99,15 @@ public class BoardBuilder {
 			row = -1;
 			selectedPiece = null;
 		}
-	}	
+	}
+	
+	/**
+	 * removes the selected piece from the board
+	 */
+	public void removePieceFromBoard() {
+		if(this.column != -1 && this.row != -1 && this.selectedPiece != null) {
+			this.boardToBuild.removePiece(selectedPiece);
+		}
+	}
 }
 
