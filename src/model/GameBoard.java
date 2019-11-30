@@ -334,8 +334,7 @@ public class GameBoard {
 		if(canMoveFox(f, moveDirection)) {
 			Point location = foxes.get(f);
 			// Remove from previous location
-			grid[location.x][location.y].removePiece(f);
-			grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
+			this.removePiece(f);
 			// Add to new location
 			location = new Point(location.x + moveDirection.getX(), location.y + moveDirection.getY());
 			grid[location.x][location.y].setPiece(f);
@@ -354,7 +353,7 @@ public class GameBoard {
 	public void moveRabbitPiece(Rabbit r, Direction direction) {
 		if(canMoveRabbit(r, direction)) {
 			Point currentLocation = rabbits.get(r);
-			grid[currentLocation.x][currentLocation.y].removePiece(r);
+			this.removePiece(r);
 			currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
 			while(grid[currentLocation.x][currentLocation.y].isOccupied()) {
 				currentLocation = new Point(currentLocation.x + direction.getX(), currentLocation.y + direction.getY());
@@ -426,6 +425,56 @@ public class GameBoard {
 	private void addMushroomPiece(Mushroom piece, int column, int row) {
 		grid[column][row].setPiece(piece);
 		this.mushrooms.put(piece, new Point(column, row));
+	}
+	
+	/**
+	 * Remove piece function
+	 * @param piece is the piece to remove from the board
+	 * @author Adela Tullio
+	 */
+	public void removePiece(Piece piece) {
+		
+		if(piece instanceof Fox) {
+			this.removeFoxPiece((Fox)piece);
+		}
+		else if(piece instanceof Rabbit) {
+			this.removeRabbitPiece((Rabbit) piece); 
+		}
+		else {
+			this.removeMushroomPiece((Mushroom) piece);
+		}
+	}
+	
+	/**
+	 * private method to remove a fox from the board
+	 * @param f is the fox to be removed
+	 * @author Adela Tullio
+	 */
+	private void removeFoxPiece(Fox f) {
+		Point location = foxes.get(f);
+		// Remove from previous location
+		grid[location.x][location.y].removePiece(f);
+		grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
+	}
+	
+	/**
+	 * private method to remove a rabbit piece from the board
+	 * @param r is the rabbit to be removed
+	 * @author Adela Tullio
+	 */
+	private void removeRabbitPiece(Rabbit r) {
+		Point currentLocation = rabbits.get(r);
+		grid[currentLocation.x][currentLocation.y].removePiece(r);
+	}
+	
+	/**
+	 * private method to remove a mushroom piece from the board
+	 * @param m is the mushroom to be removed
+	 * @author Adela Tullio
+	 */
+	private void removeMushroomPiece(Mushroom m) {
+		Point location = mushrooms.get(m);
+		grid[location.x][location.y].removePiece(m);
 	}
 	
 	/**
