@@ -21,8 +21,6 @@ import model.RabbitColor;
 public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameListener {
 	private JumpInGame game;
 	JComboBox<String> pieceSelect;
-	private JComboBox<String> rabbitProperty;
-	private JComboBox<String> foxProperty;
 	private JComboBox<String> property;
 	
 	
