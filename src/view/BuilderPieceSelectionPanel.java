@@ -18,6 +18,7 @@ import model.RabbitColor;
  *
  */
 public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameListener {
+	private JumpInGame game;
 	private JComboBox<String> rabbitProperty;
 	private JComboBox<String> foxProperty;
 	private JComboBox<String> property;
@@ -25,6 +26,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 	
 	public BuilderPieceSelectionPanel(JumpInGame g) {
 		super(new GridLayout(2, 2));
+		this.game = g;
 		property = new JComboBox<>();
 		
 		// Piece type selection box
@@ -52,7 +54,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		
 		// Add piece button
 		JButton addPiece = new JButton("Add"); // Might need to set bounds
-		// TODO Add ActionListener
+		new AddButtonController(this.game, addPiece);
 		
 		// Remove piece button
 		JButton removePiece = new JButton("Remove"); // Might need to set bounds
@@ -72,7 +74,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 
 	@Override
 	public void subscribeToModel() {
-		// TODO Auto-generated method stub
+		this.game.addView(this);
 		
 	}
 
