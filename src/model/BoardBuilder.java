@@ -7,6 +7,8 @@ package model;
 public class BoardBuilder {
 	private int column;
 	private int row;
+	private String pieceName;
+	private String pieceAttribute;
 	private Piece selectedPiece;
 	private GameBoard boardToBuild;
 	
@@ -19,6 +21,15 @@ public class BoardBuilder {
 		row = -1;
 		this.boardToBuild = b;
 		selectedPiece = null;
+	}
+	
+	
+	public void setPieceName(String name) {
+		this.pieceName = name;
+	}
+	
+	public void setPieceAttribute(String attribute) {
+		this.pieceAttribute = attribute;
 	}
 	
 	/**

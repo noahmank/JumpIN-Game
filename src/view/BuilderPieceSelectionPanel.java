@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import controller.*;
 import model.Direction;
 import model.JumpInGame;
 import model.RabbitColor;
@@ -21,6 +22,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 	private JComboBox<String> foxProperty;
 	private JComboBox<String> property;
 	
+	
 	public BuilderPieceSelectionPanel(JumpInGame g) {
 		super(new GridLayout(2, 2));
 		property = new JComboBox<>();
@@ -29,7 +31,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		String[] pieceTypes = {"Fox", "Rabbit", "Mushroom"};
 		JComboBox<String> pieceSelect = new JComboBox<>(pieceTypes);
 		pieceSelect.setSelectedIndex(-1);
-		// TODO Add ActionListener
+		new PieceSelectController(g.getBuilder(), pieceSelect);
 		
 		// Piece property selection box
 		// Initialize JComboBox for rabbit properties (color)
@@ -38,11 +40,15 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 			rabbitProperty.addItem(c.toString());
 		}
 		rabbitProperty.setSelectedIndex(-1);
+		new AttributeSelectController(g.getBuilder(), rabbitProperty);
+		
 		// Initialize JComboBox for fox properties (direction)
 		foxProperty = new JComboBox<>();
 		for(Direction d : Direction.values()) {
 			foxProperty.addItem(d.toString());
 		}
+		foxProperty.setSelectedIndex(-1);
+		new AttributeSelectController(g.getBuilder(), foxProperty);
 		
 		// Add piece button
 		JButton addPiece = new JButton("Add"); // Might need to set bounds
@@ -57,6 +63,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		this.add(addPiece);
 		this.add(removePiece);
 	}
+	
 	@Override
 	public void updateView() {
 		// TODO Auto-generated method stub

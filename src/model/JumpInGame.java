@@ -40,7 +40,7 @@ public class JumpInGame {
 		solver = null;
 		selectedChallenge = 1;
 		numChallenges = 3;
-		builder = null;
+		builder = new BoardBuilder(gameBoard);
 	}
 	
 	/**
@@ -293,10 +293,12 @@ public class JumpInGame {
 		if(p instanceof MoveablePiece) this.selectedPiece = (MoveablePiece) p; 
 	}
 	
-	public void startBuilder() {
-		GameBoard emptyBoard = new GameBoard();
-		this.builder = new BoardBuilder(emptyBoard);
+	/**
+	private void startBuilder() {
+		this.gameBoard = new GameBoard();
+		this.builder = new BoardBuilder(this.gameBoard);
 	}
+	**/
 	
 	public BoardBuilder getBuilder() {
 		return this.builder;
