@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 
 import model.*;
 import view.*;
@@ -21,9 +22,9 @@ public class RemoveButtonController implements ActionListener{
 	 * @param g is the game
 	 * @param view is the remove button view
 	 */
-	public RemoveButtonController(BoardBuilder build, RemoveButton view) {
+	public RemoveButtonController(BoardBuilder build, JButton view) {
 		this.build = build;
-		view.subscribeToRemoveButton(this);
+		view.addActionListener(this);
 	}
 
 	/**
@@ -32,15 +33,12 @@ public class RemoveButtonController implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		RemoveButton source = (RemoveButton)event.getSource();
+		JButton source = (JButton) event.getSource();
 		int column = build.getColumn();
 		int row = build.getRow();
 		JumpInGame game = new JumpInGame();
 		game.savePieceToMove(column, row);
 		build.setSelectedPiece(game.getPiece());
-		if(source.isSelected()) {
-			build.removePieceFromBoard();
-		}
-
+		build.removePieceFromBoard();
 	}
 }
