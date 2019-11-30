@@ -39,6 +39,24 @@ public class BoardBuilderTest {
 	}
 
 	/**
+	 * tests the setter and getter for piece name
+	 */
+	@Test
+	public void testSetAndGetPieceName() {
+		boardBuilder.setPieceName("Rabbit");
+		assertEquals("Expecting 'Rabbit'", "Rabbit", boardBuilder.getPieceName());
+	}
+	
+	/**
+	 * tests the setter and getter for piece attribute
+	 */
+	@Test
+	public void testSetAndGetPieceAttribute() {
+		boardBuilder.setPieceAttribute("Grey");
+		assertEquals("Expecting 'Grey'", "Grey", boardBuilder.getPieceAttribute());
+	}
+	
+	/**
 	 * tests the setter and getter for column
 	 */
 	@Test
@@ -76,5 +94,22 @@ public class BoardBuilderTest {
 		boardBuilder.addPieceToBoard();
 		board = boardBuilder.getBoardToBuild();
 		assertEquals("Expecting mushroom at Column 2, Row 1", "MS", board.getHole(2, 1).toString());
+	}
+	
+	/**
+	 * tests remove piece from board method
+	 */
+	@Test
+	public void testRemovePieceFromBoard() {
+		boardBuilder.setColumn(2);
+		boardBuilder.setRow(1);
+		boardBuilder.setSelectedPiece(mushroom);
+		boardBuilder.addPieceToBoard();
+		boardBuilder.setColumn(2);
+		boardBuilder.setRow(1);
+		boardBuilder.setSelectedPiece(mushroom);
+		boardBuilder.removePieceFromBoard();
+		board = boardBuilder.getBoardToBuild();
+		assertEquals("Expecting mushroom at Column 2, Row 1", "  ", board.getHole(2, 1).toString());
 	}
 }
