@@ -1,5 +1,6 @@
 package modeltests;
 import model.*;
+
 /**
 * Tests for the GameBoard class implementation
 * @author Adela Tullio
@@ -166,6 +167,78 @@ public class GameBoardTest {
 	}
 	
 	/**
+	 * Test adding rabbit piece on occupied space
+	 */
+	@Test
+	public void testAddingRabbitOnOccupiedSpace() {
+		gameboard.addPiece(mushroom, 2, 0);
+		gameboard.addPiece(rabbit, 2, 0);
+		assertEquals("Expecting 'MS'", "MS", gameboard.getHole(2,0).toString());
+	}
+	
+	/**
+	* Tests the isFinished method
+	*/
+	@Test
+	public void testIsFinished() {
+		Rabbit rabbit2 = new Rabbit(RabbitColor.BROWN);
+		Rabbit rabbit3 = new Rabbit(RabbitColor.WHITE);
+		gameboard.addPiece(rabbit, 0, 0);
+		gameboard.addPiece(rabbit2, 4, 0);
+		gameboard.addPiece(rabbit3, 0, 4);
+		assertEquals("Expecting a value true.", true, gameboard.isFinished());
+	}
+	
+	/**
+	 * tests getting the grid
+	 */
+	@Test
+	public void testGetGrid() {
+		Hole[][] grid = gameboard.getGrid();
+		assertEquals("Expected 'BH'", "BH", grid[4][4].toString());
+		assertEquals("Expected '  '", "  ",grid[1][2].toString());
+		assertEquals("Expected 'RH'", "RH", grid[4][2].toString());
+	}
+	
+	/**
+	 * tests setting the grid
+	 */
+	@Test
+	public void testSetGrid() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Tests the toString representation of the gameboard
+	 */
+	@Test
+	public void testToString() {
+		String string = "  |  0 |  1 |  2 |  3 |  4 |  \n" + 
+						"0 | BH |    | RH |    | BH | \n" + 
+						"1 |    |    |    |    |    | \n" + 
+						"2 | RH |    | BH |    | RH | \n" + 
+						"3 |    |    |    |    |    | \n" + 
+						"4 | BH |    | RH |    | BH | \n";
+		assertEquals("Expecting string representation of the board", string, gameboard.toString());
+	}
+	
+	/**
+	 * tests can move fox
+	 */
+	@Test
+	public void testCanMoveFox() {
+		assertEquals("Expecting False", false, gameboard.canMovePiece(fox, Direction.NORTH));
+	}
+	
+	/**
+	 * tests can move fox
+	 */
+	@Test
+	public void testCanMoveRabbit() {
+		assertEquals("Expecting false", false, gameboard.canMovePiece(rabbit, Direction.SOUTH));
+	}
+	
+	/**
 	* Tests the moveFoxPiece method
 	*/
 	@Test
@@ -187,46 +260,65 @@ public class GameBoardTest {
 	}
 	
 	/**
-	* Tests the isFinished method
-	*/
+	 * Tests the can add fox method
+	 * on empty space
+	 */
 	@Test
-	public void testIsFinished() {
-		Rabbit rabbit2 = new Rabbit(RabbitColor.BROWN);
-		Rabbit rabbit3 = new Rabbit(RabbitColor.WHITE);
-		gameboard.addPiece(rabbit, 0, 0);
-		gameboard.addPiece(rabbit2, 4, 0);
-		gameboard.addPiece(rabbit3, 0, 4);
-		assertEquals("Expecting a value true.", true, gameboard.isFinished());
+	public void testCanAddFoxOnEmptySpace() {
+		assertEquals("Expecting true", true, gameboard.canAddFox(fox, 3, 2));
 	}
 	
 	/**
-	 * Tests the toString representation of the gameboard
+	 * tests the can add fox method on 
+	 * an occupied space
 	 */
 	@Test
-	public void testToString() {
-		String string = "  |  0 |  1 |  2 |  3 |  4 |  \n" + 
-						"0 | BH |    | RH |    | BH | \n" + 
-						"1 |    |    |    |    |    | \n" + 
-						"2 | RH |    | BH |    | RH | \n" + 
-						"3 |    |    |    |    |    | \n" + 
-						"4 | BH |    | RH |    | BH | \n";
-		assertEquals("Expecting string representation of the board", string, gameboard.toString());
+	public void testCanAddFoxOnOccupiedSpace() {
+		gameboard.addPiece(mushroom, 3, 2);
+		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 3, 2));
 	}
 	
 	/**
-	 * Tests checkValidFoxMove
+	 * tests the can add fox method
+	 * on a raised hole
 	 */
 	@Test
-	public void testCheckValidFoxMove() {
-		assertEquals("Expecting False", false, gameboard.canMovePiece(fox, Direction.NORTH));
+	public void testCanAddFoxOnRaisedHole() {
+		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 2, 0));
 	}
 	
 	/**
-	 * Tests checkValidRabbitMove
+	 * Tests remove piece method with
+	 * fox instance
 	 */
 	@Test
-	public void testCheckValidRabbitMove() {
-		assertEquals("Expecting false", false, gameboard.canMovePiece(rabbit, Direction.SOUTH));
+	public void testRemovePieceWithFox() {
+		gameboard.addPiece(fox, 3, 2);
+		gameboard.removePiece(fox);
+		assertEquals("Expecting empty hole '  '", "  ", gameboard.getHole(3, 2).toString());
+		
+	}
+	
+	/**
+	 * Tests remove piece method with
+	 * rabbit instance
+	 */
+	@Test
+	public void testRemovePieceWithRabbit() {
+		gameboard.addPiece(rabbit, 3, 2);
+		gameboard.removePiece(rabbit);
+		assertEquals("Expecting empty hole '  '", "  ", gameboard.getHole(3, 2).toString());
+	}
+	
+	/**
+	 * Tests remove piece method with
+	 * mushroom instance
+	 */
+	@Test
+	public void testRemovePieceWithMushroom() {
+		gameboard.addPiece(mushroom, 3, 2);
+		gameboard.removePiece(mushroom);
+		assertEquals("Expecting empty hole '  '", "  ", gameboard.getHole(3, 2).toString());
 	}
 	
 	/**
@@ -257,52 +349,31 @@ public class GameBoardTest {
 	}
 	
 	/**
-	*Tests setting the Mushrooms
-	*/
-	@Test
-	public void testSetMushrooms() {
-	}
-	
-	/**
-	* Tests setting the Rabbits
-	*/
-	@Test
-	public void testSetRabbits() {
-	}
-	
-	/**
-	* Tests setting the Foxes
-	*/
-	@Test
-	public void testSetFoxes() {
-		//Adding fox  with head on a brown hole
-		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 0, 1));
-		
-		//Adding a fox with head out of bounds
-		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 0, 0));
-		
-		//Adding fox with head on a rabbit piece
-		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 3, 0));
-		
-		//Adding fox in a valid Place
-		assertEquals("Expecting true", true, gameboard.canAddFox(fox, 1, 1));
-		
-	}
-	
-	/**
-	 * tests getting the grid
+	 * Tests grid is occupied
 	 */
 	@Test
-	public void testGetGrid() {
-		
+	public void testGridIsOccupiedAt() {
+		gameboard.addPiece(mushroom, 3, 2);
+		assertEquals("Expecting true", true, gameboard.gridIsOccupiedAt(3, 2));
 	}
 	
 	/**
-	 * tests setting the grid
+	 * tests getting piece from grid
 	 */
 	@Test
-	public void testSetGrid() {
-		
+	public void testGetPieceFromGridThatIsOccupied() {
+		gameboard.addPiece(mushroom, 3, 2);
+		assertEquals("Expecting 'MS'", "MS", gameboard.getPieceFromGrid(3, 2).toString());
 	}
+	
+	/**
+	 * tests getting piece from grid space
+	 * that isn't occupied
+	 */
+	@Test
+	public void testGetPieceFromGridThatIsNotOccupied() {
+		assertEquals("Epxecting null", null, gameboard.getPieceFromGrid(3, 2));
+	}
+	
 }	
 
