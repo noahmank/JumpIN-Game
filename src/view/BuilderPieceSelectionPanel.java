@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.GridLayout;
+import java.awt.event.*;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ import model.RabbitColor;
  */
 public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameListener {
 	private JumpInGame game;
+	JComboBox<String> pieceSelect;
 	private JComboBox<String> rabbitProperty;
 	private JComboBox<String> foxProperty;
 	private JComboBox<String> property;
@@ -31,26 +33,14 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		
 		// Piece type selection box
 		String[] pieceTypes = {"Fox", "Rabbit", "Mushroom"};
-		JComboBox<String> pieceSelect = new JComboBox<>(pieceTypes);
+		pieceSelect = new JComboBox<>(pieceTypes);
 		pieceSelect.setSelectedIndex(-1);
 		new PieceSelectController(g.getBuilder(), pieceSelect);
-		
-		// Piece property selection box
-		// Initialize JComboBox for rabbit properties (color)
-		rabbitProperty = new JComboBox<>();
-		for(RabbitColor c : RabbitColor.values()) {
-			rabbitProperty.addItem(c.toString());
-		}
-		rabbitProperty.setSelectedIndex(-1);
-		new AttributeSelectController(g.getBuilder(), rabbitProperty);
-		
-		// Initialize JComboBox for fox properties (direction)
-		foxProperty = new JComboBox<>();
-		for(Direction d : Direction.values()) {
-			foxProperty.addItem(d.toString());
-		}
-		foxProperty.setSelectedIndex(-1);
-		new AttributeSelectController(g.getBuilder(), foxProperty);
+		pieceSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pieceSelectActionPerformed(e);
+			}
+		});
 		
 		// Add piece button
 		JButton addPiece = new JButton("Add"); // Might need to set bounds
@@ -63,6 +53,21 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		this.add(property);
 		this.add(addPiece);
 		this.add(removePiece);
+	}
+	
+	private void pieceSelectActionPerformed(ActionEvent e) {
+		property.removeAllItems();
+		if(pieceSelect.getSelectedItem().equals("Rabbit")) {
+			for(RabbitColor c : RabbitColor.values()) {
+				property.addItem(c.toString());
+			}
+		}
+		if(pieceSelect.getSelectedItem().equals("Fox")) {
+			for(Direction d : Direction.values()) {
+				property.addItem(d.toString());
+			}
+		}
+		property.setSelectedIndex(-1);
 	}
 	
 	@Override
