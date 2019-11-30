@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import model.JumpInGame;
-import view.AddButton;
+import model.*;
+
 
 /**
  * @author Aubin
@@ -17,19 +17,18 @@ import view.AddButton;
  */
 public class AddButtonController implements ActionListener{
 	
-	private JumpInGame game;
-	private AddButton view;
+	private BoardBuilder builder;
+	private JButton view;
 	
-	public AddButtonController(JumpInGame game, AddButton view) {
-		this.game = game;
+	public AddButtonController(BoardBuilder builder, JButton view) {
+		this.builder = builder;
 		this.view = view;
-		
+		view.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		AddButton addButton = (AddButton) event.getSource();
-		//TODO
+		builder.constructSelectedPiece();
 	}
 	
 

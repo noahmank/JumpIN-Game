@@ -52,11 +52,11 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		
 		// Add piece button
 		JButton addPiece = new JButton("Add"); // Might need to set bounds
-		// TODO Add ActionListener
+		new AddButtonController(g.getBuilder(), addPiece);
 		
 		// Remove piece button
 		JButton removePiece = new JButton("Remove"); // Might need to set bounds
-		// TODO Add ActionListener
+		new RemoveButtonController(g.getBuilder(), removePiece);
 		
 		this.add(pieceSelect);
 		this.add(property);
@@ -75,5 +75,6 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
