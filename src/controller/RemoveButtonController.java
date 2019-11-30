@@ -14,15 +14,15 @@ import view.*;
  *
  */
 public class RemoveButtonController implements ActionListener{
-	private JumpInGame game;
+	private BoardBuilder build;
 
 	/**
 	 * constructor for remove button controller
 	 * @param g is the game
 	 * @param view is the remove button view
 	 */
-	public RemoveButtonController(JumpInGame g, RemoveButton view) {
-		this.game = g;
+	public RemoveButtonController(BoardBuilder build, RemoveButton view) {
+		this.build = build;
 		view.subscribeToRemoveButton(this);
 	}
 
@@ -33,14 +33,13 @@ public class RemoveButtonController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		RemoveButton source = (RemoveButton)event.getSource();
-		GameBoard board = game.getBoard();
-		int row = source.getRow();
-		int column = source.getColumn();
+		int column = build.getColumn();
+		int row = build.getRow();
+		JumpInGame game = new JumpInGame();
 		game.savePieceToMove(column, row);
-		if((game.getPiece() != null) && (source.isSelected())) {
-			Hole hole = board.getHole(column, row);
-			Piece piece = hole.getPiece();
-			hole.removePiece(piece);
+		build.setSelectedPiece(game.getPiece());
+		if(source.isSelected()) {
+			build.removePieceFromBoard();
 		}
 
 	}
