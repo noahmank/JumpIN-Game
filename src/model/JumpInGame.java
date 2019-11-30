@@ -218,7 +218,7 @@ public class JumpInGame {
 	* gets the piece value
 	* @return the value of the MoveablePiece object
 	*/
-	public MoveablePiece getPiece() {
+	public Piece getPiece() {
 		return this.selectedPiece;
 	}
 	

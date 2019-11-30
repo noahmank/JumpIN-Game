@@ -1,10 +1,11 @@
 package model;
 /**
  * 
- * @author noahmank and help from adelatullio
+ * @author noahmank and adelatullio
  *
  */
 public class BoardBuilder {
+	private int foxNum;
 	private int column;
 	private int row;
 	private String pieceName;
@@ -21,6 +22,7 @@ public class BoardBuilder {
 		row = -1;
 		this.boardToBuild = b;
 		selectedPiece = null;
+		foxNum = 1;
 	}
 	
 	/**
@@ -55,6 +57,34 @@ public class BoardBuilder {
 		return this.pieceAttribute;
 	}
 	
+	public void constructSelectedPiece() {
+		if(pieceName != null && pieceAttribute != null) {
+			if(this.pieceName.equals("Rabbit")) {
+				selectedPiece = new Rabbit(RabbitColor.valueOf(pieceAttribute));
+			}
+			else if(this.pieceName.equals("Fox")) {
+				selectedPiece = new Fox(Direction.valueOf(pieceAttribute), foxNum);
+				foxNum++;
+			}
+			else if(this.pieceName.equals("Mushroom")) {
+				selectedPiece = new Mushroom();
+			}
+			this.addPieceToBoard();
+		}
+	}
+	
+	/**
+	 * adds the selected piece to the board 
+	 * at the specified column and row
+	 */
+	private void addPieceToBoard() {
+		if(column != -1 && row != -1 && selectedPiece != null) {
+			this.boardToBuild.addPiece(selectedPiece, column, row);
+			column = -1;
+			row = -1;
+			selectedPiece = null;
+		}
+	}
 	
 	/**
 	 * sets the column number
@@ -87,23 +117,7 @@ public class BoardBuilder {
 	public int getRow() {
 		return this.row;
 	}
-	
-	/**
-	 * sets the selected piece
-	 * @param piece is the piece to set the selected piece to
-	 */
-	public void setSelectedPiece(Piece piece) {
-		this.selectedPiece = piece;
-	}
-	
-	/**
-	 * gets the selected piece
-	 * @return selected piece value
-	 */
-	public Piece getSelectedPiece() {
-		return this.selectedPiece;
-	}
-	
+
 	/**
 	 * getter for the board to build
 	 * @return the gameboard to build
@@ -113,25 +127,16 @@ public class BoardBuilder {
 	}
 	
 	/**
-	 * adds the selected piece to the board 
-	 * at the specified column and row
-	 */
-	public void addPieceToBoard() {
-		if(column != -1 && row != -1 && selectedPiece != null) {
-			this.boardToBuild.addPiece(selectedPiece, column, row);
-			column = -1;
-			row = -1;
-			selectedPiece = null;
-		}
-	}
-	
-	/**
 	 * removes the selected piece from the board
 	 */
 	public void removePieceFromBoard() {
-		if(this.column != -1 && this.row != -1 && this.selectedPiece != null) {
+		if(this.selectedPiece != null) {
 			this.boardToBuild.removePiece(selectedPiece);
 		}
+	}
+
+	public void setSelectedPiece(Piece piece) {
+		this.selectedPiece = piece;
 	}
 }
 
