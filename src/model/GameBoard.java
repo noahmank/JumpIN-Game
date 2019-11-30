@@ -211,30 +211,6 @@ public class GameBoard {
 	}
 	
 	/**
-	* sets the rabbits
-	* @param rabbits is a linkedhashmap of the rabbits and locations you wish to set it to
-	*/
-	public void setRabbits(LinkedHashMap<Rabbit, Point> rabbits) {
-		this.rabbits = rabbits;
-	}
-	
-	/**
-	* sets the foxes
-	* @param foxes is the linkedhashmap of foxes and locations you wish to set it to
-	*/
-	public void setFoxes(LinkedHashMap<Fox, Point> foxes) {
-		this.foxes = foxes;
-	}
-	
-	/**
-	* sets the mushrooms
-	* @param mushrooms is the hashmap of mushrooms and locations you wish to set it to
-	*/
-	public void setMushrooms(HashMap<Mushroom, Point> mushrooms) {
-		this.mushrooms = mushrooms;
-	}
-	
-	/**
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
