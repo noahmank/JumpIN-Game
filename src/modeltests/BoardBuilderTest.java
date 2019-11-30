@@ -75,15 +75,6 @@ public class BoardBuilderTest {
 	}
 	
 	/**
-	 * tests the setter and getter for selected piece
-	 */
-	@Test
-	public void testSetAndGetSelectedPiece() {
-		boardBuilder.setSelectedPiece(mushroom);
-		assertEquals("Expecting mushroom", mushroom, boardBuilder.getSelectedPiece());
-	}
-	
-	/**
 	 * tests add piece to board method
 	 */
 	@Test
@@ -91,7 +82,7 @@ public class BoardBuilderTest {
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
 		boardBuilder.setSelectedPiece(mushroom);
-		boardBuilder.addPieceToBoard();
+		boardBuilder.constructSelectedPiece();
 		board = boardBuilder.getBoardToBuild();
 		assertEquals("Expecting mushroom at Column 2, Row 1", "MS", board.getHole(2, 1).toString());
 	}
@@ -104,7 +95,7 @@ public class BoardBuilderTest {
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
 		boardBuilder.setSelectedPiece(mushroom);
-		boardBuilder.addPieceToBoard();
+		boardBuilder.constructSelectedPiece();
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
 		boardBuilder.setSelectedPiece(mushroom);
