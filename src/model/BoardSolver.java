@@ -63,7 +63,8 @@ public class BoardSolver {
 	 * @return GameBoard Object
 	 */
 	public GameBoard getSolvedBoard() {
-		return solvedNode.getBoard();
+		if(solvedNode != null) return solvedNode.getBoard();
+		else return null;
 	}
 	
 	/**

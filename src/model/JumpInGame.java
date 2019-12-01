@@ -255,6 +255,9 @@ public class JumpInGame {
 		solver.solveBoard();
 	}
 	
+	public boolean gameIsSolved() {
+		return (this.solver.getSolvedBoard() != null);
+	}
 	/**
 	* a method that calculates the next move for the solution
 	*/
