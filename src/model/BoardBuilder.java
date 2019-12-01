@@ -58,18 +58,22 @@ public class BoardBuilder {
 	}
 	
 	public void constructSelectedPiece() {
-		if(pieceName != null && pieceAttribute != null) {
-			if(this.pieceName.equals("Rabbit")) {
-				selectedPiece = new Rabbit(RabbitColor.valueOf(pieceAttribute));
-			}
-			else if(this.pieceName.equals("Fox")) {
-				selectedPiece = new Fox(Direction.valueOf(pieceAttribute), foxNum);
-				foxNum++;
+		if(pieceName != null) {
+			if(pieceAttribute != null) {
+				String attributeEnum = this.pieceAttribute.toUpperCase();
+				if(this.pieceName.equals("Rabbit")) {
+					selectedPiece = new Rabbit(RabbitColor.valueOf(attributeEnum));
+				}
+				else if(this.pieceName.equals("Fox")) {
+					selectedPiece = new Fox(Direction.valueOf(attributeEnum), foxNum);
+					foxNum++;
+				}
+				this.addPieceToBoard();
 			}
 			else if(this.pieceName.equals("Mushroom")) {
 				selectedPiece = new Mushroom();
+				this.addPieceToBoard();
 			}
-			this.addPieceToBoard();
 		}
 	}
 	

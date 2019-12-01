@@ -28,6 +28,7 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		super(new GridLayout(2, 2));
 		this.game = g;
 		property = new JComboBox<>();
+		new AttributeSelectController(g.getBuilder(), property);
 		
 		// Piece type selection box
 		String[] pieceTypes = {"Fox", "Rabbit", "Mushroom"};
@@ -42,10 +43,10 @@ public class BuilderPieceSelectionPanel extends JPanel implements JumpInGameList
 		
 		// Add piece button
 		JButton addPiece = new JButton("Add"); // Might need to set bounds
-		new AddButtonController(g.getBuilder(), addPiece);
+		new AddButtonController(g, addPiece);
 		// Remove piece button
 		JButton removePiece = new JButton("Remove"); // Might need to set bounds
-		new RemoveButtonController(g.getBuilder(), removePiece);
+		new RemoveButtonController(g, removePiece);
 		
 		this.add(pieceSelect);
 		this.add(property);

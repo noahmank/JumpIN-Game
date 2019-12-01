@@ -15,19 +15,19 @@ import model.*;
  *
  */
 public class AddButtonController implements ActionListener{
-	
+	private JumpInGame game;
 	private BoardBuilder builder;
-	private JButton view;
 	
-	public AddButtonController(BoardBuilder builder, JButton view) {
-		this.builder = builder;
-		this.view = view;
+	public AddButtonController(JumpInGame game, JButton view) {
+		this.game = game;
+		this.builder = game.getBuilder();
 		view.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		builder.constructSelectedPiece();
+		game.notifyViews();
 	}
 	
 

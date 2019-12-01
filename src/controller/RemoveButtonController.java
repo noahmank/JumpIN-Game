@@ -15,6 +15,7 @@ import view.*;
  *
  */
 public class RemoveButtonController implements ActionListener{
+	private JumpInGame game;
 	private BoardBuilder build;
 
 	/**
@@ -22,8 +23,9 @@ public class RemoveButtonController implements ActionListener{
 	 * @param g is the game
 	 * @param view is the remove button view
 	 */
-	public RemoveButtonController(BoardBuilder build, JButton view) {
-		this.build = build;
+	public RemoveButtonController(JumpInGame game, JButton view) {
+		this.game = game;
+		this.build = game.getBuilder();
 		view.addActionListener(this);
 	}
 
@@ -40,5 +42,6 @@ public class RemoveButtonController implements ActionListener{
 		game.savePieceToMove(column, row);
 		build.setSelectedPiece(game.getPiece());
 		build.removePieceFromBoard();
+		game.notifyViews();
 	}
 }
