@@ -9,8 +9,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-
-import jdk.internal.org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Aubin
