@@ -43,6 +43,9 @@ This submission includes the updates UML diagram, source code and along with doc
 ### Deliverable 3
 This submission includes the updated UML diagram, source code, test cases, along with documentation. In addition, an updated GUI component, a game solver, as well as undo and redo buttons.
 
+### Deliverable 4
+This submission includes an updated UML class diagram, an updated UML sequence diagram, updated source code, updated test cases, and updated documentation. In addition, an updated GUI component, along with a 'Save' and 'Open' feature. 
+
 # Advancement
 
 ### Deliverable 1
@@ -55,7 +58,10 @@ to only implement one puzzle challenge, challenge 1. We plan to expand this to a
 The GUI of the game has been implemented using the MVC Design pattern. This version allows the user to play the game using Buttons on a window and manipulate movable pieces using direction arrows at the bottom of the window. The puzzle challenge implemented is the same as challenge 1 in deliverable 1.
 
 ### Deliverable 3
-A game solver was implemented and integrated in the GUI along with undo and redo functions. There are updates on the GUI to accomodate this and some changes were made to improve the GUI aesthetics, including new foxes, rabbits, mushrooms, colours, new buttons and more. In addtion, 2 new challenges were added to test the functionality of the solver. 
+A game solver was implemented and integrated in the GUI along with undo and redo functions. There are updates on the GUI to accomodate this and some changes were made to improve the GUI aesthetics, including new foxes, rabbits, mushrooms, colours, new buttons and more. In addtion, 2 new challenges were added to test the functionality of the solver.
+
+### Deliverable 4
+In the Home menu, we added a 'Save' and 'Open' which enables a user to save the progress they've made in a game, and load a game that that they have previously saved to be able to continue playing. Additionally, we have added a game builder feature. This feature enables the user to suggest a level by selecting which pieces to put on the board. If the suggested level is feasible, it is saved and ready to play when the user wishes.
 
 # Solution for Challenge 1
 
