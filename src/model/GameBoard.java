@@ -1,8 +1,12 @@
 package model;
 
 import java.awt.Point;
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 /**
 * Creates and initializes the playing gameboard, and provides methods to add and move pieces
@@ -64,6 +68,14 @@ public class GameBoard {
 	public GameBoard() {
 		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
 		this.resetDefaultBoard();
+	}
+	
+	public static GameBoard importFromXML(String filename) throws Exception {
+		 SAXParserFactory factory = SAXParserFactory.newInstance();
+		 SAXParser saxParser = factory.newSAXParser();
+		 LevelBuilderXMLParser handler = new LevelBuilderXMLParser();
+		 saxParser.parse(new File(filename), handler);
+		 return handler.getLevel();
 	}
 	
 	/**

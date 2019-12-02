@@ -137,6 +137,14 @@ public class JumpInGame {
 			this.addPieceToBoard(new Fox(Direction.EAST, 1), 0, 1);
 			this.addPieceToBoard(new Fox(Direction.WEST, 2), 3, 3);
 		}
+		else {
+			String c = "Challenge " + selectedChallenge;
+			try {
+				this.gameBoard = GameBoard.importFromXML(c);
+			} catch(Exception e) {
+				System.out.println("Challenge doesn't exists");
+			}
+		}
 		this.gameStatus = GameStatus.IN_PROGRESS;
 		this.consoleOutput = "Challenge " + this.selectedChallenge + ": Started";
 		notifyViews();
@@ -316,4 +324,5 @@ public class JumpInGame {
 		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges, this.gameBoard);
 		levelToXML.exportBoardlevelToXML();
 	}
+
 }

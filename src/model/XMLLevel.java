@@ -82,13 +82,4 @@ public class XMLLevel {
 		}
 		
 	}
-	
-	/**
-	 * 
-	 * @param fileName
-	 * @return
-	 */
-	public static GameBoard importFromXML(String fileName) {
-		 return new GameBoard(); //WIP
-	}
 }

@@ -71,4 +71,7 @@ public class LevelBuilderXMLParser extends DefaultHandler{
 		if(isRow) row = new String(ch, start, length);
 	}
 
+	public GameBoard getLevel() {
+		return this.level;
+	}
 }
