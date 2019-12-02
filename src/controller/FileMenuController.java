@@ -26,6 +26,10 @@ public class FileMenuController implements ActionListener {
 		this.game = game;
 	}
 	
+	/**
+	* Method to deal with the action to happen when the button is pressed
+	* @param e is the action event that triggered it
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem source = (JMenuItem) e.getSource();
