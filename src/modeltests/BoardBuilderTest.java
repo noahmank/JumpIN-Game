@@ -91,15 +91,12 @@ public class BoardBuilderTest {
 	 * tests remove piece from board method
 	 */
 	@Test
-	public void testRemovePieceFromBoard() {
+	public void testRemovePieceAt() {
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
 		boardBuilder.setPieceName("Mushroom");
 		boardBuilder.constructSelectedPiece();
-		boardBuilder.setColumn(2);
-		boardBuilder.setRow(1);
-		boardBuilder.setPieceName("Mushroom");
-		boardBuilder.removePieceFromBoard();
+		boardBuilder.removePieceAt(2, 1);
 		board = boardBuilder.getBoardToBuild();
 		assertEquals("Expecting mushroom at Column 2, Row 1", "  ", board.getHole(2, 1).toString());
 	}
