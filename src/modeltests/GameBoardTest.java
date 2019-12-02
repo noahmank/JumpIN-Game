@@ -139,16 +139,6 @@ public class GameBoardTest {
 	}
 	
 	/**
-	* Tests the addPiece method with fox pieces specifically adding fox to space already occupied
-	*/
-	@Test
-	public void testAddingFoxPieceOnOccupiedSpace() {
-		gameboard.addPiece(mushroom, 2, 0);
-		gameboard.addPiece(fox, 2, 0);
-		assertEquals("Expecting 'MS'", "MS", gameboard.getHole(2,0).toString());
-	}
-	
-	/**
 	* Tests the addPiece method with fox pieces specifically adding fox to a Brown hole
 	*/
 	@Test
@@ -164,16 +154,6 @@ public class GameBoardTest {
 	public void testAddingRabbitPiece() {
 		gameboard.addPiece(rabbit, 0, 2);
 		assertEquals("Expecting 'Grey Rabbit'", "Grey Rabbit", gameboard.getHole(0,  2).toString());
-	}
-	
-	/**
-	 * Test adding rabbit piece on occupied space
-	 */
-	@Test
-	public void testAddingRabbitOnOccupiedSpace() {
-		gameboard.addPiece(mushroom, 2, 0);
-		gameboard.addPiece(rabbit, 2, 0);
-		assertEquals("Expecting 'MS'", "MS", gameboard.getHole(2,0).toString());
 	}
 	
 	/**
@@ -205,7 +185,9 @@ public class GameBoardTest {
 	 */
 	@Test
 	public void testSetGrid() {
-		fail("Not yet implemented");
+		Hole[][] grid = new Hole[gameboard.getNumColumns()][gameboard.getNumRows()];
+		gameboard.setGrid(grid);
+		assertEquals("Expecting the same", grid.toString(), gameboard.getGrid().toString());
 	}
 	
 	/**
@@ -266,16 +248,6 @@ public class GameBoardTest {
 	@Test
 	public void testCanAddFoxOnEmptySpace() {
 		assertEquals("Expecting true", true, gameboard.canAddFox(fox, 3, 2));
-	}
-	
-	/**
-	 * tests the can add fox method on 
-	 * an occupied space
-	 */
-	@Test
-	public void testCanAddFoxOnOccupiedSpace() {
-		gameboard.addPiece(mushroom, 3, 2);
-		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 3, 2));
 	}
 	
 	/**
