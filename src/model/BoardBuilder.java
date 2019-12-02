@@ -138,7 +138,11 @@ public class BoardBuilder {
 			this.boardToBuild.removePiece(selectedPiece);
 		}
 	}
-
+	
+	/**
+	* sets the selected piece
+	* @param piece is the piece to set the selected piece to
+	*/
 	public void setSelectedPiece(Piece piece) {
 		this.selectedPiece = piece;
 	}
