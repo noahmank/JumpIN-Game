@@ -49,6 +49,7 @@ public class LevelBuilderXMLParser extends DefaultHandler{
 				//level.addPiece(rabbit, location.x, location.y);
 			case "Mushroom" : mushroom = new Mushroom();
 				//level.addPiece(mushroom, location.x, location.y);
+			
 			}
 		}
 	
