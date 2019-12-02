@@ -41,21 +41,27 @@ public class XMLLevels {
 		String boardXML = "<GameBoard>\n";
 		// Save all foxes
 		for(Fox fox : board.getFoxes().keySet()) {
+			Point p = board.getFoxes().get(fox);
 			boardXML += "\t<Fox>\n";
 			boardXML += "\t\t<Number>" + fox.getNumber() + "</Number>\n";
-			boardXML += "\t\t<Direction>" + fox.getDirection() + "</Direction>\n";
-			boardXML += "\t\t<Location>" + board.getFoxes().get(fox) + "</Location>\n";
+			boardXML += "\t\t<Attribute>" + fox.getDirection() + "</Attribute>\n";
+			boardXML += "\t\t<Column>" + p.x + "</Column>\n";
+			boardXML += "\t\t<Row>" + p.y + "</Row>\n";
 			boardXML += "\t</Fox>\n";
 		}
 		for(Rabbit rabbit : board.getRabbits().keySet()) {
+			Point p = board.getRabbits().get(rabbit);
 			boardXML += "\t<Rabbit>\n";
-			boardXML += "\t\t<Color>" + rabbit.getColor() + "</Color>\n";
-			boardXML += "\t\t<Location>" + board.getRabbits().get(rabbit) + "</Location>\n";
+			boardXML += "\t\t<Attribute>" + rabbit.getColor() + "</Attribute>\n";
+			boardXML += "\t\t<Column>" + p.x + "</Column>\n";
+			boardXML += "\t\t<Row>" + p.y + "</Row>\n";
 			boardXML += "\t</Rabbit>\n";
 		}
 		for(Mushroom mushroom : board.getMushrooms().keySet()) {
+			Point p = board.getMushrooms().get(mushroom);
 			boardXML += "\t<Mushroom>\n";
-			boardXML += "\t<Location>" + board.getMushrooms().get(mushroom) + "</Location>\n";
+			boardXML += "\t\t<Column>" + p.x + "</Column>\n";
+			boardXML += "\t\t<Row>" + p.y + "</Row>\n";
 			boardXML += "\t</Mushroom>\n";
 		}
 		boardXML += "</GameBoard>\n";

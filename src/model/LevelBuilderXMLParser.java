@@ -12,25 +12,32 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  */
 public class LevelBuilderXMLParser extends DefaultHandler{
+	private boolean isAttribute;
+	private boolean isColumn;
+	private boolean isRow;
+	private boolean isNumber;
 	
 	private GameBoard level = null;
-	private Fox fox;
-	private Rabbit rabbit;
-	private Mushroom mushroom;
 	private String number;
-	private String direction;
-	private String location;
-	private String color;
+	private String attribute;
+	private String column;
+	private String row;
+	
+	
+	public void startDocument() {
+		level = new GameBoard();
+	}
 	
 	/**	
 	 * 
 	 */
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-		level = new GameBoard();
-		number = "";
-		direction = "";
-		location = "";
-		color = "";
+		switch(qName) {
+			case "Attribute": isAttribute = true;
+			case "Column": isColumn = true;
+			case "Row": isRow = true;
+			case "Number": isNumber = true;
+		}
 	}
 	
 	/**
@@ -38,31 +45,30 @@ public class LevelBuilderXMLParser extends DefaultHandler{
 	 */
 	public void endElement(String uri, String localName, String qName)  {
 		switch(qName) {
-		
-			case "Fox": Direction dr = (direction == "EAST")? Direction.EAST : (direction == "WEST")? Direction.WEST : 
-				(direction == "NORTH")? Direction.NORTH : (direction == "SOUTH")? Direction.SOUTH : null;
-				fox = new Fox(dr,Integer.parseInt(number));
-				//level.addPiece(fox, location.x, location.y);
-			case "Rabbit": RabbitColor rabbitColor = (color == "WHITE")? RabbitColor.WHITE : (color == "BROWN")? RabbitColor.BROWN :
-				(color == "GREY")? RabbitColor.GREY: null;
-				rabbit = new Rabbit(rabbitColor);
-				//level.addPiece(rabbit, location.x, location.y);
-			case "Mushroom" : mushroom = new Mushroom();
-				//level.addPiece(mushroom, location.x, location.y);
-			
-			}
+			case "Fox": 
+				level.addPiece(new Fox(Direction.valueOf(attribute), Integer.parseInt(number)), Integer.parseInt(column), Integer.parseInt(row));
+				break;
+			case "Rabbit": 
+				level.addPiece(new Rabbit(RabbitColor.valueOf(attribute)), Integer.parseInt(column), Integer.parseInt(row));
+				break;
+			case "Mushroom" : 
+				level.addPiece(new Mushroom(), Integer.parseInt(column), Integer.parseInt(row));
+				break;
+			case "Attribute": isAttribute = false;
+			case "Column": isColumn = false;
+			case "Row": isRow = false;
+			case "Number": isNumber = false;
 		}
+	}
 	
 	/**
 	 * 
 	 */
 	public void characters(char[] ch, int start, int length) {
-		
-		number = new String(ch, start, length);
-		direction = new String(ch, start, length);
-		location = new String(ch, start, length);
-		color = new String(ch, start, length);
-		
+		if(isAttribute) attribute = new String(ch, start, length);
+		if(isNumber) number = new String(ch, start, length);
+		if(isColumn) column = new String(ch, start, length);
+		if(isRow) row = new String(ch, start, length);
 	}
 
 }
