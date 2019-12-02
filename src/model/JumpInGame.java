@@ -89,7 +89,9 @@ public class JumpInGame {
 	 */
 	public void addPieceToBoard(Piece piece, int column, int row) {
 		gameBoard.addPiece(piece, column, row);
+		notifyViews();
 	}
+
 	
 	/**
 	* A method to reset the challenge,

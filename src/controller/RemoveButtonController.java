@@ -38,10 +38,7 @@ public class RemoveButtonController implements ActionListener{
 		JButton source = (JButton) event.getSource();
 		int column = build.getColumn();
 		int row = build.getRow();
-		JumpInGame game = new JumpInGame();
-		game.savePieceToMove(column, row);
-		build.setSelectedPiece(game.getPiece());
-		build.removePieceFromBoard();
+		build.removePieceAt(column, row);
 		game.notifyViews();
 	}
 }

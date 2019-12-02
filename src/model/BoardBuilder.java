@@ -68,12 +68,11 @@ public class BoardBuilder {
 					selectedPiece = new Fox(Direction.valueOf(attributeEnum), foxNum);
 					foxNum++;
 				}
-				this.addPieceToBoard();
 			}
 			else if(this.pieceName.equals("Mushroom")) {
 				selectedPiece = new Mushroom();
-				this.addPieceToBoard();
 			}
+			this.addPieceToBoard();
 		}
 	}
 	
@@ -145,6 +144,14 @@ public class BoardBuilder {
 	*/
 	public void setSelectedPiece(Piece piece) {
 		this.selectedPiece = piece;
+	}
+	
+	public void removePieceAt(int column, int row) {
+		if(this.boardToBuild.gridIsOccupiedAt(column, row)) {
+			this.selectedPiece = boardToBuild.getPieceFromGrid(column, row);
+			removePieceFromBoard();
+			this.selectedPiece = null;
+		}
 	}
 }
 

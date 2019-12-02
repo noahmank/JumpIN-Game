@@ -409,15 +409,16 @@ public class GameBoard {
 	 * @author Adela Tullio
 	 */
 	public void removePiece(Piece piece) {
-		
-		if(piece instanceof Fox) {
-			this.removeFoxPiece((Fox)piece);
-		}
-		else if(piece instanceof Rabbit) {
-			this.removeRabbitPiece((Rabbit) piece); 
-		}
-		else {
-			this.removeMushroomPiece((Mushroom) piece);
+		if(piece != null) {
+			if(piece instanceof Fox) {
+				this.removeFoxPiece((Fox)piece);
+			}
+			else if(piece instanceof Rabbit) {
+				this.removeRabbitPiece((Rabbit) piece); 
+			}
+			else {
+				this.removeMushroomPiece((Mushroom) piece);
+			}
 		}
 	}
 	
@@ -431,6 +432,7 @@ public class GameBoard {
 		// Remove from previous location
 		grid[location.x][location.y].removePiece(f);
 		grid[location.x + f.getDirection().getX()][location.y + f.getDirection().getY()].removePiece(f);
+		this.foxes.remove(f);
 	}
 	
 	/**
@@ -441,6 +443,7 @@ public class GameBoard {
 	private void removeRabbitPiece(Rabbit r) {
 		Point currentLocation = rabbits.get(r);
 		grid[currentLocation.x][currentLocation.y].removePiece(r);
+		this.rabbits.remove(r);
 	}
 	
 	/**
@@ -451,6 +454,7 @@ public class GameBoard {
 	private void removeMushroomPiece(Mushroom m) {
 		Point location = mushrooms.get(m);
 		grid[location.x][location.y].removePiece(m);
+		this.mushrooms.remove(m);
 	}
 	
 	/**
