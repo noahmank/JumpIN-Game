@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ BoardSolverTest.class, BoardTreeNodeTest.class, BoardTreeTest.class, BrownHoleTest.class,
 		DirectionTest.class, FoxTest.class, GameBoardTest.class, HoleTest.class, MoveActionTest.class,
 		MushroomTest.class, RabbitColorTest.class, RabbitTest.class, RaisedHoleTest.class, JumpInGameTest.class, BoardBuilderTest.class, 
-		Save_LoadTest.class })
+		Save_LoadTest.class, XMLLevelsTest.class })
 public class AllTests {
 
 }
