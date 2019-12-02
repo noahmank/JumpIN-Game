@@ -36,20 +36,12 @@ public class FileMenuController implements ActionListener {
 		if (source.getText().equals("Home")) {
 			this.game.resetChallenge();
 			this.view.toInstructionsFrame();
-		} else if (source.getText().equals("Save")) {
-			try {
-				Save_Load.saveGameDataToFile(game, "save.txt");
-			} catch (Exception x) {
-
-				x.printStackTrace();
-			}
-		} else if (source.getText().contentEquals("Open")) {
-			try {
-				this.game = (JumpInGame) Save_Load.loadGameDataFromFile("save.txt");
-			} catch (Exception x) {
-
-				x.printStackTrace();
-			}
+		} 
+		if(source.getText().equals("Save")) {
+			game.saveGameBoardInProgress();
+		} 
+		if(source.getText().contentEquals("Open")) {
+			game.loadGameBoardInProgress();
 		}
 	}
 

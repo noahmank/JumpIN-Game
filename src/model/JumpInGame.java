@@ -1,7 +1,10 @@
 package model;
 
+import java.io.FileWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.HashMap;
 import java.util.Stack;
 
 import view.*;
@@ -12,19 +15,20 @@ import view.*;
  * @author Aubin Musingya
  *
  */
-public class JumpInGame {
-	private GameBoard gameBoard;
-	private GameStatus gameStatus;
-	private ArrayList<JumpInGameListener> views;
-	private Stack<MoveAction> undoableMoveActions;
-	private Stack<MoveAction> redoableMoveActions;
-	private MoveablePiece selectedPiece;
-	private Direction selectedDirection;
-	private String consoleOutput;
-	private BoardSolver solver;
-	private int selectedChallenge;
+public class JumpInGame implements Serializable {
+	private transient GameBoard gameBoard;
+	private transient GameStatus gameStatus;
+	private transient ArrayList<JumpInGameListener> views;
+	private transient Stack<MoveAction> undoableMoveActions;
+	private transient Stack<MoveAction> redoableMoveActions;
+	private transient MoveablePiece selectedPiece;
+	private transient Direction selectedDirection;
+	private transient String consoleOutput;
+	private transient BoardSolver solver;
+	private transient int selectedChallenge;
 	private int numChallenges;
-	private BoardBuilder builder;
+	private transient BoardBuilder builder;
+	private HashMap<Integer, GameBoard> challengesInProgress;
 	/**
 	 * the JumpInGame constructor builds the default game board
 	 */
@@ -41,6 +45,7 @@ public class JumpInGame {
 		selectedChallenge = 1;
 		numChallenges = 3;
 		builder = new BoardBuilder(gameBoard);
+		challengesInProgress = new HashMap<>();
 	}
 	
 	/**
@@ -324,5 +329,24 @@ public class JumpInGame {
 		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges, this.gameBoard);
 		levelToXML.exportBoardlevelToXML();
 	}
+	
+	/**
+	public void save(String filename) {
+		try {
+			FileWriter fileWriter = new FileWriter(filename);
+			
+		}
+	}
+	**/
 
+	public void saveGameBoardInProgress() {
+		this.challengesInProgress.put(this.selectedChallenge, new GameBoard(this.gameBoard));
+	}
+	
+	public void loadGameBoardInProgress() {
+		if(this.challengesInProgress.get(selectedChallenge) != null) {
+			this.gameBoard = challengesInProgress.get(selectedChallenge);
+			notifyViews();
+		}
+	}
 }

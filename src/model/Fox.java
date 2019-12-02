@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * This class represents a fox piece of the JumpIn Game
  * @author Liya Abebe
  * @version 1.0
 */
-public class Fox implements MoveablePiece {
+public class Fox implements MoveablePiece, Serializable {
 	private Direction direction;
 	private int number;
 	private static final String src = "fox.png"; // Is this too much to know?

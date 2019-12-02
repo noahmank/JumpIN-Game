@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Rabbit implements MoveablePiece {
+public class Rabbit implements MoveablePiece, Serializable {
 	private RabbitColor color;
 	/**
 	 * The Rabbit constructor constructs a new Rabbit constructor

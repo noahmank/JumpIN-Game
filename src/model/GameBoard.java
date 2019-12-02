@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.io.File;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -11,12 +12,12 @@ import javax.xml.parsers.SAXParserFactory;
 /**
 * Creates and initializes the playing gameboard, and provides methods to add and move pieces
 */
-public class GameBoard {
+public class GameBoard implements Serializable {
 	private static final int DEFAULT_COLUMNS = 5;
 	private static final int DEFAULT_ROWS = 5;
-	private int numColumns;
-	private int numRows;
-	private Hole[][] grid;
+	private transient int numColumns;
+	private transient int numRows;
+	private transient Hole[][] grid;
 	private LinkedHashMap<Rabbit, Point> rabbits;
 	private LinkedHashMap<Fox, Point> foxes;
 	private HashMap<Mushroom, Point> mushrooms;

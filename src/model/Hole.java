@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * The Hole class is responsible for the various holes that will make up the game board
  * @author Aubin
