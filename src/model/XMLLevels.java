@@ -38,38 +38,27 @@ public class XMLLevels {
 	 * @return
 	 */
 	public String boardToXML() {
-		
 		String boardXML = "<GameBoard>\n";
-		
-		//Looping through the given board
-		for(int i = 0; i <= this.board.getNumColumns(); i++) {
-			for(int j = 0; j <= this.board.getNumRows(); j++) {
-				
-				if(this.board.getPieceFromGrid(i, j) instanceof Fox) {
-					Fox fox = (Fox) this.board.getPieceFromGrid(i, j);
-					boardXML += "	<Fox>\n";
-					boardXML += "		<Number>" + fox.getNumber() + "</Number>";
-					boardXML += "		<Direction>" + fox.getDirection() + "</Direction>";
-					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
-					boardXML += "	</Fox>\n";
-				}
-				else if(this.board.getPieceFromGrid(i, j) instanceof Rabbit) {
-					Rabbit rabbit = (Rabbit) this.board.getPieceFromGrid(i, j);
-					boardXML += "	<Rabbit>\n";
-					boardXML += "		<Color>" + rabbit.getColor() + "</Color>";
-					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
-					boardXML += "	</Rabbit>\n";
-				}
-				else if(this.board.getPieceFromGrid(i, j) instanceof Mushroom) {
-					boardXML += "	<Mushroom>\n";
-					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
-					boardXML += "	</Mushroom>\n";
-				}
-			}
+		// Save all foxes
+		for(Fox fox : board.getFoxes().keySet()) {
+			boardXML += "\t<Fox>\n";
+			boardXML += "\t\t<Number>" + fox.getNumber() + "</Number>\n";
+			boardXML += "\t\t<Direction>" + fox.getDirection() + "</Direction>\n";
+			boardXML += "\t\t<Location>" + board.getFoxes().get(fox) + "</Location>\n";
+			boardXML += "\t</Fox>\n";
 		}
-		
+		for(Rabbit rabbit : board.getRabbits().keySet()) {
+			boardXML += "\t<Rabbit>\n";
+			boardXML += "\t\t<Color>" + rabbit.getColor() + "</Color>\n";
+			boardXML += "\t\t<Location>" + board.getRabbits().get(rabbit) + "</Location>\n";
+			boardXML += "\t</Rabbit>\n";
+		}
+		for(Mushroom mushroom : board.getMushrooms().keySet()) {
+			boardXML += "\t<Mushroom>\n";
+			boardXML += "\t<Location>" + board.getMushrooms().get(mushroom) + "</Location>\n";
+			boardXML += "\t</Mushroom>\n";
+		}
 		boardXML += "</GameBoard>\n";
-		
 		return boardXML;
 	}
 	

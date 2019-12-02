@@ -22,6 +22,10 @@ public class GameBoardButtonController implements ActionListener {
 		this.game = game;
 	}
 	
+	/**
+	* deals with the action once the button is toggled
+	* @param event is the action event
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BoardButton button = (BoardButton) e.getSource();
