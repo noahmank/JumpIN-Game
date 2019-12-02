@@ -65,7 +65,7 @@ public class LevelBuilderXMLParser extends DefaultHandler{
 	 * 
 	 */
 	public void characters(char[] ch, int start, int length) {
-		if(isAttribute) attribute = new String(ch, start, length);
+		if(isAttribute) attribute = (new String(ch, start, length)).toUpperCase();
 		if(isNumber) number = new String(ch, start, length);
 		if(isColumn) column = new String(ch, start, length);
 		if(isRow) row = new String(ch, start, length);

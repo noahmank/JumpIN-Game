@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import model.JumpInGame;
+import model.*;
 
 public class BuildBoardButtonPanel extends JPanel{
 	private JButton buildBoard;
@@ -24,6 +24,9 @@ public class BuildBoardButtonPanel extends JPanel{
 	}
 	
 	public void buildBoardActionPerformed(ActionEvent e) {
-		// TODO
+		game.solveGame();
+		if(game.gameIsSolved()) {
+			game.generateNewLevel();
+		}
 	}
 }

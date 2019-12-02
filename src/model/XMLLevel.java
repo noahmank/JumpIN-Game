@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author Aubin
  *
  */
-public class XMLLevels {
+public class XMLLevel {
 	
 	private GameBoard board;
 	private FileWriter fileWriter;
@@ -21,7 +21,7 @@ public class XMLLevels {
 	 * Constructing a file containing a level
 	 * @param fileName is the name of the file
 	 */
-	public XMLLevels(String fileName, GameBoard board) {
+	public XMLLevel(String fileName, GameBoard board) {
 		
 		try {
 			fileWriter = new FileWriter(fileName);
@@ -37,7 +37,7 @@ public class XMLLevels {
 	 * Converts the Gameboard in XML format
 	 * @return
 	 */
-	public String boardToXML() {
+	private String boardToXML() {
 		String boardXML = "<GameBoard>\n";
 		// Save all foxes
 		for(Fox fox : board.getFoxes().keySet()) {
@@ -72,10 +72,9 @@ public class XMLLevels {
 	 * Adds the level to in XML format into the file
 	 * @param XMLlevel is the XML gameboard format to write on the file created
 	 */
-	public void exportBoardlevelToXML(String XMLlevel) {
-		
+	public void exportBoardlevelToXML() {
 		try {
-			fileWriter.write(XMLlevel);
+			fileWriter.write(boardToXML());
 			fileWriter.close();
 		}
 		catch(IOException exc) {

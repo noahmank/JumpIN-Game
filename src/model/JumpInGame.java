@@ -310,4 +310,10 @@ public class JumpInGame {
 	public BoardBuilder getBuilder() {
 		return this.builder;
 	}
+	
+	public void generateNewLevel() {
+		numChallenges++;
+		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges, this.gameBoard);
+		levelToXML.exportBoardlevelToXML();
+	}
 }
