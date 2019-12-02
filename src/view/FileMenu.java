@@ -36,7 +36,7 @@ public class FileMenu extends JMenu implements JumpInGameListener{
         item.addActionListener(controller);
         this.add(item);
         
-        item = new JMenuItem("Open");
+        item = new JMenuItem("Load");
         item.addActionListener(controller);
         this.add(item);
 	}
