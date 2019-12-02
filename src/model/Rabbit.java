@@ -23,6 +23,10 @@ public class Rabbit implements MoveablePiece {
 		return this.color;
 	}
 	
+	/**
+	* A getter for the SRC
+	* @return string of the image url
+	*/
 	@Override
 	public String getSrc() {
 		return this.color.getSrc();
@@ -36,11 +40,20 @@ public class Rabbit implements MoveablePiece {
 		return this.color.toString() + " Rabbit";
 	}
 	
+	/**
+	* Hash code function 
+	* @return integer value
+	*/
 	@Override
 	public int hashCode() {
 		return Objects.hash(color);
 	}
-
+	
+	/**
+	* Equals method to determine if two objects are equal or not
+	* @param obj is the object to be compared to
+	* @return true or false if the two objects are equals or not
+	*/
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) return true;
