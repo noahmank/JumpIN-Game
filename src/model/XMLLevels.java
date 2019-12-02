@@ -12,14 +12,14 @@ import java.util.Map;
  * @author Aubin
  *
  */
-public class JSONLevels {
+public class XMLLevels {
 	
 	
 	
 	/**
 	 * Constructing a file containing the levels
 	 */
-	public JSONLevels() {
+	public XMLLevels() {
 		
 	}
 
