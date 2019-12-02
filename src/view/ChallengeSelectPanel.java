@@ -14,8 +14,8 @@ import model.JumpInGame;
  * @author Runtime Terror
  *
  */
-public class ChallengeSelectPanel extends JPanel {
-
+public class ChallengeSelectPanel extends JPanel implements JumpInGameListener {
+	private JComboBox<Integer> challengeList;
 	private JumpInGame game;
 
 	/**
@@ -34,12 +34,23 @@ public class ChallengeSelectPanel extends JPanel {
 		for (int i = 0; i < game.getNumChallenges(); i++) {
 			challenges[i] = i + 1;
 		}
-		JComboBox<Integer> challengeList = new JComboBox<>(challenges);
+		challengeList = new JComboBox<>(challenges);
 		challengeList.setSelectedIndex(0);
 		challengeList.addActionListener(new ChallengeSelectController(this.game, this));
 
 		JLabel selectChallengeText = new JLabel("Select a challenge:");
 		this.add(selectChallengeText, BorderLayout.CENTER);
 		this.add(challengeList, BorderLayout.SOUTH);
+		subscribeToModel();
+	}
+
+	@Override
+	public void updateView() {
+		if(challengeList.getItemCount() < game.getNumChallenges()) challengeList.addItem(game.getNumChallenges());
+	}
+
+	@Override
+	public void subscribeToModel() {
+		this.game.addView(this);	
 	}
 }

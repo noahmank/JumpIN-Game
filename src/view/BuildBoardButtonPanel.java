@@ -28,5 +28,6 @@ public class BuildBoardButtonPanel extends JPanel{
 		if(game.gameIsSolved()) {
 			game.generateNewLevel();
 		}
+		game.notifyViews();
 	}
 }
