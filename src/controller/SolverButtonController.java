@@ -26,6 +26,10 @@ public class SolverButtonController implements ActionListener {
 		view.subscribeToSolverController(this);
 	}
 	
+	/**
+	 * deals with the action once the button is toggled
+	 * @param event is the action event
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		JButton source = (JButton) event.getSource();
