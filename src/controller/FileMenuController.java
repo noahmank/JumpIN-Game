@@ -40,7 +40,7 @@ public class FileMenuController implements ActionListener {
 		if(source.getText().equals("Save")) {
 			game.saveGameBoardInProgress();
 		} 
-		if(source.getText().contentEquals("Open")) {
+		if(source.getText().contentEquals("Load")) {
 			game.loadGameBoardInProgress();
 		}
 	}

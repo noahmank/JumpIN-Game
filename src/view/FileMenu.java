@@ -32,7 +32,7 @@ public class FileMenu extends JMenu implements JumpInGameListener{
         item.addActionListener(controller);
         this.add(item);	
 		
-	item = new JMenuItem("Save");
+        item = new JMenuItem("Save");
         item.addActionListener(controller);
         this.add(item);
         
