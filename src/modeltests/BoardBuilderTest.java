@@ -81,7 +81,7 @@ public class BoardBuilderTest {
 	public void testAddPieceToBoard() {
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
-		boardBuilder.setSelectedPiece(mushroom);
+		boardBuilder.setPieceName("Mushroom");
 		boardBuilder.constructSelectedPiece();
 		board = boardBuilder.getBoardToBuild();
 		assertEquals("Expecting mushroom at Column 2, Row 1", "MS", board.getHole(2, 1).toString());
@@ -94,11 +94,11 @@ public class BoardBuilderTest {
 	public void testRemovePieceFromBoard() {
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
-		boardBuilder.setSelectedPiece(mushroom);
+		boardBuilder.setPieceName("Mushroom");
 		boardBuilder.constructSelectedPiece();
 		boardBuilder.setColumn(2);
 		boardBuilder.setRow(1);
-		boardBuilder.setSelectedPiece(mushroom);
+		boardBuilder.setPieceName("Mushroom");
 		boardBuilder.removePieceFromBoard();
 		board = boardBuilder.getBoardToBuild();
 		assertEquals("Expecting mushroom at Column 2, Row 1", "  ", board.getHole(2, 1).toString());
