@@ -27,6 +27,7 @@ public class AddButtonController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		builder.constructSelectedPiece();
+		builder.addPieceToBoard();
 		game.notifyViews();
 	}
 	

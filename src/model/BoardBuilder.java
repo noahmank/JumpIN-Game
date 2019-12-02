@@ -81,7 +81,7 @@ public class BoardBuilder {
 	 * adds the selected piece to the board 
 	 * at the specified column and row
 	 */
-	private void addPieceToBoard() {
+	public void addPieceToBoard() {
 		if(column != -1 && row != -1 && selectedPiece != null) {
 			this.boardToBuild.addPiece(selectedPiece, column, row);
 			column = -1;
