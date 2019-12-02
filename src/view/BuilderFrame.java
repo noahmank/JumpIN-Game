@@ -5,13 +5,20 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import model.*;
 import controller.*;
-
+/**
+* Builder frame
+*/
 public class BuilderFrame extends JFrame {
 	private BuilderPieceSelectionPanel builderPieceSelectionPanel;
 	private BoardGridPanel boardGridPanel;
 	private BuildBoardButtonPanel buildBoardButtonPanel;
 	private DefaultMenuBar solverMenuBar; // Need to rename this class to generalize
 	
+	/**
+	* Constructor for the builder frame
+	* @param g is the game
+	* @param v is the view
+	*/
 	public BuilderFrame(JumpInGame g, JumpInView v) {
 		super("Jump-In Builder");
 		this.builderPieceSelectionPanel = new BuilderPieceSelectionPanel(g);
