@@ -3,8 +3,17 @@
  */
 package model;
 
+import java.awt.Point;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.*;
+
+import jdk.internal.org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Aubin
@@ -13,6 +22,7 @@ import java.io.IOException;
 public class XMLLevels {
 	
 	private GameBoard board;
+	private FileWriter fileWriter;
 	
 	
 	/**
@@ -20,8 +30,9 @@ public class XMLLevels {
 	 * @param fileName is the name of the file
 	 */
 	public XMLLevels(String fileName, GameBoard board) {
+		
 		try {
-			FileWriter fileWriter = new FileWriter(fileName);
+			fileWriter = new FileWriter(fileName);
 		}
 		catch(IOException exc){
 			System.out.println("Filename not available");
@@ -31,7 +42,7 @@ public class XMLLevels {
 	}
 	
 	/**
-	 * Presents the Gameboard in XML format
+	 * Converts the Gameboard in XML format
 	 * @return
 	 */
 	public String boardToXML() {
@@ -47,19 +58,19 @@ public class XMLLevels {
 					boardXML += "	<Fox>\n";
 					boardXML += "		<Number>" + fox.getNumber() + "</Number>";
 					boardXML += "		<Direction>" + fox.getDirection() + "</Direction>";
-					boardXML += "		<Location>" + i + j + "</Location>";//might need to change this format
+					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
 					boardXML += "	</Fox>\n";
 				}
 				else if(this.board.getPieceFromGrid(i, j) instanceof Rabbit) {
 					Rabbit rabbit = (Rabbit) this.board.getPieceFromGrid(i, j);
 					boardXML += "	<Rabbit>\n";
 					boardXML += "		<Color>" + rabbit.getColor() + "</Color>";
-					boardXML += "		<Location>" + i + j + "</Location>";//might need to change this format
+					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
 					boardXML += "	</Rabbit>\n";
 				}
 				else if(this.board.getPieceFromGrid(i, j) instanceof Mushroom) {
 					boardXML += "	<Mushroom>\n";
-					boardXML += "		<Location>" + i + j + "</Location>";//might need to change this format
+					boardXML += "		<Location>" + new Point(i,j) + "</Location>";//might need to change this format
 					boardXML += "	</Mushroom>\n";
 				}
 			}
@@ -72,11 +83,26 @@ public class XMLLevels {
 	
 	/**
 	 * Adds the level to in XML format into the file
+	 * @param XMLlevel is the XML gameboard format to write on the file created
 	 */
-	public void levelToXML() {
+	public void exportBoardlevelToXML(String XMLlevel) {
+		
+		try {
+			fileWriter.write(XMLlevel);
+			fileWriter.close();
+		}
+		catch(IOException exc) {
+			System.out.println("XML gameboard format is was not provided");
+		}
 		
 	}
 	
-	
-
+	/**
+	 * 
+	 * @param fileName
+	 * @return
+	 */
+	public static GameBoard importFromXML(String fileName) {
+		 return new GameBoard(); //WIP
+	}
 }
