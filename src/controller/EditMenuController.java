@@ -21,6 +21,10 @@ public class EditMenuController implements ActionListener {
 		this.game = game;
 	}
 	
+	/**
+	* Method that deals with the action performed when the button is pressed
+	* @param e is the action event the button that was pressed
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem source = (JMenuItem) e.getSource();
