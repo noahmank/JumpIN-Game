@@ -22,7 +22,7 @@ public class FileMenu extends JMenu implements JumpInGameListener{
 	 * @param view
 	 */
 	public FileMenu(JumpInGame game, JumpInView view) {
-		super("Home");
+		super("File");
 		this.game = game;
 		this.controller = new FileMenuController(game, view);
 		
