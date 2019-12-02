@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 
 import model.*;
 import view.BoardButton;
-
+/**
+* Builder Board Button Controller
+*
+*/
 public class BuilderBoardButtonController implements ActionListener {
 
 	private JumpInGame game;
@@ -18,6 +21,10 @@ public class BuilderBoardButtonController implements ActionListener {
 		this.game = game;
 	}
 	
+	/**
+	* Deals with the event that happens when the button is pressed
+	* @param e is the action event 
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BoardButton button = (BoardButton) e.getSource();
