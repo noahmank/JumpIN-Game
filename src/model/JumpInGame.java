@@ -291,18 +291,20 @@ public class JumpInGame {
 		return this.numChallenges;
 	}
 	
+	/**
+	* Saves the piece desired to move
+	* @param column is the column the piece is located at
+	* @param row is the row the piece is located at
+	*/
 	public void savePieceToMove(int column, int row) {
 		Piece p = this.gameBoard.getPieceFromGrid(column, row);
 		if(p instanceof MoveablePiece) this.selectedPiece = (MoveablePiece) p; 
 	}
 	
 	/**
-	private void startBuilder() {
-		this.gameBoard = new GameBoard();
-		this.builder = new BoardBuilder(this.gameBoard);
-	}
-	**/
-	
+	* A getter for the board the user wishes to build
+	* @return the builder
+	*/
 	public BoardBuilder getBuilder() {
 		return this.builder;
 	}
