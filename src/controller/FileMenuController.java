@@ -28,15 +28,23 @@ public class FileMenuController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem source = (JMenuItem) e.getSource();
-		if(source.getText().equals("Home")) {
+		if (source.getText().equals("Home")) {
 			this.game.resetChallenge();
 			this.view.toInstructionsFrame();
-		}
-		else if(source.getText().equals("Save")) {
-			//save the current state of the game
-		}
-		else if(source.getText().contentEquals("Open")) {
-			//open and load the saved game
+		} else if (source.getText().equals("Save")) {
+			try {
+				Save_Load.saveGameDataToFile(game, "save.txt");
+			} catch (Exception x) {
+
+				x.printStackTrace();
+			}
+		} else if (source.getText().contentEquals("Open")) {
+			try {
+				this.game = (JumpInGame) Save_Load.loadGameDataFromFile("save.txt");
+			} catch (Exception x) {
+
+				x.printStackTrace();
+			}
 		}
 	}
 
