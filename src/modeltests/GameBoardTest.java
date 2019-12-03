@@ -15,12 +15,20 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 public class GameBoardTest {
 	
 	private GameBoard gameboard;
 	private Mushroom mushroom;
 	private Fox fox;
 	private Rabbit rabbit;
+	private SAXParserFactory factory;
+	private SAXParser saxParser;
+	private LevelBuilderXMLParser levelBuilderXMlparser;
+	private String fileName;
+	private XMLLevel xml;
 	
 	/**
 	* Sets up the variables
@@ -32,6 +40,8 @@ public class GameBoardTest {
 		mushroom = new Mushroom();
 		fox = new Fox(Direction.NORTH, 1);
 		rabbit = new Rabbit(RabbitColor.GREY);
+		fileName = "test.txt";
+		xml = new XMLLevel(fileName, gameboard);
 	}
 	
 	/**
@@ -43,7 +53,9 @@ public class GameBoardTest {
 		gameboard = null;
 		rabbit = null;
 		mushroom = null;
-		fox = null;
+		fox = null;;
+		fileName = null;
+		xml = null;
 	}
 	
 	/**
@@ -181,6 +193,23 @@ public class GameBoardTest {
 	@Test
 	public void testCanMoveRabbit() {
 		assertEquals("Expecting false", false, gameboard.canMovePiece(rabbit, Direction.SOUTH));
+	}
+	
+	/**
+	 * @throws Exception 
+	 * Test the ImportFromXML method
+	 * 
+	 */
+	@Test
+	public void testImportFromXML() throws Exception {
+		gameboard.addPiece(new Fox(Direction.NORTH, 2), 1, 2);
+		gameboard.addPiece(new Rabbit(RabbitColor.BROWN), 4, 1);
+		gameboard.addPiece(new Mushroom(), 2, 4);
+		xml.exportBoardlevelToXML();
+		GameBoard testboard = GameBoard.importFromXML(fileName);
+		
+		assertEquals("Expected to be same", gameboard, testboard);
+		
 	}
 	
 	/**

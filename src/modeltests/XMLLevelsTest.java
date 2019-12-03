@@ -21,7 +21,7 @@ import model.XMLLevel;
 /**
  * tests the XMLLevels class
  * 
- * @author adelatullio, liya abebe
+ * @author Adela Tullio and  Liya Abebe
  *
  */
 public class XMLLevelsTest {
