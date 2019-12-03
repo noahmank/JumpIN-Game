@@ -47,7 +47,6 @@ public class SaveLoad {
 			game = (JumpInGame) objectStream.readObject();
 			fileStream.close();
 			objectStream.close();
-			System.out.println(game);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error deserializing");
 		}
