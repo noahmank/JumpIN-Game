@@ -142,7 +142,7 @@ public class JumpInGame implements Serializable {
 			this.addPieceToBoard(new Fox(Direction.WEST, 2), 3, 3);
 		}
 		else {
-			String c = "Challenge " + selectedChallenge;
+			String c = "Challenge " + selectedChallenge + ".xml";
 			try {
 				this.gameBoard = GameBoard.importFromXML(c);
 			} catch(Exception e) {
@@ -322,7 +322,7 @@ public class JumpInGame implements Serializable {
 	
 	public void generateNewLevel() {
 		numChallenges++;
-		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges, this.gameBoard);
+		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges +".xml", this.gameBoard);
 		levelToXML.exportBoardlevelToXML();
 	}
 
