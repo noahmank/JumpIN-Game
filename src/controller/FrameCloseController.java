@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import model.JumpInGame;
-import model.Save_Load;
+import model.SaveLoad;
 import view.GeneralFrame;
 
 public class FrameCloseController extends WindowAdapter {
@@ -14,7 +14,7 @@ public class FrameCloseController extends WindowAdapter {
 	public void windowClosing(WindowEvent e) {
 		GeneralFrame frame = (GeneralFrame) e.getSource();
 		JumpInGame game = frame.getGame();
-		Save_Load.saveGameDataToFile(frame.getGame(), "JumpInGame Save.txt");
+		SaveLoad.saveGameDataToFile(frame.getGame(), "JumpInGame Save.txt");
 		frame.dispose();
 		System.exit(0);
 	}

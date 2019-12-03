@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 /**
 * Save and Load class Implementation
 */
-public class Save_Load {
+public class SaveLoad {
 	
 	/**
 	* A method that saves the Game state to a file

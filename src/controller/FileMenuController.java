@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import model.JumpInGame;
-import model.Save_Load;
+import model.SaveLoad;
 import view.JumpInView;
 
 /**

@@ -17,30 +17,10 @@ public class GameBoard implements Serializable {
 	private static final int DEFAULT_ROWS = 5;
 	private transient int numColumns;
 	private transient int numRows;
-	private transient Hole[][] grid;
+	private Hole[][] grid;
 	private LinkedHashMap<Rabbit, Point> rabbits;
 	private LinkedHashMap<Fox, Point> foxes;
 	private HashMap<Mushroom, Point> mushrooms;
-	
-	/**
-	* Creates a new GameBoard with the specified number of
-	* columns and number of rows.
-	* @param numColumns the number of columns to initialize the board to.
-	* @param numRows the number of rows to initialize the board to.
-	* @author Adela Tullio
-	*/
-	public GameBoard(int numColumns, int numRows) {
-		//If the user enters a negative number or zero, throw illegal argument exception
-		if(numColumns <= 0 || numRows <= 0) {
-			throw new IllegalArgumentException("Grid must be a positive size.");
-		}
-		this.numColumns = numColumns;
-		this.numRows = numRows;
-		this.grid = new Hole[numRows][numColumns];		
-		this.foxes = new LinkedHashMap<>();
-		this.rabbits = new LinkedHashMap<>();
-		this.mushrooms = new HashMap<>();
-	}
 	
 	/**
 	* Constructor to initialize a gameboard by calling the default constructor
@@ -67,7 +47,12 @@ public class GameBoard implements Serializable {
 	 *  @author Adela Tullio
 	 */
 	public GameBoard() {
-		this(DEFAULT_COLUMNS, DEFAULT_ROWS);
+		this.numColumns = DEFAULT_COLUMNS;
+		this.numRows = DEFAULT_ROWS;
+		this.grid = new Hole[numRows][numColumns];		
+		this.foxes = new LinkedHashMap<>();
+		this.rabbits = new LinkedHashMap<>();
+		this.mushrooms = new HashMap<>();
 		this.resetDefaultBoard();
 	}
 	
@@ -122,22 +107,6 @@ public class GameBoard implements Serializable {
 		this.foxes.clear();
 		this.rabbits.clear();
 		this.mushrooms.clear();
-	}
-	
-	/**
-	* gets the number of columns within the board
-	* @return integer number of columns on the gameboard
-	*/
-	public int getNumColumns() {
-		return numColumns;
-	}
-	
-	/**
-	* gets the number of rows within the board
-	* @return integer number of rows on the gameboard
-	*/
-	public int getNumRows() {
-		return numRows;
 	}
 	
 	/**
@@ -208,22 +177,6 @@ public class GameBoard implements Serializable {
 	}
 	
 	/**
-	* gets the gameboard grid of holes
-	* @return grid of holes
-	*/
-	public Hole[][] getGrid() {
-		return grid;
-	}
-	
-	/**
-	* sets the grid 
-	* @param grid is a grid of holes to set it to
-	*/
-	public void setGrid(Hole[][] grid) {
-		this.grid = grid;
-	}
-	
-	/**
 	* Changes the grid gameboard to a visual representation the user 
 	* is able to see
 	* @return the grid gameboard as a string
@@ -246,12 +199,24 @@ public class GameBoard implements Serializable {
 	}
 	
 	/**
+	* method to determine if a moveable piece can be moved
+	* @param p is the piece to determine if it can move
+	* @param direction is the direction the user wishes to see if it can move
+	* @return true or false if the moveable piece can move or not
+	*/
+	public boolean canMovePiece(MoveablePiece p, Direction direction) {
+		if(p instanceof Fox) return canMoveFox((Fox) p, direction);
+		if(p instanceof Rabbit) return canMoveRabbit((Rabbit) p, direction);
+		return false;
+	}
+
+	/**
 	* method to determine if the user is able to move a fox
 	* @param f is the fox that is being determined if it can move
 	* @direction is the direction the user is seeing if it can move
 	* @return true or false whether the fox can move or not
 	*/
-	public boolean canMoveFox(Fox f, Direction direction) {
+	private boolean canMoveFox(Fox f, Direction direction) {
 		Point tailLocation;
 		Point headLocation;
 		// Input fox is invalid
@@ -282,7 +247,7 @@ public class GameBoard implements Serializable {
 	* @direction is the direction the user is seeing if it can move
 	* @return true or false whether the rabbit can move or not
 	*/
-	public boolean canMoveRabbit(Rabbit r, Direction direction) {
+	private boolean canMoveRabbit(Rabbit r, Direction direction) {
 		Point currentLocation;
 		if(!rabbits.containsKey(r)) return false;
 		else currentLocation = rabbits.get(r);
@@ -301,16 +266,9 @@ public class GameBoard implements Serializable {
 		return false;
 	}
 	
-	/**
-	* method to determine if a moveable piece can be moved
-	* @param p is the piece to determine if it can move
-	* @param direction is the direction the user wishes to see if it can move
-	* @return true or false if the moveable piece can move or not
-	*/
-	public boolean canMovePiece(MoveablePiece p, Direction direction) {
-		if(p instanceof Fox) return canMoveFox((Fox) p, direction);
-		if(p instanceof Rabbit) return canMoveRabbit((Rabbit) p, direction);
-		return false;
+	public void movePiece(MoveablePiece piece, Direction moveDirection) {
+		if(piece instanceof Fox) moveFoxPiece((Fox) piece, moveDirection);
+		if(piece instanceof Rabbit) moveRabbitPiece((Rabbit) piece, moveDirection);
 	}
 	
 	/**
@@ -319,7 +277,7 @@ public class GameBoard implements Serializable {
 	* @param moveDirection is the direction in which the fox will move
 	* @author Noah Mank
 	*/
-	public void moveFoxPiece(Fox f, Direction moveDirection) {
+	private void moveFoxPiece(Fox f, Direction moveDirection) {
 		if(canMoveFox(f, moveDirection)) {
 			Point location = foxes.get(f);
 			// Remove from previous location
@@ -339,7 +297,7 @@ public class GameBoard implements Serializable {
 	* @param direction the direction in which the rabbit will move
 	* @author Noah Mank
 	*/
-	public void moveRabbitPiece(Rabbit r, Direction direction) {
+	private void moveRabbitPiece(Rabbit r, Direction direction) {
 		if(canMoveRabbit(r, direction)) {
 			Point currentLocation = rabbits.get(r);
 			this.removePiece(r);
@@ -349,19 +307,6 @@ public class GameBoard implements Serializable {
 			}
 			addRabbitPiece(r, currentLocation.x, currentLocation.y);		
 		}
-	}
-	
-	/**
-	* A method to add a rabbit to the board
-	* @param piece the rabbit piece to add to the board
-	* @param column is the column to add the rabbit piece to
-	* @param row is the row to add the rabbit piece to
-	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
-	* @author Kelly Harrison
-	*/
-	private void addRabbitPiece(Rabbit r, int column, int row) {
-		grid[column][row].setPiece(r);
-		this.rabbits.put(r, new Point(column, row));
 	}
 	
 	/**
@@ -382,26 +327,18 @@ public class GameBoard implements Serializable {
 	}
 	
 	/**
-	* method to determine if a fox can be added to a certain hole
-	* @param f is the fox to be added
-	* @param column is the column the user wishes to add it to
-	* @param row is the row the user wishes to add it to
-	* @return true or false whether the fox can be added to that location
+	* A method to add a rabbit to the board
+	* @param piece the rabbit piece to add to the board
+	* @param column is the column to add the rabbit piece to
+	* @param row is the row to add the rabbit piece to
+	* @throws IllegalArgumentException if a rabbit is placed within a brown hole to start
+	* @author Kelly Harrison
 	*/
-	public boolean canAddFox(Fox f, int column, int row) {
-		Direction direction = f.getDirection();
-		// Check that Fox is within board bounds and on empty hole, tail has already been checked
-		if(spaceIsEmpty(column + direction.getX(), row + direction.getY())) {
-			// Check that Fox is not being placed on a RaisedHole
-			if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
-				return false;
-			}
-			return true;
-		}
-		else return false;
+	private void addRabbitPiece(Rabbit r, int column, int row) {
+		grid[column][row].setPiece(r);
+		this.rabbits.put(r, new Point(column, row));
 	}
-	
-	
+
 	/**
 	* A method to add a mushroom piece to the board
 	* @param piece is the mushroom piece to add to the board
@@ -415,6 +352,27 @@ public class GameBoard implements Serializable {
 		grid[column][row].setPiece(piece);
 		this.mushrooms.put(piece, new Point(column, row));
 	}
+
+	/**
+	* method to determine if a fox can be added to a certain hole
+	* @param f is the fox to be added
+	* @param column is the column the user wishes to add it to
+	* @param row is the row the user wishes to add it to
+	* @return true or false whether the fox can be added to that location
+	*/
+	private boolean canAddFox(Fox f, int column, int row) {
+		Direction direction = f.getDirection();
+		// Check that Fox is within board bounds and on empty hole, tail has already been checked
+		if(spaceIsEmpty(column + direction.getX(), row + direction.getY())) {
+			// Check that Fox is not being placed on a RaisedHole
+			if((grid[column][row] instanceof RaisedHole) || (grid[column + direction.getX()][row + direction.getY()] instanceof RaisedHole)) {
+				return false;
+			}
+			return true;
+		}
+		else return false;
+	}
+	
 	
 	/**
 	 * Remove piece function

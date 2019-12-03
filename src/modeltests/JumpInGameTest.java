@@ -58,43 +58,6 @@ public class JumpInGameTest {
 	}
 	
 	/**
-	 * Test movePiece method by moving a piece to an occupied spot
-	 */
-	@Test
-	public void testMovePieceToInvalidSpot() {
-		game.addPieceToBoard(rabbit, 3, 0);
-		game.addPieceToBoard(mushroom, 3, 1);
-		game.addPieceToBoard(mushroom, 3, 2);
-		game.savePieceToMove(3, 0);
-		game.setDirection(Direction.SOUTH);
-		game.movePiece();
-		assertEquals("Expected mushroom at this location", "MS", board.getHole(3, 2).toString());
-	}
-	
-	/**
-	 * Test movePiece method by moving a piece to an out of bounds spot
-	 */
-	@Test 
-	public void testMovePieceOutOfBounds() {
-		game.addPieceToBoard(rabbit, 3, 1);
-		game.addPieceToBoard(mushroom, 3, 0);
-		game.savePieceToMove(3, 1);
-		game.setDirection(Direction.NORTH);
-		game.movePiece();
-		assertEquals("Expecting Rabbit in the same spot", "Grey Rabbit", board.getHole(3, 1).toString());
-	}
-	
-	/**
-	 * Tests addNewPieceToBoard method
-	 * with a mushroom
-	 */
-	@Test
-	public void testAddNewMushroomToBoard() {
-	   game.addPieceToBoard(mushroom, 2, 1);
-	   assertEquals("Expected Mushroom at (2, 1).", mushroom.toString(), board.getHole(2, 1).toString());
-	}
-	
-	/**
 	 * Tests challenge method
 	 * with challenge one
 	 */
@@ -186,25 +149,6 @@ public class JumpInGameTest {
 	@Test
 	public void testGetBoard() {
 		assertEquals("Expecting the board to be the same", board, game.getBoard());
-	}
-	
-	
-	/**
-	 * Test setPiece method
-	 */
-	@Test
-	public void testSetPiece() {
-		game.setPiece(rabbit);
-		assertEquals("Expecting Grey Rabbit", "Grey Rabbit", game.getPiece().toString());
-		
-	}
-	/**
-	 * Test getPiece method
-	 */
-	@Test
-	public void testGetPiece() {
-		game.addPieceToBoard(rabbit, 3, 2);
-		assertEquals("Expecting Grey Rabbit", "Grey Rabbit", board.getHole(3,2).getPiece().toString());
 	}
 	
 	/**

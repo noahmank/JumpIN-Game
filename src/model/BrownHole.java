@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
 * This class represents the BrownHoles the rabbits will jump into
 * @author Adela Tullio
 */
-public class BrownHole extends RaisedHole {
+public class BrownHole extends RaisedHole implements Serializable {
 	/**
 	* Constructor calls the constructor
 	* of the superclass

@@ -84,22 +84,6 @@ public class GameBoardTest {
 		assertEquals("Expecting no foxes", foxes, gameboard.getFoxes());
 		assertEquals("Expecting no mushrooms", mushrooms, gameboard.getMushrooms());
 	}
-	
-	/**
-	 * Tests getNumColumns method
-	 */
-	@Test
-	public void testGetNumColumns() {
-		assertEquals("Expecting 5 for the number of columns of the default board", 5, gameboard.getNumColumns());
-	}
-	
-	/**
-	 * Tests getNumRows method
-	 */
-	@Test
-	public void testGetNumRows() {
-		assertEquals("Expecting 5 for the number of rows of the default board", 5, gameboard.getNumRows());
-	}
 
 	/**
 	 * Tests the getHole Method
@@ -170,27 +154,6 @@ public class GameBoardTest {
 	}
 	
 	/**
-	 * tests getting the grid
-	 */
-	@Test
-	public void testGetGrid() {
-		Hole[][] grid = gameboard.getGrid();
-		assertEquals("Expected 'BH'", "BH", grid[4][4].toString());
-		assertEquals("Expected '  '", "  ",grid[1][2].toString());
-		assertEquals("Expected 'RH'", "RH", grid[4][2].toString());
-	}
-	
-	/**
-	 * tests setting the grid
-	 */
-	@Test
-	public void testSetGrid() {
-		Hole[][] grid = new Hole[gameboard.getNumColumns()][gameboard.getNumRows()];
-		gameboard.setGrid(grid);
-		assertEquals("Expecting the same", grid.toString(), gameboard.getGrid().toString());
-	}
-	
-	/**
 	 * Tests the toString representation of the gameboard
 	 */
 	@Test
@@ -226,7 +189,7 @@ public class GameBoardTest {
 	@Test
 	public void testMoveFoxPiece() {
 		gameboard.addPiece(fox, 3, 2);
-		gameboard.moveFoxPiece(fox, Direction.NORTH);
+		gameboard.movePiece(fox, Direction.NORTH);
 		assertEquals("Expecting 'Fox 1'", "Fox 1", gameboard.getHole(3, 0).toString());
 	}
 	
@@ -237,26 +200,8 @@ public class GameBoardTest {
 	public void testMoveRabbitPiece() {
 		gameboard.addPiece(mushroom, 1, 2);
 		gameboard.addPiece(rabbit, 0, 2);
-		gameboard.moveRabbitPiece(rabbit, Direction.EAST);
+		gameboard.movePiece(rabbit, Direction.EAST);
 		assertEquals("Expecting 'Grey Rabbit'.", "Grey Rabbit", gameboard.getHole(2, 2).toString());
-	}
-	
-	/**
-	 * Tests the can add fox method
-	 * on empty space
-	 */
-	@Test
-	public void testCanAddFoxOnEmptySpace() {
-		assertEquals("Expecting true", true, gameboard.canAddFox(fox, 3, 2));
-	}
-	
-	/**
-	 * tests the can add fox method
-	 * on a raised hole
-	 */
-	@Test
-	public void testCanAddFoxOnRaisedHole() {
-		assertEquals("Expecting false", false, gameboard.canAddFox(fox, 2, 0));
 	}
 	
 	/**

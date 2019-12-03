@@ -1,9 +1,12 @@
 package model;
+
+import java.io.Serializable;
+
 /**
 * Represents RaisedHoles on the GameBoard
 * @author Adela Tullio
 */
-public class RaisedHole extends Hole {
+public class RaisedHole extends Hole implements Serializable {
 	
 	/**
 	* RaisedHole constructor calls the

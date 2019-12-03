@@ -12,7 +12,7 @@ import model.*;
  *
  */
 public class Save_LoadTest {
-	private Save_Load saveLoad;
+	private SaveLoad saveLoad;
 	
 	/**
 	 * sets up the private variables
@@ -21,7 +21,7 @@ public class Save_LoadTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		saveLoad = new Save_Load();
+		saveLoad = new SaveLoad();
 	}
 	
 	/**

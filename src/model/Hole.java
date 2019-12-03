@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Aubin
  *
  */
-public class Hole {
+public class Hole implements Serializable {
 	private Boolean isOccupied;
 	private Piece piece;
 	

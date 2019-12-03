@@ -73,8 +73,7 @@ public class JumpInGame implements Serializable {
 		if(this.gameStatus == GameStatus.IN_PROGRESS) {
 			if(gameBoard.canMovePiece(p, direction)) this.consoleOutput = p.toString() + " was moved " + direction.toString();
 			else this.consoleOutput = p.toString() + " cannot be moved " + direction.toString();
-			if(p instanceof Fox) gameBoard.moveFoxPiece((Fox) p, direction);
-			if(p instanceof Rabbit) gameBoard.moveRabbitPiece((Rabbit) p, direction);
+			gameBoard.movePiece(p, direction);
 			notifyViews();
 			undoableMoveActions.push(new MoveAction(p, direction));
 			if(this.gameBoard.isFinished()) {
@@ -91,7 +90,7 @@ public class JumpInGame implements Serializable {
 	 * @param column is the column to which the piece is added
 	 * @param row is the row in which the piece is added
 	 */
-	public void addPieceToBoard(Piece piece, int column, int row) {
+	private void addPieceToBoard(Piece piece, int column, int row) {
 		gameBoard.addPiece(piece, column, row);
 		notifyViews();
 	}
@@ -213,15 +212,7 @@ public class JumpInGame implements Serializable {
 			v.updateView();
 		}
 	}
-	
-	/**
-	* a setter for the piece
-	* @param piece is the piece you wish to set it to
-	*/
-	public void setPiece(MoveablePiece piece) {
-		this.selectedPiece = piece;
-	}
-	
+
 	/**
 	* a setter for the direction
 	* @param direction is the direction you wish to set it to
@@ -322,6 +313,10 @@ public class JumpInGame implements Serializable {
 	* @return the builder
 	*/
 	public BoardBuilder getBuilder() {
+		if(this.builder == null) {
+			if(this.gameBoard == null) this.gameBoard = new GameBoard();
+			this.builder = new BoardBuilder(this.gameBoard);
+		}
 		return this.builder;
 	}
 	
@@ -330,15 +325,6 @@ public class JumpInGame implements Serializable {
 		XMLLevel levelToXML = new XMLLevel("Challenge " + numChallenges, this.gameBoard);
 		levelToXML.exportBoardlevelToXML();
 	}
-	
-	/**
-	public void save(String filename) {
-		try {
-			FileWriter fileWriter = new FileWriter(filename);
-			
-		}
-	}
-	**/
 
 	public void saveGameBoardInProgress() {
 		this.challengesInProgress.put(this.selectedChallenge, new GameBoard(this.gameBoard));

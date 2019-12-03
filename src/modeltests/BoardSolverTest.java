@@ -133,14 +133,14 @@ public class BoardSolverTest {
 		solver.solveBoard();
 		gameboard = solver.getSolvedBoard();
 		assertEquals("Expecting for a solved board", true,  gameboard.isFinished());
-		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.SOUTH);
-		gameboardCopy.moveRabbitPiece(whiteRabbit, Direction.WEST);
-		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.SOUTH);
-		gameboardCopy.moveRabbitPiece(brownRabbit, Direction.EAST);
-		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
-		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
-		gameboardCopy.moveFoxPiece(fox1, Direction.SOUTH);
-		gameboardCopy.moveRabbitPiece(greyRabbit, Direction.WEST);
+		gameboardCopy.movePiece(greyRabbit, Direction.SOUTH);
+		gameboardCopy.movePiece(whiteRabbit, Direction.WEST);
+		gameboardCopy.movePiece(greyRabbit, Direction.SOUTH);
+		gameboardCopy.movePiece(brownRabbit, Direction.EAST);
+		gameboardCopy.movePiece(fox1, Direction.SOUTH);
+		gameboardCopy.movePiece(fox1, Direction.SOUTH);
+		gameboardCopy.movePiece(fox1, Direction.SOUTH);
+		gameboardCopy.movePiece(greyRabbit, Direction.WEST);
 		assertEquals("Expecting two boards to be equal", gameboardCopy, gameboard);
 	}
 	

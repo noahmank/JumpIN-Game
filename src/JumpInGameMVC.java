@@ -2,7 +2,7 @@
 import java.io.IOException;
 
 import model.JumpInGame;
-import model.Save_Load;
+import model.SaveLoad;
 import view.JumpInView;
 
 /**
@@ -14,7 +14,7 @@ public class JumpInGameMVC {
 	public static void main(String[] args) {
 		JumpInGame game;
 		try {
-			game = Save_Load.loadGameDataFromFile("JumpInGame Save.txt");
+			game = SaveLoad.loadGameDataFromFile("JumpInGame Save.txt");
 		} catch(IOException e) {
 			System.out.println("No save file found");
 			game = new JumpInGame();
