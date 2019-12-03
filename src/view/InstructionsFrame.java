@@ -11,17 +11,19 @@ import model.JumpInGame;
  * @author RunTime Terror
  *
  */
-public class InstructionsFrame extends JFrame {
+public class InstructionsFrame extends GeneralFrame {
 	private JumpInView view;
 	private FrameModePanel frameModePanel;
 	private ChallengeSelectPanel challengeSelectPanel;
+	private JumpInGame game;
+	
 	/**
 	 * Constructing a frame containing all the game rules, the Start game Button and the Solve game Button
 	 * @param g
 	 * @param v
 	 */
 	public InstructionsFrame(JumpInGame g, JumpInView v) {
-		super("Welcome to Jump-In Game");
+		super("Welcome to Jump-In Game", g);
 		this.view = v;
 		this.frameModePanel = new FrameModePanel(g, this.view);
 		this.challengeSelectPanel = new ChallengeSelectPanel(g);
@@ -35,9 +37,7 @@ public class InstructionsFrame extends JFrame {
     	this.add(ruleText, BorderLayout.NORTH);
     	this.add(challengeSelectPanel, BorderLayout.CENTER);
 		this.add(frameModePanel, BorderLayout.SOUTH);
-		this.setSize(700, 700);
-		this.setLocationRelativeTo(null);
+		
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

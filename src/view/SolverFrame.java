@@ -9,11 +9,12 @@ import model.JumpInGame;
  * @author Runtime Terror
  *
  */
-public class SolverFrame extends JFrame {
+public class SolverFrame extends GeneralFrame {
 	private BoardGridPanel gridPanel;
 	private SolverButtonPanel solverButtonPanel;
 	private ConsoleOutputPanel consoleOutputPanel;
 	private DefaultMenuBar menuBar;
+	private JumpInGame game;
 	
 	/**
 	 * Populating the Solver frame 
@@ -21,7 +22,7 @@ public class SolverFrame extends JFrame {
 	 * @param view is the JumpIN game view
 	 */
 	public SolverFrame(JumpInGame game, JumpInView view) {
-		super("Jump-In Solver");
+		super("Jump-In Solver", game);
 		this.gridPanel = new BoardGridPanel(game, null);
 		this.solverButtonPanel = new SolverButtonPanel(game);
 		this.consoleOutputPanel = new ConsoleOutputPanel(game);
@@ -31,10 +32,9 @@ public class SolverFrame extends JFrame {
 		this.add(solverButtonPanel, BorderLayout.SOUTH);
 		this.add(consoleOutputPanel, BorderLayout.NORTH);
 		this.setJMenuBar(menuBar);
-		
-		this.setSize(700, 700);
-		this.setLocationRelativeTo(null);
-		this.setVisible(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public JumpInGame getGame() {
+		return this.game;
 	}
 }

@@ -349,4 +349,5 @@ public class JumpInGame implements Serializable {
 			notifyViews();
 		}
 	}
+
 }
