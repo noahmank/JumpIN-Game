@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
 * Class for an action of a moveable piece in a certain direction, involving getters and setters of the piece
 * as well as direction
 */
-public class MoveAction {
+public class MoveAction implements Serializable {
 	private MoveablePiece piece;
 	private Direction direction;
 	

@@ -33,8 +33,4 @@ public class SolverFrame extends GeneralFrame {
 		this.add(consoleOutputPanel, BorderLayout.NORTH);
 		this.setJMenuBar(menuBar);
 	}
-	
-	public JumpInGame getGame() {
-		return this.game;
-	}
 }

@@ -17,10 +17,10 @@ import view.*;
  */
 public class JumpInGame implements Serializable {
 	private transient GameBoard gameBoard;
-	private transient GameStatus gameStatus;
+	private GameStatus gameStatus;
 	private transient ArrayList<JumpInGameListener> views;
-	private transient Stack<MoveAction> undoableMoveActions;
-	private transient Stack<MoveAction> redoableMoveActions;
+	private Stack<MoveAction> undoableMoveActions;
+	private Stack<MoveAction> redoableMoveActions;
 	private transient MoveablePiece selectedPiece;
 	private transient Direction selectedDirection;
 	private transient String consoleOutput;
@@ -42,7 +42,6 @@ public class JumpInGame implements Serializable {
 		selectedDirection = null;
 		consoleOutput = null;
 		solver = null;
-		selectedChallenge = 1;
 		numChallenges = 3;
 		builder = new BoardBuilder(gameBoard);
 		challengesInProgress = new HashMap<>();
@@ -112,7 +111,8 @@ public class JumpInGame implements Serializable {
 	 * @param challenge is the number that identifies the challenge
 	 */
 	public void startChallenge() {
-		
+		if(this.gameBoard == null) this.gameBoard = new GameBoard();
+		if(this.selectedChallenge < 1) this.selectedChallenge = 1;
 		if(this.selectedChallenge == 1) {
 			this.addPieceToBoard(new Rabbit(RabbitColor.GREY), 3, 0);
 			this.addPieceToBoard(new Rabbit(RabbitColor.WHITE), 4, 2);
@@ -192,6 +192,7 @@ public class JumpInGame implements Serializable {
 	 * @param v is the view to be added to the views collection
 	 */
 	public void addView(JumpInGameListener v) {
+		if(this.views == null) this.views = new ArrayList<>();
 		this.views.add(v);
 	}
 	
@@ -349,5 +350,4 @@ public class JumpInGame implements Serializable {
 			notifyViews();
 		}
 	}
-
 }

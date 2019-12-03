@@ -28,8 +28,4 @@ public class GameFrame extends GeneralFrame {
     	this.add(consoleOutputPanel, BorderLayout.NORTH);    		
     	
 	}
-	
-	public JumpInGame getGame() {
-		return this.game;
-	}
 }

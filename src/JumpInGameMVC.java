@@ -1,5 +1,8 @@
 
+import java.io.IOException;
+
 import model.JumpInGame;
+import model.Save_Load;
 import view.JumpInView;
 
 /**
@@ -9,7 +12,14 @@ import view.JumpInView;
 public class JumpInGameMVC {
 
 	public static void main(String[] args) {
-		new JumpInView(new JumpInGame());
+		JumpInGame game;
+		try {
+			game = Save_Load.loadGameDataFromFile("JumpInGame Save.txt");
+		} catch(IOException e) {
+			System.out.println("No save file found");
+			game = new JumpInGame();
+		}
+		new JumpInView(game);
 	}
 
 }

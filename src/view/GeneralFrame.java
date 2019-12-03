@@ -10,6 +10,7 @@ public class GeneralFrame extends JFrame {
 	
 	public GeneralFrame(String frameName, JumpInGame game) {
 		super(frameName);
+		this.game = game;
 		this.setSize(700, 700);
 		this.setLocationRelativeTo(null);
 		this.setVisible(false);

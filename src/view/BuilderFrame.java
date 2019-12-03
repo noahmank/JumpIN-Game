@@ -8,11 +8,12 @@ import controller.*;
 /**
 * Builder frame
 */
-public class BuilderFrame extends JFrame {
+public class BuilderFrame extends GeneralFrame {
 	private BuilderPieceSelectionPanel builderPieceSelectionPanel;
 	private BoardGridPanel boardGridPanel;
 	private BuildBoardButtonPanel buildBoardButtonPanel;
 	private DefaultMenuBar solverMenuBar; // Need to rename this class to generalize
+	private JumpInGame game;
 	
 	/**
 	* Constructor for the builder frame
@@ -20,7 +21,7 @@ public class BuilderFrame extends JFrame {
 	* @param v is the view
 	*/
 	public BuilderFrame(JumpInGame g, JumpInView v) {
-		super("Jump-In Builder");
+		super("Jump-In Builder", g);
 		this.builderPieceSelectionPanel = new BuilderPieceSelectionPanel(g);
 		this.boardGridPanel = new BoardGridPanel(g, new BuilderBoardButtonController(g));
 		this.buildBoardButtonPanel = new BuildBoardButtonPanel(g, null);
@@ -30,10 +31,5 @@ public class BuilderFrame extends JFrame {
 		this.add(builderPieceSelectionPanel, BorderLayout.NORTH);
 		this.add(buildBoardButtonPanel, BorderLayout.SOUTH);
 		this.setJMenuBar(solverMenuBar);
-		
-		this.setSize(700, 700);
-		this.setLocationRelativeTo(null);
-		this.setVisible(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

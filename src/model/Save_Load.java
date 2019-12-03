@@ -17,15 +17,18 @@ public class Save_Load {
 	* @param Filename is the name of the file the game will be saved to
 	* @throws IOException 
 	*/
-	public static void saveGameDataToFile(JumpInGame game, String Filename) throws IOException {
-
-		FileOutputStream fileStream = new FileOutputStream(Filename);
-		ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
-
-		objectStream.writeObject(game);
-
-		objectStream.close();
-		fileStream.close();
+	public static void saveGameDataToFile(JumpInGame game, String Filename) {
+		try {
+			FileOutputStream fileStream = new FileOutputStream(Filename);
+			ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+	
+			objectStream.writeObject(game);
+	
+			objectStream.close();
+			fileStream.close();
+		} catch(IOException e) {
+			System.out.println(e);
+		}
 
 	}
 	
@@ -35,13 +38,19 @@ public class Save_Load {
 	* @return Object of the loaded gane data
 	* @throws ClassNotFoundException, IOException
 	*/
-	public static Object loadGameDataFromFile(String filename) throws ClassNotFoundException, IOException {
-
-		File file = new File(filename);
-		FileInputStream fileStream = new FileInputStream(file);
-		ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-
-		return objectStream.readObject();
-
+	public static JumpInGame loadGameDataFromFile(String filename) throws IOException {
+		JumpInGame game = null;
+		try {
+			File file = new File(filename);
+			FileInputStream fileStream = new FileInputStream(file);
+			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
+			game = (JumpInGame) objectStream.readObject();
+			fileStream.close();
+			objectStream.close();
+			System.out.println(game);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error deserializing");
+		}
+		return game;
 	}
 }
