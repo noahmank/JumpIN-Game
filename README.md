@@ -89,7 +89,8 @@ Exporting the project in its current state does not include the images - this wi
 There is some delay while the solver is running, though this is less of an issue and more of a weakness of the chosen solve strategy. The user might have to wait up to about 35 seconds before they get the option to see the minimum set of moves required to solve the game. A bigger issue is that for especially complex challenges, like challenge 3, the tree becomes too large, and ends up running out of memory. Another non-major issue is that the challenges are currently hard coded into the system. By the next deliverable, this issue will be fixed with a method to add new challenges from a text file, and a level creator within the game.
 
 ### Deliverable 4
-Some of the classes in this project are not as cohesive as they could be, mainly due to time constraints. There is very little feedback when using the 
+Some of the classes in this project are not as cohesive as they could be, mainly due to time constraints. There is also very little feedback when using the builder (doesn't tell you if the board has been added to the list of challenges) due to a lack of console output.
+
 # Design
 
 ### Deliverable 1
