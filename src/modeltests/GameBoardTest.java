@@ -24,9 +24,6 @@ public class GameBoardTest {
 	private Mushroom mushroom;
 	private Fox fox;
 	private Rabbit rabbit;
-	private SAXParserFactory factory;
-	private SAXParser saxParser;
-	private LevelBuilderXMLParser levelBuilderXMlparser;
 	private String fileName;
 	private XMLLevel xml;
 	
